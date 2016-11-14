@@ -16,6 +16,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { RegisterComponent } from './register/register.component';
 
 const firebaseConfig = {
     apiKey: "AIzaSyALvAG2XzTCBvRCpi3sSz2GUDnMlhdFz8o",
@@ -30,6 +31,7 @@ const firebaseConfig = {
     AppComponent,
     LoginComponent,
     DashboardComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

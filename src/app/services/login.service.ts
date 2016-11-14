@@ -11,7 +11,6 @@ import { LoginModel } from '../models/login';
 @Injectable()
 export class LoginService {
     private user = {};
-    private items: FirebaseListObservable<any[]>;
 
     constructor (
         public router: Router,
@@ -20,27 +19,44 @@ export class LoginService {
         this.af.auth.subscribe(user => {
             if (user) {
                 this.user = user.auth.providerData[0];
-                this.items = af.database.list('/items');
                 this.router.navigate(['dashboard']);
             } else {
                 this.user = {};
-                this.items = null;
             }
         });
     }
 
-    loginGoogle(): void {
-        this.af.auth.login({
-            provider: AuthProviders.Google,
-            method: AuthMethods.Popup
-        })
+    login(email: string, password: string): Promise<boolean> {
+        var creds: any = { email: email, password: password };
+        var res: Promise<boolean> = new Promise((resolve, reject) => {
+            this.af.auth.login(creds).then(result => {
+                resolve(result);
+            })
+        });
+        return res;
+    }
+
+    loginGoogle(): Promise<boolean> {
+        var res: Promise<boolean> = new Promise((resolve, reject) => {
+            this.af.auth.login({
+                provider: AuthProviders.Google,
+                method: AuthMethods.Popup
+            }).then(result => {
+                resolve(result);
+            })
+        });
         this.router.navigate(['/dashboard']);
+        return res;
+    }
+
+    doRegister(register: Object): void {
+        var creds: any = { email: register["email"], password: register["password"] };
+        this.af.auth.createUser(creds);
     }
 
     logout(): void {
         this.af.auth.logout();
         this.user = {};
-        this.items = undefined;
         this.router.navigate(['/login']);
     }
 
@@ -48,8 +64,8 @@ export class LoginService {
         return (Object.keys(this.user).length > 0);
     }
 
-    getItems(): FirebaseListObservable<any[]> {
-        return this.items;
+    getUser(): Object {
+        return this.user;
     }
 
 }
