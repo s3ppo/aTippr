@@ -4,6 +4,7 @@
     <md-nav-list>
       <a md-list-item *ngIf="!isAuth()" [routerLink]="['register']" (click)="sidenav.toggle()">Registrieren</a>
       <a md-list-item *ngIf="!isAuth()" [routerLink]="['login']" (click)="sidenav.toggle()">Login</a>
+      <a md-list-item *ngIf="isAuth()" [routerLink]="['dashboard']" (click)="sidenav.toggle()">Dashboard</a>
       <a md-list-item *ngIf="isAuth()" (click)="logout()" (click)="sidenav.toggle()">Logout</a>
     </md-nav-list>
   </md-sidenav>

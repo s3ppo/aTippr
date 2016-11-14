@@ -38,10 +38,7 @@ const firebaseConfig = {
     FormsModule,
     HttpModule,
     MaterialModule.forRoot(),
-    AngularFireModule.initializeApp(firebaseConfig,{
-      provider: AuthProviders.Google,
-      method: AuthMethods.Popup
-    }),
+    AngularFireModule.initializeApp(firebaseConfig),
     routing,
   ],
   providers: [

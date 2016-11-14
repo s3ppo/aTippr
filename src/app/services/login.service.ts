@@ -19,45 +19,51 @@ export class LoginService {
         this.af.auth.subscribe(user => {
             if (user) {
                 this.user = user.auth.providerData[0];
-                this.router.navigate(['dashboard']);
             } else {
                 this.user = {};
             }
         });
     }
 
-    login(email: string, password: string): Promise<boolean> {
-        var creds: any = { email: email, password: password };
-        var res: Promise<boolean> = new Promise((resolve, reject) => {
-            this.af.auth.login(creds).then(result => {
-                this.af.database.object(`/users/${result.auth.uid}`).set({
-                    name: result.auth.displayName
-                });
-                resolve(result);
-            })
+    login(login: LoginModel ): Promise<boolean> {
+        let creds: Object = { email: login.email, password: login.password };
+        let res: Promise<boolean> = new Promise((resolve, reject) => {
+            this.af.auth.login(creds)
+            .then(result => { resolve(result); })
+            .catch(error => { reject(error.message); });
         });
         return res;
     }
 
     loginGoogle(): Promise<boolean> {
-        var res: Promise<boolean> = new Promise((resolve, reject) => {
+        let res: Promise<boolean> = new Promise((resolve, reject) => {
             this.af.auth.login({
                 provider: AuthProviders.Google,
                 method: AuthMethods.Popup
-            }).then(result => {
+            })
+            .then(result => {
                 this.af.database.object(`/users/${result.auth.uid}`).set({
                     name: result.auth.displayName
                 });
                 resolve(result);
             })
+            .catch(error => { reject(error.message) });
         });
-        this.router.navigate(['/dashboard']);
         return res;
     }
 
-    doRegister(register: Object): void {
-        var creds: any = { email: register["email"], password: register["password"] };
-        this.af.auth.createUser(creds);
+    doRegister(register: Object): Promise<boolean> {
+        let creds: any = { email: register["email"], password: register["password"] };
+        let res: Promise<boolean> = new Promise((resolve, reject) => {
+            this.af.auth.createUser(creds).then(result => {
+                this.af.database.object(`/users/${result.auth.uid}`).set({
+                    name: result.auth.displayName
+                });
+                resolve(result);
+            })
+            .catch(error => { reject(error.message) });
+        });
+        return res;
     }
 
     logout(): void {

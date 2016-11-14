@@ -20,7 +20,11 @@ export class LoginComponent {
     private snackBar: MdSnackBar
   ){}
 
-  private loginmodel: LoginModel;
+  loginmodel = new LoginModel('','');
+
+  doLogin(): void {
+    this.loginservice.login(this.loginmodel);
+  }
 
   loginGoogle(): void {
     this.loginservice.loginGoogle();
