@@ -2,12 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+//Routing
+import { routing } from './app.routing';
 //Firebase
 import { AngularFireModule, AuthMethods, AuthProviders } from "angularfire2";
 //Material
 import { MaterialModule } from '@angular/material';
+//Services
+import { LoginService } from './services/login.service';
 //Components
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
 
 
 const firebaseConfig = {
@@ -20,7 +25,8 @@ const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,9 +36,12 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig,{
       provider: AuthProviders.Google,
       method: AuthMethods.Popup
-    })
+    }),
+    routing,
   ],
-  providers: [],
+  providers: [
+    LoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

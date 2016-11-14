@@ -14,8 +14,8 @@
       "../node_modules/@types"
     ],
     "types": [
-      "firebase",
-      "node"
+      "node",
+      "hammerjs"
     ]
   }
 }
