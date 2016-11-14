@@ -14,7 +14,7 @@ export class LoginService {
 
     constructor (
         public router: Router,
-        public af: AngularFire
+        public af: AngularFire,
     ){
         this.af.auth.subscribe(user => {
             if (user) {
@@ -30,6 +30,9 @@ export class LoginService {
         var creds: any = { email: email, password: password };
         var res: Promise<boolean> = new Promise((resolve, reject) => {
             this.af.auth.login(creds).then(result => {
+                this.af.database.object(`/users/${result.auth.uid}`).set({
+                    name: result.auth.displayName
+                });
                 resolve(result);
             })
         });
@@ -42,6 +45,9 @@ export class LoginService {
                 provider: AuthProviders.Google,
                 method: AuthMethods.Popup
             }).then(result => {
+                this.af.database.object(`/users/${result.auth.uid}`).set({
+                    name: result.auth.displayName
+                });
                 resolve(result);
             })
         });
