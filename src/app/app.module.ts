@@ -10,10 +10,12 @@ import { AngularFireModule, AuthMethods, AuthProviders } from "angularfire2";
 import { MaterialModule } from '@angular/material';
 //Services
 import { LoginService } from './services/login.service';
+//Guards
+import { AuthGuard } from './guards/auth.guard';
 //Components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const firebaseConfig = {
     apiKey: "AIzaSyALvAG2XzTCBvRCpi3sSz2GUDnMlhdFz8o",
@@ -27,6 +29,7 @@ const firebaseConfig = {
   declarations: [
     AppComponent,
     LoginComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +43,8 @@ const firebaseConfig = {
     routing,
   ],
   providers: [
-    LoginService
+    LoginService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

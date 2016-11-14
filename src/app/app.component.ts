@@ -9,7 +9,6 @@ import { LoginService } from './services/login.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  user = {};
 
   constructor(
     private loginservice: LoginService
@@ -17,6 +16,10 @@ export class AppComponent {
  
   logout(): void {
     this.loginservice.logout();
+  }
+
+  isAuth() {
+    return this.loginservice.isLoggedIn();
   }
 
 }
