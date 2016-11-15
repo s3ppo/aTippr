@@ -16,6 +16,7 @@ import { LoginModel } from '../models/login';
 export class LoginComponent {
 
   constructor(
+    private router: Router,
     private loginservice: LoginService,
     private snackBar: MdSnackBar
   ){}
@@ -23,10 +24,14 @@ export class LoginComponent {
   loginmodel = new LoginModel('','');
 
   doLogin(): void {
-    this.loginservice.login(this.loginmodel);
+    this.loginservice.login(this.loginmodel)
+        .then( success => { this.router.navigate(['/dashboard']); })
+        .catch( error => { this.snackBar.open(error, "Close") });
   }
 
   loginGoogle(): void {
-    this.loginservice.loginGoogle();
+    this.loginservice.loginGoogle()
+        .then( success => { this.router.navigate(['/dashboard']); })
+        .catch( error => { this.snackBar.open(error, "Close") });
   }
 }

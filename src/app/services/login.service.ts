@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { AngularFire, AuthProviders, FirebaseListObservable, AuthMethods } from 'angularfire2';
 //Models
 import { LoginModel } from '../models/login';
+import { AccountsModel } from '../models/accounts';
 
 @Injectable()
 export class LoginService {
@@ -30,7 +31,7 @@ export class LoginService {
         let res: Promise<boolean> = new Promise((resolve, reject) => {
             this.af.auth.login(creds)
             .then(result => { resolve(result); })
-            .catch(error => { reject(error.message); });
+            .catch(error => { reject(error.message || error ); });
         });
         return res;
     }
@@ -43,25 +44,29 @@ export class LoginService {
             })
             .then(result => {
                 this.af.database.object(`/users/${result.auth.uid}`).set({
-                    name: result.auth.displayName
+                    name: result.auth.displayName,
+                    email: result.auth.email,
+                    photo: result.auth.photoURL,
+                    provider: result.auth.providerId,
                 });
                 resolve(result);
             })
-            .catch(error => { reject(error.message) });
+            .catch(error => { reject(error.message || error ) });
         });
         return res;
     }
 
-    doRegister(register: Object): Promise<boolean> {
+    doRegister(register: AccountsModel): Promise<boolean> {
         let creds: any = { email: register["email"], password: register["password"] };
         let res: Promise<boolean> = new Promise((resolve, reject) => {
             this.af.auth.createUser(creds).then(result => {
                 this.af.database.object(`/users/${result.auth.uid}`).set({
-                    name: result.auth.displayName
+                    name: register.firstname + " " + register.lastname,
+                    email: register.email,
                 });
                 resolve(result);
             })
-            .catch(error => { reject(error.message) });
+            .catch(error => { reject(error.message || error ) });
         });
         return res;
     }
