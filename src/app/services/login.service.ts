@@ -14,7 +14,7 @@ export class LoginService {
     private user = {};
 
     constructor (
-        public router: Router,
+        private router: Router,
         public af: AngularFire,
     ){
         this.af.auth.subscribe(user => {
@@ -83,6 +83,16 @@ export class LoginService {
 
     getUser(): Object {
         return this.user;
+    }
+
+    forgotPassword(email: string): Promise<Boolean> {
+        let auth = firebase.auth();
+        let res: Promise<boolean> = new Promise((resolve, reject) => {
+            auth.sendPasswordResetEmail(email)
+                .then( result => { resolve(result); })
+                .catch( error => { reject(error)});
+        });
+        return res;
     }
 
 }
