@@ -1,3 +1,4 @@
+//Angular
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -10,6 +11,7 @@ import { AngularFireModule, AuthMethods, AuthProviders } from "angularfire2";
 import { MaterialModule } from '@angular/material';
 //Services
 import { LoginService } from './services/login.service';
+import { MembersService } from './services/members.service';
 //Guards
 import { AuthGuard } from './guards/auth.guard';
 //Components
@@ -17,6 +19,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
+import { MembersComponent } from './members/members.component';
 
 const firebaseConfig = {
     apiKey: "AIzaSyALvAG2XzTCBvRCpi3sSz2GUDnMlhdFz8o",
@@ -31,7 +34,8 @@ const firebaseConfig = {
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    RegisterComponent
+    RegisterComponent,
+    MembersComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +50,7 @@ const firebaseConfig = {
   ],
   providers: [
     LoginService,
+    MembersService,
     AuthGuard
   ],
   bootstrap: [AppComponent]
