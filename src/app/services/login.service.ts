@@ -47,7 +47,6 @@ export class LoginService {
                     name: result.auth.displayName,
                     email: result.auth.email,
                     photo: result.auth.photoURL,
-                    provider: result.auth.providerId,
                 });
                 resolve(result);
             })

@@ -18,8 +18,12 @@ export class AppComponent {
     this.loginservice.logout();
   }
 
-  isAuth() {
+  isAuth(): Boolean {
     return this.loginservice.isLoggedIn();
+  }
+
+  isAdmin(): Boolean {
+    return true;
   }
 
 }

@@ -14,12 +14,14 @@ import { LoginService } from './services/login.service';
 import { MembersService } from './services/members.service';
 //Guards
 import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
 //Components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
 import { MembersComponent } from './members/members.component';
+import { AdminComponent } from './admin/admin.component';
 
 const firebaseConfig = {
     apiKey: "AIzaSyALvAG2XzTCBvRCpi3sSz2GUDnMlhdFz8o",
@@ -36,6 +38,7 @@ const firebaseConfig = {
     DashboardComponent,
     RegisterComponent,
     MembersComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ const firebaseConfig = {
   providers: [
     LoginService,
     MembersService,
-    AuthGuard
+    AuthGuard,
+    AdminGuard
   ],
   bootstrap: [AppComponent]
 })
