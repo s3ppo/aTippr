@@ -11,7 +11,7 @@ import { AccountsModel } from '../models/accounts';
 
 @Injectable()
 export class LoginService {
-    private user = {};
+    public user = {};
 
     constructor (
         private router: Router,
@@ -19,7 +19,7 @@ export class LoginService {
     ){
         this.af.auth.subscribe(user => {
             if (user) {
-                this.user = user.auth.providerData[0];
+                this.user = user;
             } else {
                 this.user = {};
             }
@@ -79,10 +79,6 @@ export class LoginService {
 
     isLoggedIn(): Boolean {
         return (Object.keys(this.user).length > 0);
-    }
-
-    getUser(): Object {
-        return this.user;
     }
 
     forgotPassword(email: string): Promise<Boolean> {

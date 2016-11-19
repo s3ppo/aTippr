@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 //Services
 import { LoginService } from '../services/login.service';
+import { MembersService } from '../services/members.service';
 
 @Component({
   selector: 'Dashboard',
@@ -11,17 +12,15 @@ import { LoginService } from '../services/login.service';
   providers: []
 })
 export class DashboardComponent implements OnInit{
-  private username: String;
 
   constructor(
     private loginservice: LoginService,
+    private membersservice: MembersService,
   ){}
 
   ngOnInit(): void {
-    let user = {};
-    user = this.loginservice.getUser();
-    this.username = user['displayName'];
+    this.membersservice.get(this.loginservice.user['uid'])
+        .subscribe( member => { });
   }
-
 
 }
