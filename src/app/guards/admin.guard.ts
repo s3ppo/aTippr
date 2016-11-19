@@ -23,6 +23,7 @@ export class AdminGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
     if( this.member.hasOwnProperty('admin') ) {
       return this.member['admin'];
+    }
   }
 
 }
