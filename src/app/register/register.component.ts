@@ -31,7 +31,7 @@ export class RegisterComponent {
 
     this.loginservice.doRegister(this.registermodel)
         .then( success  => { this.registermodel = new AccountsModel('','','','','');
-                            this.router.navigate(['/dashboard']); })
+                             this.router.navigate(['/dashboard']); })
         .catch( error   => { this.snackBar.open(error, "Close") });
   }
 

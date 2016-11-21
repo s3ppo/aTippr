@@ -11,8 +11,10 @@ import { LoginService } from './services/login.service';
 export class AppComponent {
 
   constructor(
-    private loginservice: LoginService
+    private loginservice: LoginService,
   ) {}
+
+  this
  
   logout(): void {
     this.loginservice.logout();
@@ -23,7 +25,11 @@ export class AppComponent {
   }
 
   isAdmin(): Boolean {
-    return true;
+    if(this.loginservice.self.hasOwnProperty('admin')) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

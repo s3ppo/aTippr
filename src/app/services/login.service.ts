@@ -12,16 +12,21 @@ import { AccountsModel } from '../models/accounts';
 @Injectable()
 export class LoginService {
     public user = {};
+    public self = {};
 
     constructor (
         private router: Router,
         public af: AngularFire,
-    ){
+    ){  
         this.af.auth.subscribe(user => {
             if (user) {
                 this.user = user;
+                //get and store userdata from logged-in user
+                this.af.database.object(`/users/${user.uid}`)
+                    .subscribe(member => { this.self = member });
             } else {
                 this.user = {};
+                this.self = {};
             }
         });
     }
@@ -73,6 +78,7 @@ export class LoginService {
     logout(): void {
         this.af.auth.logout();
         this.user = {};
+        this.self = {};
         this.router.navigate(['/login']);
     }
 

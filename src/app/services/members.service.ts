@@ -1,5 +1,4 @@
 import { Injectable }     from '@angular/core';
-import { Router } from '@angular/router';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 //Rxjs
 import { Observable } from 'rxjs';
@@ -15,7 +14,6 @@ import { LoginService } from '../services/login.service';
 export class MembersService {
 
     constructor (
-        private router: Router,
         private loginservice: LoginService,
     ){}
 

@@ -9,20 +9,14 @@ import { LoginService } from '../services/login.service';
 @Injectable()
 export class AdminGuard implements CanActivate {
 
-  private member = {};
-
   constructor(
-    private membersservice: MembersService,
     private loginservice: LoginService,
     private router: Router
-  ){
-    this.membersservice.get(this.loginservice.user['uid'])
-        .subscribe( member => { this.member = member })
-  }
+  ){}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    if( this.member.hasOwnProperty('admin') ) {
-      return this.member['admin'];
+    if( this.loginservice.self.hasOwnProperty('admin') ) {
+      return this.loginservice.self['admin'];
     }
   }
 

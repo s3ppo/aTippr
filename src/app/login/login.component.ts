@@ -1,10 +1,12 @@
+//Angular
 import { Component, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-
+//Material2
 import { MdSnackBar } from '@angular/material';
-
+//Services
 import { LoginService } from '../services/login.service';
+//Models
 import { LoginModel } from '../models/login';
 
 @Component({
