@@ -23,7 +23,7 @@ export class LoginService {
                 this.user = user;
                 //get and store userdata from logged-in user
                 this.af.database.object(`/users/${user.uid}`)
-                    .subscribe(member => { this.self = member });
+                    .subscribe(member => { this.self = member }); 
             } else {
                 this.user = {};
                 this.self = {};
