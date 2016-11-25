@@ -12,6 +12,7 @@ import { MaterialModule } from '@angular/material';
 //Services
 import { LoginService } from './services/login.service';
 import { MembersService } from './services/members.service';
+import { TeamsService } from './services/teams.service';
 //Guards
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
@@ -22,6 +23,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
 import { MembersComponent } from './members/members.component';
 import { AdminComponent } from './admin/admin.component';
+import { AdminTeamsComponent } from './admin/teams/teams.component';
 
 const firebaseConfig = {
     apiKey: "AIzaSyALvAG2XzTCBvRCpi3sSz2GUDnMlhdFz8o",
@@ -39,6 +41,7 @@ const firebaseConfig = {
     RegisterComponent,
     MembersComponent,
     AdminComponent,
+    AdminTeamsComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,8 +57,9 @@ const firebaseConfig = {
   providers: [
     LoginService,
     MembersService,
+    TeamsService,
     AuthGuard,
-    AdminGuard
+    AdminGuard,
   ],
   bootstrap: [AppComponent]
 })

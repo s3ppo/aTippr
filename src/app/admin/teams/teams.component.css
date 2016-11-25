@@ -1,0 +1,17 @@
+.card-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+.teams_create_container {
+    width:100%;
+}
+.teams_edit_container {
+    width:100%;
+}
+.btn_newteam {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+md-card {
+    margin: 5px;
+}

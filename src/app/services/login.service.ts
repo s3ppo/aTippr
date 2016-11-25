@@ -1,3 +1,4 @@
+//Angular
 import { Injectable }     from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
@@ -17,7 +18,7 @@ export class LoginService {
     constructor (
         private router: Router,
         public af: AngularFire,
-    ){  
+    ){
         this.af.auth.subscribe(user => {
             if (user) {
                 this.user = user;

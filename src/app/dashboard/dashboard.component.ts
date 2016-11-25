@@ -1,5 +1,5 @@
 //Angular
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 //Services
@@ -11,15 +11,11 @@ import { LoginService } from '../services/login.service';
   styleUrls: ['./dashboard.component.css'],
   providers: []
 })
-export class DashboardComponent implements OnInit{
+export class DashboardComponent{
   public name: String;
 
   constructor(
     private loginservice: LoginService,
   ){}
-
-  ngOnInit(): void {
-    this.name = this.loginservice.self['name'];
-  }
 
 }

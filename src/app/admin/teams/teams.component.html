@@ -1,0 +1,27 @@
+<div class="card-container">
+    <md-card class="teams_create_container"> 
+        <md-card-title><a [routerLink]="['/admin']"><md-icon>arrow_back</md-icon></a> &nbsp; Teams anlegen</md-card-title>
+        <md-card-content>
+            <form (ngSubmit)="doCreateTeam()" #LoginForm="ngForm">
+                <md-input required placeholder="Teamname" [(ngModel)]="teamsmodel.teamname" name="teamname"></md-input><br>
+                <md-input placeholder="Gruppe" [(ngModel)]="teamsmodel.group" name="group" maxlength="1"></md-input><br>
+                Flagge <input type="file" (change)="selectFile($event)" accept="image/*"><br>
+                <button md-raised-button color="primary" class="btn_newteam" type="submit">Anlegen</button>
+            </form>
+        </md-card-content>
+    </md-card>
+    <md-card class="teams_edit_container"> 
+    <md-card-title>Teams verwalten</md-card-title>
+    <md-card-content>
+        <md-nav-list>
+            <md-list-item *ngFor="let teamview of teamsmodelview">
+                <img md-list-avatar [src]="teamview.flag" />
+                <div class="md-list-text">{{teamview.teamname}}</div>
+                <button md-icon-button (click)="delTeam(teamview)">
+                    <md-icon>delete</md-icon>
+                </button>
+            </md-list-item>
+        </md-nav-list>
+    </md-card-content>
+  </md-card>
+</div>
