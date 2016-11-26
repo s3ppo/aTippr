@@ -39,10 +39,12 @@ export class AdminTeamsComponent implements OnInit {
   }
 
   getAllTeams(): void {
-    this.teamsservice.getAll().subscribe( teams => { this.teamsmodelview = teams });
+    this.teamsservice.getAll()
+        .subscribe( teams => { this.teamsmodelview = teams });
   }
 
   delTeam(team): void {
+    this.teamsservice.del(team);
   }
 
   ngOnInit(): void {

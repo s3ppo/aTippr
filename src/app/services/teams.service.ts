@@ -31,17 +31,20 @@ export class TeamsService {
     }
 
     set(object: TeamsModel) {
-        this.uploadImage('ABC', object.flag)
+        this.uploadImage(object.flag)
             .then(result => {   object.flag = result;
                                 this.loginservice.af.database.list(`/teams/`).push(object); },
                   error  => {   }
         );
     }
 
-    uploadImage(name, imageData): Promise<String> {
+    del(object: TeamsModelView) {
+        this.loginservice.af.database.list(`/teams/${object['$key']}`).remove();
+    }
+
+    uploadImage(imageData): Promise<String> {
         let promise: Promise<boolean> = new Promise((resolve, reject) => {
-            let fileName = name + ".jpg";
-            let uploadTask = firebase.storage().ref(`/teams/${fileName}`).put(imageData);
+            let uploadTask = firebase.storage().ref(`/teams/${imageData.name}`).put(imageData);
             uploadTask.on('state_changed', function(snapshot) {
             }, function(error) {
                 reject(error);
@@ -51,6 +54,11 @@ export class TeamsService {
             });
         });
         return promise;
+     }
+
+    removeImage(object): Promise<String> {
+        //TODO
+        return;
      }
 
 }
