@@ -26,7 +26,7 @@ export class MembersService {
         return this.loginservice.af.database.object(`/users/${uid}`);
     }
 
-    changeAdmin(object: AdminMembersModel, attr: String): void {
+    changeAdmin(object: AdminMembersModel): void {
         let updateobj: Object;
         //TODO
         this.loginservice.af.database.list('/users').update(`${object['$key']}`, updateobj);
