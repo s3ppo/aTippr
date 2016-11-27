@@ -24,6 +24,7 @@ import { RegisterComponent } from './register/register.component';
 import { MembersComponent } from './members/members.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminTeamsComponent } from './admin/teams/teams.component';
+import { AdminMembersComponent } from './admin/members/members.component';
 
 const firebaseConfig = {
     apiKey: "AIzaSyALvAG2XzTCBvRCpi3sSz2GUDnMlhdFz8o",
@@ -42,6 +43,7 @@ const firebaseConfig = {
     MembersComponent,
     AdminComponent,
     AdminTeamsComponent,
+    AdminMembersComponent,
   ],
   imports: [
     BrowserModule,

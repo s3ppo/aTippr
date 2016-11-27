@@ -1,0 +1,22 @@
+<div class="card-container">
+  <md-card class="members_container">
+    <md-card-title><a [routerLink]="['/admin']"><md-icon>arrow_back</md-icon></a> &nbsp; Mitglieder</md-card-title>
+    <md-card-content>
+        <md-nav-list>
+          <md-list-item *ngFor="let adminmembermodel of adminmembersmodel; let i = index;">
+            <div class="md-list-text">{{adminmembermodel.name}}</div>
+            <md-checkbox [(ngModel)]="adminmembermodel.paid" (change)="change(i)" align="start">
+              Bezahlt
+            </md-checkbox>
+            &nbsp; &nbsp;
+            <md-checkbox [(ngModel)]="adminmembermodel.admin" (change)="change(i)" align="start">
+              Administrator
+            </md-checkbox>
+            <button md-icon-button (click)="setnewPassword(i)">
+              <md-icon>lock_open</md-icon>
+            </button>
+          </md-list-item>
+        </md-nav-list>
+    </md-card-content>
+  </md-card>
+</div>
