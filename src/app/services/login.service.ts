@@ -13,7 +13,7 @@ import { AccountsModel } from '../models/accounts';
 @Injectable()
 export class LoginService {
     public user = {};
-    public self = {};
+    //public self = {};
 
     constructor (
         private router: Router,
@@ -23,27 +23,26 @@ export class LoginService {
             if (user) {
                 this.user = user;
                 //get and store userdata from logged-in user
-                this.af.database.object(`/users/${user.uid}`)
-                    .subscribe(member => { this.self = member }); 
+                //this.af.database.object(`/users/${user.uid}`)
+                //    .subscribe(member => { this.self = member });
             } else {
                 this.user = {};
-                this.self = {};
+                //this.self = {};
             }
         });
     }
 
     login(login: LoginModel ): Promise<boolean> {
         let creds: Object = { email: login.email, password: login.password };
-        let res: Promise<boolean> = new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             this.af.auth.login(creds)
             .then(result => { resolve(result); })
             .catch(error => { reject(error.message || error ); });
         });
-        return res;
     }
 
     loginGoogle(): Promise<boolean> {
-        let res: Promise<boolean> = new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             this.af.auth.login({
                 provider: AuthProviders.Google,
                 method: AuthMethods.Popup
@@ -58,12 +57,11 @@ export class LoginService {
             })
             .catch(error => { reject(error.message || error ) });
         });
-        return res;
     }
 
     doRegister(register: AccountsModel): Promise<boolean> {
         let creds: any = { email: register["email"], password: register["password"] };
-        let res: Promise<boolean> = new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             this.af.auth.createUser(creds).then(result => {
                 this.af.database.object(`/users/${result.auth.uid}`).set({
                     name: register.firstname + " " + register.lastname,
@@ -73,13 +71,12 @@ export class LoginService {
             })
             .catch(error => { reject(error.message || error ) });
         });
-        return res;
     }
 
     logout(): void {
         this.af.auth.logout();
         this.user = {};
-        this.self = {};
+        //this.self = {};
         this.router.navigate(['/login']);
     }
 
@@ -89,12 +86,11 @@ export class LoginService {
 
     forgotPassword(email: string): Promise<Boolean> {
         let auth = firebase.auth();
-        let res: Promise<boolean> = new Promise((resolve, reject) => {
+        return new Promise((resolve, reject) => {
             auth.sendPasswordResetEmail(email)
                 .then( result => { resolve(result); })
                 .catch( error => { reject(error)});
         });
-        return res;
     }
 
 }

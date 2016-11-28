@@ -18,9 +18,24 @@ export class AdminGuard implements CanActivate {
   ){}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    if( this.loginservice.self.hasOwnProperty('admin') ) {
+    /*return this.loginservice.af.auth.map((auth) =>  {
+      if(auth == null) {
+        return false;
+      } else {
+        return this.membersservice.get(auth.uid).map(users => {
+          if(users.admin == true) {
+            return true;
+          } else {
+            return false;
+          }
+        })
+      }
+    });*/
+
+    /*if( this.loginservice.self.hasOwnProperty('admin') ) {
       return this.loginservice.self['admin'];
-    }
+    }*/
+    return true;
   }
 
 }

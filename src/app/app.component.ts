@@ -1,7 +1,10 @@
+//Angular
 import { Component } from '@angular/core';
-
+//Rxjs
+import { Observable } from 'rxjs';
 // Services
 import { LoginService } from './services/login.service';
+import { MembersService } from './services/members.service';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +15,10 @@ export class AppComponent {
 
   constructor(
     private loginservice: LoginService,
+    private membersservice: MembersService,
   ) {}
 
-  this
+  private admin: boolean;
  
   logout(): void {
     this.loginservice.logout();
@@ -25,11 +29,19 @@ export class AppComponent {
   }
 
   isAdmin(): Boolean {
-    if(this.loginservice.self.hasOwnProperty('admin')) {
+    this.membersservice.get(this.loginservice.user['uid'])
+        .subscribe( members =>  { if(members.hasOwnProperty('admin')) {
+                                    this.admin = members.admin;
+                                  } else {
+                                    this.admin = false;
+                                  }
+                                });
+    return true;
+    /*if(this.loginservice.self.hasOwnProperty('admin')) {
       return true;
     } else {
       return false;
-    }
+    }*/
   }
 
 }
