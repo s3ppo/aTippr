@@ -17,25 +17,13 @@ export class AdminGuard implements CanActivate {
     private router: Router
   ){}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    /*return this.loginservice.af.auth.map((auth) =>  {
-      if(auth == null) {
-        return false;
-      } else {
-        return this.membersservice.get(auth.uid).map(users => {
-          if(users.admin == true) {
-            return true;
-          } else {
-            return false;
-          }
-        })
-      }
-    });*/
+  private admin: boolean;
 
-    /*if( this.loginservice.self.hasOwnProperty('admin') ) {
-      return this.loginservice.self['admin'];
-    }*/
-    return true;
-  }
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
+    this.membersservice.get(this.loginservice.user['uid'])
+              .subscribe(member => { this.admin = member.admin });
+
+    return this.admin;
+  };
 
 }

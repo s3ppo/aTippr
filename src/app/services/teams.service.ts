@@ -39,6 +39,7 @@ export class TeamsService {
     }
 
     del(object: TeamsModelView) {
+        this.removeImage(object);
         this.loginservice.af.database.list(`/teams/${object['$key']}`).remove();
     }
 

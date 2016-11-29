@@ -5,7 +5,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 //Rxjs
 import { Observable } from 'rxjs';
 //Firebase
-import { AngularFire, AuthProviders, FirebaseListObservable, AuthMethods } from 'angularfire2';
+import { AngularFire, AuthProviders, FirebaseListObservable, FirebaseObjectObservable, AuthMethods } from 'angularfire2';
 //Models
 import { LoginModel } from '../models/login';
 import { AccountsModel } from '../models/accounts';
@@ -13,7 +13,7 @@ import { AccountsModel } from '../models/accounts';
 @Injectable()
 export class LoginService {
     public user = {};
-    //public self = {};
+    public self = {};
 
     constructor (
         private router: Router,
@@ -22,12 +22,10 @@ export class LoginService {
         this.af.auth.subscribe(user => {
             if (user) {
                 this.user = user;
-                //get and store userdata from logged-in user
-                //this.af.database.object(`/users/${user.uid}`)
-                //    .subscribe(member => { this.self = member });
+                this.af.database.object(`/users/${user.uid}`)
+                    .subscribe(user => { this.self = user });
             } else {
                 this.user = {};
-                //this.self = {};
             }
         });
     }
@@ -76,7 +74,7 @@ export class LoginService {
     logout(): void {
         this.af.auth.logout();
         this.user = {};
-        //this.self = {};
+        this.self = {};
         this.router.navigate(['/login']);
     }
 
