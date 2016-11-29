@@ -1,5 +1,6 @@
 //Angular
 import { Observable } from 'rxjs/Rx';
+import 'rxjs/Rx';  
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 //Firebase
@@ -10,20 +11,19 @@ import { LoginService } from '../services/login.service';
 
 @Injectable()
 export class AdminGuard implements CanActivate {
+  private admin: boolean;
+  private user = {};
+  private self = {};
 
   constructor(
     private loginservice: LoginService,
     private membersservice: MembersService,
-    private router: Router
+    private router: Router,
   ){}
 
-  private admin: boolean;
-
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    this.membersservice.get(this.loginservice.user['uid'])
-              .subscribe(member => { this.admin = member.admin });
-
-    return this.admin;
-  };
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    //TODO
+    return true;
+  }
 
 }

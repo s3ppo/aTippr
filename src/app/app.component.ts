@@ -29,7 +29,7 @@ export class AppComponent {
   }
 
   isAdmin(): boolean {
-    if(this.loginservice.self.hasOwnProperty['admin']) {
+    if(this.loginservice.self.hasOwnProperty('admin')) {
       return this.loginservice.self['admin'];
     } else {
       return false;

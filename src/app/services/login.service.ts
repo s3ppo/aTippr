@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 //Rxjs
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/take';
 //Firebase
 import { AngularFire, AuthProviders, FirebaseListObservable, FirebaseObjectObservable, AuthMethods } from 'angularfire2';
 //Models
@@ -18,15 +19,17 @@ export class LoginService {
     constructor (
         private router: Router,
         public af: AngularFire,
-    ){
+    ){ 
         this.af.auth.subscribe(user => {
-            if (user) {
-                this.user = user;
-                this.af.database.object(`/users/${user.uid}`)
-                    .subscribe(user => { this.self = user });
-            } else {
-                this.user = {};
-            }
+            if(user){
+                if (user.hasOwnProperty('uid')) {
+                    this.user = user;
+                    this.af.database.object(`/users/${user.uid}`).take(1)
+                        .subscribe(user => { this.self = user });
+                } else {
+                    this.user = {};
+                }
+            }   
         });
     }
 

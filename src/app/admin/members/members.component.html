@@ -5,11 +5,11 @@
         <md-nav-list>
           <md-list-item *ngFor="let adminmembermodel of adminmembersmodel; let i = index;">
             <div class="md-list-text">{{adminmembermodel.name}}</div>
-            <md-checkbox [(ngModel)]="adminmembermodel.paid" (change)="change(i)" align="start">
+            <md-checkbox [(ngModel)]="adminmembermodel.paid" (change)="change(i, 'paid')" align="start">
               Bezahlt
             </md-checkbox>
             &nbsp; &nbsp;
-            <md-checkbox [(ngModel)]="adminmembermodel.admin" (change)="change(i)" align="start">
+            <md-checkbox [(ngModel)]="adminmembermodel.admin" (change)="change(i, 'admin')" align="start">
               Administrator
             </md-checkbox>
             <button md-icon-button (click)="setnewPassword(i)">
