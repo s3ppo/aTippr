@@ -41,7 +41,12 @@ export class LoginService {
         return $obs;
     }
 
-    doRegister(register: AccountsModel):Observable<any> {
+    loginSocial(provider: string): Observable<any> {
+        let $obs = this.backandService.socialSignin(provider);
+        return $obs;
+    }
+
+    register(register: AccountsModel):Observable<any> {
         let $obs = this.backandService.signup(register.email, register.password, register.password2, register.firstname, register.lastname);
         return $obs;
     }
@@ -52,10 +57,6 @@ export class LoginService {
         this.auth_status = "";
         this.loggedInUser = "";
         this.router.navigate(['/login']);
-    }
-
-    isLoggedIn(): void {
-        //return (Object.keys(this.user).length > 0);
     }
 
     forgotPassword(email: string): void {

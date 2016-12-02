@@ -31,8 +31,10 @@ export class LoginComponent {
                    error => { this.snackBar.open(this.loginservice.auth_status, 'Close')} );
   }
 
-  loginGoogle(): void {
-
+  loginSocial(provider: string): void {
+    this.loginservice.loginSocial(provider)
+        .subscribe(data =>  { this.router.navigate(['/dashboard']); },
+                   error => { this.snackBar.open(this.loginservice.auth_status, 'Close')} );
   }
 
 }
