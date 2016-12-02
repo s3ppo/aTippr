@@ -21,8 +21,7 @@ export class MembersComponent implements OnInit {
   membersmodel: Array<AccountsModel>;
 
   ngOnInit(): void {
-      this.membersservice.getAll()
-          .subscribe( members => { this.membersmodel = members });
+
   }
 
 }

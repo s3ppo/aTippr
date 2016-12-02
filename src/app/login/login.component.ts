@@ -26,14 +26,10 @@ export class LoginComponent {
   loginmodel = new LoginModel('','');
 
   doLogin(): void {
-    this.loginservice.login(this.loginmodel)
-        .then( success => { this.router.navigate(['/dashboard']); })
-        .catch( error => { this.snackBar.open(error, "Close") });
+
   }
 
   loginGoogle(): void {
-    this.loginservice.loginGoogle()
-        .then( success => { this.router.navigate(['/dashboard']); })
-        .catch( error => { this.snackBar.open(error, "Close") });
+
   }
 }
