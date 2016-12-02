@@ -26,10 +26,13 @@ export class LoginComponent {
   loginmodel = new LoginModel('','');
 
   doLogin(): void {
-
+    this.loginservice.login(this.loginmodel)
+        .subscribe(data =>  { this.router.navigate(['/dashboard']); },
+                   error => { this.snackBar.open(this.loginservice.auth_status, 'Close')} );
   }
 
   loginGoogle(): void {
 
   }
+
 }
