@@ -24,16 +24,16 @@ export class AppComponent {
     this.loginservice.logout();
   }
 
-  isAuth(): Boolean {
-    return this.loginservice.isLoggedIn();
+  isAuth(): void {
+    //return this.loginservice.isLoggedIn();
   }
 
-  isAdmin(): boolean {
-    if(this.loginservice.self.hasOwnProperty('admin')) {
+  isAdmin(): void {
+    /*if(this.loginservice.self.hasOwnProperty('admin')) {
       return this.loginservice.self['admin'];
     } else {
       return false;
-    }
+    }*/
   }
 
 }
