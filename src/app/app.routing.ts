@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 //Components
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { IntroComponent } from './intro/intro.component';
 import { RegisterComponent } from './register/register.component';
 import { MembersComponent } from './members/members.component';
 import { AdminComponent } from './admin/admin.component';
@@ -16,6 +17,7 @@ import { AdminGuard } from "./guards/admin.guard";
 const appRoutes: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
+    { path: 'intro', component: IntroComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
     { path: 'members', component: MembersComponent, canActivate: [AuthGuard] },

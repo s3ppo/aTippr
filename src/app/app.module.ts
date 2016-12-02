@@ -20,6 +20,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { IntroComponent } from './intro/intro.component';
 import { RegisterComponent } from './register/register.component';
 import { MembersComponent } from './members/members.component';
 import { AdminComponent } from './admin/admin.component';
@@ -31,6 +32,7 @@ import { AdminMembersComponent } from './admin/members/members.component';
     AppComponent,
     LoginComponent,
     DashboardComponent,
+    IntroComponent,
     RegisterComponent,
     MembersComponent,
     AdminComponent,
