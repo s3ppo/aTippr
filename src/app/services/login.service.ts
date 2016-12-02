@@ -5,8 +5,8 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 //Rxjs
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/take';
-//Firebase
-import { AngularFire, AuthProviders, FirebaseListObservable, FirebaseObjectObservable, AuthMethods } from 'angularfire2';
+//Backand
+import { BackandService } from 'angular2bknd-sdk';
 //Models
 import { LoginModel } from '../models/login';
 import { AccountsModel } from '../models/accounts';
@@ -18,80 +18,36 @@ export class LoginService {
 
     constructor (
         private router: Router,
-        public af: AngularFire,
+        private backandService:BackandService
     ){ 
-        this.af.auth.subscribe(user => {
-            if(user){
-                if (user.hasOwnProperty('uid')) {
-                    this.user = user;
-                    this.af.database.object(`/users/${user.uid}`).take(1)
-                        .subscribe(user => { this.self = user });
-                } else {
-                    this.user = {};
-                }
-            }   
-        });
+        this.backandService.setAppName('aTipper');
+        //this.backandService.setSignUpToken('your backand signup token');
     }
 
-    login(login: LoginModel ): Promise<boolean> {
-        let creds: Object = { email: login.email, password: login.password };
-        return new Promise((resolve, reject) => {
-            this.af.auth.login(creds)
-            .then(result => { resolve(result); })
-            .catch(error => { reject(error.message || error ); });
-        });
+    login(login: LoginModel ): Observable<any> {
+        let $obs = this.backandService.signin(login.username, login.password);
+        $obs.subscribe(data => { console.log(data)} );
+        return $obs;
     }
 
-    loginGoogle(): Promise<boolean> {
-        return new Promise((resolve, reject) => {
-            this.af.auth.login({
-                provider: AuthProviders.Google,
-                method: AuthMethods.Popup
-            })
-            .then(result => {
-                this.af.database.object(`/users/${result.auth.uid}`).set({
-                    name: result.auth.displayName,
-                    email: result.auth.email,
-                    photo: result.auth.photoURL,
-                });
-                resolve(result);
-            })
-            .catch(error => { reject(error.message || error ) });
-        });
-    }
-
-    doRegister(register: AccountsModel): Promise<boolean> {
-        let creds: any = { email: register["email"], password: register["password"] };
-        return new Promise((resolve, reject) => {
-            this.af.auth.createUser(creds).then(result => {
-                this.af.database.object(`/users/${result.auth.uid}`).set({
-                    name: register.firstname + " " + register.lastname,
-                    email: register.email,
-                });
-                resolve(result);
-            })
-            .catch(error => { reject(error.message || error ) });
-        });
+    doRegister(register: AccountsModel):Observable<any> {
+        let $obs = this.backandService.signup(register.email, register.password, register.password2, register.firstname, register.lastname);
+        return $obs;
     }
 
     logout(): void {
-        this.af.auth.logout();
+        this.backandService.signout();
         this.user = {};
         this.self = {};
         this.router.navigate(['/login']);
     }
 
-    isLoggedIn(): Boolean {
-        return (Object.keys(this.user).length > 0);
+    isLoggedIn(): void {
+        //return (Object.keys(this.user).length > 0);
     }
 
-    forgotPassword(email: string): Promise<Boolean> {
-        let auth = firebase.auth();
-        return new Promise((resolve, reject) => {
-            auth.sendPasswordResetEmail(email)
-                .then( result => { resolve(result); })
-                .catch( error => { reject(error)});
-        });
+    forgotPassword(email: string): void {
+
     }
 
 }

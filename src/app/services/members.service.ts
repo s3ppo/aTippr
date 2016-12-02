@@ -3,8 +3,6 @@ import { Injectable }     from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 //Rxjs
 import { Observable } from 'rxjs';
-//Firebase
-import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 //Models
 import { LoginModel } from '../models/login';
 import { AccountsModel } from '../models/accounts';
@@ -19,7 +17,7 @@ export class MembersService {
         private loginservice: LoginService,
     ){}
 
-    getAll(): FirebaseListObservable<any> {
+    /*getAll(): FirebaseListObservable<any> {
         return this.loginservice.af.database.list('/users/');
     }
 
@@ -37,6 +35,6 @@ export class MembersService {
             updateobj = { admin: object[target] };
         }
         this.loginservice.af.database.list('/users').update(`${object['$key']}`, updateobj);
-    }
+    }*/
 
 }

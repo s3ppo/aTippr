@@ -2,9 +2,6 @@ import { Injectable, Inject }     from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 //Rxjs
 import { Observable } from 'rxjs';
-//Firebase
-import { FirebaseListObservable, FirebaseObjectObservable,  } from 'angularfire2';
-import { FirebaseApp } from 'angularfire2';
 //Models
 import { LoginModel } from '../models/login';
 import { TeamsModel, TeamsModelView } from '../models/teams';
@@ -17,12 +14,9 @@ export class TeamsService {
 
     constructor (
         private loginservice: LoginService,
-        @Inject(FirebaseApp) firebase: any
-    ) {
-        this.firebase = firebase;
-    }
+    ) {}
 
-    getAll(): FirebaseListObservable<any> {
+    /*getAll(): FirebaseListObservable<any> {
         return this.loginservice.af.database.list('/teams');
     }
 
@@ -60,6 +54,6 @@ export class TeamsService {
     removeImage(object): Promise<String> {
         //TODO
         return;
-     }
+     }*/
 
 }

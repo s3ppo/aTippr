@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 //Routing
 import { routing } from './app.routing';
-//Firebase
-import { AngularFireModule, AuthMethods, AuthProviders } from "angularfire2";
+//Backand
+import { BackandService } from 'angular2bknd-sdk';
 //Material
 import { MaterialModule } from '@angular/material';
 //Services
@@ -26,14 +26,6 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminTeamsComponent } from './admin/teams/teams.component';
 import { AdminMembersComponent } from './admin/members/members.component';
 
-const firebaseConfig = {
-    apiKey: "AIzaSyALvAG2XzTCBvRCpi3sSz2GUDnMlhdFz8o",
-    authDomain: "api-project-340883542890.firebaseapp.com",
-    databaseURL: "https://api-project-340883542890.firebaseio.com",
-    storageBucket: "api-project-340883542890.appspot.com",
-    messagingSenderId: "340883542890"
-  };
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,13 +42,10 @@ const firebaseConfig = {
     FormsModule,
     HttpModule,
     MaterialModule.forRoot(),
-    AngularFireModule.initializeApp(firebaseConfig, {
-            provider: AuthProviders.Password,
-            method: AuthMethods.Password
-    }),
     routing,
   ],
   providers: [
+    BackandService,
     LoginService,
     MembersService,
     TeamsService,
