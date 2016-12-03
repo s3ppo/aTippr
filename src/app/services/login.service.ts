@@ -28,13 +28,18 @@ export class LoginService {
         this.auth_type = backandService.getAuthType();
         this.auth_status = backandService.getAuthStatus();
         this.loggedInUser = backandService.getUsername();
+        if(this.auth_status == 'OK') {
+            this.getOwnUser();
+        }
     }
 
     login(login: LoginModel ): Observable<any> {
         this.auth_type = 'Token';
         let $obs = this.backandService.signin(login.username, login.password)
         $obs.subscribe( data =>  {  this.auth_status = 'OK';
-                                    this.loggedInUser = data.username; },
+                                    this.loggedInUser = data.username;
+                                    this.getOwnUser();
+                                 },
                         err  =>  {  var errorMessage = this.backandService.extractErrorMessage(err);
                                     this.auth_status = `Error: ${errorMessage}`;  });
         return $obs;
@@ -60,6 +65,19 @@ export class LoginService {
 
     forgotPassword(email: string): void {
 
+    }
+
+    getOwnUser(): void {
+        let filter =    [{
+                            fieldName: 'email',
+                            operator: 'contains',
+                            value: this.loggedInUser,
+                        }]
+
+        this.backandService.getList('users', null, null, filter)
+            .subscribe(
+                data => {   this.isAdmin = data[0].admin },
+                err =>  {   this.backandService.logError(err) } );
     }
 
 }
