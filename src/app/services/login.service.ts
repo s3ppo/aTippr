@@ -13,10 +13,10 @@ import { AccountsModel } from '../models/accounts';
 
 @Injectable()
 export class LoginService {
-    auth_status:    string = null;
-    auth_type:      string = 'N/A';
-    loggedInUser:   string = '';
-    isAdmin:        boolean = false;
+    public auth_status:    string = '';
+    public auth_type:      string = 'N/A';
+    public loggedInUser:   string = '';
+    public isAdmin:        boolean = false;
 
     constructor (
         private router: Router,
@@ -60,6 +60,7 @@ export class LoginService {
         this.auth_status = '';
         this.auth_type = '';
         this.loggedInUser = '';
+        this.isAdmin = false;
         this.router.navigate(['/login']);
     }
 

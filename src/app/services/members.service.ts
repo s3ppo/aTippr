@@ -3,10 +3,11 @@ import { Injectable }     from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 //Rxjs
 import { Observable } from 'rxjs';
+//Backand
+import { BackandService } from 'angular2bknd-sdk';
 //Models
-import { LoginModel } from '../models/login';
 import { AccountsModel } from '../models/accounts';
-import { AdminMembersModel } from '../models/adminmembers';
+import { MembersModel } from '../models/members';
 //Services
 import { LoginService } from '../services/login.service';
 
@@ -15,26 +16,11 @@ export class MembersService {
 
     constructor (
         private loginservice: LoginService,
+        private backandService:BackandService
     ){}
 
-    /*getAll(): FirebaseListObservable<any> {
-        return this.loginservice.af.database.list('/users/');
+    getAll(): Observable<MembersModel[]> {
+        return this.backandService.getList('users')
     }
-
-    get(uid: string): FirebaseObjectObservable<any> {
-        if(this.loginservice.user != {}){
-            return this.loginservice.af.database.object(`/users/${uid}`);
-        }
-    }
-
-    changeAdmin(object: AdminMembersModel, target: string): void {
-        let updateobj: Object;
-        if(target == 'paid') {
-            updateobj = { paid: object[target] };
-        } else if(target == 'admin'){
-            updateobj = { admin: object[target] };
-        }
-        this.loginservice.af.database.list('/users').update(`${object['$key']}`, updateobj);
-    }*/
 
 }

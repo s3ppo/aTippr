@@ -3,7 +3,7 @@
     <md-card-title><a [routerLink]="['/dashboard']"><md-icon>arrow_back</md-icon></a> &nbsp; Mitspieler</md-card-title>
     <md-card-content>
         <md-nav-list>
-            <a md-list-item *ngFor="let membermodel of membersmodel"><img md-list-avatar src="{{membermodel.photo}}" alt="Avatar">&nbsp; {{membermodel.name}}</a>
+            <a md-list-item *ngFor="let membermodel of membersmodel"><img md-list-avatar src="{{membermodel.pictureUrl}}" alt="Avatar">&nbsp; {{membermodel.firstName}}</a>
         </md-nav-list>
     </md-card-content>
   </md-card>

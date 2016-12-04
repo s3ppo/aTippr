@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 
 import { MembersService } from '../services/members.service';
-import { AccountsModel } from '../models/accounts';
+import { MembersModel } from '../models/members';
 
 @Component({
   selector: 'Members',
@@ -18,10 +18,15 @@ export class MembersComponent implements OnInit {
     private membersservice: MembersService,
   ){}
 
-  membersmodel: Array<AccountsModel>;
+  membersmodel: Array<MembersModel>;
 
   ngOnInit(): void {
+    this.getAllMembers();
+  }
 
+  getAllMembers(): void {
+    this.membersservice.getAll()
+        .subscribe(data => { this.membersmodel = data })
   }
 
 }
