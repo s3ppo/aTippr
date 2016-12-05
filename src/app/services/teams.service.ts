@@ -2,8 +2,9 @@ import { Injectable, Inject }     from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 //Rxjs
 import { Observable } from 'rxjs';
+//Backand
+import { BackandService } from 'angular2bknd-sdk';
 //Models
-import { LoginModel } from '../models/login';
 import { TeamsModel, TeamsModelView } from '../models/teams';
 //Services
 import { LoginService } from '../services/login.service';
@@ -14,44 +15,44 @@ export class TeamsService {
 
     constructor (
         private loginservice: LoginService,
+        private backandService: BackandService,
     ) {}
 
-    /*getAll(): FirebaseListObservable<any> {
-        return this.loginservice.af.database.list('/teams');
+    getAll(): Observable<any> {
+        return this.backandService.getList('teams')
     }
 
-    get(uid: string): FirebaseObjectObservable<any> {
+    /*get(uid: string): FirebaseObjectObservable<any> {
         return this.loginservice.af.database.object(`/teams/${uid}`);
-    }
+    }*/
 
     set(object: TeamsModel) {
         this.uploadImage(object.flag)
-            .then(result => {   object.flag = result;
-                                this.loginservice.af.database.list(`/teams/`).push(object); },
+            .then(result => {   },
                   error  => {   }
         );
     }
 
-    del(object: TeamsModelView) {
+    /*del(object: TeamsModelView) {
         this.removeImage(object);
         this.loginservice.af.database.list(`/teams/${object['$key']}`).remove();
-    }
+    }*/
 
-    uploadImage(imageData): Promise<String> {
+    uploadImage(file: any): Promise<String> {
         let promise: Promise<boolean> = new Promise((resolve, reject) => {
-            let uploadTask = firebase.storage().ref(`/teams/${imageData.name}`).put(imageData);
-            uploadTask.on('state_changed', function(snapshot) {
-            }, function(error) {
-                reject(error);
-            }, function() {
-                var downloadURL = uploadTask.snapshot.downloadURL;
-                resolve(downloadURL);
-            });
+            this.backandService.uploadFile('teams', 'flag', file.filename, file.file).subscribe(
+                data => {
+                    console.log(data);
+                    //data.url is the url of the uploaded file
+                },
+                err => this.backandService.logError(err),
+                () => console.log('OK')
+            );
         });
         return promise;
      }
 
-    removeImage(object): Promise<String> {
+    /*removeImage(object): Promise<String> {
         //TODO
         return;
      }*/

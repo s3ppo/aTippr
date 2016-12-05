@@ -15,9 +15,6 @@ export class AuthGuard implements CanActivate{
     private router: Router,
     private backandService: BackandService,
   ){
-    this.backandService.setAppName('atipper')
-    this.backandService.setSignUpToken('ea073201-5dea-4c45-9d7b-3c155513cdda');
-    this.backandService.setAnonymousToken('dc201b54-8f35-41b7-8def-eea36ef80ec6');
     this.auth_status = backandService.getAuthStatus();
   }
 

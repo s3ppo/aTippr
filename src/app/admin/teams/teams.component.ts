@@ -35,7 +35,7 @@ export class AdminTeamsComponent implements OnInit {
       return;
     }
 
-    //this.teamsservice.set(this.teamsmodel);
+    this.teamsservice.set(this.teamsmodel);
   }
 
   getAllTeams(): void {

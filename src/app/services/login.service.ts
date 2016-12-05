@@ -22,14 +22,11 @@ export class LoginService {
         private router: Router,
         private backandService:BackandService
     ){
-        this.backandService.setAppName('atipper')
-        this.backandService.setSignUpToken('ea073201-5dea-4c45-9d7b-3c155513cdda');
-        this.backandService.setAnonymousToken('dc201b54-8f35-41b7-8def-eea36ef80ec6');
         this.auth_type = backandService.getAuthType();
         this.auth_status = backandService.getAuthStatus();
         this.loggedInUser = backandService.getUsername();
         if(this.auth_status == 'OK') {
-            this.getOwnUser();
+            this.getAdmin();
         }
     }
 
@@ -38,7 +35,7 @@ export class LoginService {
         let $obs = this.backandService.signin(login.username, login.password)
         $obs.subscribe( data =>  {  this.auth_status = 'OK';
                                     this.loggedInUser = data.username;
-                                    this.getOwnUser();
+                                    this.getAdmin();
                                  },
                         err  =>  {  var errorMessage = this.backandService.extractErrorMessage(err);
                                     this.auth_status = `Error: ${errorMessage}`;  });
@@ -68,17 +65,13 @@ export class LoginService {
 
     }
 
-    getOwnUser(): void {
-        let filter =    [{
-                            fieldName: 'email',
-                            operator: 'contains',
-                            value: this.loggedInUser,
-                        }]
-
-        this.backandService.getList('users', null, null, filter)
-            .subscribe(
-                data => {   this.isAdmin = data[0].admin },
-                err =>  {   this.backandService.logError(err) } );
+    getAdmin(): void {
+        this.backandService.getUserDetails(true)
+                           .subscribe(data =>   {   if(data.role == 'AppAdmin') {
+                                                        this.isAdmin = true;
+                                                    } else {
+                                                        this.isAdmin = false;
+                                                    }
+                                                });
     }
-
 }
