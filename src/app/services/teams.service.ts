@@ -27,9 +27,9 @@ export class TeamsService {
     }*/
 
     set(object: TeamsModel) {
-        this.uploadImage(object.flag)
-            .then(result => {   },
-                  error  => {   }
+        this.backandService.uploadFile('teams', 'files', object.flag.filename, 'TODO').subscribe(
+                data => {   console.log(data); },
+                err =>  {   console.log(err); }
         );
     }
 
@@ -37,20 +37,6 @@ export class TeamsService {
         this.removeImage(object);
         this.loginservice.af.database.list(`/teams/${object['$key']}`).remove();
     }*/
-
-    uploadImage(file: any): Promise<String> {
-        let promise: Promise<boolean> = new Promise((resolve, reject) => {
-            this.backandService.uploadFile('teams', 'flag', file.filename, file.file).subscribe(
-                data => {
-                    console.log(data);
-                    //data.url is the url of the uploaded file
-                },
-                err => this.backandService.logError(err),
-                () => console.log('OK')
-            );
-        });
-        return promise;
-     }
 
     /*removeImage(object): Promise<String> {
         //TODO
