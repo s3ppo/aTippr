@@ -17,16 +17,24 @@ import { TeamsService } from '../../services/teams.service';
 })
 export class AdminTeamsComponent implements OnInit {
 
+    private fileReader: FileReader;
+    private base64: string;
+    private teamsmodel = new TeamsModel('', null, '');
+    private teamsmodelview: TeamsModelView[];
+
   constructor(
     private snackBar: MdSnackBar,
     private teamsservice: TeamsService,
   ){}
 
-  private teamsmodel = new TeamsModel('', null, '');
-  private teamsmodelview: TeamsModelView[];
-
   selectFile(event): void {
     this.teamsmodel.flag = event.srcElement.files[0];
+
+    var myReader:FileReader = new FileReader();
+    myReader.onloadend = (e) => {
+      this.base64 = myReader.result;
+    }
+    myReader.readAsDataURL(this.teamsmodel.flag);
   }
 
   doCreateTeam(): void {
@@ -35,7 +43,7 @@ export class AdminTeamsComponent implements OnInit {
       return;
     }
 
-    this.teamsservice.set(this.teamsmodel);
+    this.teamsservice.set(this.teamsmodel, this.base64);
   }
 
   getAllTeams(): void {
@@ -44,11 +52,11 @@ export class AdminTeamsComponent implements OnInit {
   }
 
   delTeam(team): void {
-    //this.teamsservice.del(team);
+    this.teamsservice.del(team);
   }
 
   ngOnInit(): void {
-    //this.getAllTeams();
+    this.getAllTeams();
   }
 
 }

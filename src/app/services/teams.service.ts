@@ -18,7 +18,7 @@ export class TeamsService {
         private backandService: BackandService,
     ) {}
 
-    getAll(): Observable<any> {
+    getAll(): Observable<TeamsModelView[]> {
         return this.backandService.getList('teams')
     }
 
@@ -26,17 +26,21 @@ export class TeamsService {
         return this.loginservice.af.database.object(`/teams/${uid}`);
     }*/
 
-    set(object: TeamsModel) {
-        this.backandService.uploadFile('items', 'files', 'HUHU', 'TODO').subscribe(
-                data => {    },
-                err =>  {    }
+    set(object: TeamsModel, filecontent: string) {
+        this.backandService.uploadFile('items', 'files', object.flag.name, filecontent)
+            .subscribe(data =>  {   console.log(data.json()._body.url);let createteam = new TeamsModelView(object.teamname, object.group, "");
+                                    let $obs = this.backandService.create('teams', createteam);
+                                    $obs.subscribe((data) => console.log(data));
+                                },
+                       err =>  {   }
         );
     }
 
-    /*del(object: TeamsModelView) {
-        this.removeImage(object);
-        this.loginservice.af.database.list(`/teams/${object['$key']}`).remove();
-    }*/
+    del(object: TeamsModelView): Observable<any> {
+        //this.removeImage(object);
+        let $obs = this.backandService.delete('teams', object['id']);
+        return $obs;
+    }
 
     /*removeImage(object): Promise<String> {
         //TODO

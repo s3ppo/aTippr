@@ -13,6 +13,8 @@ import { MaterialModule } from '@angular/material';
 import { LoginService } from './services/login.service';
 import { MembersService } from './services/members.service';
 import { TeamsService } from './services/teams.service';
+import { MatchesService } from './services/matches.service';
+import { CategoriesService } from './services/categories.service';
 //Guards
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
@@ -26,6 +28,7 @@ import { MembersComponent } from './members/members.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminTeamsComponent } from './admin/teams/teams.component';
 import { AdminMembersComponent } from './admin/members/members.component';
+import { AdminMatchesComponent } from './admin/matches/matches.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,7 @@ import { AdminMembersComponent } from './admin/members/members.component';
     AdminComponent,
     AdminTeamsComponent,
     AdminMembersComponent,
+    AdminMatchesComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +55,8 @@ import { AdminMembersComponent } from './admin/members/members.component';
     LoginService,
     MembersService,
     TeamsService,
+    MatchesService,
+    CategoriesService,
     AuthGuard,
     AdminGuard,
   ],
