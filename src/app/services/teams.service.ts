@@ -27,9 +27,9 @@ export class TeamsService {
     }*/
 
     set(object: TeamsModel) {
-        this.backandService.uploadFile('teams', 'files', object.flag.filename, 'TODO').subscribe(
-                data => {   console.log(data); },
-                err =>  {   console.log(err); }
+        this.backandService.uploadFile('items', 'files', 'HUHU', 'TODO').subscribe(
+                data => {    },
+                err =>  {    }
         );
     }
 
