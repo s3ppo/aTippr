@@ -7,7 +7,7 @@ import { MembersModel } from '../models/members';
 
 @Component({
   selector: 'Members',
-  templateUrl: 'members.component.html',
+  templateUrl: './members.component.html',
   styleUrls: ['./members.component.css'],
   providers: []
 })
@@ -18,7 +18,7 @@ export class MembersComponent implements OnInit {
     private membersservice: MembersService,
   ){}
 
-  membersmodel: Array<MembersModel>;
+  membersmodel: MembersModel[];
 
   ngOnInit(): void {
     this.getAllMembers();
