@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 //Backand
 import { BackandService } from 'angular2bknd-sdk';
 //Models
-import { TeamsModel, TeamsModelView } from '../models/teams';
+import { TeamsModel } from '../models/teams';
 //Services
 import { LoginService } from '../services/login.service';
 
@@ -18,8 +18,8 @@ export class TeamsService {
         private backandService: BackandService,
     ) {}
 
-    getAll(): Observable<TeamsModelView[]> {
-        return this.backandService.getList('teams')
+    getAll(): Observable<TeamsModel[]> {
+        return this.backandService.getList('teams');
     }
 
     /*get(uid: string): FirebaseObjectObservable<any> {
@@ -27,24 +27,29 @@ export class TeamsService {
     }*/
 
     set(object: TeamsModel, filecontent: string) {
-        this.backandService.uploadFile('items', 'files', object.flag.name, filecontent)
-            .subscribe(data =>  {   console.log(data.json()._body.url);let createteam = new TeamsModelView(object.teamname, object.group, "");
-                                    let $obs = this.backandService.create('teams', createteam);
-                                    $obs.subscribe((data) => console.log(data));
-                                },
-                       err =>  {   }
-        );
+        //TODO return Observable
+        this.addImage(object, filecontent)
+            .subscribe(data     => {    object.flag = data.json().url;
+                                        let $obs = this.backandService.create('teams', object);
+                                        $obs.subscribe(data => { }) },
+                       err      => { });
     }
 
-    del(object: TeamsModelView): Observable<any> {
-        //this.removeImage(object);
-        let $obs = this.backandService.delete('teams', object['id']);
+    del(object: TeamsModel): Observable<any> {
+        this.removeImage(object);
+        return this.backandService.delete('teams', object['id']);
+    }
+
+    removeImage(object): Observable<any> {
+        let $obs = this.backandService.deleteFile('items', 'files', object.flagname);
+        $obs.subscribe(data =>  { });
         return $obs;
     }
 
-    /*removeImage(object): Promise<String> {
-        //TODO
-        return;
-     }*/
+    addImage(object: TeamsModel, filecontent: string): Observable<any> {
+        let $obs = this.backandService.uploadFile('items', 'files', object.flagname, filecontent);
+        $obs.subscribe(data =>  {   });
+        return $obs;
+    }
 
 }

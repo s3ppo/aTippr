@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Rx';
 //Material2
 import { MdSnackBar } from '@angular/material';
 //Models
-import { TeamsModel, TeamsModelView } from '../../models/teams';
+import { TeamsModel } from '../../models/teams';
 //Service
 import { TeamsService } from '../../services/teams.service';
 
@@ -19,8 +19,9 @@ export class AdminTeamsComponent implements OnInit {
 
     private fileReader: FileReader;
     private base64: string;
-    private teamsmodel = new TeamsModel('', null, '');
-    private teamsmodelview: TeamsModelView[];
+    private flagfile: File;
+    private teamsmodel = new TeamsModel('', '', '', '');
+    private teamsmodelOV: TeamsModel[];
 
   constructor(
     private snackBar: MdSnackBar,
@@ -28,13 +29,13 @@ export class AdminTeamsComponent implements OnInit {
   ){}
 
   selectFile(event): void {
-    this.teamsmodel.flag = event.srcElement.files[0];
+    this.flagfile = event.srcElement.files[0];
 
     var myReader:FileReader = new FileReader();
     myReader.onloadend = (e) => {
       this.base64 = myReader.result;
     }
-    myReader.readAsDataURL(this.teamsmodel.flag);
+    myReader.readAsDataURL(this.flagfile);
   }
 
   doCreateTeam(): void {
@@ -42,17 +43,17 @@ export class AdminTeamsComponent implements OnInit {
       this.snackBar.open('Bitte eine Flagge hochladen!')
       return;
     }
-
+    this.teamsmodel.flagname = this.flagfile.name;
     this.teamsservice.set(this.teamsmodel, this.base64);
   }
 
   getAllTeams(): void {
     this.teamsservice.getAll()
-        .subscribe( teams => { this.teamsmodelview = teams });
+        .subscribe( teams => { this.teamsmodelOV = teams });
   }
 
   delTeam(team): void {
-    this.teamsservice.del(team);
+    this.teamsservice.del(team).subscribe(data => { this.getAllTeams(); });
   }
 
   ngOnInit(): void {
