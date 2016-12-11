@@ -48,7 +48,6 @@ export class TeamsService {
 
     addImage(object: TeamsModel, filecontent: string): Observable<any> {
         let $obs = this.backandService.uploadFile('items', 'files', object.flagname, filecontent);
-        $obs.subscribe(data =>  {   });
         return $obs;
     }
 
