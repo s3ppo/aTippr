@@ -26,13 +26,15 @@ export class TeamsService {
         return this.loginservice.af.database.object(`/teams/${uid}`);
     }*/
 
-    set(object: TeamsModel, filecontent: string) {
+    set(object: TeamsModel, filecontent: string): Observable<boolean> {
         //TODO return Observable
-        this.addImage(object, filecontent)
-            .subscribe(data     => {    object.flag = data.json().url;
-                                        let $obs = this.backandService.create('teams', object);
-                                        $obs.subscribe(data => { }) },
-                       err      => { });
+        return new Observable<boolean>( observer => {
+            this.addImage(object, filecontent)
+                .subscribe(data     => {    object.flag = data.json().url;
+                                            let $obs = this.backandService.create('teams', object);
+                                            $obs.subscribe(data => { observer.next(true); }) },
+                            err     => {    observer.next(false); });
+        });
     }
 
     del(object: TeamsModel): Observable<any> {
@@ -42,7 +44,6 @@ export class TeamsService {
 
     removeImage(object): Observable<any> {
         let $obs = this.backandService.deleteFile('items', 'files', object.flagname);
-        $obs.subscribe(data =>  { });
         return $obs;
     }
 

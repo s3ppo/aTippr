@@ -35,7 +35,12 @@ export class LoginService {
         let $obs = this.backandService.signin(login.username, login.password)
         $obs.subscribe( data =>  {  this.auth_status = 'OK';
                                     this.loggedInUser = data.username;
-                                    this.getAdmin();
+                                    this.getAdmin().subscribe(data =>   {   if(data.role == 'AppAdmin') {
+                                                                                this.isAdmin = true;
+                                                                            } else {
+                                                                                this.isAdmin = false;
+                                                                            } 
+                                                                        });
                                  },
                         err  =>  {  var errorMessage = this.backandService.extractErrorMessage(err);
                                     this.auth_status = `Error: ${errorMessage}`;  });
@@ -65,13 +70,7 @@ export class LoginService {
 
     }
 
-    getAdmin(): void {
-        this.backandService.getUserDetails(true)
-                           .subscribe(data =>   {   if(data.role == 'AppAdmin') {
-                                                        this.isAdmin = true;
-                                                    } else {
-                                                        this.isAdmin = false;
-                                                    }
-                                                });
+    getAdmin(): Observable<any> {
+        return this.backandService.getUserDetails(true);
     }
 }

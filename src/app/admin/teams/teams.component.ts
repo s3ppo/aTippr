@@ -44,7 +44,8 @@ export class AdminTeamsComponent implements OnInit {
       return;
     }
     this.teamsmodel.flagname = this.flagfile.name;
-    this.teamsservice.set(this.teamsmodel, this.base64);
+    this.teamsservice.set(this.teamsmodel, this.base64)
+        .subscribe(data => { this.getAllTeams(); });
   }
 
   getAllTeams(): void {
@@ -53,7 +54,8 @@ export class AdminTeamsComponent implements OnInit {
   }
 
   delTeam(team): void {
-    this.teamsservice.del(team).subscribe(data => { this.getAllTeams(); });
+    this.teamsservice.del(team)
+        .subscribe(data => { this.getAllTeams(); });
   }
 
   ngOnInit(): void {
