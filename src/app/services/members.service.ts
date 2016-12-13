@@ -29,13 +29,9 @@ export class MembersService {
         }
     }
 
-    changeAdmin(object: AdminMembersModel, target: string): void {
+    changeAdmin(object: AdminMembersModel): void {
         let updateobj: Object;
-        if(target == 'paid') {
-            updateobj = { paid: object[target] };
-        } else if(target == 'admin'){
-            updateobj = { admin: object[target] };
-        }
+        //TODO prepare updateobj
         this.loginservice.af.database.list('/users').update(`${object['$key']}`, updateobj);
     }
 
