@@ -31,7 +31,7 @@ export class LoginService {
                 }
             }   
         });
-    }
+    } 
 
     login(login: LoginModel ): Promise<boolean> {
         let creds: Object = { email: login.email, password: login.password };
