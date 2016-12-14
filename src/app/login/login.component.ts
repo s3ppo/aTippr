@@ -27,13 +27,14 @@ export class LoginComponent {
 
   doLogin(): void {
     this.loginservice.login(this.loginmodel)
-        .then( success => { this.router.navigate(['/dashboard']); })
-        .catch( error => { this.snackBar.open(error, "Close") });
+        .subscribe(data =>  { this.router.navigate(['/dashboard']); },
+                   error => { this.snackBar.open(this.loginservice.auth_status, 'Close')} );
   }
 
-  loginGoogle(): void {
-    this.loginservice.loginGoogle()
-        .then( success => { this.router.navigate(['/dashboard']); })
-        .catch( error => { this.snackBar.open(error, "Close") });
+  loginSocial(provider: string): void {
+    this.loginservice.loginSocial(provider)
+        .subscribe(data =>  { this.router.navigate(['/dashboard']); },
+                   error => { this.snackBar.open(this.loginservice.auth_status, 'Close')} );
   }
+
 }

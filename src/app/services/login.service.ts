@@ -1,5 +1,5 @@
 //Angular
-import { Injectable }     from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 //Rxjs
@@ -12,8 +12,6 @@ import { AccountsModel } from '../models/accounts';
 
 @Injectable()
 export class LoginService {
-    public user = {};
-    public self = {};
 
     constructor (
         private router: Router,
@@ -30,65 +28,47 @@ export class LoginService {
         });
     }
 
-    login(login: LoginModel ): Promise<boolean> {
-        let creds: Object = { email: login.email, password: login.password };
-        return new Promise((resolve, reject) => {
-            this.af.auth.login(creds)
-            .then(result => { resolve(result); })
-            .catch(error => { reject(error.message || error ); });
-        });
+    login(login: LoginModel ): Observable<any> {
+        this.auth_type = 'Token';
+        let $obs = this.backandService.signin(login.username, login.password)
+        $obs.subscribe( data =>  {  this.auth_status = 'OK';
+                                    this.loggedInUser = data.username;
+                                    this.getAdmin().subscribe(data =>   {   if(data.role == 'AppAdmin') {
+                                                                                this.isAdmin = true;
+                                                                            } else {
+                                                                                this.isAdmin = false;
+                                                                            } 
+                                                                        });
+                                 },
+                        err  =>  {  var errorMessage = this.backandService.extractErrorMessage(err);
+                                    this.auth_status = `Error: ${errorMessage}`;  });
+        return $obs;
     }
 
-    loginGoogle(): Promise<boolean> {
-        return new Promise((resolve, reject) => {
-            this.af.auth.login({
-                provider: AuthProviders.Google,
-                method: AuthMethods.Popup
-            })
-            .then(result => {
-                this.af.database.object(`/users/${result.auth.uid}`).set({
-                    name: result.auth.displayName,
-                    email: result.auth.email,
-                    photo: result.auth.photoURL,
-                });
-                resolve(result);
-            })
-            .catch(error => { reject(error.message || error ) });
-        });
+    loginSocial(provider: string): Observable<any> {
+        let $obs = this.backandService.socialSignin(provider);
+        return $obs;
     }
 
-    doRegister(register: AccountsModel): Promise<boolean> {
-        let creds: any = { email: register["email"], password: register["password"] };
-        return new Promise((resolve, reject) => {
-            this.af.auth.createUser(creds).then(result => {
-                this.af.database.object(`/users/${result.auth.uid}`).set({
-                    name: register.firstname + " " + register.lastname,
-                    email: register.email,
-                });
-                resolve(result);
-            })
-            .catch(error => { reject(error.message || error ) });
-        });
+    register(register: AccountsModel):Observable<any> {
+        let $obs = this.backandService.signup(register.email, register.password, register.password2, register.firstname, register.lastname);
+        return $obs;
     }
 
     logout(): void {
-        this.af.auth.logout();
-        this.user = {};
-        this.self = {};
+        this.backandService.signout();
+        this.auth_status = '';
+        this.auth_type = '';
+        this.loggedInUser = '';
+        this.isAdmin = false;
         this.router.navigate(['/login']);
     }
 
-    isLoggedIn(): Boolean {
-        return (Object.keys(this.user).length > 0);
+    forgotPassword(email: string): void {
+
     }
 
-    forgotPassword(email: string): Promise<Boolean> {
-        let auth = firebase.auth();
-        return new Promise((resolve, reject) => {
-            auth.sendPasswordResetEmail(email)
-                .then( result => { resolve(result); })
-                .catch( error => { reject(error)});
-        });
+    getAdmin(): Observable<any> {
+        return this.backandService.getUserDetails(true);
     }
-
 }
