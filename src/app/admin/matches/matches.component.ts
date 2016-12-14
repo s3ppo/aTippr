@@ -94,10 +94,10 @@ export class AdminMatchesComponent implements OnInit{
   }
 
   getAllTeams(): void {
-    this.teamsService.getAll()
+    /*this.teamsService.getAll()
                   .subscribe(
                         teams => { this.teamsmodelview = teams }, 
-                        err   => { console.log(err) });
+                        err   => { console.log(err) });*/
   }
 
   ngOnInit(): void {

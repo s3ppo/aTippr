@@ -24,9 +24,9 @@ export class RegisterComponent {
   registermodel = new AccountsModel('','','','','');
 
   doRegister(): void {
-    this.loginservice.register(this.registermodel)
+    /*this.loginservice.register(this.registermodel)
         .subscribe( data =>   { this.registermodel = new AccountsModel('','','','','')},
-                    error =>  { this.snackBar.open('Registrierung konnte nicht durchgeführt werden.', 'Close') } );
+                    error =>  { this.snackBar.open('Registrierung konnte nicht durchgeführt werden.', 'Close') } );*/
   }
 
 }

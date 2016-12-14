@@ -23,11 +23,11 @@ export class AppComponent {
   private admin: boolean;
  
   logout(): void {
-
+    this.loginservice.logout();
   }
 
-  isAuth(): Boolean {
-    return false;
+  isAuth(): boolean {
+    return true;
   }
 
   isAdmin(): boolean {

@@ -36,7 +36,7 @@ export class AdminMembersComponent implements OnInit{
   }
 
   change(index: number): void {
-    this.membersservice.changeAdmin(this.adminmembersmodel[index]);
+    //this.membersservice.changeAdmin(this.adminmembersmodel[index]);
   }
 
   setnewPassword(index: number): void {
