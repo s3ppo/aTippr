@@ -3,8 +3,8 @@ import { Injectable }     from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 //Rxjs
 import { Observable } from 'rxjs';
-//Backand
-import { BackandService } from 'angular2bknd-sdk';
+//AngularFire
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2'
 //Models
 import { AccountsModel } from '../models/accounts';
 import { MembersModel } from '../models/members';
@@ -16,7 +16,7 @@ export class MembersService {
 
     constructor (
         private loginservice: LoginService,
-        private backandService:BackandService
+        private af: AngularFire
     ){}
 
     getAll(): FirebaseListObservable<any> {
@@ -24,15 +24,7 @@ export class MembersService {
     }
 
     get(uid: string): FirebaseObjectObservable<any> {
-        if(this.loginservice.user != {}){
-            return this.loginservice.af.database.object(`/users/${uid}`);
-        }
-    }
-
-    changeAdmin(object: AdminMembersModel): void {
-        let updateobj: Object;
-        //TODO prepare updateobj
-        this.loginservice.af.database.list('/users').update(`${object['$key']}`, updateobj);
+        return this.loginservice.af.database.object(`/users/${uid}`);
     }
 
 }

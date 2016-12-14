@@ -5,10 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 //Routing
 import { routing } from './app.routing';
-//Backand
-import { BackandService } from 'angular2bknd-sdk';
 //Material
 import { MaterialModule } from '@angular/material';
+//AngularFire
+import { AngularFireModule } from 'angularfire2';
 //Services
 import { LoginService } from './services/login.service';
 import { MembersService } from './services/members.service';
@@ -30,6 +30,15 @@ import { AdminTeamsComponent } from './admin/teams/teams.component';
 import { AdminMembersComponent } from './admin/members/members.component';
 import { AdminMatchesComponent } from './admin/matches/matches.component';
 
+  // Initialize Firebase
+  var firebaseConfig = {
+    apiKey: "AIzaSyALvAG2XzTCBvRCpi3sSz2GUDnMlhdFz8o",
+    authDomain: "api-project-340883542890.firebaseapp.com",
+    databaseURL: "https://api-project-340883542890.firebaseio.com",
+    storageBucket: "api-project-340883542890.appspot.com",
+    messagingSenderId: "340883542890"
+  };
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,9 +58,9 @@ import { AdminMatchesComponent } from './admin/matches/matches.component';
     HttpModule,
     MaterialModule.forRoot(),
     routing,
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   providers: [
-    BackandService,
     LoginService,
     MembersService,
     TeamsService,

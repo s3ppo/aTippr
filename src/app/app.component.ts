@@ -2,9 +2,9 @@
 import { Component } from '@angular/core';
 //Rxjs
 import { Observable } from 'rxjs';
-//Backand
-import { BackandService } from 'angular2bknd-sdk';
-// Services
+//AngularFire
+import { AngularFire, FirebaseAuthState } from 'angularfire2';
+//Services
 import { LoginService } from './services/login.service';
 import { MembersService } from './services/members.service';
 
@@ -17,33 +17,21 @@ export class AppComponent {
 
   constructor(
     private loginservice: LoginService,
-    private backandService: BackandService,
-  ) {
-    this.backandService.setAppName('atipper')
-    this.backandService.setSignUpToken('ea073201-5dea-4c45-9d7b-3c155513cdda');
-    this.backandService.setAnonymousToken('dc201b54-8f35-41b7-8def-eea36ef80ec6');
-  }
+    private af: AngularFire,
+  ) {}
 
   private admin: boolean;
  
   logout(): void {
-    this.loginservice.logout();
+
   }
 
   isAuth(): Boolean {
-    return this.loginservice.isLoggedIn();
+    return false;
   }
 
   isAdmin(): boolean {
-    if(this.loginservice.self.hasOwnProperty['admin']) {
-      return this.loginservice.self['admin'];
-    } else {
-      return false;
-    }
-  }
-
-  isAdmin(): boolean {
-    return this.loginservice.isAdmin;
+    return false;
   }
 
 }
