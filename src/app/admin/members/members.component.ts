@@ -26,17 +26,17 @@ export class AdminMembersComponent implements OnInit{
   private adminmembersmodel: AdminMembersModel[];
 
   getAllMembers(): void {
-    this.membersservice.getAll().subscribe(
+    /*this.membersservice.getAll().subscribe(
                                   members  => { this.adminmembersmodel = members; },
-                                  err      => { console.log(err) });
+                                  err      => { console.log(err) });*/
   }
 
   ngOnInit(): void {
-    this.getAllMembers();
+    //this.getAllMembers();
   }
 
-  change(index: number, target: string): void {
-    this.membersservice.changeAdmin(this.adminmembersmodel[index], target);
+  change(index: number): void {
+    this.membersservice.changeAdmin(this.adminmembersmodel[index]);
   }
 
   setnewPassword(index: number): void {

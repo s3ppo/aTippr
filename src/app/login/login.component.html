@@ -4,7 +4,7 @@
     <md-card-content>
       <div class="login_form">
         <form (ngSubmit)="doLogin()" #LoginForm="ngForm">
-          <md-input placeholder="eMail" [(ngModel)]="loginmodel.email" name="email">
+          <md-input placeholder="Username" [(ngModel)]="loginmodel.username" name="username">
               <span md-prefix>
                 <i class="material-icons app-input-icon">account_circle</i>
                 &nbsp;
@@ -22,7 +22,7 @@
         </form>
         Noch keinen Account? <a [routerLink]="['/register']">Hier registrieren!</a>
       </div>
-      <button md-raised-button color="primary" class="btn_login" (click)="loginGoogle()">
+      <button md-raised-button color="primary" class="btn_login" (click)="loginSocial('google')">
         Sign in with Google
       </button>
     </md-card-content>

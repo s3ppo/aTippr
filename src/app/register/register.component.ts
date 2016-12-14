@@ -24,15 +24,9 @@ export class RegisterComponent {
   registermodel = new AccountsModel('','','','','');
 
   doRegister(): void {
-    if(this.registermodel.password != this.registermodel.password2){
-      this.snackBar.open('Passwords do not Match!', "Close");
-      return;
-    }
-
-    this.loginservice.doRegister(this.registermodel)
-        .then( success  => { this.registermodel = new AccountsModel('','','','','');
-                             this.router.navigate(['/dashboard']); })
-        .catch( error   => { this.snackBar.open(error, "Close") });
+    this.loginservice.register(this.registermodel)
+        .subscribe( data =>   { this.registermodel = new AccountsModel('','','','','')},
+                    error =>  { this.snackBar.open('Registrierung konnte nicht durchgeführt werden.', 'Close') } );
   }
 
 }

@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 
 import { MembersService } from '../services/members.service';
-import { AccountsModel } from '../models/accounts';
+import { MembersModel } from '../models/members';
 
 @Component({
   selector: 'Members',
-  templateUrl: 'members.component.html',
+  templateUrl: './members.component.html',
   styleUrls: ['./members.component.css'],
   providers: []
 })
@@ -18,11 +18,15 @@ export class MembersComponent implements OnInit {
     private membersservice: MembersService,
   ){}
 
-  membersmodel: Array<AccountsModel>;
+  membersmodel: MembersModel[];
 
   ngOnInit(): void {
-      this.membersservice.getAll()
-          .subscribe( members => { this.membersmodel = members });
+    this.getAllMembers();
+  }
+
+  getAllMembers(): void {
+    this.membersservice.getAll()
+        .subscribe(data => { this.membersmodel = data })
   }
 
 }
