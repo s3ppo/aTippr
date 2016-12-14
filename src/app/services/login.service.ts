@@ -4,30 +4,28 @@ import { Router } from '@angular/router';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 //Rxjs
 import { Observable } from 'rxjs';
-import 'rxjs/add/operator/take';
-//Backand
-import { BackandService } from 'angular2bknd-sdk';
+//Firebase
+import { AngularFire, AuthProviders, FirebaseListObservable, FirebaseObjectObservable, AuthMethods } from 'angularfire2';
 //Models
 import { LoginModel } from '../models/login';
 import { AccountsModel } from '../models/accounts';
 
 @Injectable()
 export class LoginService {
-    public auth_status:    string = '';
-    public auth_type:      string = 'N/A';
-    public loggedInUser:   string = '';
-    public isAdmin:        boolean = false;
 
     constructor (
         private router: Router,
-        private backandService:BackandService
+        public af: AngularFire,
     ){
-        this.auth_type = backandService.getAuthType();
-        this.auth_status = backandService.getAuthStatus();
-        this.loggedInUser = backandService.getUsername();
-        if(this.auth_status == 'OK') {
-            this.getAdmin();
-        }
+        this.af.auth.subscribe(user => {
+            if (user) {
+                this.user = user;
+                this.af.database.object(`/users/${user.uid}`)
+                    .subscribe(user => { this.self = user });
+            } else {
+                this.user = {};
+            }
+        });
     }
 
     login(login: LoginModel ): Observable<any> {

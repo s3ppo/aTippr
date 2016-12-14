@@ -30,9 +30,13 @@ export class AppComponent {
     this.loginservice.logout();
   }
 
-  isAuth(): boolean {
-    if(this.loginservice.auth_status == "OK") {
-      return true;
+  isAuth(): Boolean {
+    return this.loginservice.isLoggedIn();
+  }
+
+  isAdmin(): boolean {
+    if(this.loginservice.self.hasOwnProperty['admin']) {
+      return this.loginservice.self['admin'];
     } else {
       return false;
     }

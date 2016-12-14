@@ -19,8 +19,20 @@ export class MembersService {
         private backandService:BackandService
     ){}
 
-    getAll(): Observable<MembersModel[]> {
-        return this.backandService.getList('users')
+    getAll(): FirebaseListObservable<any> {
+        return this.loginservice.af.database.list('/users/');
+    }
+
+    get(uid: string): FirebaseObjectObservable<any> {
+        if(this.loginservice.user != {}){
+            return this.loginservice.af.database.object(`/users/${uid}`);
+        }
+    }
+
+    changeAdmin(object: AdminMembersModel): void {
+        let updateobj: Object;
+        //TODO prepare updateobj
+        this.loginservice.af.database.list('/users').update(`${object['$key']}`, updateobj);
     }
 
 }

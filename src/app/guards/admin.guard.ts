@@ -1,5 +1,5 @@
 //Angular
-import { Observable } from 'rxjs/Rx'; 
+import { Observable } from 'rxjs/Rx';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 //Backand
@@ -18,6 +18,19 @@ export class AdminGuard implements CanActivate {
   constructor(
     private backandService: BackandService,
     private loginservice: LoginService,
+    private membersservice: MembersService,
+    private router: Router
+  ){}
+
+  private admin: boolean;
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
+    this.membersservice.get(this.loginservice.user['uid'])
+              .subscribe(member => { this.admin = member.admin });
+
+    return this.admin;
+  };
+
     private router: Router,
   ){
     this.auth_type = backandService.getAuthType();
