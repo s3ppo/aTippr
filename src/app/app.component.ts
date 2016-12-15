@@ -31,7 +31,7 @@ export class AppComponent {
   }
 
   isAdmin(): boolean {
-    return false;
+    return true;
   }
 
 }
