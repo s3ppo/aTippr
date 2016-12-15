@@ -32,7 +32,7 @@ export class LoginComponent {
   }
 
   loginSocial(provider: string): void {
-
+    
   }
 
 }
