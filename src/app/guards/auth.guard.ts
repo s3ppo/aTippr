@@ -7,7 +7,6 @@ import { LoginService } from '../services/login.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate{
-    auth_status:    string = null;
 
   constructor(
     private router: Router,

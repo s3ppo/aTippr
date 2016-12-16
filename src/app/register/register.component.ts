@@ -24,7 +24,9 @@ export class RegisterComponent {
   registermodel = new AccountsModel('','','','','');
 
   doRegister(): void {
-    this.loginservice.createUser(this.registermodel);
+    this.loginservice.createUser(this.registermodel)
+        .then(data => { this.router.navigate(['/dashboard']) },
+              err  => { this.snackBar.open(err, 'Close') });
   }
 
 }

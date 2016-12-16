@@ -42,9 +42,7 @@ export class AppComponent {
   }
 
   isAdmin(): Observable<boolean> {
-    return this.loginservice.getAdmin().map(user => {
-          return user ? true : false;
-    })
+    return this.loginservice.getAdmin();
   }
 
 }

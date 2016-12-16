@@ -1,3 +1,4 @@
+//Angular
 import { Injectable, Inject }     from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 //Rxjs
@@ -17,5 +18,6 @@ export class TeamsService {
         private loginservice: LoginService,
         private af: AngularFire,
     ) {}
+
 
 }
