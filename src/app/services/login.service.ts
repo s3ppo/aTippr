@@ -63,26 +63,23 @@ export class LoginService {
     }
 
     loginGoogle(): Promise<boolean> {
-        let res: Promise<boolean> = new Promise((resolve, reject) => {
-            return new Promise((resolve, reject) => {
-                this.af.auth.login({
-                    provider: AuthProviders.Google,
-                    method: AuthMethods.Popup
-                })
-                .then(result => {
-                    this.af.database.object(`/users/${result.auth.uid}`).set({
-                        name: result.auth.displayName,
-                        email: result.auth.email,
-                        photo: result.auth.photoURL,
-                    });
-                    resolve(result); 
-                })
-                .catch(error => { 
-                    reject(error.message || error ) 
+        return new Promise((resolve, reject) => {
+            this.af.auth.login({
+                provider: AuthProviders.Google,
+                method: AuthMethods.Popup
+            })
+            .then(result => {
+                this.af.database.object(`/users/${result.auth.uid}`).set({
+                    name: result.auth.displayName,
+                    email: result.auth.email,
+                    photo: result.auth.photoURL,
                 });
+                resolve(result); 
+            })
+            .catch(error => { 
+                reject(error.message || error ) 
             });
         });
-        return res;
     }
 
     createUser(account: AccountsModel): Promise<any> {

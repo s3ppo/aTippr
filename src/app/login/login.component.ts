@@ -32,7 +32,9 @@ export class LoginComponent {
   }
 
   loginSocial(provider: string): void {
-    this.loginservice.loginGoogle();
+    this.loginservice.loginGoogle()
+        .then(data => { this.router.navigate(['/dashboard']) },
+              err  => { this.snackBar.open(err, 'Close') });
   }
 
   ngOnDestroy() {
