@@ -7,15 +7,15 @@
             </div>
             <form (ngSubmit)="doCreateMatch()" #LoginForm="ngForm">
                 <md-select [(ngModel)]="matchesmodel.team1" name="Team1">
-                    <md-option *ngFor="let team1 of teamsmodelview" [value]="team1._id">{{team1.teamname}}</md-option>
+                    <md-option *ngFor="let team1 of teamsmodelAll" [value]="team1._id">{{team1.teamname}}</md-option>
                 </md-select>
                 &nbsp; - &nbsp;
                 <md-select [(ngModel)]="matchesmodel.team2" name="Team2">
-                    <md-option *ngFor="let team2 of teamsmodelview" [value]="team2._id">{{team2.teamname}}</md-option>
+                    <md-option *ngFor="let team2 of teamsmodelAll" [value]="team2._id">{{team2.teamname}}</md-option>
                 </md-select>
                 <br>
                 <md-select [(ngModel)]="matchesmodel.category" name="category">
-                    <md-option *ngFor="let category of categoriesmodelview" [value]="category._id">{{category.name}}</md-option>
+                    <md-option *ngFor="let category of categoriesmodelAll" [value]="category.$key">{{category.name}}</md-option>
                 </md-select>
                 &nbsp;
                 <button md-mini-fab color="primary" (click)="RemoveCategory()" type="button"><md-icon class="md-24">remove</md-icon></button>

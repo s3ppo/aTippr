@@ -28,17 +28,8 @@ export class AppComponent {
   }
 
   isAuth(): Observable<boolean> {
-    /*if(this.loginservice.user) {
-      if(this.loginservice.user.hasOwnProperty('uid')) {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return false;
-    }*/
     return this.loginservice.getAuthenticated()
-               .map(user => user && user.hasOwnProperty('uid'))
+               .map(user => user && user.hasOwnProperty('uid'));
   }
 
   isAdmin(): Observable<boolean> {

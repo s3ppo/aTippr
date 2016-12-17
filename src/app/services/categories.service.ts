@@ -1,17 +1,25 @@
-// Imports
+//Angular
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-
 import { Observable } from 'rxjs';
+//Firebase
+import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
+//Services
+import { LoginService } from '../services/login.service';
+//Models
 import { CategoriesModel } from '../models/categories';
 
 @Injectable()
 export class CategoriesService {
 
   constructor (
-      private http: Http,
-      private router: Router 
+      private loginService: LoginService,
+      private router: Router
   ){}
+
+    getAll(): FirebaseListObservable<any> {
+        return this.loginService.af.database.list('/categories/');
+    }
 
 }

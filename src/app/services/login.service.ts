@@ -19,13 +19,13 @@ export class LoginService {
         private router: Router,
         public af: AngularFire,
     ){
-        this.af.auth.subscribe(user => {
+        /*let this.abc = this.af.auth.subscribe(user => {
             if (user) {
                 this.user = user.auth;
             } else {
                 this.user = {};
             }
-        });
+        });*/
     }
 
     setUser(user): void { 
@@ -40,13 +40,13 @@ export class LoginService {
         return new Observable<boolean>( observer => {
             if(this.user){
                 this.af.database.object(`users/${this.user.uid}`)
-                    .subscribe(data => {    if(data.hasOwnProperty('admin')){
+                    .subscribe( data => {   if(data.hasOwnProperty('admin')){
                                                 observer.next(true);
                                             } else {
                                                 observer.next(false);
                                             }
-                                    },
-                            err  => { observer.next(false); });
+                                        },
+                                err  => {   observer.next(false); });
             }
         })
     }
@@ -62,13 +62,43 @@ export class LoginService {
         });
     }
 
+    loginGoogle(): Promise<boolean> {
+        let res: Promise<boolean> = new Promise((resolve, reject) => {
+            return new Promise((resolve, reject) => {
+                this.af.auth.login({
+                    provider: AuthProviders.Google,
+                    method: AuthMethods.Popup
+                })
+                .then(result => {
+                    this.af.database.object(`/users/${result.auth.uid}`).set({
+                        name: result.auth.displayName,
+                        email: result.auth.email,
+                        photo: result.auth.photoURL,
+                    });
+                    resolve(result); 
+                })
+                .catch(error => { 
+                    reject(error.message || error ) 
+                });
+            });
+        });
+        return res;
+    }
+
     createUser(account: AccountsModel): Promise<any> {
         let creds: any = { email: account.email, password: account.password };
 
         return new Promise((resolve, reject) => {
-        this.af.auth.createUser(creds)
-                .then(result => { resolve(result); })
-                .catch(error => { reject(error.message || error ); });
+            this.af.auth.createUser(creds).then(result => {
+                this.af.database.object(`/users/${result.auth.uid}`).set({
+                    name: account.firstname + " " + account.lastname,
+                    email: account.email,
+                });
+                resolve(result);
+            })
+            .catch(error => { 
+                console.log(error);reject(error.message || error ) 
+            });
         });
     }
 

@@ -15,7 +15,7 @@
     <md-card-title>Teams verwalten</md-card-title>
     <md-card-content>
         <md-nav-list>
-            <md-list-item *ngFor="let teamview of teamsmodelOV">
+            <md-list-item *ngFor="let teamview of teamsmodelAll">
                 <img md-list-avatar [src]="teamview.flag" />
                 <div class="md-list-text">{{teamview.teamname}}</div>
                 <button md-icon-button (click)="delTeam(teamview)">

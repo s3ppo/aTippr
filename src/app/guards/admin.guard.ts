@@ -19,11 +19,11 @@ export class AdminGuard implements CanActivate {
         if (auth == null) {
           return new Promise(resolve => { resolve({}) });
         } else {
+          this.loginservice.setUser(auth);
           return this.loginservice.af.database.object(`users/${auth.uid}`);
         }
       })
       .map(data => {
-        console.log(data)
         if (data.hasOwnProperty('admin')) {
           return true;
         } else {

@@ -4,7 +4,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 //Rxjs
 import { Observable } from 'rxjs';
 //AngularFire
-import { AngularFire } from 'angularfire2'
+import { AngularFire, FirebaseListObservable } from 'angularfire2'
 //Models
 import { TeamsModel } from '../models/teams';
 //Services
@@ -19,5 +19,8 @@ export class TeamsService {
         private af: AngularFire,
     ) {}
 
+    getAll(): FirebaseListObservable<any> {
+        return this.loginservice.af.database.list('/teams/');
+    }
 
 }

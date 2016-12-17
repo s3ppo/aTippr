@@ -1,15 +1,17 @@
+//Angular
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-
+//Material
 import { MdDialogRef, MdDialog, Overlay, MdDialogConfig } from '@angular/material';
-
-import { MatchesModelUI, MatchesModel } from '../../models/matches';
-import { CategoriesModel } from '../../models/categories';
-import { TeamsModel } from '../../models/teams';
+//Services
 import { MatchesService } from '../../services/matches.service';
 import { CategoriesService } from '../../services/categories.service';
 import { TeamsService } from '../../services/teams.service';
+//Models
+import { MatchesModelUI, MatchesModel } from '../../models/matches';
+import { CategoriesModel } from '../../models/categories';
+import { TeamsModel } from '../../models/teams';
 
 @Component({
   selector: 'Admin_Matches',
@@ -23,16 +25,16 @@ export class AdminMatchesComponent implements OnInit{
     private matchesService: MatchesService,
     private categoriesService: CategoriesService,
     private teamsService: TeamsService,
-    public dialog: MdDialog,
-    public viewContainerRef: ViewContainerRef
+    public  dialog: MdDialog,
+    public  viewContainerRef: ViewContainerRef
   ){}
 
-  dialogRef: MdDialogRef<AdminCategoryDialog>;
+  private dialogRef: MdDialogRef<AdminCategoryDialog>;
   private matchesmodel = new MatchesModelUI('', '', '', '', '', '', '', '', '');
   private matchesmodelview: MatchesModel[];
   private matches_msg = ['', ''];
-  private teamsmodelview: TeamsModel[];
-  private categoriesmodelview: CategoriesModel[];
+  private teamsmodelAll: TeamsModel[];
+  private categoriesmodelAll: CategoriesModel[];
 
   doCreateMatch(): void {
     let postmatch = new MatchesModel(this.matchesmodel.team1,this.matchesmodel.team2,this.matchesmodel.category,this.matchesmodel.matchlocation,'','',parseInt(this.matchesmodel.multiplier));
@@ -87,17 +89,13 @@ export class AdminMatchesComponent implements OnInit{
   }
 
   getAllCategories(): void {
-    /*this.categoriesService.getAll()
-                  .subscribe(
-                        categories => { this.categoriesmodelview = categories }, 
-                        err        => { console.log(err) });*/
+    this.categoriesService.getAll()
+        .subscribe( categories => this.categoriesmodelAll = categories );
   }
 
   getAllTeams(): void {
-    /*this.teamsService.getAll()
-                  .subscribe(
-                        teams => { this.teamsmodelview = teams }, 
-                        err   => { console.log(err) });*/
+    this.teamsService.getAll()
+        .subscribe( teams => this.teamsmodelAll = teams );
   }
 
   ngOnInit(): void {

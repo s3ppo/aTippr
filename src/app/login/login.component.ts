@@ -20,7 +20,7 @@ export class LoginComponent {
   constructor(
     private router: Router,
     private loginservice: LoginService,
-    private snackBar: MdSnackBar
+    private snackBar: MdSnackBar,
   ){}
 
   loginmodel = new LoginModel('','');
@@ -32,6 +32,10 @@ export class LoginComponent {
   }
 
   loginSocial(provider: string): void {
+    this.loginservice.loginGoogle();
+  }
+
+  ngOnDestroy() {
     
   }
 
