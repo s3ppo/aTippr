@@ -2,9 +2,6 @@
     <md-card class="matches_create_container"> 
         <md-card-title><a [routerLink]="['/admin']"><md-icon>arrow_back</md-icon></a> &nbsp; Matches anlegen</md-card-title>
         <md-card-content>
-            <div class="matches_msg" *ngIf="matches_msg">
-                <span class="{{matches_msg[0]}}">{{matches_msg[1]}}</span>
-            </div>
             <form (ngSubmit)="doCreateMatch()" #LoginForm="ngForm">
                 <md-select [(ngModel)]="matchesmodel.team1" name="Team1">
                     <md-option *ngFor="let team1 of teamsmodelAll" [value]="team1._id">{{team1.teamname}}</md-option>

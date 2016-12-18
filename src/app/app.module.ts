@@ -28,7 +28,7 @@ import { MembersComponent } from './members/members.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminTeamsComponent } from './admin/teams/teams.component';
 import { AdminMembersComponent } from './admin/members/members.component';
-import { AdminMatchesComponent } from './admin/matches/matches.component';
+import { AdminMatchesComponent, AdminCategoryDialog } from './admin/matches/matches.component';
 
   // Initialize Firebase
   var firebaseConfig = {
@@ -51,6 +51,7 @@ import { AdminMatchesComponent } from './admin/matches/matches.component';
     AdminTeamsComponent,
     AdminMembersComponent,
     AdminMatchesComponent,
+    AdminCategoryDialog,
   ],
   imports: [
     BrowserModule,

@@ -128,13 +128,7 @@ export class AdminMatchesComponent implements OnInit{
 
     this.dialogRef.afterClosed().subscribe(result => {
       if(result == 'ok'){
-        this.matches_msg[0] = 'success_msg';
-        this.matches_msg[1] = 'Neue Kategorie wurde erfolgreich angelegt.'
-      } else if(result != null) {
-        this.matches_msg[0] = 'error_msg';
-        this.matches_msg[1] = 'Kategorie konnte nicht angelegt werden.';
       }
-      this.getAllCategories();
       this.dialogRef = null;
     });
   }
