@@ -90,6 +90,7 @@ export class LoginService {
                 this.af.database.object(`/users/${result.auth.uid}`).set({
                     name: account.firstname + " " + account.lastname,
                     email: account.email,
+                    photo: 'https://firebasestorage.googleapis.com/v0/b/api-project-340883542890.appspot.com/o/avatars%2Fempty-avatar.jpg?alt=media&token=c263cd0f-59ff-4b87-a5f1-59cb6b3e681d',
                 });
                 resolve(result);
             })

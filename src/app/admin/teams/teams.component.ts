@@ -17,7 +17,8 @@ import { TeamsService } from '../../services/teams.service';
 })
 export class AdminTeamsComponent implements OnInit {
 
-    private teamsmodel = new TeamsModel('', '', '', '');
+    private Flag: File;
+    private teamsmodel = new TeamsModel('', '', '');
     private teamsmodelAll: TeamsModel[];
 
   constructor(
@@ -26,16 +27,15 @@ export class AdminTeamsComponent implements OnInit {
   ){}
 
   selectFile(event): void {
-    this.teamsmodel.flag = event.srcElement.files[0];
+    this.Flag = event.srcElement.files[0];
   }
 
-  doCreateTeam(): void {
-    if(this.teamsmodel.flag == null || this.teamsmodel.flag == undefined){
+  CreateTeam(): void {
+    if(this.Flag == null || this.Flag == undefined){
       this.snackBar.open('Bitte eine Flagge hochladen!')
       return;
     }
-    /*this.teamsservice.set(this.teamsmodel, this.base64)
-        .subscribe(data => { this.getAllTeams(); });*/
+    this.teamsservice.create(this.teamsmodel, this.Flag);
   }
 
   getAllTeams(): void {
@@ -44,8 +44,7 @@ export class AdminTeamsComponent implements OnInit {
   }
 
   delTeam(team): void {
-    /*this.teamsservice.del(team)
-        .subscribe(data => { this.getAllTeams(); });*/
+    this.teamsservice.remove(team);
   }
 
   ngOnInit(): void {
