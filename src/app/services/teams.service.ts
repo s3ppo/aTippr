@@ -36,7 +36,7 @@ export class TeamsService {
 
     uploadImage(image: File): Promise<String> {
         return new Promise<String>((resolve, reject) => {
-            let uploadTask = firebase.storage().ref(`/posts/${image.name}`).put(image);
+            let uploadTask = this.firebase.storage().ref(`/teams/${image.name}`).put(image);
             uploadTask.on('state_changed', function(snapshot) {
             }, function(error) {
                 reject(error);
@@ -45,7 +45,7 @@ export class TeamsService {
                 resolve(downloadURL);
             });
         });
-     }
+    }
 
     remove(object: TeamsModel): void {
         this.loginservice.af.database.list(`/teams/${object['$key']}`).remove();
