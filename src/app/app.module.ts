@@ -70,6 +70,9 @@ import { AdminMatchesComponent, AdminCategoryDialog } from './admin/matches/matc
     AuthGuard,
     AdminGuard,
   ],
+  entryComponents: [
+    AdminCategoryDialog,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

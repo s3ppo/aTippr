@@ -22,4 +22,12 @@ export class CategoriesService {
         return this.loginService.af.database.list('/categories/');
     }
 
+    create(object: CategoriesModel): void {
+        this.loginService.af.database.list(`/categories/`).push(object);
+    }
+
+    delete(key: String): void {
+        this.loginService.af.database.object(`/categories/${key}`).remove();
+    }
+
 }

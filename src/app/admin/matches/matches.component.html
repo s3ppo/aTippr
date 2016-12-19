@@ -11,7 +11,7 @@
                     <md-option *ngFor="let team2 of teamsmodelAll" [value]="team2._id">{{team2.teamname}}</md-option>
                 </md-select>
                 <br>
-                <md-select [(ngModel)]="matchesmodel.category" name="category">
+                <md-select [(ngModel)]="matchesmodel.category" (ngModelChange)="onCatChange($event)" name="category">
                     <md-option *ngFor="let category of categoriesmodelAll" [value]="category.$key">{{category.name}}</md-option>
                 </md-select>
                 &nbsp;

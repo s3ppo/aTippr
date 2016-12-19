@@ -35,6 +35,7 @@ export class AdminMatchesComponent implements OnInit{
   private matches_msg = ['', ''];
   private teamsmodelAll: TeamsModel[];
   private categoriesmodelAll: CategoriesModel[];
+  private selCategory: String;
 
   doCreateMatch(): void {
     let postmatch = new MatchesModel(this.matchesmodel.team1,this.matchesmodel.team2,this.matchesmodel.category,this.matchesmodel.matchlocation,'','',parseInt(this.matchesmodel.multiplier));
@@ -104,22 +105,12 @@ export class AdminMatchesComponent implements OnInit{
     this.getAllTeams();
   }
 
-  RemoveCategory(): void {
-    /*this.categoriesService.get(this.matchesmodel.category)
-                          .subscribe(
-                              categories => { this.RemoveCategoryDo(categories) });*/
+  onCatChange(event): void {
+    this.selCategory = event;
   }
-
-  RemoveCategoryDo(categorydel): void {
-    /*this.categoriesService.delete(categorydel)
-                          .subscribe(
-                              categories => { this.matches_msg[0] = 'success_msg';
-                                              this.matches_msg[1] = 'Kategorie wurde erfolgreich gelöscht.'; 
-                                              this.getAllCategories(); },
-                              err        => { this.matches_msg[0] = 'error_msg';
-                                              this.matches_msg[1] = 'Kategorie konnte nicht gelöscht werden.'; });*/
+  RemoveCategory(value): void {
+    this.categoriesService.delete(this.selCategory);
   }
-
   openAddCategory(): void {
     let config = new MdDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
@@ -151,12 +142,8 @@ export class AdminCategoryDialog {
   private categorymodel = new CategoriesModel('');
 
   doCreateCategory(): void {
-    /*let createcategoryOperation:Observable<CategoriesModel>;
-    createcategoryOperation = this.categoriesService.create(this.categorymodel);
-    createcategoryOperation.subscribe(
-                            categories => { this.categorymodel = new CategoriesModel('');
-                                            this.dialogRef.close('ok') },
-                            err =>   { this.dialogRef.close(err) });*/
+    this.categoriesService.create(this.categorymodel);
+    this.dialogRef.close('ok');
   }
 
   cancel(): void {
