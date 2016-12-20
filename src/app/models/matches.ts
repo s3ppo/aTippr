@@ -1,5 +1,5 @@
 /* * * ./app/models/matches.ts * * */
-export class MatchesModelUI {
+export class MatchesModel {
     constructor(
         public team1: string,
         public team2: string,
@@ -13,7 +13,7 @@ export class MatchesModelUI {
     ){}
 }
 
-export class MatchesModel {
+export class MatchesModelAll {
     constructor(
         public team1: string,
         public team2: string,

@@ -4,25 +4,25 @@
         <md-card-content>
             <form (ngSubmit)="doCreateMatch()" #LoginForm="ngForm">
                 <md-select [(ngModel)]="matchesmodel.team1" name="Team1">
-                    <md-option *ngFor="let team1 of teamsmodelAll" [value]="team1._id">{{team1.teamname}}</md-option>
+                    <md-option *ngFor="let team1 of teamsmodelAll" [value]="team1.$key">{{team1.teamname}}</md-option>
                 </md-select>
                 &nbsp; - &nbsp;
                 <md-select [(ngModel)]="matchesmodel.team2" name="Team2">
-                    <md-option *ngFor="let team2 of teamsmodelAll" [value]="team2._id">{{team2.teamname}}</md-option>
+                    <md-option *ngFor="let team2 of teamsmodelAll" [value]="team2.$key">{{team2.teamname}}</md-option>
                 </md-select>
                 <br>
                 <md-select [(ngModel)]="matchesmodel.category" (ngModelChange)="onCatChange($event)" name="category">
                     <md-option *ngFor="let category of categoriesmodelAll" [value]="category.$key">{{category.name}}</md-option>
                 </md-select>
                 &nbsp;
-                <button md-mini-fab color="primary" (click)="RemoveCategory()" type="button"><md-icon class="md-24">remove</md-icon></button>
-                <button md-mini-fab color="primary" (click)="openAddCategory()" type="button"><md-icon class="md-24">add</md-icon></button><br>
+                <button md-icon-button color="primary" (click)="RemoveCategory()" type="button"><md-icon class="md-24">remove</md-icon></button>
+                <button md-icon-button color="primary" (click)="openAddCategory()" type="button"><md-icon class="md-24">add</md-icon></button><br>
                 <md-input required placeholder="Matchort" [(ngModel)]="matchesmodel.matchlocation" name="matchlocation"></md-input><br>
                 <md-input required placeholder="Matchbeginn" [(ngModel)]="matchesmodel.matchstart" type="date" name="matchstart"></md-input>
                 <md-input required [(ngModel)]="matchesmodel.matchstarttime" type="time" name="matchstarttime"></md-input><br>
                 <md-input required placeholder="Deadline" [(ngModel)]="matchesmodel.deadline" type="date" name="deadline"></md-input>
                 <md-input required [(ngModel)]="matchesmodel.deadlinetime" type="time" name="deadlinetime"></md-input><br>
-                <md-input placeholder="Multiplikator" [(ngModel)]="matchesmodel.multiplier" type="number" min="1" max="4" name="multiplier"></md-input><br>
+                <md-input placeholder="Multiplikator" [(ngModel)]="matchesmodel.multiplier" type="number" min="1" max="4" name="multiplier" value="1"></md-input><br>
                 <button md-raised-button color="primary" class="btn_newmatch" type="submit">Anlegen</button>
             </form>
         </md-card-content>
@@ -31,10 +31,10 @@
     <md-card-title>Matches verwalten</md-card-title>
     <md-card-content>
         <md-nav-list>
-            <md-list-item class="md2 md-list-item md-2-line" *ngFor="let matchview of matchesmodelview">
+            <md-list-item class="md2 md-list-item md-2-line" *ngFor="let matchAll of matchesmodelAll">
                 <div class="md-list-text">
-                    <h3 md-line>{{matchview.team1.teamname}} - {{matchview.team2.teamname}}</h3>
-                    <p md-line>{{matchview.matchlocation}}</p>
+                    <h3 md-line>{{matchAll.team1}} - {{matchAll.team2}}</h3>
+                    <p md-line>{{matchAll.matchlocation}}</p>
                 </div>
                 <button md-icon-button (click)="setResult(matchview)">
                     <md-icon svgSrc="/assets/whistle.svg"></md-icon>

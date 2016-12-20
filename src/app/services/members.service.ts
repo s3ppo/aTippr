@@ -4,7 +4,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 //Rxjs
 import { Observable } from 'rxjs';
 //AngularFire
-import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2'
+import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 //Models
 import { AccountsModel } from '../models/accounts';
 import { MembersModel } from '../models/members';
@@ -16,7 +16,6 @@ export class MembersService {
 
     constructor (
         private loginservice: LoginService,
-        private af: AngularFire
     ){}
 
     getAll(): FirebaseListObservable<any> {

@@ -9,7 +9,7 @@ import { MatchesService } from '../../services/matches.service';
 import { CategoriesService } from '../../services/categories.service';
 import { TeamsService } from '../../services/teams.service';
 //Models
-import { MatchesModelUI, MatchesModel } from '../../models/matches';
+import { MatchesModel, MatchesModelAll } from '../../models/matches';
 import { CategoriesModel } from '../../models/categories';
 import { TeamsModel } from '../../models/teams';
 
@@ -30,15 +30,15 @@ export class AdminMatchesComponent implements OnInit{
   ){}
 
   private dialogRef: MdDialogRef<AdminCategoryDialog>;
-  private matchesmodel = new MatchesModelUI('', '', '', '', '', '', '', '', '');
-  private matchesmodelview: MatchesModel[];
+  private matchesmodel = new MatchesModel('', '', '', '', '', '', '', '', '');
+  private matchesmodelAll: MatchesModel[];
   private matches_msg = ['', ''];
   private teamsmodelAll: TeamsModel[];
   private categoriesmodelAll: CategoriesModel[];
   private selCategory: String;
 
   doCreateMatch(): void {
-    let postmatch = new MatchesModel(this.matchesmodel.team1,this.matchesmodel.team2,this.matchesmodel.category,this.matchesmodel.matchlocation,'','',parseInt(this.matchesmodel.multiplier));
+    let creatematch = new MatchesModelAll(this.matchesmodel.team1,this.matchesmodel.team2,this.matchesmodel.category,this.matchesmodel.matchlocation,'','',parseInt(this.matchesmodel.multiplier));
     let matchdate: Date;
     let hours: number;
     let minutes: number;
@@ -48,31 +48,20 @@ export class AdminMatchesComponent implements OnInit{
     hours = parseInt(this.matchesmodel.matchstarttime.substring(0,2));
     minutes = parseInt(this.matchesmodel.matchstarttime.substring(3));
     matchdate.setHours(hours,minutes);
-    postmatch.matchstart = matchdate.toUTCString();
+    creatematch.matchstart = matchdate.toUTCString();
     //Prepare Deadline
     matchdate = new Date(this.matchesmodel.deadline);
     hours = parseInt(this.matchesmodel.deadlinetime.substring(0,2));
     minutes = parseInt(this.matchesmodel.deadlinetime.substring(3));
     matchdate.setHours(hours,minutes);
-    postmatch.deadline = matchdate.toUTCString();
+    creatematch.deadline = matchdate.toUTCString();
 
-    let creatematchOperation:Observable<MatchesModelUI>;
-    /*creatematchOperation = this.matchesService.create(postmatch);
-    creatematchOperation.subscribe(
-                            matches => { this.matchesmodel = new MatchesModelUI('', '', '', '', '', '', '', '', '');
-                                         this.matches_msg[0] = 'success_msg';
-                                         this.matches_msg[1] = 'Neues Match wurde erfolgreich angelegt.';
-                                         this.getAllMatches(); },
-                            err     => { this.matches_msg[0] = 'error_msg';
-                                         this.matches_msg[1] = 'Neues Match konnte nicht angelegt werden.';
-                                         this.getAllMatches(); });*/
+    this.matchesService.create(creatematch);console.log(creatematch)
   }
 
   getAllMatches(): void {
-    /*this.matchesService.getAll()
-                     .subscribe(
-                            matches => { this.matchesmodelview = matches },
-                            err     => { console.log(err) });*/
+    this.matchesService.getAll()
+        .subscribe( matches => this.matchesmodelAll = matches );
   }
 
   delMatch(match): void {
