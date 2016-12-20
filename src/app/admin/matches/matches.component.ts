@@ -38,25 +38,26 @@ export class AdminMatchesComponent implements OnInit{
   private selCategory: String;
 
   doCreateMatch(): void {
-    let creatematch = new MatchesModelAll(this.matchesmodel.team1,this.matchesmodel.team2,this.matchesmodel.category,this.matchesmodel.matchlocation,'','',parseInt(this.matchesmodel.multiplier));
-    let matchdate: Date;
-    let hours: number;
-    let minutes: number;
+    let matchstart: Date = new Date(this.matchesmodel.matchstart);
+    let hours: number = parseInt(this.matchesmodel.matchstarttime.substring(0,2));
+    let minutes: number = parseInt(this.matchesmodel.matchstarttime.substring(3));
+    matchstart.setHours(hours, minutes);
 
-    //Prepare Matchstart
-    matchdate = new Date(this.matchesmodel.matchstart);
-    hours = parseInt(this.matchesmodel.matchstarttime.substring(0,2));
-    minutes = parseInt(this.matchesmodel.matchstarttime.substring(3));
-    matchdate.setHours(hours,minutes);
-    creatematch.matchstart = matchdate.toUTCString();
-    //Prepare Deadline
-    matchdate = new Date(this.matchesmodel.deadline);
-    hours = parseInt(this.matchesmodel.deadlinetime.substring(0,2));
-    minutes = parseInt(this.matchesmodel.deadlinetime.substring(3));
-    matchdate.setHours(hours,minutes);
-    creatematch.deadline = matchdate.toUTCString();
+    let deadline: Date = new Date(this.matchesmodel.deadline);
+    let dhours = parseInt(this.matchesmodel.deadlinetime.substring(0,2));
+    let dminutes = parseInt(this.matchesmodel.deadlinetime.substring(3));
+    deadline.setHours(dhours, dminutes);
 
-    this.matchesService.create(creatematch);console.log(creatematch)
+    let creatematch = new MatchesModelAll(this.matchesmodel.team1,this.matchesmodel.team2,this.matchesmodel.category,this.matchesmodel.matchlocation,matchstart.toUTCString(),deadline.toUTCString(),parseInt(this.matchesmodel.multiplier));
+    this.matchesService.create(creatematch);
+  }
+
+  delMatch(match): void {
+    this.matchesService.remove(match);
+  }
+
+  setResult(match): void {
+    
   }
 
   getAllMatches(): void {
@@ -64,22 +65,8 @@ export class AdminMatchesComponent implements OnInit{
         .subscribe( matches => this.matchesmodelAll = matches );
   }
 
-  delMatch(match): void {
-    /*this.matchesService.delete(match)
-                         .subscribe(
-                            matches => { this.matches_msg[0] = 'success_msg';
-                                         this.matches_msg[1] = 'Match wurde erfolgreich gelöscht.'; 
-                                         this.getAllMatches(); }, 
-                            err     => { this.matches_msg[0] = 'error_msg';
-                                         this.matches_msg[1] = 'Match konnte nicht gelöscht werden.'; });*/
-  }
-
-  setResult(match): void {
-    
-  }
-
   getAllCategories(): void {
-    this.categoriesService.getAll()
+  this.categoriesService.getAll()
         .subscribe( categories => this.categoriesmodelAll = categories );
   }
 

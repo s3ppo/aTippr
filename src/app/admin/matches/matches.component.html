@@ -33,13 +33,13 @@
         <md-nav-list>
             <md-list-item class="md2 md-list-item md-2-line" *ngFor="let matchAll of matchesmodelAll">
                 <div class="md-list-text">
-                    <h3 md-line>{{matchAll.team1}} - {{matchAll.team2}}</h3>
-                    <p md-line>{{matchAll.matchlocation}}</p>
+                    <h3 md-line>{{(matchAll.team1sub | async)?.teamname}} - {{(matchAll.team2sub | async)?.teamname}}</h3>
+                    <p md-line>{{matchAll.matchstart}}, {{matchAll.matchlocation}}</p>
                 </div>
-                <button md-icon-button (click)="setResult(matchview)">
+                <button md-icon-button (click)="setResult(matchAll)">
                     <md-icon svgSrc="/assets/whistle.svg"></md-icon>
                 </button>
-                <button md-icon-button (click)="delMatch(matchview)">
+                <button md-icon-button (click)="delMatch(matchAll)">
                     <md-icon>delete</md-icon>
                 </button>
             </md-list-item>

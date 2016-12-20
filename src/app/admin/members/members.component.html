@@ -3,13 +3,13 @@
     <md-card-title><a [routerLink]="['/admin']"><md-icon>arrow_back</md-icon></a> &nbsp; Mitglieder</md-card-title>
     <md-card-content>
         <md-nav-list>
-          <md-list-item *ngFor="let adminmembermodel of adminmembersmodel; let i = index;">
-            <div class="md-list-text">{{adminmembermodel.name}}</div>
-            <md-checkbox [(ngModel)]="adminmembermodel.paid" (change)="change(i)" align="start">
+          <md-list-item *ngFor="let adminmember of adminmembersmodel; let i = index;">
+            <div class="md-list-text">{{adminmember.name}}</div>
+            <md-checkbox [(ngModel)]="adminmember.paid" (change)="changePaid(i)" align="start">
               Bezahlt
             </md-checkbox>
             &nbsp; &nbsp;
-            <md-checkbox [(ngModel)]="adminmembermodel.admin" (change)="change(i)" align="start">
+            <md-checkbox [(ngModel)]="adminmember.admin" (change)="changeAdmin(i)" align="start">
               Administrator
             </md-checkbox>
             <button md-icon-button (click)="setnewPassword(i)">

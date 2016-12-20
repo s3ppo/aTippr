@@ -19,12 +19,22 @@ export class MatchesService {
         private router: Router,
     ){}
 
-    getAll(): FirebaseListObservable<any> {
-        return this.loginService.af.database.list('/matches/');
+    getAll(): Observable<any> {
+        return this.loginService.af.database.list('/matches/').map((teams) =>   {   
+            return teams.map((team) => { 
+                team.team1sub = this.loginService.af.database.object("/teams/" + team.team1);
+                team.team2sub = this.loginService.af.database.object("/teams/" + team.team2);
+                return team;
+            });
+        });
     }
 
     create(object: MatchesModelAll): void {
         this.loginService.af.database.list(`/matches/`).push(object);
+    }
+
+    remove(object: MatchesModelAll): void {
+        this.loginService.af.database.object(`/matches/${object['$key']}`).remove();
     }
 
 }
