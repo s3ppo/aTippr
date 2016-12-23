@@ -21,14 +21,6 @@ import { TeamsModel } from '../../models/teams';
 })
 export class AdminMatchesComponent implements OnInit{
 
-  constructor(
-    private matchesService: MatchesService,
-    private categoriesService: CategoriesService,
-    private teamsService: TeamsService,
-    public  dialog: MdDialog,
-    public  viewContainerRef: ViewContainerRef
-  ){}
-
   private dialogRef: MdDialogRef<AdminCategoryDialog>;
   private matchesmodel = new MatchesModel('', '', '', '', '', '', '', '', '');
   private matchesmodelAll: MatchesModel[];
@@ -36,6 +28,16 @@ export class AdminMatchesComponent implements OnInit{
   private teamsmodelAll: TeamsModel[];
   private categoriesmodelAll: CategoriesModel[];
   private selCategory: String;
+
+  constructor(
+    private matchesService: MatchesService,
+    private categoriesService: CategoriesService,
+    private teamsService: TeamsService,
+    public  dialog: MdDialog,
+    public  viewContainerRef: ViewContainerRef
+  ){
+    this.matchesmodel.multiplier = "1";
+  }
 
   doCreateMatch(): void {
     let matchstart: Date = new Date(this.matchesmodel.matchstart);
@@ -84,9 +86,11 @@ export class AdminMatchesComponent implements OnInit{
   onCatChange(event): void {
     this.selCategory = event;
   }
+
   RemoveCategory(value): void {
     this.categoriesService.delete(this.selCategory);
   }
+
   openAddCategory(): void {
     let config = new MdDialogConfig();
     config.viewContainerRef = this.viewContainerRef;

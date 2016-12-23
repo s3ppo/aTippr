@@ -17,6 +17,7 @@ import { MembersService } from './services/members.service';
 import { TeamsService } from './services/teams.service';
 import { MatchesService } from './services/matches.service';
 import { CategoriesService } from './services/categories.service';
+import { TippsService } from './services/tipps.service';
 //Guards
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
@@ -27,6 +28,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { IntroComponent } from './intro/intro.component';
 import { RegisterComponent } from './register/register.component';
 import { MembersComponent } from './members/members.component';
+import { TippComponent } from './tipp/tipp.component';
+import { TipperComponent } from './tipper/tipper.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminTeamsComponent } from './admin/teams/teams.component';
 import { AdminMembersComponent } from './admin/members/members.component';
@@ -49,6 +52,8 @@ import { AdminMatchesComponent, AdminCategoryDialog } from './admin/matches/matc
     IntroComponent,
     RegisterComponent,
     MembersComponent,
+    TippComponent,
+    TipperComponent,
     AdminComponent,
     AdminTeamsComponent,
     AdminMembersComponent,
@@ -69,6 +74,7 @@ import { AdminMatchesComponent, AdminCategoryDialog } from './admin/matches/matc
     TeamsService,
     MatchesService,
     CategoriesService,
+    TippsService,
     AuthGuard,
     AdminGuard,
   ],

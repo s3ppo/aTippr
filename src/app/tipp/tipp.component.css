@@ -1,0 +1,16 @@
+.tipp_container {
+    width:100%;
+}
+.card-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+md-card {
+    margin: 5px;
+}
+.app-spinner {
+  margin-top: 10px;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+}

@@ -1,0 +1,37 @@
+<div class="card-container">
+  <md-card *ngIf="!preloadingDone" class="match_container">
+    <md-card-title style="margin-bottom:5px"><a [routerLink]="['/tipp']"><md-icon>arrow_back</md-icon></a> &nbsp; {{categoryname}}</md-card-title>
+    <md-card-content>
+      <md-spinner class="app-spinner"></md-spinner>
+    </md-card-content>
+  </md-card> 
+  <md-card class="match_container" *ngFor="let match of matchesmodelview; let i = index;">
+    <md-card-title *ngIf="i==0" style="margin-bottom:5px"><a [routerLink]="['/tipp']"><md-icon>arrow_back</md-icon></a> &nbsp; {{categoryname}}</md-card-title>
+    <md-card-content class="matchwrapper">
+      <div class="matchtop">{{match.matchlocation}}</div>
+      <div class="matchbody">
+        <div class="matchbody-col1">
+          <img class="teamflag" [src]="(match.team1sub | async)?.flag" /><br>
+          {{(match.team1sub | async)?.teamname}}{{(match.teamtipps | async)?.tipp1}}
+        </div>
+        <div class="matchbody-col2">
+          <md-input type="hidden" value="(match.teamtipps | async)?.match" name="matchid"></md-input>
+          <md-input type="number" name="tipp1" min="1" max="20"></md-input>
+          &nbsp;-&nbsp;
+          <md-input type="number" align="end" ame="tipp2" min="1" max="20"></md-input>
+        </div>
+        <div class="matchbody-col3">
+          <img class="teamflag" [src]="(match.team2sub | async)?.flag" /><br>
+          {{(match.team2sub | async)?.teamname}}
+        </div>
+      </div>
+      <div class="matchbottom">{{match.matchstart}}</div>
+    </md-card-content>
+  </md-card>
+  <div *ngIf="preloadingDone" class="btn_wrapper">
+    <button md-raised-button (click)="submitTipps()" class="btn_tipp" color="primary">
+      <md-spinner *ngIf="loading" class="app-spinner"></md-spinner>
+      <span *ngIf="!loading">Absenden</span>
+    </button>
+  </div>
+</div>
