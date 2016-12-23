@@ -24,3 +24,6 @@ md-card {
 .success_msg {
     color: green;
 }
+.list_in_card {
+    padding: 0 0 0 0;
+}

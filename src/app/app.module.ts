@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 //Routing
 import { routing } from './app.routing';
+//HammerJS
+import 'hammerjs';
 //Material
 import { MaterialModule } from '@angular/material';
 //AngularFire

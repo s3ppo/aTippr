@@ -22,7 +22,7 @@
                 <md-input required [(ngModel)]="matchesmodel.matchstarttime" type="time" name="matchstarttime"></md-input><br>
                 <md-input required placeholder="Deadline" [(ngModel)]="matchesmodel.deadline" type="date" name="deadline"></md-input>
                 <md-input required [(ngModel)]="matchesmodel.deadlinetime" type="time" name="deadlinetime"></md-input><br>
-                <md-input placeholder="Multiplikator" [(ngModel)]="matchesmodel.multiplier" type="number" min="1" max="4" name="multiplier" value="1"></md-input><br>
+                <md-input placeholder="Multiplikator" [(ngModel)]="matchesmodel.multiplier" type="number" min="1" max="4" value="1" name="multiplier"></md-input><br>
                 <button md-raised-button color="primary" class="btn_newmatch" type="submit">Anlegen</button>
             </form>
         </md-card-content>
@@ -30,10 +30,10 @@
     <md-card class="matches_edit_container"> 
     <md-card-title>Matches verwalten</md-card-title>
     <md-card-content>
-        <md-nav-list>
+        <md-nav-list dense>
             <md-list-item class="md2 md-list-item md-2-line" *ngFor="let matchAll of matchesmodelAll">
-                <div class="md-list-text">
-                    <h3 md-line>{{(matchAll.team1sub | async)?.teamname}} - {{(matchAll.team2sub | async)?.teamname}}</h3>
+                <div class="md-list-text list_in_card">
+                    <h3 md-line><b>{{(matchAll.team1sub | async)?.teamname}} - {{(matchAll.team2sub | async)?.teamname}}</b></h3>
                     <p md-line>{{matchAll.matchstart}}, {{matchAll.matchlocation}}</p>
                 </div>
                 <button md-icon-button (click)="setResult(matchAll)">

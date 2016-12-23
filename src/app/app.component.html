@@ -1,6 +1,6 @@
 <md-sidenav-layout class="app-layout" fullscreen>
-
   <md-sidenav #sidenav mode="over" class="app-sidenav md-sidenav-over">
+    <md-toolbar color="primary">Hi!</md-toolbar>
     <md-nav-list *ngIf="!(isAuth() | async)">
       <a md-list-item  [routerLink]="['intro']" (click)="sidenav.toggle()">Einführung</a>
       <a md-list-item [routerLink]="['register']" (click)="sidenav.toggle()">Registrieren</a>
