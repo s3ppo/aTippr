@@ -1,12 +1,8 @@
-.tipp_container {
-    width:100%;
+.tipp_wrapper {
+  margin: 10px;
 }
 .card-container {
-  display: flex;
-  flex-flow: row wrap;
-}
-md-card {
-    margin: 5px;
+  width: 100%;
 }
 .app-spinner {
   margin-top: 10px;

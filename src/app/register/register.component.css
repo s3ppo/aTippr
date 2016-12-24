@@ -3,23 +3,10 @@
     margin-bottom: 10px;
 }
 .card-container {
-  display: flex;
-  flex-flow: row wrap;
+    width: 100%;
 }
-.register_container {
-    width:100%;
-}
-.register_msg {
-    margin-bottom: 10px;
-}
-.error_msg {
-    color: red;
-}
-.success_msg {
-    color: green;
-}
-md-card {
-    margin: 5px;
+.register_wrapper {
+    margin: 10px;
 }
 
 @media(max-width:480px){

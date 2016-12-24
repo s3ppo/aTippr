@@ -1,12 +1,7 @@
 .card-container {
-  display: flex;
-  flex-flow: row wrap;
+    width: 100%;
 }
 
-.intro_container {
-    width:100%;
-}
-
-md-card {
-    margin: 5px;
+.intro_wrapper {
+    margin: 10px;
 }

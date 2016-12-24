@@ -1,11 +1,9 @@
 .card-container {
-  display: flex;
-  flex-flow: row wrap;
+    width: 100%;
 }
 
-.dashboard_container {
-    text-align: center;
-    width:100%;
+.dashboard_wrapper {
+    margin: 10px;
 }
 
 md-card {

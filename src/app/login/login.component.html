@@ -1,30 +1,28 @@
 <div class="card-container">
-  <md-card class="login_container"> 
-    <md-card-title>Login</md-card-title>
-    <md-card-content>
+  <div class="login_wrapper"> 
+    <h2>Login</h2>
       <div class="login_form">
-        <form (ngSubmit)="doLogin()" #LoginForm="ngForm">
-          <md-input placeholder="eMail" [(ngModel)]="loginmodel.email" name="email">
-              <span md-prefix>
-                <i class="material-icons app-input-icon">account_circle</i>
-                &nbsp;
-              </span>
-          </md-input>
-          <br>
-          <md-input placeholder="Password" [(ngModel)]="loginmodel.password" name="password" type="password">
+      <form (ngSubmit)="doLogin()" #LoginForm="ngForm">
+        <md-input placeholder="eMail" [(ngModel)]="loginmodel.email" name="email">
             <span md-prefix>
-              <i class="material-icons app-input-icon">https</i>
+              <i class="material-icons app-input-icon">account_circle</i>
               &nbsp;
             </span>
-          </md-input>
-          <br>
-          <button md-raised-button color="primary" class="btn_login" type="submit">Login</button>
-        </form>
-        Noch keinen Account? <a [routerLink]="['/register']">Hier registrieren!</a>
-      </div>
-      <button md-raised-button color="primary" class="btn_login" (click)="loginSocial('google')">
-          Sign in with Google
-      </button>
-    </md-card-content>
-  </md-card>
+        </md-input>
+        <br>
+        <md-input placeholder="Password" [(ngModel)]="loginmodel.password" name="password" type="password">
+          <span md-prefix>
+            <i class="material-icons app-input-icon">https</i>
+            &nbsp;
+          </span>
+        </md-input>
+        <br>
+        <button md-raised-button color="primary" class="btn_login" type="submit">Login</button>
+      </form>
+      Noch keinen Account? <a [routerLink]="['/register']">Hier registrieren!</a>
+    </div>
+    <button md-raised-button color="primary" class="btn_login" (click)="loginSocial('google')">
+        Sign in with Google
+    </button>
+  </div>
 </div>

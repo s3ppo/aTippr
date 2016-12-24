@@ -3,16 +3,11 @@
     margin-bottom: 10px;
 }
 .card-container {
-  display: flex;
-  flex-flow: row wrap;
+    width: 100%;
 }
-.login_container {
+.login_wrapper {
     text-align: center;
-    width:100%;
 }
 .login_form {
     height: auto;
-}
-md-card {
-    margin: 5px;
 }

@@ -1,10 +1,8 @@
 .card-container {
-  display: flex;
-  flex-flow: row wrap;
+    width: 100%;
 }
-.tipper_container {
-    width:100%;
-    padding: 5px;
+.tipper_wrapper {
+    margin: 10px;
 }
 .match_container {
     padding: 5px;
@@ -14,22 +12,6 @@
   height: 30px;
   width: 30px;
   display: inline-block;
-}
-md-card {
-    margin: 5px 5px 0px 5px;
-}
-.tipper_msg {
-    margin-bottom: 10px;
-}
-.error_msg {
-    color: red;
-}
-.success_msg {
-    color: green;
-}
-.matchwrapper {
-    width: 100%;
-    display: block;
 }
 .matchtop {
     text-align: center;
@@ -71,4 +53,5 @@ md-card {
 .btn_tipp {
     margin-top: 10px;
     margin-bottom: 10px;
+    text-align: center;
 }

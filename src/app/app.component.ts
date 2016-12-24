@@ -15,25 +15,29 @@ import { MembersService } from './services/members.service';
 })
 export class AppComponent {
 
+  private user = {};
+
   constructor(
-    private membersservice: MembersService,
-    private loginservice: LoginService,
+    private membersService: MembersService,
+    private loginService: LoginService,
     private af: AngularFire,
-  ) {}
+  ) {
+    this.user = this.loginService.user;
+  }
 
   private admin: boolean;
  
   logout(): void {
-    this.loginservice.logout();
+    this.loginService.logout();
   }
 
   isAuth(): Observable<boolean> {
-    return this.loginservice.getAuthenticated()
+    return this.loginService.getAuthenticated()
                .map(user => user && user.hasOwnProperty('uid'));
   }
 
   isAdmin(): Observable<boolean> {
-    return this.loginservice.getAdmin();
+    return this.loginService.getAdmin();
   }
 
 }

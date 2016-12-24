@@ -1,29 +1,9 @@
 .card-container {
-  display: flex;
-  flex-flow: row wrap;
+    width: 100%;
 }
-.matches_create_container {
-    width:100%;
+.new_matches {
+    margin: 10px;
 }
-.matches_edit_container {
-    width:100%;
-}
-.btn_newmatch {
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-md-card {
-    margin: 5px;
-}
-.matches_msg {
-    margin-bottom: 10px;
-}
-.error_msg {
-    color: red;
-}
-.success_msg {
-    color: green;
-}
-.list_in_card {
-    padding: 0 0 0 0;
+.existing_matches {
+    margin: 10px;
 }

@@ -1,17 +1,13 @@
 .card-container {
-  display: flex;
-  flex-flow: row wrap;
+    width: 100%;
 }
-.teams_create_container {
-    width:100%;
+.new_teams {
+    margin: 10px;
 }
-.teams_edit_container {
-    width:100%;
+.existing_teams {
+    margin: 10px;
 }
 .btn_newteam {
     margin-top: 20px;
     margin-bottom: 10px;
-}
-md-card {
-    margin: 5px;
 }

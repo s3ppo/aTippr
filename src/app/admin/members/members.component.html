@@ -1,22 +1,20 @@
 <div class="card-container">
-  <md-card class="members_container">
-    <md-card-title><a [routerLink]="['/admin']"><md-icon>arrow_back</md-icon></a> &nbsp; Mitglieder</md-card-title>
-    <md-card-content>
-        <md-nav-list>
-          <md-list-item *ngFor="let adminmember of adminmembersmodel; let i = index;">
-            <div class="md-list-text">{{adminmember.name}}</div>
-            <md-checkbox [(ngModel)]="adminmember.paid" (change)="changePaid(i)" align="start">
-              Bezahlt
-            </md-checkbox>
-            &nbsp; &nbsp;
-            <md-checkbox [(ngModel)]="adminmember.admin" (change)="changeAdmin(i)" align="start">
-              Administrator
-            </md-checkbox>
-            <button md-icon-button (click)="setnewPassword(i)">
-              <md-icon>lock_open</md-icon>
-            </button>
-          </md-list-item>
-        </md-nav-list>
-    </md-card-content>
-  </md-card>
+  <div class="members_wrapper">
+    <h2><a [routerLink]="['/admin']"><md-icon>arrow_back</md-icon></a> &nbsp; Mitglieder</h2>
+    <md-nav-list>
+      <md-list-item *ngFor="let adminmember of adminmembersmodel; let i = index;">
+        <div class="md-list-text">{{adminmember.name}}</div>
+        <md-checkbox [(ngModel)]="adminmember.paid" (change)="changePaid(i)" align="start">
+          Bezahlt
+        </md-checkbox>
+        &nbsp; &nbsp;
+        <md-checkbox [(ngModel)]="adminmember.admin" (change)="changeAdmin(i)" align="start">
+          Administrator
+        </md-checkbox>
+        <button md-icon-button (click)="setnewPassword(i)">
+          <md-icon>lock_open</md-icon>
+        </button>
+      </md-list-item>
+    </md-nav-list>
+  </div>
 </div>

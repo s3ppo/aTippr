@@ -1,35 +1,33 @@
 <div class="card-container">
-    <md-card class="matches_create_container"> 
-        <md-card-title><a [routerLink]="['/admin']"><md-icon>arrow_back</md-icon></a> &nbsp; Matches anlegen</md-card-title>
-        <md-card-content>
-            <form (ngSubmit)="doCreateMatch()" #LoginForm="ngForm">
-                <md-select [(ngModel)]="matchesmodel.team1" name="Team1">
-                    <md-option *ngFor="let team1 of teamsmodelAll" [value]="team1.$key">{{team1.teamname}}</md-option>
-                </md-select>
-                &nbsp; - &nbsp;
-                <md-select [(ngModel)]="matchesmodel.team2" name="Team2">
-                    <md-option *ngFor="let team2 of teamsmodelAll" [value]="team2.$key">{{team2.teamname}}</md-option>
-                </md-select>
-                <br>
-                <md-select [(ngModel)]="matchesmodel.category" (ngModelChange)="onCatChange($event)" name="category">
-                    <md-option *ngFor="let category of categoriesmodelAll" [value]="category.$key">{{category.name}}</md-option>
-                </md-select>
-                &nbsp;
-                <button md-icon-button color="primary" (click)="RemoveCategory()" type="button"><md-icon class="md-24">remove</md-icon></button>
-                <button md-icon-button color="primary" (click)="openAddCategory()" type="button"><md-icon class="md-24">add</md-icon></button><br>
-                <md-input required placeholder="Matchort" [(ngModel)]="matchesmodel.matchlocation" name="matchlocation"></md-input><br>
-                <md-input required placeholder="Matchbeginn" [(ngModel)]="matchesmodel.matchstart" type="date" name="matchstart"></md-input>
-                <md-input required [(ngModel)]="matchesmodel.matchstarttime" type="time" name="matchstarttime"></md-input><br>
-                <md-input required placeholder="Deadline" [(ngModel)]="matchesmodel.deadline" type="date" name="deadline"></md-input>
-                <md-input required [(ngModel)]="matchesmodel.deadlinetime" type="time" name="deadlinetime"></md-input><br>
-                <md-input placeholder="Multiplikator" [(ngModel)]="matchesmodel.multiplier" type="number" min="1" max="4" value="1" name="multiplier"></md-input><br>
-                <button md-raised-button color="primary" class="btn_newmatch" type="submit">Anlegen</button>
-            </form>
-        </md-card-content>
-    </md-card>
-    <md-card class="matches_edit_container"> 
-    <md-card-title>Matches verwalten</md-card-title>
-    <md-card-content>
+    <div class="new_matches">
+        <h2><a [routerLink]="['/admin']"><md-icon>arrow_back</md-icon></a> &nbsp; Neues Match anlegen</h2><br>
+        <form (ngSubmit)="doCreateMatch()" #LoginForm="ngForm">
+            <md-select [(ngModel)]="matchesmodel.team1" name="Team1">
+                <md-option *ngFor="let team1 of teamsmodelAll" [value]="team1.$key">{{team1.teamname}}</md-option>
+            </md-select>
+            &nbsp; - &nbsp;
+            <md-select [(ngModel)]="matchesmodel.team2" name="Team2">
+                <md-option *ngFor="let team2 of teamsmodelAll" [value]="team2.$key">{{team2.teamname}}</md-option>
+            </md-select>
+            <br>
+            <md-select [(ngModel)]="matchesmodel.category" (ngModelChange)="onCatChange($event)" name="category">
+                <md-option *ngFor="let category of categoriesmodelAll" [value]="category.$key">{{category.name}}</md-option>
+            </md-select>
+            &nbsp;
+            <button md-mini-fab color="secondary" (click)="RemoveCategory()" type="button"><md-icon class="md-24">remove</md-icon></button>
+            <button md-mini-fab color="secondary" (click)="openAddCategory()" type="button"><md-icon class="md-24">add</md-icon></button><br>
+            <md-input required placeholder="Matchort" [(ngModel)]="matchesmodel.matchlocation" name="matchlocation"></md-input><br>
+            <md-input required placeholder="Matchbeginn" [(ngModel)]="matchesmodel.matchstart" type="date" name="matchstart"></md-input>
+            <md-input required [(ngModel)]="matchesmodel.matchstarttime" type="time" name="matchstarttime"></md-input><br>
+            <md-input required placeholder="Deadline" [(ngModel)]="matchesmodel.deadline" type="date" name="deadline"></md-input>
+            <md-input required [(ngModel)]="matchesmodel.deadlinetime" type="time" name="deadlinetime"></md-input><br>
+            <md-input placeholder="Multiplikator" [(ngModel)]="matchesmodel.multiplier" type="number" min="1" max="4" value="1" name="multiplier"></md-input><br>
+            <button md-raised-button color="primary" type="submit">Anlegen</button>
+        </form>
+    </div>
+    <md-divider></md-divider>
+    <div class="existing_matches">
+        <h2>Matches verwalten</h2>
         <md-nav-list dense>
             <md-list-item class="md2 md-list-item md-2-line" *ngFor="let matchAll of matchesmodelAll">
                 <div class="md-list-text list_in_card">
@@ -44,6 +42,5 @@
                 </button>
             </md-list-item>
         </md-nav-list>
-    </md-card-content>
-  </md-card>
+    </div>
 </div>

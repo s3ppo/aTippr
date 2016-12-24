@@ -1,10 +1,6 @@
 .card-container {
-  display: flex;
-  flex-flow: row wrap;
+    width: 100%;
 }
-.members_container {
-    width:100%;
-}
-md-card {
-    margin: 5px;
+.members_wrapper {
+    margin: 10px;
 }

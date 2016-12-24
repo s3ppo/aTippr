@@ -1,17 +1,15 @@
 <div class="card-container">
-  <md-card class="register_container"> 
-    <md-card-title>Registrieren</md-card-title>
-    <md-card-content>
-      <div class="register_form">
-        <form (ngSubmit)="doRegister()" #LoginForm="ngForm">
-          <md-input required placeholder="eMail" [(ngModel)]="registermodel.email" name="email"></md-input><br>
-          <md-input required placeholder="Vorname" [(ngModel)]="registermodel.firstname" name="firstname"></md-input><br>
-          <md-input required placeholder="Nachname" [(ngModel)]="registermodel.lastname" name="lastname"></md-input><br>
-          <md-input required type="password" placeholder="Passwort" [(ngModel)]="registermodel.password" name="password"></md-input><br>
-          <md-input required type="password" placeholder="Passwort bestätigen" [(ngModel)]="registermodel.password2" name="password2"></md-input><br>
-          <button md-raised-button color="primary" class="btn_register" type="submit">Registrieren</button>
-        </form>
-      </div>
-    </md-card-content>
-  </md-card>
+  <div class="register_wrapper"> 
+    <h2>Registrieren</h2>
+    <div class="register_form">
+      <form (ngSubmit)="doRegister()" #LoginForm="ngForm">
+        <md-input required placeholder="eMail" [(ngModel)]="registermodel.email" name="email"></md-input><br>
+        <md-input required placeholder="Vorname" [(ngModel)]="registermodel.firstname" name="firstname"></md-input><br>
+        <md-input required placeholder="Nachname" [(ngModel)]="registermodel.lastname" name="lastname"></md-input><br>
+        <md-input required type="password" placeholder="Passwort" [(ngModel)]="registermodel.password" name="password"></md-input><br>
+        <md-input required type="password" placeholder="Passwort bestätigen" [(ngModel)]="registermodel.password2" name="password2"></md-input><br>
+        <button md-raised-button color="primary" class="btn_register" type="submit">Registrieren</button>
+      </form>
+    </div>
+  </div>
 </div>

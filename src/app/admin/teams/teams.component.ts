@@ -32,7 +32,7 @@ export class AdminTeamsComponent implements OnInit {
 
   CreateTeam(): void {
     if(this.Flag == null || this.Flag == undefined){
-      this.snackBar.open('Bitte eine Flagge hochladen!')
+      this.snackBar.open('Bitte eine Flagge hochladen!', 'Close', { duration: 2000 });
       return;
     }
     this.teamsservice.create(this.teamsmodel, this.Flag);
