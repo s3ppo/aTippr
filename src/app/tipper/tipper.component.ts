@@ -43,7 +43,7 @@ export class TipperComponent implements OnInit{
 
   getAllMatches(category: string): void {
     //get matches for the selected category
-    this.matchesService.getAll(category).subscribe(matches => { console.log(matches)
+    this.matchesService.getAll(category).subscribe(matches => {
       this.matchesmodelview = matches; 
       this.preloadingDone = true; 
     })
