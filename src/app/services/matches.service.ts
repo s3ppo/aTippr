@@ -22,15 +22,12 @@ export class MatchesService {
     getAll(category?: string): Observable<any> {
         let filter: Object = {};
         if(category){
-            filter = { query: { category: category } };
+            filter = { query: { orderByChild: 'category', equalTo: category } };
         }
         return this.loginService.af.database.list('/matches/', filter).map((teams) => {   
             return teams.map((team) => { 
                 team.team1sub = this.loginService.af.database.object("/teams/" + team.team1);
                 team.team2sub = this.loginService.af.database.object("/teams/" + team.team2);
-                let filter: Object;
-                filter = { query: { match: team.$key } };
-                team.teamtipps = this.loginService.af.database.list("/tipps/", filter);
                 return team;
             });
         });

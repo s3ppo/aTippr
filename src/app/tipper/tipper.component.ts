@@ -44,18 +44,18 @@ export class TipperComponent implements OnInit{
   getAllMatches(category: string): void {
     //get matches for the selected category
     this.matchesService.getAll(category).subscribe(matches => {
-      this.matchesmodelview = matches; 
+      matches.forEach((match) => {
+        this.getTippforMatch(match.$key);
+      });
+      this.matchesmodelview = matches;
       this.preloadingDone = true; 
     })
   }
 
-  getAllTipps(category: string): void {
-    //get matches for the selected category
-    /*this.tippsservice.getAll()
-                    .subscribe(
-                          tipps => { this.tippsmodelview = tipps;
-                                     this.getAllMatches(category); },
-                          err   => { });*/
+  getTippforMatch(match: String): void {
+    this.tippsService.getAll(match).subscribe(tipps => { 
+      this.tippsmodelview = tipps;
+    }, err   => { });
   }
 
   /*createTippsCollection(matches: Array<MatchesModel>): TippsModel[] {

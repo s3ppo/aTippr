@@ -20,8 +20,14 @@ export class TippsService {
   ){}
 
   // Get all Tipps
-  getAll(): FirebaseListObservable<any> {
-    return this.loginService.af.database.list('/tipps/');
+  getAll(match: String): FirebaseListObservable<any> {
+    let filter: Object = { query: { orderByChild: 'match', equalTo: match } };
+    return this.loginService.af.database.list('/tipps/', filter);
+  }
+
+  // Create Initial Tipps for User and Category
+  create(category: String): void {
+
   }
 
   // Create a new Tipp

@@ -8,6 +8,7 @@ import { MdSnackBar } from '@angular/material';
 import { AdminMembersModel } from '../../models/adminmembers';
 //Services
 import { MembersService } from '../../services/members.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'Members',
@@ -19,14 +20,15 @@ import { MembersService } from '../../services/members.service';
 export class AdminMembersComponent implements OnInit{
 
   constructor(
-    private membersservice: MembersService,
+    private loginService: LoginService,
+    private membersService: MembersService,
     private snackBar: MdSnackBar,
   ){}
 
   private adminmembersmodel: AdminMembersModel[];
 
   getAllMembers(): void {
-    this.membersservice.getAll().subscribe(
+    this.membersService.getAll().subscribe(
                                   members  => { this.adminmembersmodel = members; },
                                   err      => { console.log(err) });
   }
@@ -36,15 +38,15 @@ export class AdminMembersComponent implements OnInit{
   }
 
   changeAdmin(index: number): void {
-    this.membersservice.changeAdmin(this.adminmembersmodel[index], 'admin');
+    this.membersService.changeAdmin(this.adminmembersmodel[index], 'admin');
   }
 
   changePaid(index: number): void {
-    this.membersservice.changeAdmin(this.adminmembersmodel[index], 'paid');
+    this.membersService.changeAdmin(this.adminmembersmodel[index], 'paid');
   }
 
   setnewPassword(index: number): void {
-
+    this.loginService.setnewMemberPw(this.adminmembersmodel[index]);
   }
 
 }

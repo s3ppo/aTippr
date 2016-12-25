@@ -9,6 +9,7 @@ import { AngularFire, AuthProviders, FirebaseAuthState, FirebaseListObservable, 
 //Models
 import { LoginModel } from '../models/login';
 import { AccountsModel } from '../models/accounts';
+import { AdminMembersModel } from '../models/adminmembers';
 
 @Injectable()
 export class LoginService {
@@ -98,6 +99,10 @@ export class LoginService {
                 console.log(error);reject(error.message || error ) 
             });
         });
+    }
+
+    setnewMemberPw(adminmember: AdminMembersModel): void {
+        
     }
 
     logout(): void {

@@ -10,10 +10,10 @@
             {{(match.team1sub | async)?.teamname}}{{(match.teamtipps | async)?.tipp1}}
           </div>
           <div class="matchbody-col2">
-            <md-input type="hidden" value="(match.teamtipps | async)?.match" name="matchid"></md-input>
-            <md-input type="number" name="tipp1" min="1" max="20"></md-input>
+            <md-input type="hidden" [(ngModel)]="tippmodelview[0].match" name="matchid"></md-input>
+            <md-input type="number" [(ngModel)]="tippmodelview[0].tipp1" name="tipp1" min="0" max="99"></md-input>
             &nbsp;-&nbsp;
-            <md-input type="number" align="end" ame="tipp2" min="1" max="20"></md-input>
+            <md-input type="number" [(ngModel)]="tippmodelview[0].tipp2" align="end" name="tipp2" min="0" max="99"></md-input>
           </div>
           <div class="matchbody-col3">
             <img class="teamflag" [src]="(match.team2sub | async)?.flag" /><br>
