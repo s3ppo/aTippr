@@ -53,7 +53,8 @@ export class TipperComponent implements OnInit{
   }
 
   getTippforMatch(match: String): void {
-    this.tippsService.getAll(match).subscribe(tipps => { 
+    this.tippsService.getAll(match).subscribe(tipps => {
+      console.log(tipps);
       this.tippsmodelview = tipps;
     }, err   => { });
   }

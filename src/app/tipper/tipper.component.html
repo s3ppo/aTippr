@@ -2,25 +2,25 @@
   <div class="tipper_wrapper">
     <h2><a [routerLink]="['/tipp']"><md-icon>arrow_back</md-icon></a> &nbsp; {{categoryname}}</h2>
     <md-spinner *ngIf="!preloadingDone" class="app-spinner"></md-spinner>
-    <div class="match_container" *ngFor="let match of matchesmodelview; let i = index;">
-        <div class="matchtop">{{match.matchlocation}}</div>
+    <div class="match_container" *ngFor="let tipp of tippsmodelview; let i = index;">
+        <div class="matchtop"></div>
         <div class="matchbody">
           <div class="matchbody-col1">
-            <img class="teamflag" [src]="(match.team1sub | async)?.flag" /><br>
-            {{(match.team1sub | async)?.teamname}}{{(match.teamtipps | async)?.tipp1}}
+            <!--<img class="teamflag" [src]="(match.team1sub | async)?.flag" /><br>-->
+            {{(tipp.matchsub.team1sub | async)?.teamname}}
           </div>
           <div class="matchbody-col2">
-            <md-input type="hidden" [(ngModel)]="tippmodelview[0].match" name="matchid"></md-input>
-            <md-input type="number" [(ngModel)]="tippmodelview[0].tipp1" name="tipp1" min="0" max="99"></md-input>
+            <md-input type="hidden" [(ngModel)]="tipp.match" name="matchid"></md-input>
+            <md-input type="number" [(ngModel)]="tipp.tipp1" name="tipp1" min="0" max="99"></md-input>
             &nbsp;-&nbsp;
-            <md-input type="number" [(ngModel)]="tippmodelview[0].tipp2" align="end" name="tipp2" min="0" max="99"></md-input>
+            <md-input type="number" [(ngModel)]="tipp.tipp2" align="end" name="tipp2" min="0" max="99"></md-input>
           </div>
           <div class="matchbody-col3">
-            <img class="teamflag" [src]="(match.team2sub | async)?.flag" /><br>
-            {{(match.team2sub | async)?.teamname}}
+            <!--<img class="teamflag" [src]="(match.team2sub | async)?.flag" /><br>-->
+            {{(tipp.matchsub.team2sub | async)?.teamname}}
           </div>
         </div>
-        <div class="matchbottom">{{match.matchstart}}</div>
+        <div class="matchbottom"></div>
         <md-divider></md-divider>
     </div>
     <div *ngIf="preloadingDone" class="btn_wrapper">
