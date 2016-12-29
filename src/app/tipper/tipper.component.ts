@@ -37,25 +37,25 @@ export class TipperComponent implements OnInit{
     this.route.params.forEach((params: Params) => {
       let category = params['category'];
       this.categoryname = params['categoryname'];
-      this.getAllMatches(category);
+      this.getAllTipps();
     });
   }
 
   getAllMatches(category: string): void {
     //get matches for the selected category
-    this.matchesService.getAll(category).subscribe(matches => {
+    /*this.matchesService.getAll(category).subscribe(matches => {
       matches.forEach((match) => {
         this.getTippforMatch(match.$key);
       });
       this.matchesmodelview = matches;
       this.preloadingDone = true; 
-    })
+    })*/
   }
 
-  getTippforMatch(match: String): void {
-    this.tippsService.getAll(match).subscribe(tipps => {
-      console.log(tipps);
+  getAllTipps(): void {
+    this.tippsService.getAll().subscribe(tipps => {
       this.tippsmodelview = tipps;
+      this.preloadingDone = true; 
     }, err   => { });
   }
 

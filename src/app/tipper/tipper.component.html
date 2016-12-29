@@ -6,8 +6,8 @@
         <div class="matchtop"></div>
         <div class="matchbody">
           <div class="matchbody-col1">
-            <!--<img class="teamflag" [src]="(match.team1sub | async)?.flag" /><br>-->
-            {{(tipp.matchsub.team1sub | async)?.teamname}}
+            <img class="teamflag" [src]="(tipp.team1sub | async)?.flag" /><br>
+            {{(tipp.team1sub | async)?.teamname}}
           </div>
           <div class="matchbody-col2">
             <md-input type="hidden" [(ngModel)]="tipp.match" name="matchid"></md-input>
@@ -16,8 +16,8 @@
             <md-input type="number" [(ngModel)]="tipp.tipp2" align="end" name="tipp2" min="0" max="99"></md-input>
           </div>
           <div class="matchbody-col3">
-            <!--<img class="teamflag" [src]="(match.team2sub | async)?.flag" /><br>-->
-            {{(tipp.matchsub.team2sub | async)?.teamname}}
+            <img class="teamflag" [src]="(tipp.team2sub | async)?.flag" /><br>
+            {{(tipp.team2sub | async)?.teamname}}
           </div>
         </div>
         <div class="matchbottom"></div>

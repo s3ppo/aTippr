@@ -20,17 +20,13 @@ export class TippsService {
   ){}
 
   // Get all Tipps
-  getAll(match: String): Observable<any> {
-    let filter: Object = { query: { orderByChild: 'match', equalTo: match } };
-    return this.loginService.af.database.list('/tipps/', filter).map((tipps) => {   
+  getAll(/*match: String*/): Observable<any> {
+    //let filter: Object = { query: { orderByChild: 'match', equalTo: match } };
+    return this.loginService.af.database.list('/tipps/', /*filter*/).map((tipps) => {   
       return tipps.map((tipp) => { 
-        return tipp.matchsub = this.loginService.af.database.object("/matches/" + tipp.match).map((matches) => {
-          return matches.map((match) => {
-            match.team1sub = this.loginService.af.database.object("/teams/" + match.team1);
-            match.team2sub = this.loginService.af.database.object("/teams/" + match.team2);
-            return match;
-          })
-        });
+        tipp.team1sub = this.loginService.af.database.object("/teams/" + tipp.team1);
+        tipp.team2sub = this.loginService.af.database.object("/teams/" + tipp.team2);
+        return tipp;
      });
    });
   }
