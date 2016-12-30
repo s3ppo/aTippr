@@ -28,6 +28,7 @@ export class TipperComponent implements OnInit{
   ){}
 
   private matchesmodelview: MatchesModel[];
+  private category: string;
   private categoryname: string;
   private tippsmodelview = [];
   private loading: boolean;
@@ -35,28 +36,24 @@ export class TipperComponent implements OnInit{
 
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
-      let category = params['category'];
+      this.category = params['category'];
       this.categoryname = params['categoryname'];
-      this.getAllTipps();
     });
+    this.getAllMatches(this.category);
   }
 
   getAllMatches(category: string): void {
-    //get matches for the selected category
-    /*this.matchesService.getAll(category).subscribe(matches => {
-      matches.forEach((match) => {
-        this.getTippforMatch(match.$key);
-      });
+    this.matchesService.getAll(category).subscribe(matches => {
       this.matchesmodelview = matches;
-      this.preloadingDone = true; 
-    })*/
+      this.getAllTipps();
+    });
   }
 
   getAllTipps(): void {
     this.tippsService.getAll().subscribe(tipps => {
       this.tippsmodelview = tipps;
-      this.preloadingDone = true; 
-    }, err   => { });
+      this.preloadingDone = true;
+    });
   }
 
   /*createTippsCollection(matches: Array<MatchesModel>): TippsModel[] {
