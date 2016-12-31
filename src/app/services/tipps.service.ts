@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 //Models
 import { TippsModel } from '../models/tipps';
+import { MatchesModelTipper } from '../models/matches';
 //Services
 import { LoginService } from '../services/login.service';
 
@@ -20,9 +21,9 @@ export class TippsService {
   ){}
 
   // Get all Tipps
-  getAll(/*match: String*/): Observable<any> {
-    //let filter: Object = { query: { orderByChild: 'match', equalTo: match } };
-    return this.loginService.af.database.list('/tipps/', /*filter*/).map((tipps) => {   
+  getAll(category: String): Observable<any> {
+    let filter: Object = { query: { orderByChild: 'category', equalTo: category } };
+    return this.loginService.af.database.list('/tipps/', filter).map((tipps) => {   
       return tipps.map((tipp) => { 
         tipp.team1sub = this.loginService.af.database.object("/teams/" + tipp.team1);
         tipp.team2sub = this.loginService.af.database.object("/teams/" + tipp.team2);
@@ -32,7 +33,7 @@ export class TippsService {
   }
 
   // Create Initial Tipps for User and Category
-  create(category: String): void {
+  change(): void {
 
   }
 

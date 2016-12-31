@@ -8,7 +8,7 @@ import { MdSnackBar } from '@angular/material';
 import { MatchesService } from '../services/matches.service';
 import { TippsService } from '../services/tipps.service';
 //Models
-import { MatchesModel } from '../models/matches';
+import { MatchesModel, MatchesModelTipper } from '../models/matches';
 import { TippsModel } from '../models/tipps';
 
 @Component({
@@ -27,7 +27,7 @@ export class TipperComponent implements OnInit{
     private snackBar: MdSnackBar,
   ){}
 
-  private matchesmodelview: MatchesModel[];
+  private matchesmodelview: MatchesModelTipper[];
   private category: string;
   private categoryname: string;
   private tippsmodelview = [];
@@ -45,58 +45,31 @@ export class TipperComponent implements OnInit{
   getAllMatches(category: string): void {
     this.matchesService.getAll(category).subscribe(matches => {
       this.matchesmodelview = matches;
-      this.getAllTipps();
+      this.getAllTipps(category);
     });
   }
 
-  getAllTipps(): void {
-    this.tippsService.getAll().subscribe(tipps => {
+  getAllTipps(category: string): void {
+    this.tippsService.getAll(category).subscribe(tipps => {
       this.tippsmodelview = tipps;
+      this.mergeCollections();
       this.preloadingDone = true;
     });
   }
 
-  /*createTippsCollection(matches: Array<MatchesModel>): TippsModel[] {
-    let tippermodel = [];
-    let matchexists: boolean;
-    let newtipp: TippsModel;
-
-    for(let i=0; i<matches.length; i++){
-      matchexists = false;
-      
-      for(let a=0;a<this.tippsmodelview.length;a++){
-        if(matches[i]['_id'] == this.tippsmodelview[a].matchid && matchexists == false) {
-          matchexists = true;
-          tippermodel.push(this.tippsmodelview[a]);
-        }
+  mergeCollections() {
+    this.matchesmodelview.forEach((match) => {
+      let tippmerge = this.tippsmodelview.find(tipp => tipp.match == match['$key']);
+      if(tippmerge){
+        match.tipp1 = tippmerge.tipp1;
+        match.tipp2 = tippmerge.tipp2;
       }
-      if(matchexists == false) {
-        // Create
-        newtipp = new TippsModel(matches[i]['_id'], -1, -1);
-        tippermodel.push(newtipp);
-        this.tippsservice.create(newtipp)
-                         .subscribe(
-                            tipps => { this.tippsmodelview[i]['_etag'] = tipps['_etag']; this.tippsmodelview[i]['_id'] = tipps['_id']; },
-                            err   => { });
-      }
-    };
-    return tippermodel;
-  }*/
+    })
+  }
 
   submitTipps(): void {
-    /*this.loading = true;
-    for(let i=0;i<this.tippsmodelview.length;i++){
-      // Update Tipps
-      this.tippsservice.change(this.tippsmodelview[i])
-                        .subscribe(
-                          tipps => {  if(this.tippsmodelview.length-1 == i){
-                                        this.loading = false;
-                                        this.snackBar.open('Deine Tipps wurden geändert', 'Close');
-                                      }
-                                      this.tippsmodelview[i]['_etag'] = tipps['_etag']; },
-                          err   => {  this.loading = false; 
-                                      this.snackBar.open(err, 'Close'); });
-    };*/
+    this.loading = true;
+    this.tippsService.change();
   }
 
 }

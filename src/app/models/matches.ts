@@ -24,3 +24,17 @@ export class MatchesModelAll {
         public multiplier: number,
     ){}
 }
+
+export class MatchesModelTipper {
+    constructor(
+        public team1: string,
+        public team2: string,
+        public category: string,
+        public matchlocation: string,
+        public matchstart: string,
+        public deadline: string,
+        public multiplier: number,
+        public tipp1: number,
+        public tipp2: number,
+    ){}
+}

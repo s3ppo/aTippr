@@ -4,6 +4,9 @@
     ".write": "auth != null",
     "matches": {
       ".indexOn": ["category"]
+    },
+    "tipps": {
+      ".indexOn": ["category"]
     }
   }
 }
