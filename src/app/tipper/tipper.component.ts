@@ -45,6 +45,9 @@ export class TipperComponent implements OnInit{
   getAllMatches(category: string): void {
     this.matchesService.getAll(category).subscribe(matches => {
       this.matchesmodelview = matches;
+      this.matchesmodelview.forEach(match => {
+        match.matchstart = new Date(match.matchstart).toLocaleString();
+      })
       this.getAllTipps(category);
     });
   }
@@ -73,9 +76,11 @@ export class TipperComponent implements OnInit{
     let tippsupdate = [];
     this.matchesmodelview.forEach(match => {
       if(match.hasOwnProperty('tippkey')) {
-        tippsupdate.push(new TippsModel( match.tippkey, this.category, match['$key'], match.tipp1, match.tipp2));
+        if(match.tipp1.toString() != 'NaN' && match.tipp2.toString() != 'NaN') {
+          tippsupdate.push(new TippsModel( match.tippkey, this.category, match['$key'], match.tipp1, match.tipp2));
+        }
       } else {
-        if(match.tipp1 && match.tipp2) {
+        if(match.tipp1.toString() != 'NaN' && match.tipp2.toString() != 'NaN') {
           tippscreate.push(new TippsModel( '', this.category, match['$key'], match.tipp1, match.tipp2));
         }
       }
@@ -85,7 +90,7 @@ export class TipperComponent implements OnInit{
     //Create new
     this.tippsService.create(tippscreate);
     
-    this.snackBar.open('Tipps wurden geändert!', 'Close', 3000);
+    this.snackBar.open('Tipps wurden geändert!', 'Close', { duration: 2000 });
   }
 
 }

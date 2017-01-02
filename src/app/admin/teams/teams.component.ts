@@ -36,6 +36,7 @@ export class AdminTeamsComponent implements OnInit {
       return;
     }
     this.teamsservice.create(this.teamsmodel, this.Flag);
+    this.snackBar.open('Neues Team '+ this.teamsmodel.teamname + ' wurde angelegt', 'Close', { duration: 2000 });
   }
 
   getAllTeams(): void {

@@ -6,7 +6,9 @@
       ".indexOn": ["category"]
     },
     "tipps": {
-      ".indexOn": ["category"]
+      "$uid": {
+    		".indexOn": ["category"]
+      }
     }
   }
 }

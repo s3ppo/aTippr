@@ -3,7 +3,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 //Material
-import { MdDialogRef, MdDialog, Overlay, MdDialogConfig } from '@angular/material';
+import { MdDialogRef, MdDialog, Overlay, MdDialogConfig, MdSnackBar } from '@angular/material';
 //Services
 import { MatchesService } from '../../services/matches.service';
 import { CategoriesService } from '../../services/categories.service';
@@ -33,8 +33,9 @@ export class AdminMatchesComponent implements OnInit{
     private matchesService: MatchesService,
     private categoriesService: CategoriesService,
     private teamsService: TeamsService,
+    private snackBar: MdSnackBar,
     public  dialog: MdDialog,
-    public  viewContainerRef: ViewContainerRef
+    public  viewContainerRef: ViewContainerRef,
   ){
     this.matchesmodel.multiplier = "1";
   }
@@ -52,6 +53,8 @@ export class AdminMatchesComponent implements OnInit{
 
     let creatematch = new MatchesModelAll(this.matchesmodel.team1,this.matchesmodel.team2,this.matchesmodel.category,this.matchesmodel.matchlocation,matchstart.toUTCString(),deadline.toUTCString(),parseInt(this.matchesmodel.multiplier));
     this.matchesService.create(creatematch);
+
+    this.snackBar.open('Neues Match wurde angelegt', 'Close', { duration: 2000 });
   }
 
   delMatch(match): void {
