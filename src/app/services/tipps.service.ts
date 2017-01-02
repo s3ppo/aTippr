@@ -23,55 +23,22 @@ export class TippsService {
   // Get all Tipps
   getAll(category: String): Observable<any> {
     let filter: Object = { query: { orderByChild: 'category', equalTo: category } };
-    return this.loginService.af.database.list('/tipps/', filter).map((tipps) => {   
-      return tipps.map((tipp) => { 
-        tipp.team1sub = this.loginService.af.database.object("/teams/" + tipp.team1);
-        tipp.team2sub = this.loginService.af.database.object("/teams/" + tipp.team2);
-        return tipp;
-     });
-   });
+    return this.loginService.af.database.list(`/tipps/${this.loginService.user.uid}`, filter);
   }
 
-  // Create Initial Tipps for User and Category
-  change(): void {
-
+  // Change Tipps
+  change(tipps: Array<TippsModel>): void {
+    tipps.forEach(tipp => {
+        let upd: Object = { tipp1: tipp.tipp1, tipp2: tipp.tipp2 };
+        this.loginService.af.database.object(`/tipps/${this.loginService.user.uid}/${tipp.tippkey}`).update(upd);
+    })
   }
 
-  // Create a new Tipp
-/*create(name: TippsModel): Observable<TippsModel> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', this.auth);
-    let options = new RequestOptions({ headers: headers });
-
-    return this.http.post(this.TippsUrl, name, options)
-                    .map((res:Response) => res.json())
-                    .catch((error:any) => Observable.throw(error.json()._error.message || 'Server error'));
-  }*/
-
-  // Get Single Tipp by matchid  --> not in use
-  /*getbyMatch(matchid: string): Observable<TippsModel> {
-    let tippUrl = this.TippsUrl + '?where={"matchid":"'+matchid+'"}';
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', this.auth);
-    let options = new RequestOptions({ headers: headers });
-    
-    return this.http.get(tippUrl, options)
-                    .map((res:Response) => res.json()._items[0])
-                    .catch((error:any) => Observable.throw(error.json()._error.message || 'Server error'));
-  }*/
-
-  // Change a Tipp
-  /*change(object: Object): Observable<TippsModel> {
-    let tippUrl = this.TippsUrl + '/' + object['_id'];
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    headers.append('Authorization', this.auth);
-    headers.append('If-Match', object['_etag']);
-    let options = new RequestOptions({ headers: headers });
-    let body = '{'+'"tipp1":"'+object['tipp1']+'","tipp2":"'+object['tipp2']+'"}';
-
-    return this.http.patch(tippUrl, body, options)
-                    .map((res:Response) => res.json())
-                    .catch((error:any) => Observable.throw(error.json()._error.message || 'Server error'));
-  }*/
+  create(tipps: Array<TippsModel>): void {
+    tipps.forEach(tipp => {
+        let crea: Object = { category: tipp.category, match: tipp.match, tipp1: tipp.tipp1, tipp2: tipp.tipp2 };
+        this.loginService.af.database.list(`/tipps/${this.loginService.user.uid}`).push(crea);
+    })
+  }
 
 }

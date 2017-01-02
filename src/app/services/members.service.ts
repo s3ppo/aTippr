@@ -34,7 +34,7 @@ export class MembersService {
         } else if(target == 'admin'){
             updateobj = { admin: object[target] };
         }
-        this.loginservice.af.database.list('/users').update(`${object['$key']}`, updateobj);
+        this.loginservice.af.database.list('/users').update(object['$key'], updateobj);
     }
 
 }

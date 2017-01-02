@@ -1,9 +1,9 @@
 /* * * ./app/models/tipps.ts * * */
 export class TippsModel {
     constructor(
-        public matchid: string,
-        public team1: string,
-        public team2: string,
+        public tippkey: string,
+        public category: string,
+        public match: string,
         public tipp1: number,
         public tipp2: number,
     ){}

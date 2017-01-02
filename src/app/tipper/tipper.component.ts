@@ -30,7 +30,7 @@ export class TipperComponent implements OnInit{
   private matchesmodelview: MatchesModelTipper[];
   private category: string;
   private categoryname: string;
-  private tippsmodelview = [];
+  private tippsmodelview: TippsModel[];
   private loading: boolean;
   private preloadingDone: boolean = false;
 
@@ -61,6 +61,7 @@ export class TipperComponent implements OnInit{
     this.matchesmodelview.forEach((match) => {
       let tippmerge = this.tippsmodelview.find(tipp => tipp.match == match['$key']);
       if(tippmerge){
+        match.tippkey = tippmerge['$key'];
         match.tipp1 = tippmerge.tipp1;
         match.tipp2 = tippmerge.tipp2;
       }
@@ -68,8 +69,23 @@ export class TipperComponent implements OnInit{
   }
 
   submitTipps(): void {
-    this.loading = true;
-    this.tippsService.change();
+    let tippscreate = [];
+    let tippsupdate = [];
+    this.matchesmodelview.forEach(match => {
+      if(match.hasOwnProperty('tippkey')) {
+        tippsupdate.push(new TippsModel( match.tippkey, this.category, match['$key'], match.tipp1, match.tipp2));
+      } else {
+        if(match.tipp1 && match.tipp2) {
+          tippscreate.push(new TippsModel( '', this.category, match['$key'], match.tipp1, match.tipp2));
+        }
+      }
+    })
+    //Change existing
+    this.tippsService.change(tippsupdate);
+    //Create new
+    this.tippsService.create(tippscreate);
+    
+    this.snackBar.open('Tipps wurden geändert!', 'Close', 3000);
   }
 
 }
