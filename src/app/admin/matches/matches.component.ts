@@ -1,9 +1,10 @@
 //Angular
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 //Material
-import { MdDialogRef, MdDialog, Overlay, MdDialogConfig, MdSnackBar } from '@angular/material';
+import { MdDialogRef, MdDialog, Overlay, MdDialogConfig, MdSnackBar, MdIconRegistry } from '@angular/material';
 //Services
 import { MatchesService } from '../../services/matches.service';
 import { CategoriesService } from '../../services/categories.service';
@@ -17,7 +18,7 @@ import { TeamsModel } from '../../models/teams';
   selector: 'Admin_Matches',
   templateUrl: './matches.component.html',
   styleUrls: ['./matches.component.css'],
-  providers: [],
+  providers: [MdIconRegistry],
 })
 export class AdminMatchesComponent implements OnInit{
 
@@ -36,8 +37,11 @@ export class AdminMatchesComponent implements OnInit{
     private snackBar: MdSnackBar,
     public  dialog: MdDialog,
     public  viewContainerRef: ViewContainerRef,
+    private mdIconRegistry: MdIconRegistry, 
+    private sanitizer: DomSanitizer
   ){
     this.matchesmodel.multiplier = "1";
+    mdIconRegistry.addSvgIcon('whistle', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/whistle.svg'));
   }
 
   doCreateMatch(): void {

@@ -71,7 +71,7 @@ export class LoginService {
             })
             .then(result => {
                 this.af.database.object(`/users/${result.auth.uid}`).set({
-                    name: result.auth.displayName,
+                    FirstName: result.auth.displayName,
                     email: result.auth.email,
                     photo: result.auth.photoURL,
                 });
@@ -89,7 +89,8 @@ export class LoginService {
         return new Promise((resolve, reject) => {
             this.af.auth.createUser(creds).then(result => {
                 this.af.database.object(`/users/${result.auth.uid}`).set({
-                    name: account.firstname + " " + account.lastname,
+                    firstName: account.firstname,
+                    lastName: account.lastname,
                     email: account.email,
                     photo: 'https://firebasestorage.googleapis.com/v0/b/api-project-340883542890.appspot.com/o/avatars%2Fempty-avatar.jpg?alt=media&token=c263cd0f-59ff-4b87-a5f1-59cb6b3e681d',
                 });

@@ -4,6 +4,8 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 //AngularFire
 import { AngularFire, FirebaseAuthState } from 'angularfire2';
+//Models
+import { MembersModel } from './models/members';
 //Services
 import { LoginService } from './services/login.service';
 import { MembersService } from './services/members.service';
@@ -15,15 +17,13 @@ import { MembersService } from './services/members.service';
 })
 export class AppComponent {
 
-  private user = {};
+  private member = new MembersModel('','','','');
 
   constructor(
     private membersService: MembersService,
     private loginService: LoginService,
     private af: AngularFire,
-  ) {
-    this.user = this.loginService.user;
-  }
+  ) {}
 
   private admin: boolean;
  
@@ -32,8 +32,17 @@ export class AppComponent {
   }
 
   isAuth(): Observable<boolean> {
-    return this.loginService.getAuthenticated()
-               .map(user => user && user.hasOwnProperty('uid'));
+    return this.loginService.getAuthenticated().map(user => {
+      if(user) {
+        this.membersService.get(user.uid).subscribe(member => {
+          this.member = member;
+        })
+        return true;
+      } else {
+        this.member = new MembersModel('','','','');
+        return false;
+      }
+    });
   }
 
   isAdmin(): Observable<boolean> {
