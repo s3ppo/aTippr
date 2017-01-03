@@ -47,6 +47,13 @@ export class TipperComponent implements OnInit{
       this.matchesmodelview = matches;
       this.matchesmodelview.forEach(match => {
         match.matchstart = new Date(match.matchstart).toLocaleString();
+        let now = new Date();
+        let deadline = new Date(match.deadline);
+        if(now >= deadline) {
+          match.disabled = 'true';
+        } else {
+          match.disabled = 'false';
+        }
       })
       this.getAllTipps(category);
     });
@@ -76,11 +83,11 @@ export class TipperComponent implements OnInit{
     let tippsupdate = [];
     this.matchesmodelview.forEach(match => {
       if(match.hasOwnProperty('tippkey')) {
-        if(match.tipp1.toString() != 'NaN' && match.tipp2.toString() != 'NaN') {
+        if(match.hasOwnProperty('tipp1') && match.hasOwnProperty('tipp2')) {
           tippsupdate.push(new TippsModel( match.tippkey, this.category, match['$key'], match.tipp1, match.tipp2));
         }
       } else {
-        if(match.tipp1.toString() != 'NaN' && match.tipp2.toString() != 'NaN') {
+        if(match.hasOwnProperty('tipp1') && match.hasOwnProperty('tipp2')) {
           tippscreate.push(new TippsModel( '', this.category, match['$key'], match.tipp1, match.tipp2));
         }
       }
