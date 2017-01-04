@@ -19,8 +19,8 @@ export class MatchesModelAll {
         public team2: string,
         public category: string,
         public matchlocation: string,
-        public matchstart: string,
-        public deadline: string,
+        public matchstart: number,
+        public deadline: number,
         public multiplier: number,
     ){}
 }

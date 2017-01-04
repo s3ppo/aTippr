@@ -55,7 +55,7 @@ export class AdminMatchesComponent implements OnInit{
     let dminutes = parseInt(this.matchesmodel.deadlinetime.substring(3));
     deadline.setHours(dhours, dminutes);
 
-    let creatematch = new MatchesModelAll(this.matchesmodel.team1,this.matchesmodel.team2,this.matchesmodel.category,this.matchesmodel.matchlocation,matchstart.toUTCString(),deadline.toUTCString(),parseInt(this.matchesmodel.multiplier));
+    let creatematch = new MatchesModelAll(this.matchesmodel.team1,this.matchesmodel.team2,this.matchesmodel.category,this.matchesmodel.matchlocation,matchstart.getTime(),deadline.getTime(),parseInt(this.matchesmodel.multiplier));
     this.matchesService.create(creatematch);
 
     this.snackBar.open('Neues Match wurde angelegt', 'Close', { duration: 2000 });
@@ -70,13 +70,17 @@ export class AdminMatchesComponent implements OnInit{
   }
 
   getAllMatches(): void {
-    this.matchesService.getAll()
-        .subscribe( matches => this.matchesmodelAll = matches );
+    this.matchesService.getAll().subscribe( matches => {
+      this.matchesmodelAll = matches;
+      this.matchesmodelAll.forEach(match => {
+        match.matchstart = new Date(match.matchstart).toLocaleString();
+        match.deadline = new Date(match.deadline).toLocaleString();
+      });
+    });
   }
 
   getAllCategories(): void {
-  this.categoriesService.getAll()
-        .subscribe( categories => this.categoriesmodelAll = categories );
+    this.categoriesService.getAll().subscribe( categories => this.categoriesmodelAll = categories );
   }
 
   getAllTeams(): void {

@@ -2,7 +2,7 @@
   <div class="tipper_wrapper">
     <h2><a [routerLink]="['/tipp']"><md-icon>arrow_back</md-icon></a> &nbsp; {{categoryname}}</h2>
     <md-spinner *ngIf="!preloadingDone" class="app-spinner"></md-spinner>
-    <div class="match_container" *ngFor="let match of matchesmodelview; let i = index;">
+    <div class="match_container" *ngFor="let match of matchesmodelview">
         <div class="matchtop">{{match.matchlocation}}</div>
         <div class="matchbody">
           <div class="matchbody-col1">
