@@ -1,6 +1,30 @@
 <div class="card-container">
-  <div class="login_wrapper"> 
+  <div class="login_wrapper">
     <h2>Login</h2>
+      <div class="social_wrapper">
+        <div class="login_google">
+          <button md-raised-button color="primary" class="btn_google" (click)="loginSocial('google')">
+              Google+
+          </button>
+          <button md-raised-button color="primary" class="btn_facebook" (click)="loginSocial('facebook')">
+              Facebook
+          </button>
+          <button md-raised-button color="primary" class="btn_twitter" (click)="loginSocial('twitter')">
+              Twitter
+          </button>
+        </div>
+        <div class="login_separator">
+          <div class="login_divider1">
+            <md-divider></md-divider>
+          </div>
+          <div class="login_or">
+            <p>&nbsp; or &nbsp;
+          </div>
+          <div class="login_divider2">
+            <md-divider></md-divider>
+          </div>
+        </div>
+      </div>
       <div class="login_form">
       <form (ngSubmit)="doLogin()" #LoginForm="ngForm">
         <md-input placeholder="eMail" [(ngModel)]="loginmodel.email" name="email">
@@ -19,10 +43,7 @@
         <br>
         <button md-raised-button color="primary" class="btn_login" type="submit">Login</button>
       </form>
-      Noch keinen Account? <a [routerLink]="['/register']">Hier registrieren!</a>
+      <a [routerLink]="['/register']">Registrieren</a> &nbsp; <a [routerLink]="['/forgot']">Forgot Password</a>
     </div>
-    <button md-raised-button color="primary" class="btn_login" (click)="loginSocial('google')">
-        Sign in with Google
-    </button>
   </div>
 </div>

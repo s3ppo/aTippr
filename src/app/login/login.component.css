@@ -2,12 +2,41 @@
     margin-top: 20px;
     margin-bottom: 10px;
 }
+.btn_google {
+    background: #c32f10;
+}
+.btn_facebook {
+    background: #3b5998;
+}
+.btn_twitter {
+    background: #00aced;
+}
 .card-container {
     width: 100%;
 }
 .login_wrapper {
     text-align: center;
+    width: 300px;
+    position:absolute;
+    left:50%;
+    margin-left:-150px; /*this is half of width of your div*/
 }
 .login_form {
     height: auto;
+}
+.login_separator {
+    width: 100%;
+    display: block;
+}
+.login_divider1 {
+    width: 40%;
+    display: inline-block;
+}
+.login_or {
+    width: auto;
+    display: inline-block;
+}
+.login_divider2 {
+    width: 40%;
+    display: inline-block;
 }
