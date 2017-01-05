@@ -2,7 +2,7 @@
 import { Component, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-//Material2
+//Material
 import { MdSnackBar } from '@angular/material';
 //Services
 import { LoginService } from '../services/login.service';
@@ -32,9 +32,17 @@ export class LoginComponent {
   }
 
   loginSocial(provider: string): void {
+    if(provider == 'google') {
     this.loginservice.loginGoogle()
         .then(data => { this.router.navigate(['/dashboard']) },
               err  => { this.snackBar.open(err, 'Close') });
+    } else if (provider == 'facebook') {
+    this.loginservice.loginFacebook()
+        .then(data => { this.router.navigate(['/dashboard']) },
+              err  => { this.snackBar.open(err, 'Close') });
+    } else if (provider == 'twitter') {
+
+    }
   }
 
   ngOnDestroy() {

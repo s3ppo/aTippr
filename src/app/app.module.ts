@@ -27,6 +27,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { IntroComponent } from './intro/intro.component';
 import { RegisterComponent } from './register/register.component';
+import { ForgotComponent } from './forgot/forgot.component';
 import { MembersComponent } from './members/members.component';
 import { TippComponent } from './tipp/tipp.component';
 import { TipperComponent } from './tipper/tipper.component';
@@ -34,6 +35,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminTeamsComponent } from './admin/teams/teams.component';
 import { AdminMembersComponent } from './admin/members/members.component';
 import { AdminMatchesComponent, AdminCategoryDialog } from './admin/matches/matches.component';
+import { AdminCalculateComponent } from './admin/calculate/calculate.component';
 
   // Initialize Firebase
   var firebaseConfig = {
@@ -51,6 +53,7 @@ import { AdminMatchesComponent, AdminCategoryDialog } from './admin/matches/matc
     DashboardComponent,
     IntroComponent,
     RegisterComponent,
+    ForgotComponent,
     MembersComponent,
     TippComponent,
     TipperComponent,
@@ -59,6 +62,7 @@ import { AdminMatchesComponent, AdminCategoryDialog } from './admin/matches/matc
     AdminMembersComponent,
     AdminMatchesComponent,
     AdminCategoryDialog,
+    AdminCalculateComponent,
   ],
   imports: [
     BrowserModule,

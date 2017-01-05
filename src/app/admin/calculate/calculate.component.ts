@@ -4,12 +4,12 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 
 @Component({
-  selector: 'Admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css'],
+  selector: 'Calculate',
+  templateUrl: './calculate.component.html',
+  styleUrls: ['./calculate.component.css'],
   providers: []
 })
-export class AdminComponent {
+export class AdminCalculateComponent {
 
   constructor(
   ){}

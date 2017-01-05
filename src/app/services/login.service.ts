@@ -70,8 +70,32 @@ export class LoginService {
                 method: AuthMethods.Popup
             })
             .then(result => {
+                let names = result.auth.displayName.split(' ');
                 this.af.database.object(`/users/${result.auth.uid}`).set({
-                    FirstName: result.auth.displayName,
+                    firstName: names[0],
+                    lastName: names[1],
+                    email: result.auth.email,
+                    photo: result.auth.photoURL,
+                });
+                resolve(result); 
+            })
+            .catch(error => { 
+                reject(error.message || error ) 
+            });
+        });
+    }
+
+    loginFacebook(): Promise<boolean> {
+        return new Promise((resolve, reject) => {
+            this.af.auth.login({
+                provider: AuthProviders.Facebook,
+                method: AuthMethods.Popup
+            })
+            .then(result => {
+                let names = result.auth.displayName.split(' ');
+                this.af.database.object(`/users/${result.auth.uid}`).set({
+                    firstName: names[0],
+                    lastName: names[1],
                     email: result.auth.email,
                     photo: result.auth.photoURL,
                 });
