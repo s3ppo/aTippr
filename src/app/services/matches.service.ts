@@ -42,6 +42,7 @@ export class MatchesService {
     }
 
     setResult(object: MatchesModelAll): void {
+        console.log(object);
         let result: Object = { result1: object.result1, result2: object.result2 };
         this.loginService.af.database.object(`/matches/${object['$key']}`).update(result);
     }

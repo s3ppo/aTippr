@@ -14,6 +14,8 @@
             <md-input type="number" [(ngModel)]="match.tipp1" [disabled]="match.disabled" name="tipp1" min="0" max="99"></md-input>
             &nbsp;-&nbsp;
             <md-input type="number" [(ngModel)]="match.tipp2" [disabled]="match.disabled" align="end" name="tipp2" min="0" max="99"></md-input>
+            <br>
+            <span *ngIf="match.result1 && match.result2">Ergebnis: {{match.result1}}-{{match.result2}}</span>
           </div>
           <div class="matchbody-col3">
             <img class="teamflag" [src]="(match.team2sub | async)?.flag" /><br>

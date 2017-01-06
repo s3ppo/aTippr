@@ -34,6 +34,7 @@ export class TippsService {
     })
   }
 
+  //Anlegen Tipps
   create(tipps: Array<TippsModel>): void {
     tipps.forEach(tipp => {
         let crea: Object = { category: tipp.category, match: tipp.match, tipp1: tipp.tipp1, tipp2: tipp.tipp2 };

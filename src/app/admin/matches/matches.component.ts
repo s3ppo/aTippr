@@ -66,18 +66,21 @@ export class AdminMatchesComponent implements OnInit{
     this.matchesService.remove(match);
   }
 
-  setResult(match): void {
+  setResult(match: MatchesModelAll): void {
     let config = new MdDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
 
     this.dialogRes = this.dialog.open(AdminMatchResultDialog, config);
+    this.dialogRes.componentInstance.matchesmodelview = match;
 
     this.dialogRes.afterClosed().subscribe(result => {
-      if(result != null){
-        console.log(result);
+      if(result != null && result.result1 != null && result.result2 != null) {
+        match.result1 = result.result1;
+        match.result2 = result.result2;
+        this.matchesService.setResult(match);
         this.snackBar.open('Matchergebnis eingetragen!', 'Close', { duration: 2000 } );
-        this.dialogRes = null;
       }
+      this.dialogRes = null;
     });
   }
 
@@ -168,7 +171,7 @@ export class AdminMatchResultDialog {
     public dialogRef: MdDialogRef<AdminMatchResultDialog>,
   ){}
 
-  public matchesmodelview = new MatchesModelAll('','','','',0,0,0,0,0);
+  public matchesmodelview: MatchesModelAll;
 
   doCreateCategory(): void {
     this.dialogRef.close(this.matchesmodelview);
