@@ -6,6 +6,7 @@ script:
 install:
   - npm install -g firebase-tools
   - npm install -g angular-cli
+  - npm install
 after_success:
   - ng build --prod
   - firebase deploy --token $FIREBASE_TOKEN
