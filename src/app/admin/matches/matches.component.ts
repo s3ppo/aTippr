@@ -23,6 +23,7 @@ import { TeamsModel } from '../../models/teams';
 export class AdminMatchesComponent implements OnInit{
 
   private dialogRef: MdDialogRef<AdminCategoryDialog>;
+  private dialogRes: MdDialogRef<AdminMatchResultDialog>;
   private matchesmodel = new MatchesModel('', '', '', '', '', '', '', '', '');
   private matchesmodelAll: MatchesModel[];
   private matches_msg = ['', ''];
@@ -66,7 +67,18 @@ export class AdminMatchesComponent implements OnInit{
   }
 
   setResult(match): void {
-    
+    let config = new MdDialogConfig();
+    config.viewContainerRef = this.viewContainerRef;
+
+    this.dialogRes = this.dialog.open(AdminMatchResultDialog, config);
+
+    this.dialogRes.afterClosed().subscribe(result => {
+      if(result != null){
+        console.log(result);
+        this.snackBar.open('Matchergebnis eingetragen!', 'Close', { duration: 2000 } );
+        this.dialogRes = null;
+      }
+    });
   }
 
   getAllMatches(): void {
@@ -110,6 +122,7 @@ export class AdminMatchesComponent implements OnInit{
 
     this.dialogRef.afterClosed().subscribe(result => {
       if(result == 'ok'){
+        this.snackBar.open('Neue Kategory angelegt!', 'Close', { duration: 2000 } );
       }
       this.dialogRef = null;
     });
@@ -135,6 +148,30 @@ export class AdminCategoryDialog {
   doCreateCategory(): void {
     this.categoriesService.create(this.categorymodel);
     this.dialogRef.close('ok');
+  }
+
+  cancel(): void {
+    this.dialogRef.close(null);
+  }
+
+}
+
+@Component({
+  selector: 'result-dialog',
+  templateUrl: './result.component.html',
+  styleUrls: ['./result.component.css'],
+  providers: [],
+})
+export class AdminMatchResultDialog {
+
+  constructor(
+    public dialogRef: MdDialogRef<AdminMatchResultDialog>,
+  ){}
+
+  public matchesmodelview = new MatchesModelAll('','','','',0,0,0,0,0);
+
+  doCreateCategory(): void {
+    this.dialogRef.close(this.matchesmodelview);
   }
 
   cancel(): void {

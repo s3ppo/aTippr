@@ -22,6 +22,8 @@ export class MatchesModelAll {
         public matchstart: number,
         public deadline: number,
         public multiplier: number,
+        public result1?: number,
+        public result2?: number,
     ){}
 }
 

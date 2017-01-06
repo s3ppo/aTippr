@@ -41,4 +41,9 @@ export class MatchesService {
         this.loginService.af.database.object(`/matches/${object['$key']}`).remove();
     }
 
+    setResult(object: MatchesModelAll): void {
+        let result: Object = { result1: object.result1, result2: object.result2 };
+        this.loginService.af.database.object(`/matches/${object['$key']}`).update(result);
+    }
+
 }

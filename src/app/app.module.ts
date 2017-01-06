@@ -34,7 +34,7 @@ import { TipperComponent } from './tipper/tipper.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminTeamsComponent } from './admin/teams/teams.component';
 import { AdminMembersComponent } from './admin/members/members.component';
-import { AdminMatchesComponent, AdminCategoryDialog } from './admin/matches/matches.component';
+import { AdminMatchesComponent, AdminCategoryDialog, AdminMatchResultDialog } from './admin/matches/matches.component';
 import { AdminCalculateComponent } from './admin/calculate/calculate.component';
 
   // Initialize Firebase
@@ -62,6 +62,7 @@ import { AdminCalculateComponent } from './admin/calculate/calculate.component';
     AdminMembersComponent,
     AdminMatchesComponent,
     AdminCategoryDialog,
+    AdminMatchResultDialog,
     AdminCalculateComponent,
   ],
   imports: [
@@ -84,6 +85,7 @@ import { AdminCalculateComponent } from './admin/calculate/calculate.component';
   ],
   entryComponents: [
     AdminCategoryDialog,
+    AdminMatchResultDialog,
   ],
   bootstrap: [AppComponent]
 })
