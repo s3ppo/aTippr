@@ -1,11 +1,13 @@
+//Angular
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-
+//Material
 import { MdSnackBar } from '@angular/material';
-
-import { LoginService } from '../services/login.service';
+//Models
 import { AccountsModel } from '../models/accounts';
+//Services
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'Register',

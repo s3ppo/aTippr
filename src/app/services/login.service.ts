@@ -1,25 +1,29 @@
 //Angular
-import { Injectable } from '@angular/core';
+import { Injectable, Inject }     from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 //Rxjs
 import { Observable } from 'rxjs';
 //Firebase
-import { AngularFire, AuthProviders, FirebaseAuthState, FirebaseListObservable, FirebaseObjectObservable, AuthMethods } from 'angularfire2';
+import { AngularFire, AuthProviders, FirebaseAuthState, FirebaseListObservable, FirebaseObjectObservable, AuthMethods, FirebaseApp } from 'angularfire2';
 //Models
 import { LoginModel } from '../models/login';
 import { AccountsModel } from '../models/accounts';
 import { AdminMembersModel } from '../models/adminmembers';
+import { ForgotModel } from '../models/forgot';
 
 @Injectable()
 export class LoginService {
 
     public user: any;
+    public firebase: any;
 
     constructor (
         private router: Router,
         public af: AngularFire,
+        @Inject(FirebaseApp) firebase: any
     ){
+        this.firebase = firebase;
         /*let this.abc = this.af.auth.subscribe(user => {
             if (user) {
                 this.user = user.auth;
@@ -120,10 +124,14 @@ export class LoginService {
                 });
                 resolve(result);
             })
-            .catch(error => { 
+            .catch(error => {
                 console.log(error);reject(error.message || error ) 
             });
         });
+    }
+
+    resetUserPW(user: ForgotModel): Promise<any> {
+        return this.firebase.auth().sendPasswordResetEmail(user.email);
     }
 
     setnewMemberPw(adminmember: AdminMembersModel): void {

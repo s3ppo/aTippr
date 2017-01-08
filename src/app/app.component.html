@@ -9,6 +9,7 @@
     <md-nav-list *ngIf="isAuth() | async">
       <a md-list-item [routerLink]="['intro']" (click)="sidenav.toggle()">Einführung</a>
       <a md-list-item [routerLink]="['dashboard']" (click)="sidenav.toggle()">Dashboard</a>
+      <a md-list-item [routerLink]="['ranking']" (click)="sidenav.toggle()">Rangliste</a>
       <a md-list-item [routerLink]="['tipp']" (click)="sidenav.toggle()">Tippen</a>
       <a md-list-item [routerLink]="['members']" (click)="sidenav.toggle()">Members</a>
       <a md-list-item *ngIf="isAdmin() | async" [routerLink]="['admin']" (click)="sidenav.toggle()">Administration</a>      

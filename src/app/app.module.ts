@@ -18,6 +18,7 @@ import { TeamsService } from './services/teams.service';
 import { MatchesService } from './services/matches.service';
 import { CategoriesService } from './services/categories.service';
 import { TippsService } from './services/tipps.service';
+import { RankingService } from './services/ranking.service';
 //Guards
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
@@ -25,6 +26,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { RankingComponent } from './ranking/ranking.component';
 import { IntroComponent } from './intro/intro.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotComponent } from './forgot/forgot.component';
@@ -51,6 +53,7 @@ import { AdminCalculateComponent } from './admin/calculate/calculate.component';
     AppComponent,
     LoginComponent,
     DashboardComponent,
+    RankingComponent,
     IntroComponent,
     RegisterComponent,
     ForgotComponent,
@@ -80,6 +83,7 @@ import { AdminCalculateComponent } from './admin/calculate/calculate.component';
     MatchesService,
     CategoriesService,
     TippsService,
+    RankingService,
     AuthGuard,
     AdminGuard,
   ],

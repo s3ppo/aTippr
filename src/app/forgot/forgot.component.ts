@@ -19,14 +19,18 @@ export class ForgotComponent {
 
   constructor(
     private router: Router,
-    private loginservice: LoginService,
+    private loginService: LoginService,
     private snackBar: MdSnackBar,
   ){}
 
   forgotmodel = new ForgotModel('');
 
   doForgot(): void {
-    
+    this.loginService.resetUserPW(this.forgotmodel).then( resp => { 
+      this.snackBar.open('eMail wurde gesendet', 'Close', { duration: 2000 })
+    }).catch( error => {
+      this.snackBar.open(error, 'Close', { duration: 2000 })
+    });
   }
 
 }

@@ -1,7 +1,6 @@
 //Angular
 import { Injectable }     from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-//Rxjs
 import { Observable } from 'rxjs';
 //AngularFire
 import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
