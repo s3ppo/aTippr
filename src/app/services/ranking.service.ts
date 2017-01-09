@@ -13,11 +13,16 @@ import { LoginService } from '../services/login.service';
 export class RankingService {
 
     constructor (
-        private loginservice: LoginService,
+        private loginService: LoginService,
     ){}
 
-    getAll(): FirebaseListObservable<any> {
-        return this.loginservice.af.database.list('/ranking/');
+    getAll(): Observable<any> {
+        return this.loginService.af.database.list(`/ranking/`).map((rankings) => {
+            return rankings.map((ranking) => { 
+                ranking.user = this.loginService.af.database.object(`/users/${ranking.$key}`);
+                return ranking;
+            });
+        });
     }
 
 }

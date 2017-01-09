@@ -1,5 +1,8 @@
 <div class="card-container">
     <div class="ranking">
-        <h2><a [routerLink]="['/dashboard']"><md-icon>arrow_back</md-icon></a> &nbsp; Rangliste</h2><br>
+        <h2><a [routerLink]="['/dashboard']"><md-icon>arrow_back</md-icon></a> &nbsp; Rangliste</h2>
     </div>
+    <md-nav-list>
+        <a md-list-item *ngFor="let ranking of rankingmodel; let i = index;">&nbsp; {{i+1}}. {{(ranking.user | async)?.firstName}} {{(ranking.user | async)?.lastName}} {{ranking.points}}</a>
+    </md-nav-list>
 </div>

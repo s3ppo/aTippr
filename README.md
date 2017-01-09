@@ -3,7 +3,7 @@
 
 aTippr is a Tippgame based on Angular2
 
-you can see a running demo on https://api-project-340883542890.firebaseapp.com
+you can see a running demo on https://atippr.moniholz.at
 
-username: demo
-password: demo
+username: demo@demo.com
+password: demouser

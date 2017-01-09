@@ -1,5 +1,5 @@
 //Angular
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 //Material
@@ -15,11 +15,20 @@ import { RankingService } from '../services/ranking.service';
   styleUrls: ['./ranking.component.css'],
   providers: [MdSnackBar]
 })
-export class RankingComponent {
+export class RankingComponent implements OnInit {
 
   constructor(
     private router: Router,
     private snackBar: MdSnackBar,
+    private rankingService: RankingService,
   ){}
+
+  private rankingmodel: RankingModel[];
+
+  ngOnInit(): void {
+    this.rankingService.getAll().subscribe(ranking => {
+      this.rankingmodel = ranking;
+    });
+  }
 
 }
