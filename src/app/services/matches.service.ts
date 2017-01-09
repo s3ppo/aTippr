@@ -34,6 +34,12 @@ export class MatchesService {
     }
 
     create(object: MatchesModelAll): void {
+        if(object.result1 == undefined) {
+            delete object.result1;
+        }
+        if(object.result2 == undefined) {
+            delete object.result2;
+        }
         this.loginService.af.database.list(`/matches/`).push(object);
     }
 

@@ -4,42 +4,68 @@
 .tipper_wrapper {
     margin: 10px;
 }
-.match_container {
-    padding: 5px;
-    width: 100%;
-}
 .app-spinner {
   height: 30px;
   width: 30px;
   display: inline-block;
 }
+.match_container {
+    padding: 5px;
+    width: 100%;
+    display: block;
+}
 .matchtop {
     text-align: center;
     width: 100%;
-    display: inline-block;
 }
-.matchbody {
+.matchfooter {
     width: 100%;
+    margin-top: 5px;
+}
+.matchteam1 {
     display: flex;
+    align-items: center;
 }
-.matchbody-col1 {
-    text-align: center;
-    width: 25%;
-}
-.matchbody-col2 {
-    vertical-align: middle;
-    text-align: center;
-    width: 50%;
-    height: auto;
-}
-.matchbody-col3 {
-    text-align: center;
-    width: 25%;
-}
-.matchbottom {
-    text-align: center;
-    width: 100%;
+.team1_flag {
+    width: 55px;
     display: inline-block;
+    align-items: center;
+}
+.team1_name {
+    flex-grow: 100;
+    display: inline-block;
+    align-items: center;
+}
+.team1_tipp {
+    width: 50px;
+    display: inline-block;
+}
+.team1_res {
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+}
+.matchteam2 {
+    display: flex;
+    align-items: center;
+}
+.team2_flag {
+    width: 55px;
+    display: inline-block;
+    align-items: center;
+}
+.team2_name {
+    flex-grow: 100;
+    display: inline-block;
+    align-items: center;
+}.team2_tipp {
+    width: 50px;
+    display: inline-block;
+}
+.team2_res {
+    display: inline-block;
+    width: 50px;
+    text-align: center;
 }
 .teamflag {
     width: 50px;
