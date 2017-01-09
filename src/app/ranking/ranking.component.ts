@@ -28,6 +28,15 @@ export class RankingComponent implements OnInit {
   ngOnInit(): void {
     this.rankingService.getAll().subscribe(ranking => {
       this.rankingmodel = ranking;
+      this.rankingmodel = this.rankingmodel.sort((n1,n2) => {
+        if(n1.points < n2.points) {
+          return 1;
+        }
+        if(n1.points > n2.points) {
+          return -1;
+        }
+        return 0;
+      });
     });
   }
 

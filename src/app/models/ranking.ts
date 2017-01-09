@@ -2,6 +2,6 @@
 export class RankingModel {
     constructor(
         public user: string,
-        public points: string 
+        public points: number, 
     ){}
 }
