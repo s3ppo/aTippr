@@ -2,7 +2,7 @@
   <div class="tipper_wrapper">
     <h2><a [routerLink]="['/tipp']"><md-icon>arrow_back</md-icon></a> &nbsp; {{categoryname}}</h2>
     <md-spinner *ngIf="!preloadingDone" class="app-spinner"></md-spinner>
-    <div class="match_container" *ngFor="let match of matchesmodelview">
+    <!--<div class="match_container" *ngFor="let match of matchesmodelview">
         <div class="matchtop">{{match.matchlocation}}</div>
         <div class="matchbody">
           <div class="matchbody-col1">
@@ -24,7 +24,30 @@
         </div>
         <div class="matchbottom">{{match.matchstart}}</div>
         <md-divider></md-divider>
-    </div>
+    </div>-->
+    <md-grid-list cols="3" *ngFor="let match of matchesmodelview" style="height:150px" rowHeight="fit">
+      <md-grid-tile [colspan]="3" [rowspan]="1">
+        {{match.matchlocation}}, {{match.matchstart}}
+      </md-grid-tile>
+      <md-grid-tile [colspan]="1" [rowspan]="1">
+        <img class="teamflag" [src]="(match.team1sub | async)?.flag" /> &nbsp; {{(match.team1sub | async)?.teamname}}
+      </md-grid-tile>
+      <md-grid-tile [colspan]="1" [rowspan]="1">
+        <md-input type="number" [(ngModel)]="match.tipp1" [disabled]="match.disabled" name="tipp1" min="0" max="99"></md-input>
+      </md-grid-tile>
+      <md-grid-tile [colspan]="1" [rowspan]="1">
+        {{match.result1}}
+      </md-grid-tile>
+      <md-grid-tile [colspan]="1" [rowspan]="1">
+        <img class="teamflag" [src]="(match.team2sub | async)?.flag" /> &nbsp; {{(match.team2sub | async)?.teamname}}
+      </md-grid-tile>
+      <md-grid-tile [colspan]="1" [rowspan]="1">
+        <md-input type="number" [(ngModel)]="match.tipp2" [disabled]="match.disabled" name="tipp1" min="0" max="99"></md-input>
+      </md-grid-tile>
+      <md-grid-tile [colspan]="1" [rowspan]="1">
+        {{match.result2}}
+      </md-grid-tile>
+    </md-grid-list>
     <div *ngIf="preloadingDone" class="btn_wrapper">
       <button md-raised-button (click)="submitTipps()" class="btn_tipp" color="primary">
         <md-spinner *ngIf="loading" class="app-spinner"></md-spinner>

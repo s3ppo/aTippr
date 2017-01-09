@@ -24,13 +24,6 @@ export class LoginService {
         @Inject(FirebaseApp) firebase: any
     ){
         this.firebase = firebase;
-        /*let this.abc = this.af.auth.subscribe(user => {
-            if (user) {
-                this.user = user.auth;
-            } else {
-                this.user = {};
-            }
-        });*/
     }
 
     setUser(user): void { 
@@ -75,7 +68,7 @@ export class LoginService {
             })
             .then(result => {
                 let names = result.auth.displayName.split(' ');
-                this.af.database.object(`/users/${result.auth.uid}`).set({
+                this.af.database.object(`/users/${result.auth.uid}`).update({
                     firstName: names[0],
                     lastName: names[1],
                     email: result.auth.email,
@@ -97,11 +90,11 @@ export class LoginService {
             })
             .then(result => {
                 let names = result.auth.displayName.split(' ');
-                this.af.database.object(`/users/${result.auth.uid}`).set({
-                    firstName: names[0],
-                    lastName: names[1],
-                    email: result.auth.email,
-                    photo: result.auth.photoURL,
+                this.af.database.object(`/users/${result.auth.uid}`).update({
+                        firstName: names[0],
+                        lastName: names[1],
+                        email: result.auth.email,
+                        photo: result.auth.photoURL,
                 });
                 resolve(result); 
             })

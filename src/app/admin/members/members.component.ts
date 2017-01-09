@@ -28,9 +28,9 @@ export class AdminMembersComponent implements OnInit{
   private adminmembersmodel: AdminMembersModel[];
 
   getAllMembers(): void {
-    this.membersService.getAll().subscribe(
-                                  members  => { this.adminmembersmodel = members; },
-                                  err      => { console.log(err) });
+    this.membersService.getAll().subscribe(members  => { 
+      this.adminmembersmodel = members; 
+    });
   }
 
   ngOnInit(): void {
@@ -43,10 +43,6 @@ export class AdminMembersComponent implements OnInit{
 
   changePaid(index: number): void {
     this.membersService.changeAdmin(this.adminmembersmodel[index], 'paid');
-  }
-
-  setnewPassword(index: number): void {
-    this.loginService.setnewMemberPw(this.adminmembersmodel[index]);
   }
 
 }
