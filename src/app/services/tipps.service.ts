@@ -21,7 +21,12 @@ export class TippsService {
   ){}
 
   // Get all Tipps
-  getAll(category: String): Observable<any> {
+  getAllUsers(user: String): Observable<any> {
+    return this.loginService.af.database.list(`/tipps/${user}`);
+  }
+
+  // Get all Tipps
+  getAllOwnUser(category: String): Observable<any> {
     let filter: Object = { query: { orderByChild: 'category', equalTo: category } };
     return this.loginService.af.database.list(`/tipps/${this.loginService.user.uid}`, filter);
   }

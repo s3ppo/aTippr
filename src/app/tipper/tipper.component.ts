@@ -60,7 +60,7 @@ export class TipperComponent implements OnInit{
   }
 
   getAllTipps(category: string): void {
-    this.tippsService.getAll(category).subscribe(tipps => {
+    this.tippsService.getAllOwnUser(category).subscribe(tipps => {
       this.tippsmodelview = tipps;
       this.mergeCollections();
       this.preloadingDone = true;
