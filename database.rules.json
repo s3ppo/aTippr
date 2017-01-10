@@ -1,15 +1,32 @@
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null",
+    "categories": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
     "matches": {
-      ".indexOn": ["category"]
+      ".indexOn": ["category"],
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "ranking": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "teams": {
+      ".read": "auth != null",
+      ".write": "auth != null"
     },
     "tipps": {
       "$uid": {
     		".indexOn": ["category"],
-      	".read": "auth != null && auth.uid == $uid"
+      ".read": "auth != null",
+      ".write": "auth != null"
       }
+    },
+    "users": {
+      ".read": "auth != null",
+      ".write": "auth != null"
     }
   }
 }
