@@ -19,7 +19,7 @@ export class MatchesService {
         private router: Router,
     ){}
 
-    getAll(category?: string): Observable<any> {
+    getAllwithTeams(category?: string): Observable<any> {
         let filter: Object = {};
         if(category){
             filter = { query: { orderByChild: 'category', equalTo: category } };
@@ -31,6 +31,10 @@ export class MatchesService {
                 return team;
             })
         });
+    }
+
+    getAll(): FirebaseListObservable<any> {
+        return this.loginService.af.database.list(`/matches/`);
     }
 
     create(object: MatchesModelAll): void {

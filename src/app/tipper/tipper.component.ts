@@ -43,7 +43,7 @@ export class TipperComponent implements OnInit{
   }
 
   getAllMatches(category: string): void {
-    this.matchesService.getAll(category).subscribe(matches => {
+    this.matchesService.getAllwithTeams(category).subscribe(matches => {
       this.matchesmodelview = matches;
       this.matchesmodelview.forEach(match => {
         match.matchstart = new Date(match.matchstart).toLocaleString();

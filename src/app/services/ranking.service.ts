@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 //AngularFire
 import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 //Models
-import { RankingModel } from '../models/ranking';
+import { RankingModel, RankingModelAll } from '../models/ranking';
 //Services
 import { LoginService } from '../services/login.service';
 
@@ -23,6 +23,10 @@ export class RankingService {
                 return ranking;
             });
         });
+    }
+
+    change(ranking: RankingModel): void {
+        this.loginService.af.database.object(`/ranking/${ranking.user}`).update({points: ranking.points});
     }
 
 }

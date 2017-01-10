@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Rx';
 //Material
 import { MdSnackBar } from '@angular/material';
 //Models
-import { RankingModel } from '../models/ranking';
+import { RankingModelAll } from '../models/ranking';
 //Services
 import { RankingService } from '../services/ranking.service';
 
@@ -23,7 +23,7 @@ export class RankingComponent implements OnInit {
     private rankingService: RankingService,
   ){}
 
-  private rankingmodel: RankingModel[];
+  private rankingmodel: RankingModelAll[];
 
   ngOnInit(): void {
     this.rankingService.getAll().subscribe(ranking => {

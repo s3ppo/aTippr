@@ -5,3 +5,9 @@ export class RankingModel {
         public points: number, 
     ){}
 }
+
+export class RankingModelAll {
+    constructor(
+        public points: number, 
+    ){}
+}

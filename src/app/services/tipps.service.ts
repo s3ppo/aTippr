@@ -21,7 +21,7 @@ export class TippsService {
   ){}
 
   // Get all Tipps
-  getAllUsers(user: String): Observable<any> {
+  getAllUser(user: String): Observable<any> {
     return this.loginService.af.database.list(`/tipps/${user}`);
   }
 
@@ -34,16 +34,14 @@ export class TippsService {
   // Change Tipps
   change(tipps: Array<TippsModel>): void {
     tipps.forEach(tipp => {
-        let upd: Object = { tipp1: tipp.tipp1, tipp2: tipp.tipp2 };
-        this.loginService.af.database.object(`/tipps/${this.loginService.user.uid}/${tipp.tippkey}`).update(upd);
+        this.loginService.af.database.object(`/tipps/${this.loginService.user.uid}/${tipp.tippkey}`).update({ tipp1: tipp.tipp1, tipp2: tipp.tipp2 });
     })
   }
 
   //Anlegen Tipps
   create(tipps: Array<TippsModel>): void {
     tipps.forEach(tipp => {
-        let crea: Object = { category: tipp.category, match: tipp.match, tipp1: tipp.tipp1, tipp2: tipp.tipp2 };
-        this.loginService.af.database.list(`/tipps/${this.loginService.user.uid}`).push(crea);
+        this.loginService.af.database.list(`/tipps/${this.loginService.user.uid}`).push({ category: tipp.category, match: tipp.match, tipp1: tipp.tipp1, tipp2: tipp.tipp2 });
     })
   }
 
