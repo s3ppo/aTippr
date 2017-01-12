@@ -20,8 +20,8 @@
     "tipps": {
       "$uid": {
     		".indexOn": ["category"],
-      ".read": "auth != null",
-      ".write": "auth != null"
+        ".read": "auth != null",
+        ".write": "auth != null"
       }
     },
     "users": {

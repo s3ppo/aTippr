@@ -1,4 +1,4 @@
-<md-sidenav-layout class="app-layout" fullscreen>
+<md-sidenav-container class="app-layout" fullscreen>
   <md-sidenav #sidenav mode="over" class="app-sidenav md-sidenav-over">
     <md-toolbar color="primary">Hi {{member.firstName}}!</md-toolbar>
     <md-nav-list *ngIf="!(isAuth() | async)">
@@ -26,4 +26,4 @@
 
   <router-outlet></router-outlet>
 
-</md-sidenav-layout>
+</md-sidenav-container>
