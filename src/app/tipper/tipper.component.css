@@ -21,21 +21,23 @@
 }
 .matchstart {
     text-align: left;
-    width: 50%;
+    width: 40%;
     display: inline-block;
     white-space: nowrap;
     font-size: 14px;
     align-items: center;
     margin-bottom: 5px;
+    overflow: hidden;
 }
 .matchlocation {
     text-align: right;
-    width: 50%;
+    width: 60%;
     display: inline-block;
     white-space: nowrap;
     font-size: 14px;
     align-items: center;
     margin-bottom: 5px;
+    overflow: hidden;
 }
 .matchfooter {
     width: 100%;
