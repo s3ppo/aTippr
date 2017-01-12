@@ -27,7 +27,12 @@ export class LoginService {
     }
 
     setUser(user): void { 
-        this.user = user; 
+        this.user = user;
+        //update last activity
+        if(this.user != undefined && this.user != null){
+            console.log('updated')
+            this.af.database.object(`users/${this.user.uid}`).update({lastactivity: new Date().getTime()});
+        }
     }
 
     getAuthenticated(): Observable<any> { 
