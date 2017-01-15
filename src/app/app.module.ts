@@ -18,6 +18,8 @@ import { MatchesService } from './services/matches.service';
 import { CategoriesService } from './services/categories.service';
 import { TippsService } from './services/tipps.service';
 import { RankingService } from './services/ranking.service';
+//Translation
+import {TranslateModule, TranslateService, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 //Guards
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
@@ -38,14 +40,14 @@ import { AdminMembersComponent } from './admin/members/members.component';
 import { AdminMatchesComponent, AdminCategoryDialog, AdminMatchResultDialog } from './admin/matches/matches.component';
 import { AdminCalculateComponent } from './admin/calculate/calculate.component';
 
-  // Initialize Firebase
-  var firebaseConfig = {
-    apiKey: "AIzaSyALvAG2XzTCBvRCpi3sSz2GUDnMlhdFz8o",
-    authDomain: "api-project-340883542890.firebaseapp.com",
-    databaseURL: "https://api-project-340883542890.firebaseio.com",
-    storageBucket: "api-project-340883542890.appspot.com",
-    messagingSenderId: "340883542890"
-  };
+// Initialize Firebase
+var firebaseConfig = {
+  apiKey: "AIzaSyALvAG2XzTCBvRCpi3sSz2GUDnMlhdFz8o",
+  authDomain: "api-project-340883542890.firebaseapp.com",
+  databaseURL: "https://api-project-340883542890.firebaseio.com",
+  storageBucket: "api-project-340883542890.appspot.com",
+  messagingSenderId: "340883542890"
+};
 
 @NgModule({
   declarations: [
@@ -73,7 +75,8 @@ import { AdminCalculateComponent } from './admin/calculate/calculate.component';
     HttpModule,
     MaterialModule.forRoot(),
     routing,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+    TranslateModule.forRoot(),
   ],
   providers: [
     LoginService,
@@ -92,4 +95,4 @@ import { AdminCalculateComponent } from './admin/calculate/calculate.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,7 +1,9 @@
 //Angular
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
+//Material
+import { MdSnackBar } from '@angular/material';
 //Models
 import { MatchesModelAll } from '../../models/matches';
 import { TippsModel } from '../../models/tipps';
@@ -24,24 +26,26 @@ export class AdminCalculateComponent {
   private matchesmodelAll: MatchesModelAll[];
   private tippsmodelAll: TippsModel[];
   private membersmodelAll: MembersModel[];
+  private progress: String;
 
   constructor(
     private matchesService: MatchesService,
     private tippsService: TippsService,
     private membersService: MembersService,
     private rankingService: RankingService,
+    private snackBar: MdSnackBar,
   ){}
 
   calc(): void {
-    this.matchesService.getAll().subscribe( match => {
+    this.matchesService.getAll().take(1).subscribe( match => {
       this.matchesmodelAll = match;
       this.matchesmodelAll.forEach((matchline, index) => {
         if(!matchline.result1 && !matchline.result2){
           this.matchesmodelAll.splice(index);
         }
       });
-      this.membersService.getAll().subscribe( members => {
-        members.forEach( member => {
+      this.membersService.getAll().take(1).subscribe( members => {
+        members.forEach( (member, mindex) => {
           this.tippsService.getAllUser(member['$key']).subscribe( tipps => {
             let rankings = new RankingModel(member['$key'], 0);
             tipps.forEach((tipp, index) => {
@@ -52,7 +56,7 @@ export class AdminCalculateComponent {
           })
         })
       })
-    })
+    });
   }
 
   calcMatch(tipp: TippsModel): number {

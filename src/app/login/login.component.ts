@@ -2,6 +2,8 @@
 import { Component, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
+//Translate
+//import {TranslateService} from 'ng2-translate';
 //Material
 import { MdSnackBar } from '@angular/material';
 //Services
@@ -21,6 +23,7 @@ export class LoginComponent {
     private router: Router,
     private loginservice: LoginService,
     private snackBar: MdSnackBar,
+    //private translate: TranslateService,
   ){}
 
   loginmodel = new LoginModel('','');
@@ -28,18 +31,18 @@ export class LoginComponent {
   doLogin(): void {
     this.loginservice.emailLogin(this.loginmodel)
         .then(data => { this.router.navigate(['/dashboard']) },
-              err  => { this.snackBar.open(err, 'Close') });
+              err  => { this.snackBar.open(err, 'Close', {duration: 2000}) });
   }
 
   loginSocial(provider: string): void {
     if(provider == 'google') {
     this.loginservice.loginGoogle()
         .then(data => { this.router.navigate(['/dashboard']) },
-              err  => { this.snackBar.open(err, 'Close') });
+              err  => { this.snackBar.open(err, 'Close', {duration: 2000}) });
     } else if (provider == 'facebook') {
     this.loginservice.loginFacebook()
         .then(data => { this.router.navigate(['/dashboard']) },
-              err  => { this.snackBar.open(err, 'Close') });
+              err  => { this.snackBar.open(err, 'Close', {duration: 2000}) });
     } else if (provider == 'twitter') {
 
     }

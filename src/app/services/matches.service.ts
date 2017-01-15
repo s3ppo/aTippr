@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/take';
 //AngularFire
 import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 //Models
@@ -33,7 +34,7 @@ export class MatchesService {
         });
     }
 
-    getAll(): FirebaseListObservable<any> {
+    getAll(): Observable<any> {
         return this.loginService.af.database.list(`/matches/`);
     }
 
