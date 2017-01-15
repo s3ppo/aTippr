@@ -2,8 +2,6 @@
 import { Component, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-//Translate
-//import {TranslateService} from 'ng2-translate';
 //Material
 import { MdSnackBar } from '@angular/material';
 //Services
@@ -23,7 +21,6 @@ export class LoginComponent {
     private router: Router,
     private loginservice: LoginService,
     private snackBar: MdSnackBar,
-    //private translate: TranslateService,
   ){}
 
   loginmodel = new LoginModel('','');

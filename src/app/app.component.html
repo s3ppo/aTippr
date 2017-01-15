@@ -3,18 +3,18 @@
     <md-toolbar color="primary">Hi {{member.firstName}}!</md-toolbar>
     <div class="my-content">
       <md-nav-list *ngIf="!(isAuth() | async)">
-        <a md-list-item [routerLink]="['intro']" (click)="sidenav.toggle()">Einführung</a>
-        <a md-list-item [routerLink]="['register']" (click)="sidenav.toggle()">Registrieren</a>
-        <a md-list-item [routerLink]="['login']" (click)="sidenav.toggle()">Login</a>
+        <a md-list-item [routerLink]="['intro']" (click)="sidenav.toggle()">{{ 'Einführung' | translate }}</a>
+        <a md-list-item [routerLink]="['register']" (click)="sidenav.toggle()">{{ 'Registrieren' | translate}}</a>
+        <a md-list-item [routerLink]="['login']" (click)="sidenav.toggle()">{{ 'Login' | translate }}</a>
       </md-nav-list>
       <md-nav-list *ngIf="isAuth() | async">
-        <a md-list-item [routerLink]="['intro']" (click)="sidenav.toggle()">Einführung</a>
-        <a md-list-item [routerLink]="['dashboard']" (click)="sidenav.toggle()">Dashboard</a>
-        <a md-list-item [routerLink]="['ranking']" (click)="sidenav.toggle()">Rangliste</a>
-        <a md-list-item [routerLink]="['tipp']" (click)="sidenav.toggle()">Tippen</a>
-        <a md-list-item [routerLink]="['members']" (click)="sidenav.toggle()">Members</a>
-        <a md-list-item *ngIf="isAdmin() | async" [routerLink]="['admin']" (click)="sidenav.toggle()">Administration</a>      
-        <a md-list-item (click)="logout()" (click)="sidenav.toggle()">Logout</a>
+        <a md-list-item [routerLink]="['intro']" (click)="sidenav.toggle()">{{ 'Einführung' | translate }}</a>
+        <a md-list-item [routerLink]="['dashboard']" (click)="sidenav.toggle()">{{ 'Dashboard' | translate }}</a>
+        <a md-list-item [routerLink]="['ranking']" (click)="sidenav.toggle()">{{ 'Rangliste' | translate }}</a>
+        <a md-list-item [routerLink]="['tipp']" (click)="sidenav.toggle()">{{ 'Tippen' | translate }}</a>
+        <a md-list-item [routerLink]="['members']" (click)="sidenav.toggle()">{{ 'Mitspieler' | translate }}</a>
+        <a md-list-item *ngIf="isAdmin() | async" [routerLink]="['admin']" (click)="sidenav.toggle()">{{ 'Administration' | translate }}</a>
+        <a md-list-item (click)="logout()" (click)="sidenav.toggle()">{{ 'Logout' | translate }}</a>
       </md-nav-list>
     </div>
   </md-sidenav>

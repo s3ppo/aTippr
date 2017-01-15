@@ -1,6 +1,6 @@
 <div class="card-container">
   <div class="login_wrapper">
-    <h2>Login</h2>
+    <h2>{{ 'Login' | translate }}</h2>
       <div class="social_wrapper">
         <div class="login_google">
           <button md-raised-button color="primary" class="btn_google" (click)="loginSocial('google')">
@@ -27,7 +27,7 @@
       </div>
       <div class="login_form">
       <form (ngSubmit)="doLogin()" #LoginForm="ngForm">
-        <md-input placeholder="eMail" [(ngModel)]="loginmodel.email" name="email">
+        <md-input placeholder="{{ 'eMail' | translate }}" [(ngModel)]="loginmodel.email" name="email">
             <span md-prefix>
               <i class="material-icons app-input-icon">account_circle</i>
               &nbsp;
@@ -41,9 +41,9 @@
           </span>
         </md-input>
         <br>
-        <button md-raised-button color="primary" class="btn_login" type="submit">Login</button>
+        <button md-raised-button color="primary" class="btn_login" type="submit">{{ 'Login' | translate }}</button>
       </form>
-      <a [routerLink]="['/register']" dense>Registrieren</a> &nbsp; <a [routerLink]="['/forgot']" dense>Passwort vergessen</a>
+      <a [routerLink]="['/register']" dense>{{ 'Registrieren' | translate }}</a> &nbsp; <a [routerLink]="['/forgot']" dense>{{ 'Passwort vergessen' | translate }}</a>
     </div>
   </div>
 </div>

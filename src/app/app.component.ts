@@ -1,7 +1,8 @@
 //Angular
 import { Component } from '@angular/core';
-//Rxjs
 import { Observable } from 'rxjs';
+//Translate
+import { TranslateService } from 'ng2-translate';
 //AngularFire
 import { AngularFire, FirebaseAuthState } from 'angularfire2';
 //Models
@@ -23,7 +24,12 @@ export class AppComponent {
     private membersService: MembersService,
     private loginService: LoginService,
     private af: AngularFire,
-  ) {}
+    private translate: TranslateService,
+  ) {
+    translate.setDefaultLang('en');
+    let lang = translate.getBrowserLang();
+    translate.use(lang);
+  }
 
   private admin: boolean;
  
