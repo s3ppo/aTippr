@@ -27,7 +27,9 @@
 .margin-left10 {
   margin-left: 10px;
 }
-
+.margin-left20 {
+  margin-left: 20px;
+}
 .app-sidenav {
   width: 200px;
 }
