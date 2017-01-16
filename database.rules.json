@@ -2,31 +2,34 @@
   "rules": {
     "categories": {
       ".read": "auth != null",
-      ".write": "auth != null"
+      ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
     },
     "matches": {
       ".indexOn": ["category"],
       ".read": "auth != null",
-      ".write": "auth != null"
+      ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
     },
     "ranking": {
       ".read": "auth != null",
-      ".write": "auth != null"
+      ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
     },
     "teams": {
       ".read": "auth != null",
-      ".write": "auth != null"
+      ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
     },
     "tipps": {
       "$uid": {
     		".indexOn": ["category"],
-        ".read": "auth != null",
-        ".write": "auth != null"
+        ".read": "$uid == auth.uid || root.child('users').child(auth.uid).child('admin').val() === true",
+        ".write": "$uid == auth.uid"
       }
     },
     "users": {
       ".read": "auth != null",
-      ".write": "auth != null"
+      "$uid": {
+        ".read": "auth != null",
+        ".write": "$uid == auth.uid || root.child('users').child(auth.uid).child('admin').val() === true"
+      }
     }
   }
 }

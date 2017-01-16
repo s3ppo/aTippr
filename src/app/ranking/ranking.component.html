@@ -1,6 +1,6 @@
 <div class="card-container">
     <div class="ranking">
-        <h2><a [routerLink]="['/dashboard']"><md-icon>arrow_back</md-icon></a> &nbsp; Rangliste</h2>
+        <h2><a [routerLink]="['/dashboard']"><md-icon>arrow_back</md-icon></a> &nbsp; {{ 'Rangliste' | translate }}</h2>
     </div>
     <md-nav-list>
         <md-list-item class="md-list-text" *ngFor="let ranking of rankingmodel; let i = index;">

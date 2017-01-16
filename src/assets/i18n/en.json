@@ -15,5 +15,15 @@
     "Vorname": "First name",
     "Nachname": "Last name",
     "Passwort bestätigen": "Confirm password",
-    "Twitter login noch nicht möglich!": "Twitter login can not be used at the moment!"
+    "Twitter login noch nicht möglich!": "Twitter login can not be used at the moment!",
+    "Zurücksetzen": "Reset",
+    "eMail wurde gesendet": "eMail was sent",
+    "tippstext1": "Tipps can be done until the match has started.",
+    "tippstext2": "All tipps can be changed after saving, as often as you want. It is not neccessary to make all tipps now.",
+    "tippstext3": "If a tipp is missing until deadline reached, are this 0 points",
+    "tippstext4": "Decisive for points calculation is result after 90 minutes + additional time.",
+    "tippstext5": "(i.e. no over time or penalty shootout)",
+    "Features": "Features",
+    "Einsatz": "Bets",
+    "Rechtliches": "Legal issues"
 }

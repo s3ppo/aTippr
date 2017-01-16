@@ -45,7 +45,7 @@ export class LoginComponent {
                 err  => { this.snackBar.open(err, 'Close', {duration: 2000}) });
     } else if (provider == 'twitter') {
       this.translate.get('Twitter login noch nicht möglich!').subscribe( translation => {
-        this.snackBar.open('Twitter login noch nicht möglich!', 'Close', {duration: 2000})
+        this.snackBar.open(translation, 'Close', {duration: 2000})
       })
     }
   }

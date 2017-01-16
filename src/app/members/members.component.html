@@ -1,6 +1,6 @@
 <div class="card-container">
   <div class="members_wrapper"> 
-    <h2><a [routerLink]="['/dashboard']"><md-icon>arrow_back</md-icon></a> &nbsp; Mitspieler</h2>
+    <h2><a [routerLink]="['/dashboard']"><md-icon>arrow_back</md-icon></a> &nbsp; {{ 'Mitspieler' | translate }}</h2>
     <md-nav-list>
         <a md-list-item *ngFor="let membermodel of membersmodel"><img md-list-avatar src="{{membermodel.photo}}" alt="Avatar">&nbsp; {{membermodel.firstName}} {{membermodel.lastName}}</a>
     </md-nav-list>

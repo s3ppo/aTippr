@@ -1,17 +1,17 @@
 <div class="card-container">
   <div class="tipp_wrapper">
-    <h2><a [routerLink]="['/dashboard']"><md-icon>arrow_back</md-icon></a> &nbsp; Tippen</h2>
-    Tipps können bis zum jeweiligen Spielbeginn abgegeben werden.<br>
-    Alle Tipps können auch nach dem Speichern wieder beliebig oft geändert werden. Es muss nicht sofort überall ein Tipp abgebeben werden.<br>
-    Falls versäumt wurde, einen Tipp rechtzeitig abzugeben, gibts dort 0 Punkte.<br>
-    <br>
-    Ausschlaggebend zur Punkteberechnung ist das Ergebnis nach 90 Minuten + Nachspielzeit.<br>
-    (dh. keine Verlängerung oder Elfmeterschießen)<br>
+    <h2><a [routerLink]="['/dashboard']"><md-icon>arrow_back</md-icon></a> &nbsp; {{ 'Tippen' | translate }}</h2>
+    <div>
+      {{ 'tippstext1' | translate }}<br>
+      {{ 'tippstext2' | translate }}<br>
+      {{ 'tippstext3' | translate }}<br><br>
+      {{ 'tippstext4' | translate }}<br>
+      {{ 'tippstext5' | translate }}<br>
+    </div>
     <md-spinner class="app-spinner" *ngIf="!loaded"></md-spinner>
     <md-nav-list>
       <md-list-item *ngFor="let category of categoriesModelAll" [routerLink]="['tipper', {category: category.$key, categoryname: category.name}]">
-        <md-icon svgIcon="ball"></md-icon>&nbsp;
-        {{category.name}}
+        <md-icon svgIcon="ball"></md-icon>&nbsp;{{category.name}}
       </md-list-item>
     </md-nav-list>
   </div>

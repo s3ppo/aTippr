@@ -19,7 +19,7 @@ export class MembersService {
     ){}
 
     getAll(): FirebaseListObservable<any> {
-        return this.loginservice.af.database.list('/users/');
+        return this.loginservice.af.database.list('/users');
     }
 
     get(uid: string): FirebaseObjectObservable<any> {
