@@ -4,8 +4,6 @@
         <button md-raised-button (click)="calc()" class="btn_tipp" color="primary">
             Punkte berechnen
         </button>
-        <div>
-            {{progress}}
-        </div>
+        <div [innerHTML]="progress"></div>
     </div>
 </div>

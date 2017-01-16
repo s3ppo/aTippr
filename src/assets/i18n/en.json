@@ -10,5 +10,10 @@
     "Mitspieler": "Members",
     "Administration": "Administration",
     "Logout": "Logout",
-    "eMail": "eMail"
+    "eMail": "eMail",
+    "Willkommen": "Welcome",
+    "Vorname": "First name",
+    "Nachname": "Last name",
+    "Passwort bestätigen": "Confirm password",
+    "Twitter login noch nicht möglich!": "Twitter login can not be used at the moment!"
 }

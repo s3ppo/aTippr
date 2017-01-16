@@ -26,7 +26,7 @@ export class AdminCalculateComponent {
   private matchesmodelAll: MatchesModelAll[];
   private tippsmodelAll: TippsModel[];
   private membersmodelAll: MembersModel[];
-  private progress: String;
+  private progress: String = "";
 
   constructor(
     private matchesService: MatchesService,
@@ -46,13 +46,14 @@ export class AdminCalculateComponent {
       });
       this.membersService.getAll().take(1).subscribe( members => {
         members.forEach( (member, mindex) => {
-          this.tippsService.getAllUser(member['$key']).subscribe( tipps => {
+          this.tippsService.getAllUser(member['$key']).take(1).subscribe( tipps => {
             let rankings = new RankingModel(member['$key'], 0);
             tipps.forEach((tipp, index) => {
               let points = this.calcMatch(tipp);
               rankings.points = rankings.points + points;
             })
             this.rankingService.change(rankings);
+            this.progress = this.progress + member.firstName + " " + member.lastName + "-> DONE!<br>";
           })
         })
       })
