@@ -2,6 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
+//Translate
+import { TranslateService } from 'ng2-translate';
 //Material2
 import { MdSnackBar } from '@angular/material';
 //Services
@@ -25,6 +27,7 @@ export class TipperComponent implements OnInit{
     private matchesService: MatchesService,
     private tippsService: TippsService,
     private snackBar: MdSnackBar,
+    private translate: TranslateService
   ){}
 
   private matchesmodelview: MatchesModelTipper[];
@@ -92,12 +95,15 @@ export class TipperComponent implements OnInit{
         }
       }
     })
+
     //Change existing
     this.tippsService.change(tippsupdate);
     //Create new
     this.tippsService.create(tippscreate);
-    
-    this.snackBar.open('Tipps wurden geändert!', 'Close', { duration: 2000 });
+
+    this.translate.get('Tipps wurden geändert', 'Close').subscribe( translation => {
+      this.snackBar.open(translation, 'Close', { duration: 2000 });
+    })
   }
 
 }

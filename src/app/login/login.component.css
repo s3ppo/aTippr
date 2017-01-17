@@ -19,7 +19,7 @@
     width: 300px;
     position:absolute;
     left:50%;
-    margin-left:-150px; /*this is half of width of your div*/
+    margin-left:-150px;
 }
 .login_form {
     height: auto;

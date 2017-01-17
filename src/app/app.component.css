@@ -24,11 +24,9 @@
 .app-layout {
   min-height: 100vh;
 }
-.margin-left10 {
+.logo_header {
   margin-left: 10px;
-}
-.margin-left20 {
-  margin-left: 20px;
+  padding-top: 5px;
 }
 .app-sidenav {
   width: 200px;

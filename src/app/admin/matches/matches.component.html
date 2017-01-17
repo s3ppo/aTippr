@@ -2,15 +2,15 @@
     <div class="new_matches">
         <h2><a [routerLink]="['/admin']"><md-icon>arrow_back</md-icon></a> &nbsp; Neues Match anlegen</h2><br>
         <form (ngSubmit)="doCreateMatch()" #LoginForm="ngForm">
-            <md-select [(ngModel)]="matchesmodel.team1" name="Team1">
+            <md-select placeholder="Team1" [(ngModel)]="matchesmodel.team1" name="Team1">
                 <md-option *ngFor="let team1 of teamsmodelAll" [value]="team1.$key">{{team1.teamname}}</md-option>
             </md-select>
             &nbsp; - &nbsp;
-            <md-select [(ngModel)]="matchesmodel.team2" name="Team2">
+            <md-select placeholder="Team2" [(ngModel)]="matchesmodel.team2" name="Team2">
                 <md-option *ngFor="let team2 of teamsmodelAll" [value]="team2.$key">{{team2.teamname}}</md-option>
             </md-select>
             <br>
-            <md-select [(ngModel)]="matchesmodel.category" (ngModelChange)="onCatChange($event)" name="category">
+            <md-select placeholder="Kategorie" [(ngModel)]="matchesmodel.category" (ngModelChange)="onCatChange($event)" name="category">
                 <md-option *ngFor="let category of categoriesmodelAll" [value]="category.$key">{{category.name}}</md-option>
             </md-select>
             &nbsp;
