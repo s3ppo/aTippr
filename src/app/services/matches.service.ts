@@ -57,4 +57,10 @@ export class MatchesService {
         this.loginService.af.database.object(`/matches/${object['$key']}`).update(result);
     }
 
+    getNextMatch(): FirebaseListObservable<any> {
+        let filter = { query: { orderByChild: 'matchstart', limitToLast: 1 }};
+
+        return this.loginService.af.database.list(`/matches/`, filter)
+    }
+
 }
