@@ -36,6 +36,7 @@ export class TipperComponent implements OnInit{
   private tippsmodelview: TippsModel[];
   private loading: boolean;
   private preloadingDone: boolean = false;
+  private nomatches: boolean = false;
 
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
@@ -48,14 +49,21 @@ export class TipperComponent implements OnInit{
   getAllMatches(category: string): void {
     this.matchesService.getAllwithTeams(category).subscribe(matches => {
       this.matchesmodelview = matches;
+      if(this.matchesmodelview.length <= 0){
+        this.nomatches = true;
+      } else {
+        this.nomatches = false;
+      }
       this.matchesmodelview.forEach(match => {
         match.matchstart = new Date(match.matchstart).toLocaleString();
         let now = new Date();
         let deadline = new Date(match.deadline);
         if(now >= deadline) {
           match.disabled = 'true';
+          match.background = 'LightGrey ';
         } else {
           match.disabled = 'false';
+          match.background = 'Transparent';
         }
       })
       this.getAllTipps(category);

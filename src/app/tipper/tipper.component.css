@@ -9,10 +9,17 @@
   width: 30px;
   display: inline-block;
 }
+.no_matches {
+    text-align: center;
+}
 .match_container {
-    padding: 5px;
-    width: 100%;
+    width: ( 100% - 10px );
     display: block;
+}
+.match_wrapper {
+    padding: 5px 5px 0px 5px;
+    display: block;
+    border-radius: 10px;
 }
 .matchtop {
     text-align: center;
@@ -40,8 +47,9 @@
     overflow: hidden;
 }
 .matchfooter {
+    padding-top: 5px;
+    padding-bottom: 5px;
     width: 100%;
-    margin-top: 5px;
 }
 .matchteam1 {
     display: flex;

@@ -40,5 +40,6 @@ export class MatchesModelTipper {
         public tipp1: number,
         public tipp2: number,
         public disabled: string,
+        public background: string,
     ){}
 }
