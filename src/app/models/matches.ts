@@ -34,12 +34,11 @@ export class MatchesModelTipper {
         public category: string,
         public matchlocation: string,
         public matchstart: string,
-        public deadline: string,
+        public deadline: number,
         public multiplier: number,
         public tippkey: string,
         public tipp1: number,
         public tipp2: number,
-        public disabled: string,
         public background: string,
     ){}
 }

@@ -2,7 +2,7 @@
   <div class="tipper_wrapper">
     <h2><a [routerLink]="['/tipp']"><md-icon>arrow_back</md-icon></a> &nbsp; {{categoryname}}</h2>
     <md-spinner *ngIf="!preloadingDone" class="app-spinner"></md-spinner>
-    <div *ngIf="nomatches" class="no_matches">Bisher keine Matches in dieser Kategorie vorhanden.</div>
+    <div *ngIf="nomatches" class="no_matches">{{ 'Bisher keine Matches in dieser Kategorie vorhanden' | translate }}</div>
     <div *ngFor="let match of matchesmodelview" class="match_container">
       <div class="match_wrapper" [style.background]="match.background">
         <div class="matchtop">
@@ -16,7 +16,7 @@
             {{(match.team1sub | async)?.teamname}}
           </div>
           <div class="team1_tipp">
-            <md-input type="number" [(ngModel)]="match.tipp1" [disabled]="match.disabled" name="tipp1" style="width:40px" min="0" max="99"></md-input>
+            <md-input type="number" [(ngModel)]="match.tipp1" [disabled]="match.deadline < now" name="tipp1" style="width:40px" min="0" max="99"></md-input>
           </div>
           <div class="team1_res">
             {{match.result1}}
@@ -30,7 +30,7 @@
             {{(match.team2sub | async)?.teamname}}
           </div>
           <div class="team2_tipp">
-            <md-input type="number" [(ngModel)]="match.tipp2" [disabled]="match.disabled" name="tipp2" style="width:40px" min="0" max="99"></md-input>
+            <md-input type="number" [(ngModel)]="match.tipp2" [disabled]="match.deadline < now" name="tipp2" style="width:40px" min="0" max="99"></md-input>
           </div>
           <div class="team2_res">
             {{match.result2}}

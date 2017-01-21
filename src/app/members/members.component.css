@@ -4,3 +4,16 @@
 .members_wrapper {
     margin: 10px;
 }
+.status_online {
+	border-radius: 50%;
+	width: 10px;
+	height: 10px;
+    background-color: green;
+    line-height: 50px;
+}
+.status_offline {
+	border-radius: 50%;
+	width: 10px;
+	height: 10px;
+    background-color: red;
+}

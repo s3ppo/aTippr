@@ -18,15 +18,34 @@ export class MembersComponent implements OnInit {
     private membersservice: MembersService,
   ){}
 
-  membersmodel: MembersModel[];
+  private membersmodel: MembersModel[];
+  private timerSubscription: any = null;
+  private onlinecheck: number;
 
   ngOnInit(): void {
     this.getAllMembers();
+
+    let timer = Observable.timer(1000, 1000);
+    this.timerSubscription = timer.subscribe((t:any) => {
+      this.onlinecheck = new Date().getTime() - 300000;
+    });
   }
 
   getAllMembers(): void {
-    this.membersservice.getAll()
-        .subscribe(data => { this.membersmodel = data })
+    this.membersservice.getAll().subscribe(data => {
+      this.membersmodel = data;
+      this.membersmodel.forEach(member => {
+        if(member.lastactivity == null){
+          member.lastactivity = 0;
+        }
+      })
+    })
+  }
+
+  ngOnDestroy() {
+    if (this.timerSubscription != null) {
+        this.timerSubscription.unsubscribe();
+    }
   }
 
 }

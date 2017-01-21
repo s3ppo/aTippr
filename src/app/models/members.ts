@@ -5,5 +5,6 @@ export class MembersModel {
         public firstName: string,
         public lastName: string,
         public pictureUrl: string,
+        public lastactivity?: number,
     ){}
 }

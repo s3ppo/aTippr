@@ -34,9 +34,10 @@ export class TipperComponent implements OnInit{
   private category: string;
   private categoryname: string;
   private tippsmodelview: TippsModel[];
-  private loading: boolean;
   private preloadingDone: boolean = false;
   private nomatches: boolean = false;
+  private timerSubscription: any = null;
+  private now: number = new Date().getTime();
 
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {
@@ -44,6 +45,10 @@ export class TipperComponent implements OnInit{
       this.categoryname = params['categoryname'];
     });
     this.getAllMatches(this.category);
+    let timer = Observable.timer(1000, 1000);
+    this.timerSubscription = timer.subscribe((t:any) => {
+      this.now = new Date().getTime();
+    });
   }
 
   getAllMatches(category: string): void {
@@ -56,13 +61,9 @@ export class TipperComponent implements OnInit{
       }
       this.matchesmodelview.forEach(match => {
         match.matchstart = new Date(match.matchstart).toLocaleString();
-        let now = new Date();
-        let deadline = new Date(match.deadline);
-        if(now >= deadline) {
-          match.disabled = 'true';
+        if(this.now >= match.deadline) {
           match.background = 'LightGrey ';
         } else {
-          match.disabled = 'false';
           match.background = 'Transparent';
         }
       })
@@ -112,6 +113,12 @@ export class TipperComponent implements OnInit{
     this.translate.get('Tipps wurden geändert', 'Close').subscribe( translation => {
       this.snackBar.open(translation, 'Close', { duration: 2000 });
     })
+  }
+
+  ngOnDestroy() {
+    if (this.timerSubscription != null) {
+        this.timerSubscription.unsubscribe();
+    }
   }
 
 }
