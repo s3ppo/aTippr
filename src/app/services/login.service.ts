@@ -43,7 +43,11 @@ export class LoginService {
             if(this.user){
                 this.af.database.object(`users/${this.user.uid}`)
                     .subscribe( data => {   if(data.hasOwnProperty('admin')){
-                                                observer.next(true);
+                                                if(data.admin == true) {
+                                                    observer.next(true);
+                                                } else {
+                                                    observer.next(false);
+                                                }
                                             } else {
                                                 observer.next(false);
                                             }
