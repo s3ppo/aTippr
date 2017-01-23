@@ -42,7 +42,7 @@ export class LoginService {
         return new Observable<boolean>( observer => {
             if(this.user){
                 this.af.database.object(`users/${this.user.uid}`)
-                    .subscribe( data => {   if(data.hasOwnProperty('admin')){
+                    .subscribe( data => {   if(data.hasOwnProperty('admin')) {
                                                 if(data.admin == true) {
                                                     observer.next(true);
                                                 } else {

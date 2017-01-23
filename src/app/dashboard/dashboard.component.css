@@ -1,11 +1,22 @@
 .card-container {
     width: 100%;
 }
-
 .dashboard_wrapper {
     margin: 10px;
 }
-
 md-card {
     margin: 5px;
+}
+.teamflag {
+    width: 50px;
+    height: 50px;
+}
+.flags_wrapper {
+    display: flex;
+    height: 50px;
+}
+.flags_separator {
+    height: 100%;
+    vertical-align: middle;
+    line-height: 50px;
 }

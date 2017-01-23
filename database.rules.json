@@ -5,7 +5,7 @@
       ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
     },
     "matches": {
-      ".indexOn": ["category"],
+      ".indexOn": ["category", "matchstart"],
       ".read": "auth != null",
       ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
     },

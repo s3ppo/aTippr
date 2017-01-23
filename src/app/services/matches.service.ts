@@ -57,10 +57,16 @@ export class MatchesService {
         this.loginService.af.database.object(`/matches/${object['$key']}`).update(result);
     }
 
-    getNextMatch(): FirebaseListObservable<any> {
-        let filter = { query: { orderByChild: 'matchstart', limitToLast: 1 }};
+    getNextMatch(): Observable<any> {
+        let filter = { query: { orderByChild: 'matchstart', limitToFirst: 1, startAt: new Date().getTime() }};
 
-        return this.loginService.af.database.list(`/matches/`, filter)
+        return this.loginService.af.database.list(`/matches/`, filter).map((teams) => {
+            return teams.map((team) => { 
+                team.team1sub = this.loginService.af.database.object("/teams/" + team.team1);
+                team.team2sub = this.loginService.af.database.object("/teams/" + team.team2);
+                return team;
+            })
+        });
     }
 
 }

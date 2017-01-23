@@ -1,6 +1,19 @@
 <div class="card-container">
   <div class="dashboard_wrapper"> 
     <h2>{{ 'Dashboard' | translate }}</h2>
-    {{ 'Willkommen' | translate }}
+    <md-card>
+      <md-card-title>{{ 'Nächstes Match' | translate }}</md-card-title>  
+      <md-card-content>
+        <div class="flags_wrapper">
+          <div><img class="teamflag" [src]="(matchesmodel.team1sub | async)?.flag" /></div>
+          <div class="flags_separator"> &nbsp; - &nbsp; </div>
+          <div><img class="teamflag" [src]="(matchesmodel.team2sub | async)?.flag" /></div>
+        </div>
+        {{matchesmodel.start}}
+      </md-card-content>
+      <md-card-actions>
+        <button md-button [routerLink]="['/tipp']">{{ 'Zu den Tipps' | translate }}</button>
+      </md-card-actions>
+    </md-card>
   </div>
 </div>
