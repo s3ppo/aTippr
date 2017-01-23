@@ -2,14 +2,15 @@
   <div class="dashboard_wrapper"> 
     <h2>{{ 'Dashboard' | translate }}</h2>
     <md-card>
-      <md-card-title>{{ 'Nächstes Match' | translate }}</md-card-title>  
+      <md-card-title>{{ 'Nächstes Match' | translate }}</md-card-title>
       <md-card-content>
-        <div class="flags_wrapper">
-          <div><img class="teamflag" [src]="(matchesmodel.team1sub | async)?.flag" /></div>
+        <md-spinner *ngIf="!preloadingDone" class="app-spinner"></md-spinner>
+        <div class="flags_wrapper" *ngIf="preloadingDone">
+          <div><img class="teamflag" [src]="matchesmodel.flag1" /></div>
           <div class="flags_separator"> &nbsp; - &nbsp; </div>
-          <div><img class="teamflag" [src]="(matchesmodel.team2sub | async)?.flag" /></div>
+          <div><img class="teamflag" [src]="matchesmodel.flag2" /></div>
         </div>
-        {{matchesmodel.start}}
+        <div *ngIf="preloadingDone">{{matchesmodel.start}}</div>
       </md-card-content>
       <md-card-actions>
         <button md-button [routerLink]="['/tipp']">{{ 'Zu den Tipps' | translate }}</button>

@@ -42,3 +42,19 @@ export class MatchesModelTipper {
         public background: string,
     ){}
 }
+
+export class MatchesModelDashboard {
+    constructor(
+        public team1: string,
+        public team2: string,
+        public category: string,
+        public matchlocation: string,
+        public matchstart: number,
+        public deadline: number,
+        public multiplier: number,
+        public result1?: number,
+        public result2?: number,
+        public flag1?: string,
+        public flag2?: string
+    ){}
+}

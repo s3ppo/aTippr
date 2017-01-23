@@ -4,7 +4,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 //Rxjs
 import { Observable } from 'rxjs';
 //AngularFire
-import { AngularFire, FirebaseListObservable, FirebaseApp } from 'angularfire2';
+import { AngularFire, FirebaseListObservable, FirebaseObjectObservable, FirebaseApp } from 'angularfire2';
 //Models
 import { TeamsModel } from '../models/teams';
 //Services
@@ -24,6 +24,10 @@ export class TeamsService {
 
     getAll(): FirebaseListObservable<any> {
         return this.loginservice.af.database.list('/teams/');
+    }
+
+    get(key: string): FirebaseObjectObservable<any> {
+        return this.loginservice.af.database.object(`/teams/${key}`);
     }
 
     create(object: TeamsModel, file: File): void {
