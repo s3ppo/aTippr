@@ -39,7 +39,6 @@ export class MatchesModelTipper {
         public tippkey: string,
         public tipp1: number,
         public tipp2: number,
-        public background: string,
     ){}
 }
 

@@ -59,11 +59,6 @@ export class TipperComponent implements OnInit{
       this.checkNoMatches();
       this.matchesmodelview.forEach((match, index) => {
         match['start'] = new Date(match.matchstart).toLocaleString();
-        if(this.now >= match.deadline) {
-          match.background = 'LightGrey ';
-        } else {
-          match.background = 'Transparent';
-        }
         this.teamsService.get(match.team1).take(1).subscribe( team1 => {
           match['team1name'] = team1.teamname;
           match['team1flag'] = team1.flag;
@@ -82,6 +77,7 @@ export class TipperComponent implements OnInit{
   checkNoMatches(): void {
     if(this.matchesmodelview.length <= 0){
       this.nomatches = true;
+      this.preloadingDone = true;
     } else {
       this.nomatches = false;
     }
@@ -129,6 +125,16 @@ export class TipperComponent implements OnInit{
     this.translate.get('Tipps wurden geändert', 'Close').subscribe( translation => {
       this.snackBar.open(translation, 'Close', { duration: 2000 });
     })
+  }
+
+  getBackground(match: any): String {
+    if(match.hasOwnProperty('deadline')){
+      if(this.now >= match.deadline) {
+          return 'LightGrey ';
+      } else {
+          return 'Transparent';
+      }
+    }
   }
 
   ngOnDestroy() {

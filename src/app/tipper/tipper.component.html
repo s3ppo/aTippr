@@ -4,7 +4,7 @@
     <md-spinner *ngIf="!preloadingDone" class="app-spinner"></md-spinner>
     <div *ngIf="nomatches" class="no_matches">{{ 'Bisher keine Matches in dieser Kategorie vorhanden' | translate }}</div>
     <div *ngFor="let match of matchesmodelview" class="match_container">
-      <div class="match_wrapper" [style.background]="match.background">
+      <div class="match_wrapper" [style.background]="getBackground(match)">
         <div class="matchtop">
           <div class="matchstart">{{match.start}}</div><div class="matchlocation">{{match.matchlocation}}</div>
         </div>
@@ -16,7 +16,7 @@
             {{match.team1name}}
           </div>
           <div class="team1_tipp">
-            <md-input type="number" [(ngModel)]="match.tipp1" [disabled]="match.deadline < now" name="tipp1" style="width:40px" min="0" max="99"></md-input>
+            <md-input type="number" [(ngModel)]="match.tipp1" [disabled]="now > match.deadline" name="tipp1" style="width:40px" min="0" max="99"></md-input>
           </div>
           <div class="team1_res">
             {{match.result1}}
@@ -30,7 +30,7 @@
             {{match.team2name}}
           </div>
           <div class="team2_tipp">
-            <md-input type="number" [(ngModel)]="match.tipp2" [disabled]="match.deadline < now" name="tipp2" style="width:40px" min="0" max="99"></md-input>
+            <md-input type="number" [(ngModel)]="match.tipp2" [disabled]="now > match.deadline" name="tipp2" style="width:40px" min="0" max="99"></md-input>
           </div>
           <div class="team2_res">
             {{match.result2}}
