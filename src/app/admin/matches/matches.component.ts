@@ -57,6 +57,7 @@ export class AdminMatchesComponent implements OnInit{
     deadline.setHours(dhours, dminutes);
 
     let creatematch = new MatchesModelAll(this.matchesmodel.team1,this.matchesmodel.team2,this.matchesmodel.category,this.matchesmodel.matchlocation,matchstart.getTime(),deadline.getTime(),parseInt(this.matchesmodel.multiplier));
+    console.log(creatematch)
     this.matchesService.create(creatematch);
 
     this.snackBar.open('Neues Match wurde angelegt', 'Close', { duration: 2000 });
@@ -122,7 +123,6 @@ export class AdminMatchesComponent implements OnInit{
     config.viewContainerRef = this.viewContainerRef;
 
     this.dialogRef = this.dialog.open(AdminCategoryDialog, config);
-
     this.dialogRef.afterClosed().subscribe(result => {
       if(result == 'ok'){
         this.snackBar.open('Neue Kategory angelegt!', 'Close', { duration: 2000 } );

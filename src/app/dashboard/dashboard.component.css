@@ -25,3 +25,6 @@ md-card {
     vertical-align: middle;
     line-height: 50px;
 }
+.match_start {
+    margin-top: 5px;
+}

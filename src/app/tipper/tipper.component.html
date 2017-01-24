@@ -6,14 +6,14 @@
     <div *ngFor="let match of matchesmodelview" class="match_container">
       <div class="match_wrapper" [style.background]="match.background">
         <div class="matchtop">
-          <div class="matchstart">{{match.matchstart}}</div><div class="matchlocation">{{match.matchlocation}}</div>
+          <div class="matchstart">{{match.start}}</div><div class="matchlocation">{{match.matchlocation}}</div>
         </div>
         <div class="matchteam1" >
           <div class="team1_flag">
-            <img class="teamflag" [src]="(match.team1sub | async)?.flag" />
+            <img class="teamflag" [src]="match.team1flag" />
           </div>
           <div class="team1_name">
-            {{(match.team1sub | async)?.teamname}}
+            {{match.team1name}}
           </div>
           <div class="team1_tipp">
             <md-input type="number" [(ngModel)]="match.tipp1" [disabled]="match.deadline < now" name="tipp1" style="width:40px" min="0" max="99"></md-input>
@@ -24,10 +24,10 @@
         </div>
         <div class="matchteam2">
           <div class="team2_flag">
-            <img class="teamflag" [src]="(match.team2sub | async)?.flag" />
+            <img class="teamflag" [src]="match.team2flag" />
           </div>
           <div class="team2_name">
-            {{(match.team2sub | async)?.teamname}}
+            {{match.team2name}}
           </div>
           <div class="team2_tipp">
             <md-input type="number" [(ngModel)]="match.tipp2" [disabled]="match.deadline < now" name="tipp2" style="width:40px" min="0" max="99"></md-input>

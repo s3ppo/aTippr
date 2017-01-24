@@ -34,8 +34,12 @@ export class MatchesService {
         });
     }
 
-    getAll(): Observable<any> {
-        return this.loginService.af.database.list(`/matches/`);
+    getAll(category?: string): Observable<any> {
+        let filter: Object = {};
+        if(category){
+            filter = { query: { orderByChild: 'category', equalTo: category } };
+        }
+        return this.loginService.af.database.list(`/matches/`, filter);
     }
 
     create(object: MatchesModelAll): void {
@@ -58,15 +62,9 @@ export class MatchesService {
     }
 
     getNextMatch(): Observable<any> {
-        let filter = { query: { orderByChild: 'matchstart', limitToFirst: 1, startAt: new Date().getTime() }};
+        let filter = { query: { orderByChild: 'matchstart', limitToFirst: 1, startAt: new Date().getTime() } };
 
-        return this.loginService.af.database.list(`/matches/`, filter);/*.map((teams) => {
-            return teams.map((team) => { 
-                team.team1sub = this.loginService.af.database.object("/teams/" + team.team1);
-                team.team2sub = this.loginService.af.database.object("/teams/" + team.team2);
-                return team;
-            })
-        });*/
+        return this.loginService.af.database.list(`/matches/`, filter);
     }
 
 }

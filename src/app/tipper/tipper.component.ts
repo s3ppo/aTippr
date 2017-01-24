@@ -4,11 +4,12 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 //Translate
 import { TranslateService } from 'ng2-translate';
-//Material2
+//Material
 import { MdSnackBar } from '@angular/material';
 //Services
 import { MatchesService } from '../services/matches.service';
 import { TippsService } from '../services/tipps.service';
+import { TeamsService } from '../services/teams.service';
 //Models
 import { MatchesModel, MatchesModelTipper } from '../models/matches';
 import { TippsModel } from '../models/tipps';
@@ -26,6 +27,7 @@ export class TipperComponent implements OnInit{
     private route: ActivatedRoute,
     private matchesService: MatchesService,
     private tippsService: TippsService,
+    private teamsService: TeamsService,
     private snackBar: MdSnackBar,
     private translate: TranslateService
   ){}
@@ -52,23 +54,37 @@ export class TipperComponent implements OnInit{
   }
 
   getAllMatches(category: string): void {
-    this.matchesService.getAllwithTeams(category).subscribe(matches => {
+    this.matchesService.getAll(category).subscribe(matches => {
       this.matchesmodelview = matches;
-      if(this.matchesmodelview.length <= 0){
-        this.nomatches = true;
-      } else {
-        this.nomatches = false;
-      }
-      this.matchesmodelview.forEach(match => {
-        match.matchstart = new Date(match.matchstart).toLocaleString();
+      this.checkNoMatches();
+      this.matchesmodelview.forEach((match, index) => {
+        match['start'] = new Date(match.matchstart).toLocaleString();
         if(this.now >= match.deadline) {
           match.background = 'LightGrey ';
         } else {
           match.background = 'Transparent';
         }
+        this.teamsService.get(match.team1).take(1).subscribe( team1 => {
+          match['team1name'] = team1.teamname;
+          match['team1flag'] = team1.flag;
+          this.teamsService.get(match.team2).take(1).subscribe( team2 => {
+            match['team2name'] = team2.teamname;
+            match['team2flag'] = team2.flag;
+            if(index == this.matchesmodelview.length - 1){
+              this.getAllTipps(category);
+            }
+          })
+        })
       })
-      this.getAllTipps(category);
     });
+  }
+
+  checkNoMatches(): void {
+    if(this.matchesmodelview.length <= 0){
+      this.nomatches = true;
+    } else {
+      this.nomatches = false;
+    }
   }
 
   getAllTipps(category: string): void {
@@ -105,9 +121,9 @@ export class TipperComponent implements OnInit{
       }
     })
 
-    //Change existing
+    //Change existing tipps
     this.tippsService.change(tippsupdate);
-    //Create new
+    //Create new tipps
     this.tippsService.create(tippscreate);
 
     this.translate.get('Tipps wurden geändert', 'Close').subscribe( translation => {
