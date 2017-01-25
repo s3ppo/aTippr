@@ -13,9 +13,17 @@
         <a md-list-item [routerLink]="['ranking']" (click)="sidenav.toggle()">{{ 'Rangliste' | translate }}</a>
         <a md-list-item [routerLink]="['tipp']" (click)="sidenav.toggle()">{{ 'Tippen' | translate }}</a>
         <a md-list-item [routerLink]="['members']" (click)="sidenav.toggle()">{{ 'Mitspieler' | translate }}</a>
+        <a md-list-item [routerLink]="['profile']" (click)="sidenav.toggle()">{{ 'Mein Profil' | translate }}</a>
         <a md-list-item *ngIf="isAdmin() | async" [routerLink]="['admin']" (click)="sidenav.toggle()">{{ 'Administration' | translate }}</a>
         <a md-list-item (click)="logout()" (click)="sidenav.toggle()">{{ 'Logout' | translate }}</a>
       </md-nav-list>
+    </div>
+  </md-sidenav>
+
+  <md-sidenav #sidenavright align="end" mode="over" class="app-sidenav md-sidenav-over">
+    <md-toolbar color="primary">Chat</md-toolbar>
+    <div class="chat_content">
+      Noch nicht implementiert
     </div>
   </md-sidenav>
 
@@ -24,8 +32,8 @@
       <i class="material-icons app-toolbar-menu">menu</i>
     </button>
     <span class="logo_header" style="flex-grow: 100"><img src="assets/atippr_logo.png" style="height:30px"></span>
-    <button class="app-icon-button" (click)="sidenav.toggle()">
-      <i class="material-icons app-toolbar-menu">menu</i>
+    <button class="app-icon-button" (click)="sidenavright.toggle()">
+      <i class="material-icons app-toolbar-menu">chat</i>
     </button>
   </md-toolbar>
 

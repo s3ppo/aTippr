@@ -24,10 +24,14 @@
 .app-layout {
   min-height: 100vh;
 }
+.app-sidenav {
+  width: 200px;
+}
 .logo_header {
   margin-left: 10px;
   padding-top: 5px;
 }
-.app-sidenav {
-  width: 200px;
+.chat_content {
+  margin-left: 5px;
+  margin-top: 5px;
 }

@@ -10,7 +10,8 @@
         </div>
         <div class="matchteam1" >
           <div class="team1_flag">
-            <img class="teamflag" [src]="match.team1flag" />
+            <md-spinner *ngIf="!match.team1flag" class="app-spinner"></md-spinner>
+            <img *ngIf="match.team1flag" class="teamflag" [src]="match.team1flag" />
           </div>
           <div class="team1_name">
             {{match.team1name}}
@@ -24,7 +25,8 @@
         </div>
         <div class="matchteam2">
           <div class="team2_flag">
-            <img class="teamflag" [src]="match.team2flag" />
+            <md-spinner *ngIf="!match.team2flag" class="app-spinner"></md-spinner>
+            <img *ngIf="match.team2flag" class="teamflag" [src]="match.team2flag" />
           </div>
           <div class="team2_name">
             {{match.team2name}}

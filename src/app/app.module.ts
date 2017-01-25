@@ -34,6 +34,7 @@ import { ForgotComponent } from './forgot/forgot.component';
 import { MembersComponent } from './members/members.component';
 import { TippComponent } from './tipp/tipp.component';
 import { TipperComponent } from './tipper/tipper.component';
+import { ProfileComponent } from './profile/profile.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminTeamsComponent } from './admin/teams/teams.component';
 import { AdminMembersComponent } from './admin/members/members.component';
@@ -66,6 +67,7 @@ export function createTranslateLoader(http: Http) {
     MembersComponent,
     TippComponent,
     TipperComponent,
+    ProfileComponent,
     AdminComponent,
     AdminTeamsComponent,
     AdminMembersComponent,

@@ -11,6 +11,7 @@ import { ForgotComponent } from './forgot/forgot.component';
 import { MembersComponent } from './members/members.component';
 import { TippComponent } from './tipp/tipp.component';
 import { TipperComponent } from './tipper/tipper.component';
+import { ProfileComponent } from './profile/profile.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminTeamsComponent } from './admin/teams/teams.component';
 import { AdminMembersComponent } from './admin/members/members.component';
@@ -31,6 +32,7 @@ const appRoutes: Routes = [
     { path: 'members', component: MembersComponent, canActivate: [AuthGuard] },
     { path: 'tipp', component: TippComponent, canActivate: [AuthGuard] },
     { path: 'tipp/tipper', component: TipperComponent, canActivate: [AuthGuard] },
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
     { path: 'admin/teams', component: AdminTeamsComponent, canActivate: [AdminGuard] },
     { path: 'admin/members', component: AdminMembersComponent, canActivate: [AdminGuard] },

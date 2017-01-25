@@ -65,12 +65,10 @@ export class TipperComponent implements OnInit{
           this.teamsService.get(match.team2).take(1).subscribe( team2 => {
             match['team2name'] = team2.teamname;
             match['team2flag'] = team2.flag;
-            if(index == this.matchesmodelview.length - 1){
-              this.getAllTipps(category);
-            }
           })
         })
       })
+      this.getAllTipps(category);
     });
   }
 
