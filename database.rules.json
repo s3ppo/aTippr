@@ -17,6 +17,11 @@
       ".read": "auth != null",
       ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
     },
+    "chat": {
+      ".indexOn": ["created"],
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
     "tipps": {
       "$uid": {
     		".indexOn": ["category"],

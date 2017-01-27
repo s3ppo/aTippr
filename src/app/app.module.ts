@@ -18,6 +18,7 @@ import { MatchesService } from './services/matches.service';
 import { CategoriesService } from './services/categories.service';
 import { TippsService } from './services/tipps.service';
 import { RankingService } from './services/ranking.service';
+import { ChatService } from './services/chat.service';
 //Translation
 import {TranslateModule, TranslateService, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 //Guards
@@ -97,6 +98,7 @@ export function createTranslateLoader(http: Http) {
     CategoriesService,
     TippsService,
     RankingService,
+    ChatService,
     AuthGuard,
     AdminGuard,
   ],

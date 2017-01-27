@@ -31,7 +31,27 @@
   margin-left: 10px;
   padding-top: 5px;
 }
-.chat_content {
-  margin-left: 5px;
+.chat-content {
+  margin: 5px;
+  height: calc( 100% - 134px );
+  overflow: hidden;
+}
+.chat-line {
+  display: block;
+}
+.chat-username {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+.chat-message {
+  display: block;
+  font-size: 14px;
   margin-top: 5px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+}
+.chat-input {
+  margin: 5px;
+  height: 50px;
 }

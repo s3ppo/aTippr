@@ -21,9 +21,18 @@
   </md-sidenav>
 
   <md-sidenav #sidenavright align="end" mode="over" class="app-sidenav md-sidenav-over">
-    <md-toolbar color="primary">Chat</md-toolbar>
-    <div class="chat_content">
-      Noch nicht implementiert
+    <md-toolbar color="primary"><md-icon>chat</md-icon> &nbsp; Chat</md-toolbar>
+    <div class="chat-content">
+      <div class="chat-line" *ngFor="let chat of chatmodelviewall">
+        <div class="chat-username">{{chat.userName}}</div>
+        <md-divider></md-divider>
+        <div class="chat-message">{{chat.message}}</div>
+      </div>
+    </div>
+    <div class="chat-input">
+      <form (ngSubmit)="sendChatMessage()" #LoginForm="ngForm">
+        <md-input placeholder="Nachricht" [(ngModel)]="chatmodelview.message" name="name"></md-input>
+      </form>
     </div>
   </md-sidenav>
 
@@ -32,7 +41,7 @@
       <i class="material-icons app-toolbar-menu">menu</i>
     </button>
     <span class="logo_header" style="flex-grow: 100"><img src="assets/atippr_logo.png" style="height:30px"></span>
-    <button class="app-icon-button" (click)="sidenavright.toggle()">
+    <button *ngIf="isAuth() | async" class="app-icon-button" (click)="sidenavright.toggle()">
       <i class="material-icons app-toolbar-menu">chat</i>
     </button>
   </md-toolbar>
