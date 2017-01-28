@@ -24,6 +24,8 @@ export class ChatService {
     }
 
     create(object: ChatModel): void {
+        object.user = this.loginService.user.uid;
+        object.created = new Date().getTime();
         this.loginService.af.database.list(`/chat/`).push(object);
     }
 

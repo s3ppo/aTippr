@@ -4,6 +4,5 @@ export class ChatModel {
         public created: number,
         public message: string,
         public user: string,
-        public userName: string,
     ){}
 }

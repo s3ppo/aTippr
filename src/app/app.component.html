@@ -23,7 +23,7 @@
   <md-sidenav #sidenavright align="end" mode="over" class="app-sidenav md-sidenav-over">
     <md-toolbar color="primary"><md-icon>chat</md-icon> &nbsp; Chat</md-toolbar>
     <div class="chat-content">
-      <div class="chat-line" *ngFor="let chat of chatmodelviewall">
+      <div class="chat-line" *ngFor="let chat of chatmodelviewAll">
         <div class="chat-username">{{chat.userName}}</div>
         <md-divider></md-divider>
         <div class="chat-message">{{chat.message}}</div>
@@ -31,7 +31,12 @@
     </div>
     <div class="chat-input">
       <form (ngSubmit)="sendChatMessage()" #LoginForm="ngForm">
-        <md-input placeholder="Nachricht" [(ngModel)]="chatmodelview.message" name="name"></md-input>
+        <div class="chat-inputfield">
+            <md-input placeholder="Nachricht" [(ngModel)]="chatmodelview.message" name="name"></md-input>
+        </div>
+        <div class="chat-send">
+          <button md-icon-button class="button-send" color="primary"><md-icon>send</md-icon></button>
+        </div>
       </form>
     </div>
   </md-sidenav>
@@ -40,7 +45,7 @@
     <button class="app-icon-button" (click)="sidenav.toggle()">
       <i class="material-icons app-toolbar-menu">menu</i>
     </button>
-    <span class="logo_header" style="flex-grow: 100"><img src="assets/atippr_logo.png" style="height:30px"></span>
+    <span class="logo_header"><a [routerLink]="['dashboard']"><img src="assets/atippr_logo.png" style="height:30px"></a></span>
     <button *ngIf="isAuth() | async" class="app-icon-button" (click)="sidenavright.toggle()">
       <i class="material-icons app-toolbar-menu">chat</i>
     </button>

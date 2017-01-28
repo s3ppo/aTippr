@@ -16,6 +16,7 @@ import { ForgotModel } from '../models/forgot';
 export class LoginService {
 
     public user: any;
+    public userdata: any;
     public firebase: any;
 
     constructor (

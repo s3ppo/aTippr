@@ -30,9 +30,10 @@
 .logo_header {
   margin-left: 10px;
   padding-top: 5px;
+  flex-grow: 100;
 }
 .chat-content {
-  margin: 5px;
+  padding: 5px;
   height: calc( 100% - 134px );
   overflow: hidden;
 }
@@ -43,6 +44,7 @@
   display: block;
   font-size: 14px;
   margin-bottom: 3px;
+  color: rgba(0,0,0,.54);
 }
 .chat-message {
   display: block;
@@ -52,6 +54,16 @@
   margin-left: 5px;
 }
 .chat-input {
-  margin: 5px;
+  padding: 5px;
   height: 50px;
+  display: block;
+}
+.chat-inputfield {
+  width: 140px;
+  display: inline-block;
+}
+.chat-send {
+  width: 40px;
+  width: auto;
+  display: inline-block;
 }

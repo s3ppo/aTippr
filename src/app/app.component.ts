@@ -21,8 +21,9 @@ import { ChatService } from './services/chat.service';
 export class AppComponent implements OnInit{
 
   private member = new MembersModel('','','','');
-  private chatmodelview = new ChatModel(0, '', '', '');
-  private chatmodelviewall: ChatModel[];
+  private membersmodelviewAll: MembersModel[];
+  private chatmodelview = new ChatModel(0, '', '');
+  private chatmodelviewAll: ChatModel[];
 
   constructor(
     private membersService: MembersService,
@@ -63,8 +64,17 @@ export class AppComponent implements OnInit{
   getChat(): void {
     this.loginService.getAuthenticated().subscribe(user => {
       if(user) {
-        this.chatService.getLast(10).subscribe(chat => {
-          this.chatmodelviewall = chat;
+        this.membersService.getAll().subscribe( members => {
+          this.membersmodelviewAll = members;
+          this.chatService.getLast(10).subscribe(chat => {
+            this.chatmodelviewAll = chat.reverse();
+            this.chatmodelviewAll.forEach( chat => {
+              let membermerge = this.membersmodelviewAll.find(member => member['$key'] == chat.user);
+              if(membermerge) {
+                chat['userName'] = membermerge.firstName + ' ' + membermerge.lastName;
+              }
+            })
+          });
         });
       }
     });
@@ -75,7 +85,8 @@ export class AppComponent implements OnInit{
   }
 
   sendChatMessage(): void {
-
+    this.chatService.create(this.chatmodelview);
+    this.chatmodelview = new ChatModel(0,'','');
   }
 
 }
