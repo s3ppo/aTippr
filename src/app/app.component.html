@@ -32,7 +32,7 @@
     <div class="chat-input">
       <form (ngSubmit)="sendChatMessage()" #LoginForm="ngForm">
         <div class="chat-inputfield">
-            <md-input placeholder="Nachricht" [(ngModel)]="chatmodelview.message" name="name"></md-input>
+            <md-input placeholder="{{ 'Nachricht' | translate }}" [(ngModel)]="chatmodelview.message" name="nachricht"></md-input>
         </div>
         <div class="chat-send">
           <button md-icon-button class="button-send" color="primary"><md-icon>send</md-icon></button>
