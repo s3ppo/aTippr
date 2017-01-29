@@ -28,3 +28,12 @@ md-card {
 .match_start {
     margin-top: 5px;
 }
+.members_wrapper {
+    display: block;
+}
+.members_total {
+    display: block;
+}
+.members_online {
+    display: block;
+}

@@ -4,13 +4,23 @@
     <md-card>
       <md-card-subtitle>{{ 'Nächstes Match' | translate }}</md-card-subtitle>
       <md-card-content>
-        <md-spinner *ngIf="!preloadingDone" class="app-spinner"></md-spinner>
-        <div class="flags_wrapper" *ngIf="preloadingDone">
+        <md-spinner *ngIf="!preloadingNextMatchDone" class="app-spinner"></md-spinner>
+        <div class="flags_wrapper" *ngIf="preloadingNextMatchDone">
           <div><img class="teamflag" [src]="matchesmodel.flag1" /></div>
           <div class="flags_separator"> &nbsp; - &nbsp; </div>
           <div><img class="teamflag" [src]="matchesmodel.flag2" /></div>
         </div>
-        <div *ngIf="preloadingDone" class="match_start">{{matchesmodel.start}}</div>
+        <div *ngIf="preloadingNextMatchDone" class="match_start">{{matchesmodel.start}}</div>
+      </md-card-content>
+    </md-card>
+    <md-card>
+      <md-card-subtitle>{{ 'Mitspieler' | translate }}</md-card-subtitle>
+      <md-card-content>
+        <md-spinner *ngIf="!preloadingMembersDone" class="app-spinner"></md-spinner>
+        <div class="members_wrapper" *ngIf="preloadingMembersDone">
+          <div class="members_total">{{ membersmodel.length }} {{ 'Mitspieler' | translate}} {{ 'gesamt' | translate }}</div>
+          <div class="members_online">{{ membersOnline }} {{ 'Mitspieler' | translate}} {{ 'online' | translate }}</div>
+        </div>
       </md-card-content>
     </md-card>
   </div>

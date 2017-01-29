@@ -104,13 +104,15 @@ export class TipperComponent implements OnInit{
     let tippscreate = [];
     let tippsupdate = [];
     this.matchesmodelview.forEach(match => {
-      if(match.hasOwnProperty('tippkey')) {
-        if(match.hasOwnProperty('tipp1') && match.hasOwnProperty('tipp2')) {
-          tippsupdate.push(new TippsModel( match.tippkey, this.category, match['$key'], match.tipp1, match.tipp2));
-        }
-      } else {
-        if(match.hasOwnProperty('tipp1') && match.hasOwnProperty('tipp2')) {
-          tippscreate.push(new TippsModel( '', this.category, match['$key'], match.tipp1, match.tipp2));
+      if(match.deadline > new Date().getTime()){
+        if(match.hasOwnProperty('tippkey')) {
+          if(match.hasOwnProperty('tipp1') && match.hasOwnProperty('tipp2')) {
+            tippsupdate.push(new TippsModel( match.tippkey, this.category, match['$key'], match.tipp1, match.tipp2));
+          }
+        } else {
+          if(match.hasOwnProperty('tipp1') && match.hasOwnProperty('tipp2')) {
+            tippscreate.push(new TippsModel( '', this.category, match['$key'], match.tipp1, match.tipp2));
+          }
         }
       }
     })
