@@ -15,15 +15,19 @@ import { LoginService } from '../services/login.service';
 export class MembersService {
 
     constructor (
-        private loginservice: LoginService,
+        private loginService: LoginService,
     ){}
 
     getAll(): FirebaseListObservable<any> {
-        return this.loginservice.af.database.list('/users');
+        return this.loginService.af.database.list('/users');
     }
 
     get(uid: string): FirebaseObjectObservable<any> {
-        return this.loginservice.af.database.object(`/users/${uid}`);
+        return this.loginService.af.database.object(`/users/${uid}`);
+    }
+
+    getSelf(): FirebaseObjectObservable<any> {
+        return this.loginService.af.database.object(`/users/${this.loginService.user.uid}`);
     }
 
     changeAdmin(object: AdminMembersModel, target: string): void {
@@ -33,7 +37,7 @@ export class MembersService {
         } else if(target == 'admin'){
             updateobj = { admin: object[target] };
         }
-        this.loginservice.af.database.list('/users').update(object['$key'], updateobj);
+        this.loginService.af.database.list('/users').update(object['$key'], updateobj);
     }
 
 }
