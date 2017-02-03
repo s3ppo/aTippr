@@ -7,7 +7,7 @@ import { routing } from './app.routing';
 //HammerJS
 import 'hammerjs';
 //Material
-import { MaterialModule } from '@angular/material';
+import { MaterialModule, MdIconRegistry } from '@angular/material';
 //AngularFire
 import { AngularFireModule } from 'angularfire2';
 //Services
@@ -99,6 +99,7 @@ export function createTranslateLoader(http: Http) {
     TippsService,
     RankingService,
     ChatService,
+    MdIconRegistry,
     AuthGuard,
     AdminGuard,
   ],

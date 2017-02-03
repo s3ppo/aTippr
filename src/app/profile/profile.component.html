@@ -1,6 +1,15 @@
 <div class="card-container">
   <div class="profile_wrapper">
     <h2><a [routerLink]="['/dashboard']"><md-icon>arrow_back</md-icon></a> &nbsp; {{ 'Mein Profil' | translate }}</h2>
-    <div>{{ membersmodelview.firstName + ' ' + membersmodelview.lastName }}</div>
+    <form (ngSubmit)="doRegister()" #LoginForm="ngForm">
+      <div class="photo_wrapper">
+        <img [src]="membersmodelview.photo" alt="Avatar" style="width:200px">
+      </div>
+      <div class="userdata_wrapper">
+        <md-input required placeholder="{{ 'Vorname' | translate }}" [(ngModel)]="membersmodelview.firstName" name="firstName"></md-input><br>
+        <md-input required placeholder="{{ 'Nachname' | translate }}" [(ngModel)]="membersmodelview.lastName" name="lastName"></md-input><br>
+        <md-input required placeholder="{{ 'eMail' | translate }}" [(ngModel)]="membersmodelview.email" name="eMail"></md-input><br>
+      </div>
+    </form>
   </div>
 </div>

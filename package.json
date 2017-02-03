@@ -32,11 +32,11 @@
     "zone.js": "^0.7.2"
   },
   "devDependencies": {
+    "@angular/cli": "1.0.0-beta.30",
     "@angular/compiler-cli": "^2.3.1",
     "@types/hammerjs": "^2.0.33",
     "@types/jasmine": "2.5.38",
     "@types/node": "^6.0.42",
-    "angular-cli": "1.0.0-beta.28.3",
     "@types/socket.io-client": "^1.4.29",
     "codelyzer": "~2.0.0-beta.1",
     "jasmine-core": "2.5.2",

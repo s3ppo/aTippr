@@ -4,3 +4,16 @@
 .profile_wrapper {
     margin: 10px;
 }
+.photo_wrapper {
+    margin-bottom: 10px;
+}
+@media(max-width:480px){
+    md-input{
+        width: 100%;
+    }
+}
+@media(min-width:480px){
+    md-input{
+        width: 50%;
+    }
+}

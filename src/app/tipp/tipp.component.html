@@ -11,7 +11,7 @@
     <md-spinner class="app-spinner" *ngIf="!loaded"></md-spinner>
     <md-nav-list>
       <md-list-item *ngFor="let category of categoriesModelAll" [routerLink]="['tipper', {category: category.$key, categoryname: category.name}]">
-        <md-icon svgIcon="ball"></md-icon>&nbsp;{{category.name}}
+        <md-icon svgIcon="ball" md-list-icon></md-icon><p md-line>{{category.name}}</p>
       </md-list-item>
     </md-nav-list>
   </div>

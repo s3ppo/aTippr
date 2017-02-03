@@ -1,10 +1,11 @@
 //Angular
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { DomSanitizer } from '@angular/platform-browser';
 //Translate
 import { TranslateService } from 'ng2-translate';
-//AngularFire
-import { AngularFire, FirebaseAuthState } from 'angularfire2';
+//Material
+import { MdIconRegistry } from '@angular/material';
 //Models
 import { MembersModel } from './models/members';
 import { ChatModel } from './models/chat';
@@ -16,7 +17,9 @@ import { ChatService } from './services/chat.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [MdIconRegistry]
+
 })
 export class AppComponent implements OnInit{
 
@@ -29,9 +32,11 @@ export class AppComponent implements OnInit{
     private membersService: MembersService,
     private loginService: LoginService,
     private chatService: ChatService,
-    private af: AngularFire,
     private translate: TranslateService,
+    private mdIconRegistry: MdIconRegistry,
+    private sanitizer: DomSanitizer
   ) {
+    mdIconRegistry.addSvgIcon('ball', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/soccer.svg'));
     translate.setDefaultLang('en');
     let lang = translate.getBrowserLang();
     translate.use(lang);
