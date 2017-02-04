@@ -3,12 +3,15 @@
     <h2><a [routerLink]="['/dashboard']"><md-icon>arrow_back</md-icon></a> &nbsp; {{ 'Mein Profil' | translate }}</h2>
     <form (ngSubmit)="doRegister()" #LoginForm="ngForm">
       <div class="photo_wrapper">
-        <img [src]="membersmodelview.photo" alt="Avatar" style="width:200px">
+        <img [src]="membersmodelview.photo" alt="Avatar" style="height:200px;width:200px">
       </div>
       <div class="userdata_wrapper">
         <md-input required placeholder="{{ 'Vorname' | translate }}" [(ngModel)]="membersmodelview.firstName" name="firstName"></md-input><br>
         <md-input required placeholder="{{ 'Nachname' | translate }}" [(ngModel)]="membersmodelview.lastName" name="lastName"></md-input><br>
-        <md-input required placeholder="{{ 'eMail' | translate }}" [(ngModel)]="membersmodelview.email" name="eMail"></md-input><br>
+        <md-input required placeholder="{{ 'eMail' | translate }}" [(ngModel)]="membersmodelview.email" name="eMail" disabled></md-input><br>
+        Profilbild ändern<br> 
+        <input type="file" (change)="selectFile($event)" accept="image/*"><br>
+        <button md-raised-button color="primary" class="btn_change" type="submit">{{ 'Ändern' | translate }}</button>
       </div>
     </form>
   </div>

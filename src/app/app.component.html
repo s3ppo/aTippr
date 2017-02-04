@@ -11,7 +11,7 @@
         <md-list-item [routerLink]="['intro']" (click)="sidenav.toggle()"><md-icon md-list-icon>info</md-icon><p md-line>{{ 'Einführung' | translate }}</p></md-list-item>
         <md-list-item [routerLink]="['dashboard']" (click)="sidenav.toggle()"><md-icon md-list-icon>dashboard</md-icon><p md-line>{{ 'Dashboard' | translate }}</p></md-list-item>
         <md-list-item [routerLink]="['ranking']" (click)="sidenav.toggle()"><md-icon md-list-icon>list</md-icon><p md-line>{{ 'Rangliste' | translate }}</p></md-list-item>
-        <md-list-item [routerLink]="['tipp']" (click)="sidenav.toggle()"><md-icon md-list-icon>notifications_active</md-icon><p md-line>{{ 'Tippen' | translate }}</p></md-list-item>
+        <md-list-item [routerLink]="['tipp']" (click)="sidenav.toggle()"><md-icon svgIcon="ball" md-list-icon></md-icon><p md-line>{{ 'Tippen' | translate }}</p></md-list-item>
         <md-list-item [routerLink]="['members']" (click)="sidenav.toggle()"><md-icon md-list-icon>group</md-icon><p md-line>{{ 'Mitspieler' | translate }}</p></md-list-item>
         <md-list-item [routerLink]="['profile']" (click)="sidenav.toggle()"><md-icon md-list-icon>account_circle</md-icon><p md-line>{{ 'Mein Profil' | translate }}</p></md-list-item>
         <md-list-item (click)="logout()" (click)="sidenav.toggle()"><md-icon md-list-icon>power_settings_new</md-icon><p md-line>{{ 'Logout' | translate }}</p></md-list-item>
