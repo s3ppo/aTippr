@@ -18,7 +18,7 @@ export class RankingService {
 
     getAll(): Observable<any> {
         return this.loginService.af.database.list(`/ranking/`).map((rankings) => {
-            return rankings.map((ranking) => { 
+            return rankings.map((ranking) => {
                 ranking.user = this.loginService.af.database.object(`/users/${ranking.$key}`);
                 return ranking;
             });
@@ -27,6 +27,10 @@ export class RankingService {
 
     change(ranking: RankingModel): void {
         this.loginService.af.database.object(`/ranking/${ranking.user}`).update({points: ranking.points});
+    }
+
+    changeDetail(member: string, match: string, points: number) {
+        this.loginService.af.database.object(`/ranking/${member}/${match}`).update({points: points});
     }
 
 }

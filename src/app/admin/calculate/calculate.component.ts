@@ -50,6 +50,7 @@ export class AdminCalculateComponent {
             let rankings = new RankingModel(member['$key'], 0);
             tipps.forEach((tipp, index) => {
               let points = this.calcMatch(tipp);
+              this.rankingService.changeDetail(member['$key'], tipp.match, points);
               rankings.points = rankings.points + points;
             })
             this.rankingService.change(rankings);
