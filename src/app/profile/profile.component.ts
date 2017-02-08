@@ -31,4 +31,8 @@ export class ProfileComponent implements OnInit {
     this.getMemberSelf();
   }
 
+  doProfileChange(): void {
+
+  }
+
 }

@@ -8,8 +8,7 @@
     margin-bottom: 10px;
     height: 200px;
 }
-.btn_change {
-    margin-top: 20px;
+.file-upload {
     margin-bottom: 10px;
 }
 @media(max-width:480px){
