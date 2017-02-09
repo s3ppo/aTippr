@@ -33,6 +33,10 @@
         }
       }
     },
+    "tipps_open": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
     "users": {
       ".read": "auth != null",
       "$uid": {
