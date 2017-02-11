@@ -23,7 +23,7 @@
 
   <md-sidenav #sidenavright align="end" mode="over" class="app-sidenav md-sidenav-over">
     <md-toolbar color="primary"><md-icon>chat</md-icon> &nbsp; Chat</md-toolbar>
-    <div class="chat-label">Eingabe</div>
+    <div class="chat-label">{{ 'Eingabe' | translate }}</div>
     <div class="chat-input">
       <form (ngSubmit)="sendChatMessage()" #LoginForm="ngForm">
         <div class="chat-inputfield">
@@ -36,7 +36,7 @@
         </div>
       </form>
     </div>
-    <div class="chat-label">Nachrichten</div>
+    <div class="chat-label">{{ 'Nachrichten' | translate }}</div>
     <div class="chat-content">
       <div class="chat-line" *ngFor="let chat of chatmodelviewAll">
         <div class="chat-username">{{chat.userName}}</div>
