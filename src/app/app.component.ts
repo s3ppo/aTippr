@@ -23,7 +23,7 @@ import { ChatService } from './services/chat.service';
 })
 export class AppComponent implements OnInit{
 
-  private member = new MembersModel('','','','');
+  private member = new MembersModel('','','','','');
   private membersmodelviewAll: MembersModel[];
   private chatmodelview = new ChatModel(0, '', '');
   private chatmodelviewAll: ChatModel[];
@@ -56,7 +56,7 @@ export class AppComponent implements OnInit{
         });
         return true;
       } else {
-        this.member = new MembersModel('','','','');
+        this.member = new MembersModel('','','','','');
         return false;
       }
     });

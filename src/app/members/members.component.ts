@@ -38,6 +38,9 @@ export class MembersComponent implements OnInit {
         if(member.lastactivity == null){
           member.lastactivity = 0;
         }
+        if(member.photo == null || member.photo == undefined){
+          member.photo = member.photoSocial;
+        }
       })
     })
   }

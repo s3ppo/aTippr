@@ -4,7 +4,8 @@ export class MembersModel {
         public email: string,
         public firstName: string,
         public lastName: string,
-        public pictureUrl: string,
+        public photo: string,
+        public photoSocial: string,
         public lastactivity?: number,
     ){}
 }

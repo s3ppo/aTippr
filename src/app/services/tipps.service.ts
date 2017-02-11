@@ -20,7 +20,7 @@ export class TippsService {
       private router: Router,
   ){}
 
-  // Get all Tipps
+  // Get all Tipps - Admin method for calculations
   getAllUser(user: String): Observable<any> {
     return this.loginService.af.database.list(`/tipps/${user}`);
   }

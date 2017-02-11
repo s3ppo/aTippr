@@ -80,7 +80,7 @@ export class LoginService {
                     firstName: names[0],
                     lastName: names[1],
                     email: result.auth.email,
-                    photo: result.auth.photoURL,
+                    photoSocial: result.auth.photoURL,
                 });
                 resolve(result); 
             })
@@ -102,7 +102,7 @@ export class LoginService {
                         firstName: names[0],
                         lastName: names[1],
                         email: result.auth.email,
-                        photo: result.auth.photoURL,
+                        photoSocial: result.auth.photoURL,
                 });
                 resolve(result); 
             })

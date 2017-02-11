@@ -15,7 +15,7 @@ import { MembersService } from '../services/members.service';
 })
 export class ProfileComponent implements OnInit {
 
-  private membersmodelview = new MembersModel('', '', '', '');
+  private membersmodelview = new MembersModel('', '', '', '', '');
 
   constructor(
     private membersService: MembersService,
@@ -24,6 +24,9 @@ export class ProfileComponent implements OnInit {
   getMemberSelf(): void {
     this.membersService.getSelf().subscribe( member => {
       this.membersmodelview = member;
+      if(this.membersmodelview.photo == null || this.membersmodelview.photo == undefined){
+        this.membersmodelview.photo = this.membersmodelview.photoSocial;
+      }
     })
   }
 
