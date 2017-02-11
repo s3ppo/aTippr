@@ -9,6 +9,7 @@ import { MdDialogRef, MdDialog, Overlay, MdDialogConfig, MdSnackBar, MdIconRegis
 import { MatchesService } from '../../services/matches.service';
 import { CategoriesService } from '../../services/categories.service';
 import { TeamsService } from '../../services/teams.service';
+import { ConfirmDialogsService } from '../../services/confirm-dialog.service';
 //Models
 import { MatchesModel, MatchesModelAll } from '../../models/matches';
 import { CategoriesModel } from '../../models/categories';
@@ -35,6 +36,7 @@ export class AdminMatchesComponent implements OnInit{
     private matchesService: MatchesService,
     private categoriesService: CategoriesService,
     private teamsService: TeamsService,
+    private dialogsService: ConfirmDialogsService, 
     private snackBar: MdSnackBar,
     public  dialog: MdDialog,
     public  viewContainerRef: ViewContainerRef,
@@ -63,7 +65,13 @@ export class AdminMatchesComponent implements OnInit{
   }
 
   delMatch(match): void {
-    this.matchesService.remove(match);
+    this.dialogsService
+      .confirm('Bitte Bestätigen', 'Löschen von diesem Match wirklich durchführen?', this.viewContainerRef)
+      .subscribe(res =>   {   
+        if(res === true) {
+              this.matchesService.remove(match);
+        }
+      });
   }
 
   setResult(match: MatchesModelAll): void {
@@ -114,7 +122,13 @@ export class AdminMatchesComponent implements OnInit{
   }
 
   RemoveCategory(value): void {
-    this.categoriesService.delete(this.selCategory);
+    this.dialogsService
+      .confirm('Bitte Bestätigen', 'Löschen dieser Kategorie wirklich durchführen?', this.viewContainerRef)
+      .subscribe(res =>   {   
+        if(res === true) {
+          this.categoriesService.delete(this.selCategory);
+        }
+      });
   }
 
   openAddCategory(): void {

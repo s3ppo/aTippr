@@ -1,5 +1,5 @@
 //Angular
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 //Material2
@@ -8,6 +8,7 @@ import { MdSnackBar } from '@angular/material';
 import { TeamsModel } from '../../models/teams';
 //Service
 import { TeamsService } from '../../services/teams.service';
+import { ConfirmDialogsService } from '../../services/confirm-dialog.service';
 
 @Component({
   selector: 'Admin_Teams',
@@ -24,6 +25,8 @@ export class AdminTeamsComponent implements OnInit {
   constructor(
     private snackBar: MdSnackBar,
     private teamsservice: TeamsService,
+    private dialogsService: ConfirmDialogsService, 
+    private viewContainerRef: ViewContainerRef
   ){}
 
   selectFile(event): void {
@@ -41,11 +44,17 @@ export class AdminTeamsComponent implements OnInit {
 
   getAllTeams(): void {
     this.teamsservice.getAll()
-        .subscribe( teams => { this.teamsmodelAll = teams });
+      .subscribe( teams => { this.teamsmodelAll = teams });
   }
 
   delTeam(team): void {
-    this.teamsservice.remove(team);
+    this.dialogsService
+      .confirm('Bitte Bestätigen', 'Löschen von diesem Team wirklich durchführen?', this.viewContainerRef)
+      .subscribe(res =>   {   
+        if(res === true) {
+          this.teamsservice.remove(team);
+        }
+      });
   }
 
   ngOnInit(): void {

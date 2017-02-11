@@ -34,7 +34,7 @@
 }
 .chat-content {
   padding: 5px;
-  height: calc( 100% - 134px );
+  height: calc( 100% - 182px );
   overflow: hidden;
 }
 .chat-line {
@@ -59,11 +59,23 @@
   display: block;
 }
 .chat-inputfield {
-  width: 190px;
+  width: 195px;
   display: inline-block;
 }
 .chat-send {
   width: 40px;
   width: auto;
   display: inline-block;
+}
+.chat-label {
+    border: none;
+    font-size: 10px;
+    letter-spacing: 1px;
+    line-height: 24px;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin: 0;
+    padding: 0 16px;
+    background: rgba(0,0,0,.32);
+    color: #fff;
 }

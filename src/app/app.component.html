@@ -23,22 +23,26 @@
 
   <md-sidenav #sidenavright align="end" mode="over" class="app-sidenav md-sidenav-over">
     <md-toolbar color="primary"><md-icon>chat</md-icon> &nbsp; Chat</md-toolbar>
+    <div class="chat-label">Eingabe</div>
+    <div class="chat-input">
+      <form (ngSubmit)="sendChatMessage()" #LoginForm="ngForm">
+        <div class="chat-inputfield">
+          <md-input-container class="example-full-width">
+            <input md-input placeholder="{{ 'Nachricht' | translate }}" [(ngModel)]="chatmodelview.message" name="nachricht">
+          </md-input-container>
+        </div>
+        <div class="chat-send">
+          <button md-icon-button class="button-send" color="primary"><md-icon>send</md-icon></button>
+        </div>
+      </form>
+    </div>
+    <div class="chat-label">Nachrichten</div>
     <div class="chat-content">
       <div class="chat-line" *ngFor="let chat of chatmodelviewAll">
         <div class="chat-username">{{chat.userName}}</div>
         <md-divider></md-divider>
         <div class="chat-message">{{chat.message}}</div>
       </div>
-    </div>
-    <div class="chat-input">
-      <form (ngSubmit)="sendChatMessage()" #LoginForm="ngForm">
-        <div class="chat-inputfield">
-            <md-input placeholder="{{ 'Nachricht' | translate }}" [(ngModel)]="chatmodelview.message" name="nachricht"></md-input>
-        </div>
-        <div class="chat-send">
-          <button md-icon-button class="button-send" color="primary"><md-icon>send</md-icon></button>
-        </div>
-      </form>
     </div>
   </md-sidenav>
 

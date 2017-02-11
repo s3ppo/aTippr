@@ -19,6 +19,7 @@ import { CategoriesService } from './services/categories.service';
 import { TippsService } from './services/tipps.service';
 import { RankingService } from './services/ranking.service';
 import { ChatService } from './services/chat.service';
+import { ConfirmDialogsService } from './services/confirm-dialog.service';
 //Translation
 import {TranslateModule, TranslateService, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 //Guards
@@ -41,6 +42,7 @@ import { AdminTeamsComponent } from './admin/teams/teams.component';
 import { AdminMembersComponent } from './admin/members/members.component';
 import { AdminMatchesComponent, AdminCategoryDialog, AdminMatchResultDialog } from './admin/matches/matches.component';
 import { AdminCalculateComponent } from './admin/calculate/calculate.component';
+import { ConfirmDialog } from './dialogs/confirm-dialog.component';
 
 // Initialize Firebase
 var firebaseConfig = {
@@ -76,6 +78,7 @@ export function createTranslateLoader(http: Http) {
     AdminCategoryDialog,
     AdminMatchResultDialog,
     AdminCalculateComponent,
+    ConfirmDialog,
   ],
   imports: [
     BrowserModule,
@@ -90,6 +93,9 @@ export function createTranslateLoader(http: Http) {
       deps: [Http],
     }),
   ],
+  exports: [
+    ConfirmDialog,
+  ],
   providers: [
     LoginService,
     MembersService,
@@ -102,10 +108,12 @@ export function createTranslateLoader(http: Http) {
     MdIconRegistry,
     AuthGuard,
     AdminGuard,
+    ConfirmDialogsService,
   ],
   entryComponents: [
     AdminCategoryDialog,
     AdminMatchResultDialog,
+    ConfirmDialog,
   ],
   bootstrap: [AppComponent]
 })
