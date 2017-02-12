@@ -37,6 +37,7 @@ export class AppComponent implements OnInit{
     private sanitizer: DomSanitizer
   ) {
     mdIconRegistry.addSvgIcon('ball', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/soccer.svg'));
+    mdIconRegistry.addSvgIcon('cup', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/cup.svg'));
     translate.setDefaultLang('en');
     let lang = translate.getBrowserLang();
     translate.use(lang);
