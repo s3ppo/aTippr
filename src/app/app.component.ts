@@ -27,6 +27,7 @@ export class AppComponent implements OnInit{
   private membersmodelviewAll: MembersModel[];
   private chatmodelview = new ChatModel(0, '', '');
   private chatmodelviewAll: ChatModel[];
+  private notification: boolean = false;
 
   constructor(
     private membersService: MembersService,
@@ -88,6 +89,10 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.getChat();
+  }
+
+  toggleChat(navChat: any): void {
+    navChat.open();
   }
 
   sendChatMessage(): void {
