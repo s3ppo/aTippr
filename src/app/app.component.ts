@@ -96,7 +96,9 @@ export class AppComponent implements OnInit{
   }
 
   sendChatMessage(): void {
-    this.chatService.create(this.chatmodelview);
+    if (this.chatmodelview.message.replace(/\s/g, "").length > 0) {
+      this.chatService.create(this.chatmodelview);
+    }
     this.chatmodelview = new ChatModel(0,'','');
   }
 

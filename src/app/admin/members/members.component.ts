@@ -38,7 +38,10 @@ export class AdminMembersComponent implements OnInit{
   }
 
   changeAdmin(index: number): void {
-    this.membersService.changeAdmin(this.adminmembersmodel[index], 'admin');
+    //user is not allowed to change admin of own user
+    if(this.adminmembersmodel[index]['$key'] != this.loginService.user.uid){
+      this.membersService.changeAdmin(this.adminmembersmodel[index], 'admin');
+    }
   }
 
   changePaid(index: number): void {
