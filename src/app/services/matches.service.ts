@@ -57,13 +57,11 @@ export class MatchesService {
     }
 
     setResult(object: MatchesModelAll): void {
-        let result: Object = { result1: object.result1, result2: object.result2 };
-        this.loginService.af.database.object(`/matches/${object['$key']}`).update(result);
+        this.loginService.af.database.object(`/matches/${object['$key']}`).update({ result1: object.result1, result2: object.result2 });
     }
 
     getNextMatch(): Observable<any> {
         let filter = { query: { orderByChild: 'matchstart', limitToFirst: 1, startAt: new Date().getTime() } };
-
         return this.loginService.af.database.list(`/matches/`, filter);
     }
 

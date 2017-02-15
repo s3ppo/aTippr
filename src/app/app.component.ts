@@ -19,15 +19,16 @@ import { ChatService } from './services/chat.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   providers: [MdIconRegistry]
-
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   private member = new MembersModel('','','','','');
   private membersmodelviewAll: MembersModel[];
   private chatmodelview = new ChatModel(0, '', '');
   private chatmodelviewAll: ChatModel[];
   private notification: boolean = false;
+  private admin: boolean;
+  private opened: any = false;
 
   constructor(
     private membersService: MembersService,
@@ -44,8 +45,6 @@ export class AppComponent implements OnInit{
     translate.use(lang);
   }
 
-  private admin: boolean;
- 
   logout(): void {
     this.loginService.logout();
   }
@@ -80,6 +79,9 @@ export class AppComponent implements OnInit{
               if(membermerge) {
                 chat['userName'] = membermerge.firstName + ' ' + membermerge.lastName;
               }
+              if(chat.created >= this.member.chatactivity){
+                this.notification = true;
+              }
             })
           });
         });
@@ -93,6 +95,8 @@ export class AppComponent implements OnInit{
 
   toggleChat(navChat: any): void {
     navChat.open();
+    this.membersService.changeChatActivity();
+    this.notification = false;                      //!!!
   }
 
   sendChatMessage(): void {
@@ -100,6 +104,7 @@ export class AppComponent implements OnInit{
       this.chatService.create(this.chatmodelview);
     }
     this.chatmodelview = new ChatModel(0,'','');
+    this.notification = false;                      //!!!
   }
 
 }

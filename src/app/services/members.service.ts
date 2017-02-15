@@ -40,4 +40,8 @@ export class MembersService {
         this.loginService.af.database.list('/users').update(object['$key'], updateobj);
     }
 
+    changeChatActivity(): void {
+        this.loginService.af.database.object(`/users/${this.loginService.user.uid}`).update({ chatactivity: new Date().getTime() });
+    }
+
 }

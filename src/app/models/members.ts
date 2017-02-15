@@ -7,5 +7,6 @@ export class MembersModel {
         public photo: string,
         public photoSocial: string,
         public lastactivity?: number,
+        public chatactivity?: number,
     ){}
 }
