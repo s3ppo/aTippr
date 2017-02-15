@@ -1,5 +1,5 @@
 //Angular
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 //Translate
@@ -22,13 +22,13 @@ import { ChatService } from './services/chat.service';
 })
 export class AppComponent implements OnInit {
 
-  private member = new MembersModel('','','','','');
+  @ViewChild('sidenavright') sidenavright: any;
+  private member = new MembersModel('','','','','',0,0);
   private membersmodelviewAll: MembersModel[];
   private chatmodelview = new ChatModel(0, '', '');
   private chatmodelviewAll: ChatModel[];
-  private notification: boolean = false;
+  private lastChatActivity: number = 0;
   private admin: boolean;
-  private opened: any = false;
 
   constructor(
     private membersService: MembersService,
@@ -54,10 +54,13 @@ export class AppComponent implements OnInit {
       if(user) {
         this.membersService.get(user.uid).subscribe(member => {
           this.member = member;
+          if(this.member.chatactivity == null || this.member.chatactivity == undefined) {
+            this.member.chatactivity = 0;
+          }
         });
         return true;
       } else {
-        this.member = new MembersModel('','','','','');
+        this.member = new MembersModel('','','','','',0,0);
         return false;
       }
     });
@@ -79,8 +82,12 @@ export class AppComponent implements OnInit {
               if(membermerge) {
                 chat['userName'] = membermerge.firstName + ' ' + membermerge.lastName;
               }
-              if(chat.created >= this.member.chatactivity){
-                this.notification = true;
+              if(chat.created > this.lastChatActivity) {
+                this.lastChatActivity = chat.created;
+                // If sidenav is actually opened, then update the lastchatactivity in the members profile
+                if(this.sidenavright.opened == true) {
+                  this.membersService.changeChatActivity();
+                }
               }
             })
           });
@@ -94,9 +101,8 @@ export class AppComponent implements OnInit {
   }
 
   toggleChat(navChat: any): void {
-    navChat.open();
+    navChat.toggle();
     this.membersService.changeChatActivity();
-    this.notification = false;                      //!!!
   }
 
   sendChatMessage(): void {
@@ -104,7 +110,6 @@ export class AppComponent implements OnInit {
       this.chatService.create(this.chatmodelview);
     }
     this.chatmodelview = new ChatModel(0,'','');
-    this.notification = false;                      //!!!
   }
 
 }

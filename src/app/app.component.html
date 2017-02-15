@@ -51,7 +51,7 @@
     </button>
     <span class="logo_header"><a [routerLink]="['dashboard']"><img src="assets/atippr_logo.png" style="height:30px"></a></span>
     <button *ngIf="isAuth() | async" class="app-icon-button" (click)="toggleChat(sidenavright)">
-      <div *ngIf="notification" class="icon-notification">!</div>
+      <div *ngIf="member.chatactivity < lastChatActivity" class="icon-notification">!</div>
       <i class="material-icons app-toolbar-menu">chat</i>
     </button>
   </md-toolbar>
