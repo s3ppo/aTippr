@@ -50,8 +50,11 @@ export class AdminCalculateComponent {
             let rankings = new RankingModel(member['$key'], 0);
             tipps.forEach((tipp, index) => {
               let points = this.calcMatch(tipp);
-              if(match.deadline <= new Date().getTime()) {
-                this.rankingService.changeDetail(member['$key'], tipp.match, points);
+              let match = this.matchesmodelAll.find(match => match['$key'] == tipp.match);
+              if(match){
+                if(match.deadline <= new Date().getTime()) {
+                  this.rankingService.changeDetail(member['$key'], tipp.match, points, tipp.tipp1, tipp.tipp2);
+                }
               }
               rankings.points = rankings.points + points;
             })
@@ -68,6 +71,9 @@ export class AdminCalculateComponent {
     let match = this.matchesmodelAll.find(match => match['$key'] == tipp.match);
     if(!match){
       //match has actually no result
+      return 0;
+    }
+    if((tipp.tipp1 == null || tipp.tipp1 == undefined) && (tipp.tipp2 == null || tipp.tipp2 == undefined)) {
       return 0;
     }
 
@@ -99,7 +105,7 @@ export class AdminCalculateComponent {
       matchpoints = matchpoints + 4;
     }
 
-    return matchpoints;
+    return matchpoints * match.multiplier;
   }
 
 }

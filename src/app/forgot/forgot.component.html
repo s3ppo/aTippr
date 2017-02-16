@@ -3,7 +3,10 @@
     <h2>{{ 'Passwort vergessen' | translate }}</h2>
     <div class="forgot_form">
       <form (ngSubmit)="doForgot()" #LoginForm="ngForm">
-        <md-input required placeholder="{{ 'eMail' | translate }}'" [(ngModel)]="forgotmodel.email" name="email"></md-input><br>
+        <md-input-container>
+          <input mdInput required placeholder="{{ 'eMail' | translate }}'" [(ngModel)]="forgotmodel.email" name="email">
+        </md-input-container>
+        <br>
         <button md-raised-button color="primary" class="btn_register" type="submit">{{ 'Zurücksetzen' | translate }}</button>
       </form>
     </div>

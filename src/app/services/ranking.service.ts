@@ -29,8 +29,8 @@ export class RankingService {
         this.loginService.af.database.object(`/ranking/${ranking.user}`).update({points: ranking.points});
     }
 
-    changeDetail(member: string, match: string, points: number) {
-        this.loginService.af.database.object(`/ranking/${member}/${match}`).update({points: points});
+    changeDetail(member: string, match: string, points: number, tipp1: number, tipp2: number) {
+        this.loginService.af.database.object(`/ranking/${member}/${match}`).update({points: points, tipp1: tipp1, tipp2: tipp2});
     }
 
 }

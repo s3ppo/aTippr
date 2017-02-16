@@ -1,6 +1,11 @@
 <form (ngSubmit)="doCreateCategory()" #LoginForm="ngForm">
-    <md-input required placeholder="Ergebnis1" [(ngModel)]="matchesmodelview.result1" type="number" name="result1"></md-input><br>
-    <md-input required placeholder="Ergebnis2" [(ngModel)]="matchesmodelview.result2" type="number" name="result2"></md-input><br>
+    <md-input-container>
+        <input mdInput required placeholder="Ergebnis1" [(ngModel)]="matchesmodelview.result1" type="number" name="result1">
+    </md-input-container>
+    <br>
+    <md-input-container>
+        <input mdInput required placeholder="Ergebnis2" [(ngModel)]="matchesmodelview.result2" type="number" name="result2">
+    </md-input-container>
     <button md-raised-button color="primary" type="submit">Eintragen</button>
     <button md-raised-button color="primary" (click)="cancel()" type="button">Abbrechen</button>
 </form>

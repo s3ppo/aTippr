@@ -12,12 +12,12 @@
     margin-bottom: 10px;
 }
 @media(max-width:480px){
-    md-input{
+    .profile-input{
         width: 100%;
     }
 }
 @media(min-width:480px){
-    md-input{
+    .profile-input{
         width: 50%;
     }
 }

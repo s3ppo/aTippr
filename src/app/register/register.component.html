@@ -3,11 +3,26 @@
     <h2>{{ 'Registrieren' | translate }}</h2>
     <div class="register_form">
       <form (ngSubmit)="doRegister()" #LoginForm="ngForm">
-        <md-input required placeholder="{{ 'eMail' | translate }}" [(ngModel)]="registermodel.email" name="email"></md-input><br>
-        <md-input required placeholder="{{ 'Vorname' | translate }}" [(ngModel)]="registermodel.firstname" name="firstname"></md-input><br>
-        <md-input required placeholder="{{ 'Nachname' | translate }}" [(ngModel)]="registermodel.lastname" name="lastname"></md-input><br>
-        <md-input required type="password" placeholder="{{ 'Passwort' | translate }}" [(ngModel)]="registermodel.password" name="password"></md-input><br>
-        <md-input required type="password" placeholder="{{ 'Passwort bestätigen' | translate }}" [(ngModel)]="registermodel.password2" name="password2"></md-input><br>
+        <md-input-container class="register-input">
+          <input mdInput required placeholder="{{ 'eMail' | translate }}" [(ngModel)]="registermodel.email" name="email">
+        </md-input-container>
+        <br>
+        <md-input-container class="register-input">
+          <input mdInput required placeholder="{{ 'Vorname' | translate }}" [(ngModel)]="registermodel.firstname" name="firstname">
+        </md-input-container>
+        <br>
+        <md-input-container class="register-input">
+          <input mdInput required placeholder="{{ 'Nachname' | translate }}" [(ngModel)]="registermodel.lastname" name="lastname">
+        </md-input-container>
+        <br>
+        <md-input-container class="register-input">
+          <input mdInput required type="password" placeholder="{{ 'Passwort' | translate }}" [(ngModel)]="registermodel.password" name="password">
+        </md-input-container>
+        <br>
+        <md-input-container class="register-input">
+          <input mdInput required type="password" placeholder="{{ 'Passwort bestätigen' | translate }}" [(ngModel)]="registermodel.password2" name="password2">
+        </md-input-container>
+        <br>
         <button md-raised-button color="primary" class="btn_register" type="submit">{{ 'Registrieren' | translate }}</button>
       </form>
     </div>

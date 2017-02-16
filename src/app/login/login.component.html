@@ -27,19 +27,21 @@
       </div>
       <div class="login_form">
       <form (ngSubmit)="doLogin()" #LoginForm="ngForm">
-        <md-input placeholder="{{ 'eMail' | translate }}" [(ngModel)]="loginmodel.email" name="email">
-            <span md-prefix>
-              <i class="material-icons app-input-icon">account_circle</i>
-              &nbsp;
-            </span>
-        </md-input>
+        <md-input-container>
+          <input mdInput placeholder="{{ 'eMail' | translate }}" [(ngModel)]="loginmodel.email" name="email">
+          <span md-prefix>
+            <i class="material-icons app-input-icon">account_circle</i>
+            &nbsp;
+          </span>
+        </md-input-container>
         <br>
-        <md-input placeholder="{{ 'Passwort' | translate }}" [(ngModel)]="loginmodel.password" name="password" type="password">
+        <md-input-container>
+          <input mdInput placeholder="{{ 'Passwort' | translate }}" [(ngModel)]="loginmodel.password" name="password" type="password">
           <span md-prefix>
             <i class="material-icons app-input-icon">https</i>
             &nbsp;
           </span>
-        </md-input>
+        </md-input-container>
         <br>
         <button md-raised-button color="primary" class="btn_login" type="submit">{{ 'Login' | translate }}</button>
       </form>

@@ -16,12 +16,28 @@
             &nbsp;
             <button md-mini-fab color="secondary" (click)="RemoveCategory()" type="button"><md-icon class="md-24">remove</md-icon></button>
             <button md-mini-fab color="secondary" (click)="openAddCategory()" type="button"><md-icon class="md-24">add</md-icon></button><br>
-            <md-input required placeholder="Matchort" [(ngModel)]="matchesmodel.matchlocation" name="matchlocation"></md-input><br>
-            <md-input required placeholder="Matchbeginn" [(ngModel)]="matchesmodel.matchstart" type="date" name="matchstart"></md-input>
-            <md-input required [(ngModel)]="matchesmodel.matchstarttime" type="time" name="matchstarttime"></md-input><br>
-            <md-input required placeholder="Deadline" [(ngModel)]="matchesmodel.deadline" type="date" name="deadline"></md-input>
-            <md-input required [(ngModel)]="matchesmodel.deadlinetime" type="time" name="deadlinetime"></md-input><br>
-            <md-input placeholder="Multiplikator" [(ngModel)]="matchesmodel.multiplier" type="number" min="1" max="4" value="1" name="multiplier"></md-input><br>
+            <md-input-container>
+                <input mdInput required placeholder="Matchort" [(ngModel)]="matchesmodel.matchlocation" name="matchlocation">
+            </md-input-container>
+            <br>
+            <md-input-container>
+                <input mdInput required placeholder="Matchbeginn" [(ngModel)]="matchesmodel.matchstart" type="date" name="matchstart">
+            </md-input-container>
+            <md-input-container>
+                <input mdInput required [(ngModel)]="matchesmodel.matchstarttime" type="time" name="matchstarttime">
+            </md-input-container>
+            <br>
+            <md-input-container>
+                <input mdInput required placeholder="Deadline" [(ngModel)]="matchesmodel.deadline" type="date" name="deadline">
+            </md-input-container>
+            <md-input-container>
+                <input mdInput required [(ngModel)]="matchesmodel.deadlinetime" type="time" name="deadlinetime">
+            </md-input-container>
+            <br>
+            <md-input-container>
+                <input mdInput placeholder="Multiplikator" [(ngModel)]="matchesmodel.multiplier" type="number" min="1" max="4" value="1" name="multiplier">
+            </md-input-container>
+            <br>
             <button md-raised-button color="primary" type="submit">Anlegen</button>
         </form>
     </div>
@@ -30,7 +46,7 @@
         <h2>Matches verwalten</h2>
         <md-nav-list dense>
             <md-list-item class="md2 md-list-item md-2-line" *ngFor="let matchAll of matchesmodelAll">
-                <div class="md-list-text list_in_card">
+                <div class="mat-list-text list_in_card">
                     <h3 md-line><b>{{(matchAll.team1sub | async)?.teamname}} - {{(matchAll.team2sub | async)?.teamname}}</b></h3>
                     <p md-line>{{matchAll.matchstart}}, {{matchAll.matchlocation}}</p>
                 </div>

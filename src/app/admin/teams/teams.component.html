@@ -2,8 +2,13 @@
     <div class="new_teams"> 
         <h2><a [routerLink]="['/admin']"><md-icon>arrow_back</md-icon></a> &nbsp; Teams anlegen</h2>
         <form (ngSubmit)="CreateTeam()" #LoginForm="ngForm">
-            <md-input required placeholder="Teamname" [(ngModel)]="teamsmodel.teamname" name="teamname"></md-input><br>
-            <md-input placeholder="Gruppe" [(ngModel)]="teamsmodel.group" name="group" maxlength="1"></md-input><br>
+            <md-input-container>
+                <input mdInput required placeholder="Teamname" [(ngModel)]="teamsmodel.teamname" name="teamname">
+            </md-input-container>
+            <br>
+            <md-input-container>
+                <input mdInput placeholder="Gruppe" [(ngModel)]="teamsmodel.group" name="group" maxlength="1">
+            </md-input-container>
             Flagge<br> 
             <input type="file" (change)="selectFile($event)" accept="image/*"><br>
             <button md-raised-button color="primary" class="btn_newteam" type="submit">Anlegen</button>
@@ -12,10 +17,10 @@
     <md-divider></md-divider>
     <div class="existing_teams"> 
     <h2>Teams verwalten</h2>
-        <md-nav-list>
+        <md-nav-list class="mat-list-text">
             <md-list-item *ngFor="let teamview of teamsmodelAll">
                 <img md-list-avatar [src]="teamview.flag" />
-                <div class="md-list-text">{{teamview.teamname}}</div>
+                <div class="mat-list-text">{{teamview.teamname}}</div>
                 <button md-icon-button (click)="delTeam(teamview)">
                     <md-icon>delete</md-icon>
                 </button>

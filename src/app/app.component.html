@@ -27,7 +27,7 @@
       <form (ngSubmit)="sendChatMessage()" #LoginForm="ngForm">
         <div class="chat-inputfield">
           <md-input-container class="example-full-width">
-            <input md-input placeholder="{{ 'Nachricht' | translate }}" [(ngModel)]="chatmodelview.message" name="nachricht">
+            <input mdInput placeholder="{{ 'Nachricht' | translate }}" [(ngModel)]="chatmodelview.message" name="nachricht">
           </md-input-container>
         </div>
         <div class="chat-send">

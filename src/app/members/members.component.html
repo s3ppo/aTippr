@@ -4,7 +4,7 @@
     <md-nav-list>
         <md-list-item *ngFor="let member of membersmodel">
           <img md-list-avatar src="{{member.photo}}" alt="Avatar">
-          <div class="md-list-text">
+          <div class="mat-list-text">
             &nbsp; {{member.firstName}} {{member.lastName}}
           </div>
           <div *ngIf="member.lastactivity > onlinecheck" class="status_online"></div>
