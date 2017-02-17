@@ -1,5 +1,7 @@
-import { MdDialogRef } from '@angular/material';
+//Angular
 import { Component } from '@angular/core';
+//Material
+import { MdDialogRef } from '@angular/material';
 
 @Component({
     selector: 'confirm-dialog',
