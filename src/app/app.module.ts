@@ -29,6 +29,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { RulesComponent } from './rules/rules.component';
 import { RankingComponent } from './ranking/ranking.component';
 import { IntroComponent } from './intro/intro.component';
 import { RegisterComponent } from './register/register.component';
@@ -63,6 +64,7 @@ export function createTranslateLoader(http: Http) {
     AppComponent,
     LoginComponent,
     DashboardComponent,
+    RulesComponent,
     RankingComponent,
     IntroComponent,
     RegisterComponent,

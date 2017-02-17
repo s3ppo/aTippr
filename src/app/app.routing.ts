@@ -12,6 +12,7 @@ import { MembersComponent } from './members/members.component';
 import { TippComponent } from './tipp/tipp.component';
 import { TipperComponent } from './tipper/tipper.component';
 import { ProfileComponent } from './profile/profile.component';
+import { RulesComponent } from './rules/rules.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminTeamsComponent } from './admin/teams/teams.component';
 import { AdminMembersComponent } from './admin/members/members.component';
@@ -28,6 +29,7 @@ const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'forgot', component: ForgotComponent },
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+    { path: 'rules', component: RulesComponent, canActivate: [AuthGuard] },
     { path: 'ranking', component: RankingComponent, canActivate: [AuthGuard] },
     { path: 'members', component: MembersComponent, canActivate: [AuthGuard] },
     { path: 'tipp', component: TippComponent, canActivate: [AuthGuard] },

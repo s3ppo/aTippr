@@ -13,6 +13,7 @@
         <md-list-item [routerLink]="['tipp']" (click)="sidenav.toggle()"><md-icon svgIcon="ball" md-list-icon></md-icon><p md-line>{{ 'Tippen' | translate }}</p></md-list-item>
         <md-list-item [routerLink]="['members']" (click)="sidenav.toggle()"><md-icon md-list-icon>group</md-icon><p md-line>{{ 'Mitspieler' | translate }}</p></md-list-item>
         <md-list-item [routerLink]="['profile']" (click)="sidenav.toggle()"><md-icon md-list-icon>account_circle</md-icon><p md-line>{{ 'Mein Profil' | translate }}</p></md-list-item>
+        <md-list-item [routerLink]="['rules']" (click)="sidenav.toggle()"><md-icon md-list-icon>account_balance</md-icon><p md-line>{{ 'Regeln' | translate }}</p></md-list-item>
         <md-list-item (click)="logout()" (click)="sidenav.toggle()"><md-icon md-list-icon>power_settings_new</md-icon><p md-line>{{ 'Logout' | translate }}</p></md-list-item>
         <md-divider></md-divider>
         <md-list-item *ngIf="isAdmin() | async" [routerLink]="['admin']" (click)="sidenav.toggle()"><md-icon md-list-icon>verified_user</md-icon><p md-line>{{ 'Administration' | translate }}</p></md-list-item>
