@@ -9,6 +9,7 @@
             <md-input-container>
                 <input mdInput placeholder="Gruppe" [(ngModel)]="teamsmodel.group" name="group" maxlength="1">
             </md-input-container>
+            <br>
             Flagge<br> 
             <input type="file" (change)="selectFile($event)" accept="image/*"><br>
             <button md-raised-button color="primary" class="btn_newteam" type="submit">Anlegen</button>

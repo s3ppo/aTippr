@@ -35,7 +35,7 @@
 .chat-content {
   padding: 5px;
   height: calc( 100% - 182px );
-  overflow: hidden;
+  overflow: scroll;
 }
 .chat-line {
   display: block;

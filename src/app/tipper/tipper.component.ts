@@ -1,5 +1,5 @@
 //Angular
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 //Translate
@@ -10,6 +10,7 @@ import { MdSnackBar } from '@angular/material';
 import { MatchesService } from '../services/matches.service';
 import { TippsService } from '../services/tipps.service';
 import { TeamsService } from '../services/teams.service';
+import { DialogsService } from '../services/dialog.service';
 //Models
 import { MatchesModel, MatchesModelTipper } from '../models/matches';
 import { TippsModel } from '../models/tipps';
@@ -29,7 +30,9 @@ export class TipperComponent implements OnInit{
     private tippsService: TippsService,
     private teamsService: TeamsService,
     private snackBar: MdSnackBar,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private dialogsService: DialogsService,
+    private viewContainerRef: ViewContainerRef,
   ){}
 
   private matchesmodelview: MatchesModelTipper[];
@@ -135,6 +138,10 @@ export class TipperComponent implements OnInit{
           return 'Transparent';
       }
     }
+  }
+
+  showOtherTipps(): void {
+    this.dialogsService.showOtherTipps("match", this.viewContainerRef).subscribe(res => { });
   }
 
   ngOnDestroy() {

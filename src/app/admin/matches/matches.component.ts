@@ -9,7 +9,7 @@ import { MdDialogRef, MdDialog, Overlay, MdDialogConfig, MdSnackBar, MdIconRegis
 import { MatchesService } from '../../services/matches.service';
 import { CategoriesService } from '../../services/categories.service';
 import { TeamsService } from '../../services/teams.service';
-import { ConfirmDialogsService } from '../../services/confirm-dialog.service';
+import { DialogsService } from '../../services/dialog.service';
 //Models
 import { MatchesModel, MatchesModelAll } from '../../models/matches';
 import { CategoriesModel } from '../../models/categories';
@@ -36,7 +36,7 @@ export class AdminMatchesComponent implements OnInit{
     private matchesService: MatchesService,
     private categoriesService: CategoriesService,
     private teamsService: TeamsService,
-    private dialogsService: ConfirmDialogsService, 
+    private dialogsService: DialogsService, 
     private snackBar: MdSnackBar,
     public  dialog: MdDialog,
     public  viewContainerRef: ViewContainerRef,

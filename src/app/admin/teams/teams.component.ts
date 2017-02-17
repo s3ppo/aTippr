@@ -8,7 +8,7 @@ import { MdSnackBar } from '@angular/material';
 import { TeamsModel } from '../../models/teams';
 //Service
 import { TeamsService } from '../../services/teams.service';
-import { ConfirmDialogsService } from '../../services/confirm-dialog.service';
+import { DialogsService } from '../../services/dialog.service';
 
 @Component({
   selector: 'Admin_Teams',
@@ -25,7 +25,7 @@ export class AdminTeamsComponent implements OnInit {
   constructor(
     private snackBar: MdSnackBar,
     private teamsservice: TeamsService,
-    private dialogsService: ConfirmDialogsService, 
+    private dialogsService: DialogsService, 
     private viewContainerRef: ViewContainerRef
   ){}
 

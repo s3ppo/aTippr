@@ -17,7 +17,7 @@
     display: block;
 }
 .match_wrapper {
-    padding: 5px 5px 0px 5px;
+    padding: 5px 5px 5px 5px;
     display: block;
     border-radius: 10px;
 }
@@ -45,6 +45,11 @@
     align-items: center;
     margin-bottom: 5px;
     overflow: hidden;
+}
+.matchbottom {
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
 }
 .matchfooter {
     padding-top: 5px;
