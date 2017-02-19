@@ -59,6 +59,15 @@ export class TipperComponent implements OnInit{
   getAllMatches(category: string): void {
     this.matchesService.getAll(category).subscribe(matches => {
       this.matchesmodelview = matches;
+      this.matchesmodelview = this.matchesmodelview.sort((n1,n2) => {
+        if(n1.deadline < n2.deadline) {
+          return -1;
+        }
+        if(n1.deadline > n2.deadline) {
+          return 1;
+        }
+        return 0;
+      });
       this.checkNoMatches();
       this.matchesmodelview.forEach((match, index) => {
         match['start'] = new Date(match.matchstart).toLocaleString();
@@ -140,8 +149,8 @@ export class TipperComponent implements OnInit{
     }
   }
 
-  showOtherTipps(match: String): void {
-    this.dialogsService.showOtherTipps(match, this.viewContainerRef).subscribe(res => { });
+  showOtherTipps(match: String, team1: String, team2: String): void {
+    this.dialogsService.showOtherTipps(match, team1, team2, this.viewContainerRef).subscribe(res => { });
   }
 
   ngOnDestroy() {

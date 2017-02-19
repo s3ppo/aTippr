@@ -15,6 +15,8 @@ import { TippsService } from '../services/tipps.service';
 export class TippsDialog implements OnInit{
 
     public match: String;
+    public team1: String;
+    public team2: String;
     private openTipps = [];
 
     constructor(

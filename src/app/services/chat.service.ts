@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 //Services
 import { LoginService } from '../services/login.service';
+import { MembersService } from '../services/members.service';
 //Models
 import { ChatModel } from '../models/chat';
 
@@ -15,12 +16,18 @@ export class ChatService {
 
   constructor (
       private loginService: LoginService,
+      private membersService: MembersService,
       private router: Router
   ){}
 
-    getLast(number: number): FirebaseListObservable<any> {
+    getLast(number: number): Observable<any> {
         let filter = { query: { orderByChild: 'created', limitToLast: number } };
-        return this.loginService.af.database.list('/chat/', filter);
+        return this.loginService.af.database.list('/chat/', filter).map(chats => {
+            chats.forEach(chat => {
+                chat.member = this.membersService.get(chat.user);
+            })
+            return chats;
+        });
     }
 
     create(object: ChatModel): void {

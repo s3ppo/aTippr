@@ -73,23 +73,16 @@ export class AppComponent implements OnInit {
   getChat(): void {
     this.loginService.getAuthenticated().subscribe(user => {
       if(user) {
-        this.membersService.getAll().subscribe( members => {
-          this.membersmodelviewAll = members;
-          this.chatService.getLast(10).subscribe(chat => {
-            this.chatmodelviewAll = chat.reverse();
-            this.chatmodelviewAll.forEach( chat => {
-              let membermerge = this.membersmodelviewAll.find(member => member['$key'] == chat.user);
-              if(membermerge) {
-                chat['userName'] = membermerge.firstName + ' ' + membermerge.lastName;
+        this.chatService.getLast(10).subscribe(chat => {
+          this.chatmodelviewAll = chat.reverse();
+          this.chatmodelviewAll.forEach( chat => {
+            if(chat.created > this.lastChatActivity) {
+              this.lastChatActivity = chat.created;
+              // If sidenav is actually opened, then update the lastchatactivity in the members profile
+              if(this.sidenavright.opened == true) {
+                this.membersService.changeChatActivity();
               }
-              if(chat.created > this.lastChatActivity) {
-                this.lastChatActivity = chat.created;
-                // If sidenav is actually opened, then update the lastchatactivity in the members profile
-                if(this.sidenavright.opened == true) {
-                  this.membersService.changeChatActivity();
-                }
-              }
-            })
+            }
           });
         });
       }

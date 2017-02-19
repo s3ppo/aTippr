@@ -39,7 +39,7 @@
     <div class="chat-label">{{ 'Nachrichten' | translate }}</div>
     <div class="chat-content">
       <div class="chat-line" *ngFor="let chat of chatmodelviewAll">
-        <div class="chat-username">{{chat.userName}}</div>
+        <div class="chat-username">{{(chat.member | async)?.firstName}} {{(chat.member | async)?.lastName}}</div>
         <md-divider></md-divider>
         <div class="chat-message">{{chat.message}}</div>
       </div>

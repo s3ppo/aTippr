@@ -29,15 +29,16 @@ export class DialogsService {
     }
 
 
-    public showOtherTipps(match: String, viewContainerRef: ViewContainerRef): Observable<boolean> {
+    public showOtherTipps(match: String, team1: String, team2: String, viewContainerRef: ViewContainerRef): Observable<boolean> {
 
         let dialogRef: MdDialogRef<TippsDialog>;
         let config = new MdDialogConfig();
         config.viewContainerRef = viewContainerRef;
 
         dialogRef = this.dialog.open(TippsDialog, config);
-
         dialogRef.componentInstance.match = match;
+        dialogRef.componentInstance.team1 = team1;
+        dialogRef.componentInstance.team2 = team2;
 
         return dialogRef.afterClosed();
     }

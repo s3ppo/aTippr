@@ -17,13 +17,14 @@ import { RankingService } from '../services/ranking.service';
 })
 export class RankingComponent implements OnInit {
 
+  private rankingmodel: RankingModelAll[];
+  private preloadingDone: boolean;
+
   constructor(
     private router: Router,
     private snackBar: MdSnackBar,
     private rankingService: RankingService,
   ){}
-
-  private rankingmodel: RankingModelAll[];
 
   ngOnInit(): void {
     this.rankingService.getAll().subscribe(ranking => {
@@ -37,6 +38,7 @@ export class RankingComponent implements OnInit {
         }
         return 0;
       });
+      this.preloadingDone = true;
     });
   }
 

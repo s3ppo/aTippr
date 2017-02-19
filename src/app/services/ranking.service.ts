@@ -18,10 +18,10 @@ export class RankingService {
 
     getAll(): Observable<any> {
         return this.loginService.af.database.list(`/ranking/`).map((rankings) => {
-            return rankings.map((ranking) => {
+            rankings.forEach(ranking => {
                 ranking.user = this.loginService.af.database.object(`/users/${ranking.$key}`);
-                return ranking;
-            });
+            })
+            return rankings;
         });
     }
 
