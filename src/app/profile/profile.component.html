@@ -8,15 +8,15 @@
       <div class="userdata_wrapper">
         {{ 'Profilbild ändern' | translate }}<br> 
         <input class="file-upload" type="file" (change)="selectFile($event)" accept="image/*"><br>
-        <md-input-container class="profile_input">
+        <md-input-container class="profile-input">
           <input mdInput required placeholder="{{ 'Vorname' | translate }}" [(ngModel)]="membersmodelview.firstName" name="firstName">
         </md-input-container>
         <br>
-        <md-input-container class="profile_input">
+        <md-input-container class="profile-input">
           <input mdInput required placeholder="{{ 'Nachname' | translate }}" [(ngModel)]="membersmodelview.lastName" name="lastName">
         </md-input-container>
         <br>
-        <md-input-container class="profile_input">
+        <md-input-container class="profile-input">
           <input mdInput required placeholder="{{ 'eMail' | translate }}" [(ngModel)]="membersmodelview.email" name="eMail" disabled>
         </md-input-container>
         <br>

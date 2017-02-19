@@ -30,6 +30,10 @@ export class MembersService {
         return this.loginService.af.database.object(`/users/${this.loginService.user.uid}`);
     }
 
+    setSelf(members: MembersModel): void {
+        this.loginService.af.database.object(`/users/${this.loginService.user.uid}`).update({ firstName: members.firstName, lastName: members.lastName });
+    }
+
     changeAdmin(object: AdminMembersModel, target: string): void {
         let updateobj: Object;
         if(target == 'paid') {
