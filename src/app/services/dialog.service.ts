@@ -29,7 +29,7 @@ export class DialogsService {
     }
 
 
-    public showOtherTipps(match: string, viewContainerRef: ViewContainerRef): Observable<boolean> {
+    public showOtherTipps(match: String, viewContainerRef: ViewContainerRef): Observable<boolean> {
 
         let dialogRef: MdDialogRef<TippsDialog>;
         let config = new MdDialogConfig();

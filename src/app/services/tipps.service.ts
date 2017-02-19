@@ -40,13 +40,18 @@ export class TippsService {
     })
   }
 
-  //Anlegen Tipps
+  //Create Tipps
   create(tipps: Array<TippsModel>): void {
     tipps.forEach(tipp => {
       this.loginService.af.database.list(`/tipps/${this.loginService.user.uid}`).push({ category: tipp.category, match: tipp.match, tipp1: tipp.tipp1, tipp2: tipp.tipp2 }).then( (item) => {
         this.loginService.af.database.object(`/tipps_open/${tipp.match}/${item.key}`).update({ category: tipp.category, tipp1: tipp.tipp1, tipp2: tipp.tipp2 });
       });
     })
+  }
+
+  //Read open tipps
+  getOpenTipps(match: String): Observable<any> {
+    return this.loginService.af.database.list(`/tipps_open/${match}`);
   }
 
 }

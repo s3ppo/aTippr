@@ -140,8 +140,8 @@ export class TipperComponent implements OnInit{
     }
   }
 
-  showOtherTipps(): void {
-    this.dialogsService.showOtherTipps("match", this.viewContainerRef).subscribe(res => { });
+  showOtherTipps(match: String): void {
+    this.dialogsService.showOtherTipps(match, this.viewContainerRef).subscribe(res => { });
   }
 
   ngOnDestroy() {
