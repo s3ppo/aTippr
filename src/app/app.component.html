@@ -1,6 +1,6 @@
 <md-sidenav-container class="app-layout" fullscreen>
   <md-sidenav #sidenav mode="over" class="app-sidenav md-sidenav-over">
-    <md-toolbar color="primary">Hi {{member.firstName}}!</md-toolbar>
+    <md-toolbar color="primary" class="navbar">Hi {{member.firstName}}!</md-toolbar>
     <div class="my-content">
       <md-nav-list *ngIf="!(isAuth() | async)">
         <md-list-item [routerLink]="['intro']" (click)="sidenav.toggle()"><md-icon md-list-icon>info</md-icon><p md-line>{{ 'Einführung' | translate }}</p></md-list-item>
@@ -22,7 +22,7 @@
   </md-sidenav>
 
   <md-sidenav #sidenavright align="end" mode="over" class="app-sidenav md-sidenav-over">
-    <md-toolbar color="primary"><md-icon>chat</md-icon> &nbsp; Chat</md-toolbar>
+    <md-toolbar color="primary" class="navbar"><md-icon>chat</md-icon> &nbsp; Chat</md-toolbar>
     <div class="chat-label">{{ 'Eingabe' | translate }}</div>
     <div class="chat-input">
       <form (ngSubmit)="sendChatMessage()" #LoginForm="ngForm">
@@ -46,7 +46,7 @@
     </div>
   </md-sidenav>
 
-  <md-toolbar color="primary">
+  <md-toolbar color="primary" class="navbar">
     <button class="app-icon-button" (click)="sidenav.toggle()">
       <i class="material-icons app-toolbar-menu">menu</i>
     </button>
