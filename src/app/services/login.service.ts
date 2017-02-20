@@ -121,7 +121,7 @@ export class LoginService {
                     firstName: account.firstname,
                     lastName: account.lastname,
                     email: account.email,
-                    photo: 'https://firebasestorage.googleapis.com/v0/b/api-project-340883542890.appspot.com/o/avatars%2Fempty-avatar.jpg?alt=media&token=c263cd0f-59ff-4b87-a5f1-59cb6b3e681d',
+                    photo: 'https://firebasestorage.googleapis.com/v0/b/api-project-340883542890.appspot.com/o/avatars%2Fempty-avatar.jpg?alt=media&token=099e930a-fc4b-4506-a2d5-162712a095bd',
                 });
                 resolve(result);
             })

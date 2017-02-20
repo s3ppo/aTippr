@@ -3,7 +3,7 @@
     <h2><a [routerLink]="['/dashboard']"><md-icon>arrow_back</md-icon></a> &nbsp; {{ 'Mein Profil' | translate }}</h2>
     <form (ngSubmit)="doProfileChange()" #LoginForm="ngForm">
       <div class="photo_wrapper">
-        <img *ngIf="membersmodelview.photo" [src]="membersmodelview.photo" alt="Avatar" style="height:200px;width:200px">
+        <img *ngIf="membersmodelview.photo" [src]="membersmodelview.photo" alt="Avatar" style="max-height:200px;max-width:200px">
       </div>
       <div class="userdata_wrapper">
         {{ 'Profilbild ändern' | translate }}<br> 
