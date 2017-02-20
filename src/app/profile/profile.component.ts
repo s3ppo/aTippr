@@ -29,7 +29,41 @@ export class ProfileComponent implements OnInit {
   ){}
 
   selectFile(event): void {
-    this.uploadfile = event.srcElement.files[0];
+    var reader:FileReader = new FileReader();
+    reader.onloadend = (e) => {
+      var img = document.createElement("img");
+      img.src = reader.result;
+
+      var canvas = document.createElement('canvas');
+      var ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+
+      var MAX_WIDTH = 450;
+      var MAX_HEIGHT = 450;
+      var width = img.width;
+      var height = img.height;
+
+      if (width > height) {
+        if (width > MAX_WIDTH) {
+          height *= MAX_WIDTH / width;
+          width = MAX_WIDTH;
+        }
+      } else {
+        if (height > MAX_HEIGHT) {
+          width *= MAX_HEIGHT / height;
+          height = MAX_HEIGHT;
+        }
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+      var ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, width, height);
+      let dataurl = canvas.toDataURL(event.srcElement.files[0].type);
+      var blob = this.dataURItoBlob(dataurl)
+      this.uploadfile = new File([blob], event.srcElement.files[0].name, {type: event.srcElement.files[0].type, lastModified: Date.now()});
+    }
+    reader.readAsDataURL(event.srcElement.files[0]);
   }
 
   getMemberSelf(): void {
@@ -46,11 +80,22 @@ export class ProfileComponent implements OnInit {
   }
 
   doProfileChange(): void {
-    this.membersService.setSelf(this.membersmodelview);
+    this.membersService.setSelf(this.membersmodelview, this.uploadfile);
 
     this.translate.get('Dein Profil wurde geändert').subscribe( translation => {
       this.snackBar.open(translation, 'Close', {duration: 2000})
     });
   }
+
+  dataURItoBlob(dataURI: string): Blob{
+      const bytes = dataURI.split(',')[0].indexOf('base64') >= 0 ?
+          atob(dataURI.split(',')[1]) :
+          encodeURI(dataURI.split(',')[1]);
+      const mime = dataURI.split(',')[0].split(':')[1].split(';')[0];
+      const max = bytes.length;
+      const ia = new Uint8Array(max);
+      for (var i = 0; i < max; i++) ia[i] = bytes.charCodeAt(i);
+      return new Blob([ia], {type:mime});
+  };
 
 }
