@@ -35,7 +35,8 @@ export class TippsService {
   change(tipps: Array<TippsModel>): void {
     tipps.forEach(tipp => {
       this.loginService.af.database.object(`/tipps/${this.loginService.user.uid}/${tipp.tippkey}`).update({ tipp1: tipp.tipp1, tipp2: tipp.tipp2 }).then( (item) => {
-        this.loginService.af.database.object(`/tipps_open/${tipp.match}/${tipp.tippkey}`).update({ category: tipp.category, tipp1: tipp.tipp1, tipp2: tipp.tipp2 });
+        this.loginService.af.database.object(`/tipps_open/public/${tipp.match}/${tipp.tippkey}`).update({ tipp1: tipp.tipp1, tipp2: tipp.tipp2 });
+        this.loginService.af.database.object(`/tipps_open/secure/${tipp.match}/${tipp.tippkey}`).update({ user: this.loginService.user.uid, tipp1: tipp.tipp1, tipp2: tipp.tipp2 });
       });
     })
   }
@@ -44,14 +45,21 @@ export class TippsService {
   create(tipps: Array<TippsModel>): void {
     tipps.forEach(tipp => {
       this.loginService.af.database.list(`/tipps/${this.loginService.user.uid}`).push({ category: tipp.category, match: tipp.match, tipp1: tipp.tipp1, tipp2: tipp.tipp2 }).then( (item) => {
-        this.loginService.af.database.object(`/tipps_open/${tipp.match}/${item.key}`).update({ category: tipp.category, tipp1: tipp.tipp1, tipp2: tipp.tipp2 });
+        this.loginService.af.database.object(`/tipps_open/public/${tipp.match}/${item.key}`).update({ tipp1: tipp.tipp1, tipp2: tipp.tipp2 });
+        this.loginService.af.database.object(`/tipps_open/secure/${tipp.match}/${item.key}`).update({ user: this.loginService.user.uid, tipp1: tipp.tipp1, tipp2: tipp.tipp2 });
       });
     })
   }
 
   //Read open tipps
   getOpenTipps(match: String): Observable<any> {
-    return this.loginService.af.database.list(`/tipps_open/${match}`);
+    return this.loginService.af.database.list(`/tipps_open/public/${match}`);
   }
+
+  /*//Set open tipps
+  setOpenTipp(tipp: TippsModel, user: String) {
+    this.loginService.af.database.object(`/tipps_open/public/${tipp.match}/${tipp['$key']}`).update({ tipp1: tipp.tipp1, tipp2: tipp.tipp2 });
+    this.loginService.af.database.object(`/tipps_open/secure/${tipp.match}/${tipp['$key']}`).update({ user: user, tipp1: tipp.tipp1, tipp2: tipp.tipp2 })
+  }*/
 
 }
