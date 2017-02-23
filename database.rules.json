@@ -35,7 +35,23 @@
     },
     "tipps_open": {
       ".read": "auth != null",
-      ".write": "auth != null"
+      ".write": "auth != null",
+      "secure": {
+        ".read": "auth != null",
+      	".write": "auth != null",
+        "$matchid": {
+        	".read": "auth != null",
+      		".write": "auth != null",
+        	"$uid": {
+          	".read": "auth != null",
+      	  	".write": "auth != null",
+            "$tippid": {
+              ".read": "auth != null",
+              ".write": "auth != null"
+            }
+          }
+        }
+      }
     },
     "users": {
       ".read": "auth != null",
