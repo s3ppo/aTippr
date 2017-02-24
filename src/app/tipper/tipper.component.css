@@ -19,7 +19,8 @@
 .match_wrapper {
     padding: 5px 5px 5px 5px;
     display: block;
-    border-radius: 10px;
+    border-radius: 5px;
+    border: solid 1px;
 }
 .matchtop {
     text-align: center;

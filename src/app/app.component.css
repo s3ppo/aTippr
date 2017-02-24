@@ -22,7 +22,7 @@
   color: white;
 }
 .app-layout {
-  min-height: 100vh;
+  min-height: 100%;
 }
 .app-sidenav {
   width: 250px;
@@ -35,7 +35,6 @@
 .chat-content {
   padding: 5px;
   height: calc( 100% - 182px );
-  overflow: scroll;
 }
 .chat-line {
   display: block;
@@ -59,7 +58,7 @@
   display: block;
 }
 .chat-inputfield {
-  width: 195px;
+  width: 175px;
   display: inline-block;
 }
 .chat-send {
