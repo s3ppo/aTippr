@@ -1,11 +1,11 @@
+md-card {
+    margin: 5px;
+}
 .card-container {
     width: 100%;
 }
 .dashboard_wrapper {
     margin: 10px;
-}
-md-card {
-    margin: 5px;
 }
 .app-spinner {
   height: 30px;
@@ -36,4 +36,7 @@ md-card {
 }
 .members_online {
     display: block;
+}
+.news_text {
+    white-space: pre-wrap;
 }

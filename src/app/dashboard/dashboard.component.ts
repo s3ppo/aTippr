@@ -2,14 +2,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
+//Translate
+import { TranslateService } from 'ng2-translate';
 //Models
 import { MatchesModelDashboard } from '../models/matches';
 import { MembersModel } from '../models/members';
+import { NewsModel } from '../models/news';
 //Services
 import { LoginService } from '../services/login.service';
 import { MatchesService } from '../services/matches.service';
 import { TeamsService } from '../services/teams.service';
 import { MembersService } from '../services/members.service';
+import { NewsService } from '../services/news.service';
 
 @Component({
   selector: 'Dashboard',
@@ -22,14 +26,18 @@ export class DashboardComponent implements OnInit{
   private membersmodel: MembersModel[];
   private membersOnline: number;
   private matchesmodel = new MatchesModelDashboard('', '', '', '', 0, 0, 0, 0, 0, '', '');
+  private newsmodel = new NewsModel('','',0)
   private preloadingNextMatchDone: boolean = false;
   private preloadingMembersDone: boolean = false;
+  private preloadingNewsDone: boolean = false;
 
   constructor(
     private loginService: LoginService,
     private matchesService: MatchesService,
     private teamsService: TeamsService,
     private membersService: MembersService,
+    private newsService: NewsService,
+    private translate: TranslateService
   ){}
 
   getNextMatch(): void {
@@ -59,9 +67,22 @@ export class DashboardComponent implements OnInit{
     })
   }
 
+  getNews(): void {
+    this.newsService.getLast(1).subscribe( news => {
+      this.newsmodel = news[0];
+      if(this.newsmodel.text == "") {
+        this.translate.get('Keine News vorhanden').subscribe( translation => {
+          this.newsmodel.text = translation;
+        });
+      }
+      this.preloadingNewsDone = true;
+    })
+  }
+
   ngOnInit(): void {
     this.getNextMatch();
     this.getMembers();
+    this.getNews();
   }
 
 }

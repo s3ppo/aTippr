@@ -1,0 +1,20 @@
+.card-container {
+    width: 100%;
+}
+.news_wrapper {
+    margin: 10px;
+}
+.btn_newnews {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+@media(max-width:480px){
+    .news-text {
+        width: 100%;
+    }
+}
+@media(min-width:480px){
+    .news-text {
+        width: 50%;
+    }
+}

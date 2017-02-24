@@ -2,6 +2,15 @@
   <div class="dashboard_wrapper"> 
     <h2>{{ 'Dashboard' | translate }}</h2>
     <md-card>
+      <md-card-subtitle>{{ 'Neuigkeiten' | translate }}</md-card-subtitle>
+      <md-card-content>
+        <md-spinner *ngIf="!preloadingNewsDone" class="app-spinner"></md-spinner>
+        <div class="news_wrapper" *ngIf="preloadingNewsDone">
+          <div class="news_text">{{newsmodel.text}}</div>
+        </div>
+      </md-card-content>
+    </md-card>
+    <md-card>
       <md-card-subtitle>{{ 'Nächstes Match' | translate }}</md-card-subtitle>
       <md-card-content>
         <md-spinner *ngIf="!preloadingNextMatchDone" class="app-spinner"></md-spinner>

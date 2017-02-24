@@ -1,0 +1,12 @@
+<div class="card-container">
+  <div class="news_wrapper">
+    <h2><a [routerLink]="['/admin']"><md-icon>arrow_back</md-icon></a> &nbsp; {{ 'Neuigkeiten' | translate }}</h2>
+    <form (ngSubmit)="changeNews()" #LoginForm="ngForm">
+        <md-input-container class="news-text">
+        <textarea mdInput placeholder="Text" rows="5" [(ngModel)]="newsmodel.text" name="text">{{ newsmodel.text }}</textarea>
+        </md-input-container>
+        <br>
+        <button md-raised-button color="primary" class="btn_newnews" type="submit">{{ 'Ändern' | translate }}</button>
+    </form>
+  </div>
+</div>

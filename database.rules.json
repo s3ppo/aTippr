@@ -53,6 +53,10 @@
         ".read": "auth != null",
         ".write": "$uid == auth.uid || root.child('users').child(auth.uid).child('admin').val() === true"
       }
+    },
+    "news": {
+      ".read": "auth != null",
+      ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
     }
   }
 }
