@@ -26,29 +26,23 @@
       "$uid": {
     		".indexOn": ["category"],
         ".read": "$uid == auth.uid || root.child('users').child(auth.uid).child('admin').val() === true",
-        ".write": "$uid === auth.uid && root.child('matches').child( newData.child('match').val() ).child('matchstart').val() >= now",
+        ".write": "$uid === auth.uid && root.child('matches').child( newData.child('match').val() ).child('deadline').val() >= now",
         "$tippid": {
           ".read": "$uid == auth.uid || root.child('users').child(auth.uid).child('admin').val() === true",
-          ".write": "$uid === auth.uid && root.child('matches').child( newData.child('match').val() ).child('matchstart').val() >= now"
+          ".write": "$uid === auth.uid && root.child('matches').child( newData.child('match').val() ).child('deadline').val() >= now"
         }
       }
     },
     "tipps_open": {
-      ".read": "auth != null",
-      ".write": "auth != null",
+      "public": {
+      	".read": "auth != null",
+      	".write": "auth != null"
+      },
       "secure": {
-        ".read": "auth != null",
-      	".write": "auth != null",
         "$matchid": {
-        	".read": "auth != null",
-      		".write": "auth != null",
-        	"$uid": {
-          	".read": "auth != null",
-      	  	".write": "auth != null",
-            "$tippid": {
-              ".read": "auth != null",
-              ".write": "auth != null"
-            }
+        	".read": "auth != null && root.child('matches').child( $matchid ).child('deadline').val() <= now",
+      		"$uid": {
+            ".write": "$uid === auth.uid && root.child('matches').child( $matchid ).child('deadline').val() >= now"
           }
         }
       }

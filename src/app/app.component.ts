@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
       if(user) {
         this.membersService.get(user.uid).subscribe(member => {
           this.member = member;
-          if(this.member.chatactivity == null || this.member.chatactivity == undefined) {
+          if(!this.member.hasOwnProperty('chatactivity')) {
             this.member.chatactivity = 0;
           }
         });

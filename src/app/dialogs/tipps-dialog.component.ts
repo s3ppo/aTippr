@@ -26,9 +26,17 @@ export class TippsDialog implements OnInit{
 
     getOpenTipps(): void {
         if(this.match) {
-            this.tippsService.getOpenTipps(this.match).subscribe(openTipps => {
-                this.openTipps = openTipps;
-            });
+            this.tippsService.getOpenTippsSecure(this.match).subscribe(secured => {
+                this.openTipps = secured;
+                this.openTipps.forEach(line => {
+                    line.tipp1 = line[Object.keys(line)[0]].tipp1;
+                    line.tipp2 = line[Object.keys(line)[0]].tipp2;
+                })
+            }, error => {
+                this.tippsService.getOpenTipps(this.match).subscribe(publ => {
+                    this.openTipps = publ;
+                })
+            })
         }
     }
 

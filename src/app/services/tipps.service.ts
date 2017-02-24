@@ -11,12 +11,14 @@ import { TippsModel } from '../models/tipps';
 import { MatchesModelTipper } from '../models/matches';
 //Services
 import { LoginService } from '../services/login.service';
+import { MembersService } from '../services/members.service';
 
 @Injectable()
 export class TippsService {
 
   constructor (
       private loginService: LoginService,
+      private membersService: MembersService,
       private router: Router,
   ){}
 
@@ -54,6 +56,17 @@ export class TippsService {
   //Read open tipps
   getOpenTipps(match: String): Observable<any> {
     return this.loginService.af.database.list(`/tipps_open/public/${match}`);
+  }
+
+  //Read open tipps with user
+  getOpenTippsSecure(match: String): Observable<any> {
+    return this.loginService.af.database.list(`/tipps_open/secure/${match}`).map(matches => {
+      matches.forEach(match_line => {
+        match_line.user = this.membersService.get(match_line.$key);
+      })
+      console.log(matches)
+      return matches;
+    });
   }
 
   //Set open tipps
