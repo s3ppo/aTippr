@@ -6,6 +6,15 @@ html, body, material-app, md-sidenav-container {
   width: 100%;
   height: 100%;
 }
+
+md-toolbar.mat-toolbar, md-toolbar .mat-toolbar-row {
+    min-height: 64px;
+}
+md-sidenav md-list-item md-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
 .logo-loading {
     text-align: center;
     width: 200px;
@@ -15,16 +24,17 @@ html, body, material-app, md-sidenav-container {
     margin-left:-100px;
     margin-top:-100px;
 }
+
 body {
   margin: 0;
   width: 100%;
   height: 100%;
   font-family: Roboto,"Helvetica Neue",sans-serif;
 }
+
 h2 {
   font-weight: 400;
 }
-
 h3 {
   font-weight: 400;
 }
