@@ -41,15 +41,17 @@
           <div *ngIf="(match.result1 != undefined && match.result1 != null) && (match.result2 != undefined && match.result2 != null)" class="match_result"><button md-button>{{ 'Ergebnis' | translate }}: {{match.result1}}-{{match.result2}}</button></div>
         </div>
       </div>
-      <div class="matchfooter">
-        <!--md-divider></md-divider>-->
-      </div>
     </div>
-    <div *ngIf="preloadingDone && !nomatches" class="btn_wrapper">
+    <!--<div *ngIf="preloadingDone && !nomatches" class="btn_wrapper">
       <button md-raised-button (click)="submitTipps()" class="btn_tipp" color="primary">
         <md-spinner *ngIf="loading" class="app-spinner"></md-spinner>
         <span *ngIf="!loading">Absenden</span>
       </button>
-    </div>
+    </div>-->
   </div>
 </div>
+<span class="app-action" *ngIf="preloadingDone && !nomatches">
+  <button md-fab (click)="submitTipps()" color="primary">
+    <md-icon>save</md-icon>
+  </button>
+</span>

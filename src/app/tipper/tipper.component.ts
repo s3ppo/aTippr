@@ -18,7 +18,7 @@ import { TippsModel } from '../models/tipps';
 @Component({
   selector: 'Tipper',
   templateUrl: './tipper.component.html',
-  styleUrls: ['./tipper.component.css'],
+  styleUrls: ['./tipper.component.scss'],
   providers: [MdSnackBar]
 })
 export class TipperComponent implements OnInit{

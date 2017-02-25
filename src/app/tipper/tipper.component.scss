@@ -1,5 +1,7 @@
 .card-container {
     width: 100%;
+    overflow: auto;
+    max-height: calc( 100vh - 64px);
 }
 .tipper_wrapper {
     margin: 10px;
@@ -9,12 +11,18 @@
   width: 30px;
   display: inline-block;
 }
+.app-action {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
 .no_matches {
     text-align: center;
 }
 .match_container {
-    width: ( 100% - 10px );
+    width: calc( 100% - 10px );
     display: block;
+    padding-bottom: 5px;
 }
 .match_wrapper {
     padding: 5px 5px 5px 5px;
@@ -67,11 +75,6 @@
     display: inline-block;
     align-items: center;
     flex-grow: 100;
-}
-.matchfooter {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 100%;
 }
 .matchteam1 {
     display: flex;
