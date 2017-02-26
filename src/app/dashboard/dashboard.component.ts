@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit{
   private preloadingNextMatchDone: boolean = false;
   private preloadingMembersDone: boolean = false;
   private preloadingNewsDone: boolean = false;
+  private ownUser = new MembersModel('','','','','');
 
   constructor(
     private loginService: LoginService,
@@ -69,13 +70,21 @@ export class DashboardComponent implements OnInit{
 
   getNews(): void {
     this.newsService.getLast(1).subscribe( news => {
-      this.newsmodel = news[0];
-      if(this.newsmodel.text == "") {
+      if(news[0]) {
+        this.newsmodel = news[0];
+      } else {
         this.translate.get('Keine News vorhanden').subscribe( translation => {
           this.newsmodel.text = translation;
         });
       }
       this.preloadingNewsDone = true;
+    }, error => {
+    })
+  }
+
+  getOwnUser(): void {
+    this.membersService.getSelf().subscribe(member => {
+      this.ownUser = member;
     })
   }
 
@@ -83,6 +92,7 @@ export class DashboardComponent implements OnInit{
     this.getNextMatch();
     this.getMembers();
     this.getNews();
+    this.getOwnUser();
   }
 
 }

@@ -55,6 +55,7 @@
       }
     },
     "news": {
+      ".indexOn": ["created"],
       ".read": "auth != null",
       ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
     }

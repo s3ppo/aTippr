@@ -27,12 +27,17 @@ export class AdminNewsComponent implements OnInit{
 
   getNews(): void {
     this.newsService.getLast(1).subscribe(news => {
+      if(news[0]) {
         this.newsmodel = news[0];
+      }
+    }, error => {
+
     })
   }
 
   changeNews(): void {
     this.newsService.update(this.newsmodel);
+    this.snackBar.open('News successfully changed', 'Close', {duration:2000});
   }
 
   ngOnInit(): void {
