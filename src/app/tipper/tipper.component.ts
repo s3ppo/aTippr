@@ -11,6 +11,7 @@ import { MatchesService } from '../services/matches.service';
 import { TippsService } from '../services/tipps.service';
 import { TeamsService } from '../services/teams.service';
 import { DialogsService } from '../services/dialog.service';
+import { RankingService } from '../services/ranking.service';
 //Models
 import { MatchesModel, MatchesModelTipper } from '../models/matches';
 import { TippsModel } from '../models/tipps';
@@ -32,6 +33,7 @@ export class TipperComponent implements OnInit{
     private snackBar: MdSnackBar,
     private translate: TranslateService,
     private dialogsService: DialogsService,
+    private rankingService: RankingService,
     private viewContainerRef: ViewContainerRef,
   ){}
 
@@ -78,6 +80,9 @@ export class TipperComponent implements OnInit{
             match['team2name'] = team2.teamname;
             match['team2flag'] = team2.flag;
           })
+        })
+        this.rankingService.getDetailSelf(match['$key']).subscribe( rankingDet => {
+          match.points = rankingDet.points;
         })
       })
       this.getAllTipps(category);

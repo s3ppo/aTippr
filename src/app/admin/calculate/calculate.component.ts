@@ -41,7 +41,7 @@ export class AdminCalculateComponent {
       this.matchesmodelAll = match;
       this.matchesmodelAll.forEach((matchline, index) => {
         if(!matchline.result1 && !matchline.result2){
-          this.matchesmodelAll.splice(index);
+          this.matchesmodelAll.splice(index, 1);
         }
       });
       this.membersService.getAll().take(1).subscribe( members => {
