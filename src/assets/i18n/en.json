@@ -9,6 +9,7 @@
     "Rangliste": "Ranking",
     "Tippen": "Tipps",
     "Mitspieler": "Members",
+    "Mitglieder": "Members",
     "Administration": "Administration",
     "Logout": "Logout",
     "eMail": "eMail",
@@ -47,5 +48,11 @@
     "Andere Tipps": "Other tipps",
     "Dein Profil wurde geändert": "Profile updated",
     "Keine News vorhanden": "No news found",
-    "Neuigkeiten": "News"
+    "Neuigkeiten": "News",
+    "Punkte berechnen": "Calculate Points",
+    "Spiele": "Matches",
+    "Mannschaften": "Teams",
+    "Gruppe": "Group",
+    "Anlegen": "Create",
+    "Name": "Name"
 }

@@ -3,16 +3,16 @@
         <h2><a [routerLink]="['/admin']"><md-icon>arrow_back</md-icon></a> &nbsp; Teams anlegen</h2>
         <form (ngSubmit)="CreateTeam()" #LoginForm="ngForm">
             <md-input-container>
-                <input mdInput required placeholder="Teamname" [(ngModel)]="teamsmodel.teamname" name="teamname">
+                <input mdInput required placeholder="{{ 'Name' | translate }}'" [(ngModel)]="teamsmodel.teamname" name="teamname">
             </md-input-container>
             <br>
             <md-input-container>
-                <input mdInput placeholder="Gruppe" [(ngModel)]="teamsmodel.group" name="group" maxlength="1">
+                <input mdInput placeholder="{{ 'Gruppe' | translate }}" [(ngModel)]="teamsmodel.group" name="group" maxlength="1">
             </md-input-container>
             <br>
             Flagge<br> 
             <input type="file" (change)="selectFile($event)" accept="image/*"><br>
-            <button md-raised-button color="primary" class="btn_newteam" type="submit">Anlegen</button>
+            <button md-raised-button color="primary" class="btn_newteam" type="submit">{{ 'Anlegen' | translate }}</button>
         </form>
     </div>
     <md-divider></md-divider>
