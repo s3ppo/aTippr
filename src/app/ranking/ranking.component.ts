@@ -12,7 +12,7 @@ import { RankingService } from '../services/ranking.service';
 @Component({
   selector: 'Ranking',
   templateUrl: './ranking.component.html',
-  styleUrls: ['./ranking.component.css'],
+  styleUrls: ['./ranking.component.scss'],
   providers: [MdSnackBar]
 })
 export class RankingComponent implements OnInit {

@@ -2,11 +2,24 @@
     <div class="ranking">
         <h2><a [routerLink]="['/dashboard']"><md-icon>arrow_back</md-icon></a> &nbsp; {{ 'Rangliste' | translate }}</h2>
         <md-spinner *ngIf="!preloadingDone" class="app-spinner"></md-spinner>
-        <md-nav-list *ngIf="preloadingDone">
+        <!--<md-nav-list *ngIf="preloadingDone">
             <md-list-item class="mat-list-text" *ngFor="let ranking of rankingmodel; let i = index;">
                 <div class="mat-list-text">{{i+1}}. {{(ranking.user | async)?.firstName}} {{(ranking.user | async)?.lastName}}</div>
                 <div>{{ranking.points}}</div>
             </md-list-item>
-        </md-nav-list>
+        </md-nav-list>-->
+        <table class="table table-striped table-bordered mat-elevation-z6">
+        <tr>
+            <th>Rank</th>
+            <th>Name</th> 
+            <th>Points</th>
+        </tr>
+        <tr *ngFor="let ranking of rankingmodel; let i = index;">
+            <td>{{i+1}}</td>
+            <td>{{(ranking.user | async)?.firstName}} {{(ranking.user | async)?.lastName}}</td> 
+            <td>{{ranking.points}}</td>
+        </tr>
+        </table>
+
     </div>
 </div>
