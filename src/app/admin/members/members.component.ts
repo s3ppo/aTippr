@@ -29,7 +29,7 @@ export class AdminMembersComponent implements OnInit{
 
   getAllMembers(): void {
     this.membersService.getAll().subscribe(members  => { 
-      this.adminmembersmodel = members; 
+      this.adminmembersmodel = members;
     });
   }
 

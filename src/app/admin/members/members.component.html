@@ -1,7 +1,7 @@
 <div class="card-container">
   <div class="members_wrapper">
     <h2><a [routerLink]="['/admin']"><md-icon>arrow_back</md-icon></a> &nbsp; Mitglieder</h2>
-    <md-nav-list>
+    <!--<md-nav-list>
       <md-list-item *ngFor="let adminmember of adminmembersmodel; let i = index;">
         <div class="mat-list-text">{{adminmember.firstName}} {{adminmember.lastName}}</div>
         <md-checkbox [(ngModel)]="adminmember.paid" (change)="changePaid(i)" align="start">
@@ -12,6 +12,24 @@
           Administrator
         </md-checkbox>
       </md-list-item>
-    </md-nav-list>
+    </md-nav-list>-->
+    <table class="table table-striped table-condensed table-bordered mat-elevation-z6">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Paid</th> 
+          <th>Admin</th>
+          <th>Login</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let adminmember of adminmembersmodel; let i = index;">
+          <td>{{adminmember.firstName}} {{adminmember.lastName}}</td>
+          <td><md-checkbox [(ngModel)]="adminmember.admin" (change)="changePaid(i)" align="start"></md-checkbox></td> 
+          <td><md-checkbox [(ngModel)]="adminmember.admin" (change)="changeAdmin(i)" align="start"></md-checkbox></td>
+          <td>{{ adminmember.lastactivity }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
