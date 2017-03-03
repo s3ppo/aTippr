@@ -47,8 +47,8 @@
         <md-nav-list dense>
             <md-list-item class="md2 md-list-item md-2-line" *ngFor="let matchAll of matchesmodelAll">
                 <div class="mat-list-text list_in_card">
-                    <h3 md-line><b>{{(matchAll.team1sub | async)?.teamname}} - {{(matchAll.team2sub | async)?.teamname}}</b></h3>
-                    <p md-line>{{matchAll.matchstart}}, {{matchAll.matchlocation}}</p>
+                    <h3 md-line><b>{{( matchAll.team1sub | async)?.teamname }} - {{ (matchAll.team2sub | async)?.teamname }}</b></h3>
+                    <p md-line>{{ matchAll.matchstart | date:"dd.MM.yyyy, HH:mm" }}, {{ matchAll.matchlocation }}</p>
                 </div>
                 <button md-icon-button (click)="setResult(matchAll)">
                     <md-icon svgIcon="whistle"></md-icon>

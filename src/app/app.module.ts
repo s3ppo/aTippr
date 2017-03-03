@@ -32,6 +32,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RulesComponent } from './rules/rules.component';
 import { RankingComponent } from './ranking/ranking.component';
+import { RankingDetailComponent } from './rankingdetail/rankingdetail.component';
 import { IntroComponent } from './intro/intro.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotComponent } from './forgot/forgot.component';
@@ -69,6 +70,7 @@ export function createTranslateLoader(http: Http) {
     DashboardComponent,
     RulesComponent,
     RankingComponent,
+    RankingDetailComponent,
     IntroComponent,
     RegisterComponent,
     ForgotComponent,

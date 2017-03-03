@@ -6,7 +6,7 @@
     <div *ngFor="let match of matchesmodelview" class="match_container">
       <div class="match_wrapper" [style.background]="getBackground(match)">
         <div class="matchtop">
-          <div class="matchstart">{{match.start}}</div><div class="matchlocation">{{match.matchlocation}}</div>
+          <div class="matchstart">{{match.matchstart | date:"dd.MM.yyyy, HH:mm" }}</div><div class="matchlocation">{{match.matchlocation}}</div>
         </div>
         <div class="matchteam1" >
           <div class="team1_flag">

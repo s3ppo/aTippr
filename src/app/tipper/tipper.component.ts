@@ -72,7 +72,6 @@ export class TipperComponent implements OnInit{
       });
       this.checkNoMatches();
       this.matchesmodelview.forEach((match, index) => {
-        match['start'] = new Date(match.matchstart).toLocaleString();
         this.teamsService.get(match.team1).take(1).subscribe( team1 => {
           match['team1name'] = team1.teamname;
           match['team1flag'] = team1.flag;

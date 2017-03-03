@@ -95,10 +95,9 @@ export class AdminMatchesComponent implements OnInit{
   getAllMatches(): void {
     this.matchesService.getAllwithTeams().subscribe( matches => {
       this.matchesmodelAll = matches;
-      this.matchesmodelAll.forEach(match => {
-        match.matchstart = new Date(match.matchstart).toLocaleString();
+      /*this.matchesmodelAll.forEach(match => {
         match.deadline = new Date(match.deadline).toLocaleString();
-      });
+      });*/
     });
   }
 

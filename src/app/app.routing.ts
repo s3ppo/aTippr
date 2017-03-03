@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RankingComponent } from './ranking/ranking.component';
+import { RankingDetailComponent } from './rankingdetail/rankingdetail.component';
 import { IntroComponent } from './intro/intro.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotComponent } from './forgot/forgot.component';
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
     { path: 'rules', component: RulesComponent, canActivate: [AuthGuard] },
     { path: 'ranking', component: RankingComponent, canActivate: [AuthGuard] },
+    { path: 'rankingdetail', component: RankingDetailComponent, canActivate: [AuthGuard] },
     { path: 'members', component: MembersComponent, canActivate: [AuthGuard] },
     { path: 'tipp', component: TippComponent, canActivate: [AuthGuard] },
     { path: 'tipp/tipper', component: TipperComponent, canActivate: [AuthGuard] },
