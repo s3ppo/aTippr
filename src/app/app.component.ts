@@ -28,11 +28,12 @@ export class AppComponent implements OnInit {
   private chatmodelview = new ChatModel(0, '', '');
   private chatmodelviewAll: ChatModel[];
   private lastChatActivity: number = 0;
-  private admin: boolean;
+  private admin: boolean = false;
+  private logged: boolean = false;
 
   constructor(
-    private membersService: MembersService,
     private loginService: LoginService,
+    private membersService: MembersService,
     private chatService: ChatService,
     private translate: TranslateService,
     private mdIconRegistry: MdIconRegistry,
@@ -47,27 +48,6 @@ export class AppComponent implements OnInit {
 
   logout(): void {
     this.loginService.logout();
-  }
-
-  isAuth(): Observable<boolean> {
-    return this.loginService.getAuthenticated().map(user => {
-      if(user) {
-        this.membersService.get(user.uid).subscribe(member => {
-          this.member = member;
-          if(!this.member.hasOwnProperty('chatactivity')) {
-            this.member.chatactivity = 0;
-          }
-        });
-        return true;
-      } else {
-        this.member = new MembersModel('','','','','',0,0);
-        return false;
-      }
-    });
-  }
-
-  isAdmin(): Observable<boolean> {
-    return this.loginService.getAdmin();
   }
 
   getChat(): void {
@@ -89,7 +69,33 @@ export class AppComponent implements OnInit {
     });
   }
 
+  getloggedUser(): void {
+    this.loginService.getAuthenticated().subscribe(user => {
+      if(user) {
+        this.membersService.get(user.uid).subscribe(user => {
+            this.member = user;
+            this.logged = true;
+            if(this.member.hasOwnProperty('admin')) {
+              if(this.member['admin'] == true) {
+                this.admin = true;
+              } else {
+                this.admin = false;
+              }
+            }
+            if(!this.member.hasOwnProperty('chatactivity')) {
+              this.member.chatactivity = 0;
+            }
+        })
+      } else {
+        this.member = new MembersModel('','','','','',0,0);
+        this.logged = null;
+        this.admin = null;
+      }
+    })
+  }
+
   ngOnInit(): void {
+    this.getloggedUser();
     this.getChat();
   }
 

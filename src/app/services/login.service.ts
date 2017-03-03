@@ -135,10 +135,6 @@ export class LoginService {
         return this.firebase.auth().sendPasswordResetEmail(user.email);
     }
 
-    setnewMemberPw(adminmember: AdminMembersModel): void {
-        
-    }
-
     logout(): void {
         this.user = {};
         this.af.auth.logout();

@@ -3,7 +3,8 @@
     <i class="material-icons app-toolbar-menu">menu</i>
   </button>
   <span class="logo_header"><a [routerLink]="['dashboard']"><img src="assets/atippr_logo.png" style="height:30px"></a></span>
-  <button *ngIf="isAuth() | async" class="app-icon-button" (click)="toggleChat(sidenavright)">
+  <!--<button *ngIf="isAuth() | async" class="app-icon-button" (click)="toggleChat(sidenavright)">-->
+  <button *ngIf="logged" class="app-icon-button" (click)="toggleChat(sidenavright)">
     <div *ngIf="member.chatactivity < lastChatActivity" class="icon-notification">!</div>
     <i class="material-icons app-toolbar-menu">chat</i>
   </button>
@@ -14,12 +15,14 @@
     <!--<md-toolbar color="primary" class="navbar">Hi {{member.firstName}}!</md-toolbar>-->
     <div class="my-content">
  
-      <md-nav-list *ngIf="!(isAuth() | async)">
+      <!--<md-nav-list *ngIf="!(isAuth() | async)">-->
+      <md-nav-list *ngIf="!logged">
         <md-list-item [routerLink]="['intro']" (click)="sidenav.toggle()"><md-icon md-list-icon>info</md-icon><p md-line>{{ 'Einführung' | translate }}</p></md-list-item>
         <md-list-item [routerLink]="['register']" (click)="sidenav.toggle()"><md-icon md-list-icon>group_add</md-icon><p md-line>{{ 'Registrieren' | translate}}</p></md-list-item>
         <md-list-item [routerLink]="['login']" (click)="sidenav.toggle()"><md-icon md-list-icon>https</md-icon><p md-line>{{ 'Login' | translate }}</p></md-list-item>
       </md-nav-list>
-      <md-nav-list *ngIf="isAuth() | async">
+      <!--<md-nav-list *ngIf="(isAuth() | async)">-->
+      <md-nav-list *ngIf="logged">
         <md-list-item [routerLink]="['dashboard']" (click)="sidenav.toggle()"><md-icon md-list-icon>dashboard</md-icon><p md-line>{{ 'Dashboard' | translate }}</p></md-list-item>
         <md-list-item [routerLink]="['ranking']" (click)="sidenav.toggle()"><md-icon svgIcon="cup" md-list-icon></md-icon><p md-line>{{ 'Rangliste' | translate }}</p></md-list-item>
         <md-list-item [routerLink]="['tipp']" (click)="sidenav.toggle()"><md-icon svgIcon="ball" md-list-icon></md-icon><p md-line>{{ 'Tippen' | translate }}</p></md-list-item>
@@ -28,7 +31,7 @@
         <md-list-item [routerLink]="['rules']" (click)="sidenav.toggle()"><md-icon md-list-icon>account_balance</md-icon><p md-line>{{ 'Regeln' | translate }}</p></md-list-item>
         <md-list-item (click)="logout()" (click)="sidenav.toggle()"><md-icon md-list-icon>power_settings_new</md-icon><p md-line>{{ 'Logout' | translate }}</p></md-list-item>
         <md-divider></md-divider>
-        <md-list-item *ngIf="isAdmin() | async" [routerLink]="['admin']" (click)="sidenav.toggle()"><md-icon md-list-icon>verified_user</md-icon><p md-line>{{ 'Administration' | translate }}</p></md-list-item>
+        <md-list-item *ngIf="admin" [routerLink]="['admin']" (click)="sidenav.toggle()"><md-icon md-list-icon>verified_user</md-icon><p md-line>{{ 'Administration' | translate }}</p></md-list-item>
       </md-nav-list>
     </div>
   </md-sidenav>
