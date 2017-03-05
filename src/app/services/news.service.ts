@@ -22,25 +22,25 @@ export class NewsService {
 
     getLast(number: number): Observable<any> {
         let filter = { query: { orderByChild: 'created', limitToLast: number } };
-        return this.loginService.af.database.list('/news/', filter);
+        return this.loginService.af.database.list('/admin/news/', filter);
     }
 
     create(object: NewsModel): void {
         object.user = this.loginService.user.uid;
         object.created = new Date().getTime();
-        this.loginService.af.database.list(`/news/`).push(object);
+        this.loginService.af.database.list(`/admin/news/`).push(object);
     }
 
     update(object: NewsModel): void {
         if(object['$key']) {
-            this.loginService.af.database.object(`/news/${object['$key']}`).update({ user: this.loginService.user.uid, created: new Date().getTime(), text: object.text });
+            this.loginService.af.database.object(`/admin/news/${object['$key']}`).update({ user: this.loginService.user.uid, created: new Date().getTime(), text: object.text });
         } else {
             this.create(object);
         }
     }
 
     delete(key: String): void {
-        this.loginService.af.database.object(`/news/${key}`).remove();
+        this.loginService.af.database.object(`/admin/news/${key}`).remove();
     }
 
 }

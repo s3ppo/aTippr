@@ -11,7 +11,7 @@ import { TeamsService } from '../../services/teams.service';
 import { DialogsService } from '../../services/dialog.service';
 
 @Component({
-  selector: 'Admin_Teams',
+  selector: 'AdminTeams',
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.css'],
   providers: [MdSnackBar],

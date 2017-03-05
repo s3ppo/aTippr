@@ -11,7 +11,7 @@ import { MembersService } from '../../services/members.service';
 import { LoginService } from '../../services/login.service';
 
 @Component({
-  selector: 'Members',
+  selector: 'AdminMembers',
   templateUrl: './members.component.html',
   styleUrls: ['./members.component.css'],
   providers: [MdSnackBar]

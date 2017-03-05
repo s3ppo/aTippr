@@ -54,10 +54,16 @@
         ".write": "$uid == auth.uid || root.child('users').child(auth.uid).child('admin').val() === true"
       }
     },
-    "news": {
-      ".indexOn": ["created"],
-      ".read": "auth != null",
-      ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
+    "admin": {
+      "news": {
+        ".indexOn": ["created"],
+        ".read": "auth != null",
+        ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
+      },
+      "rules": {
+        ".read": "auth != null",
+        ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
+      }
     }
   }
 }

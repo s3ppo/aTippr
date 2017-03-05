@@ -16,7 +16,7 @@ import { MembersService } from '../../services/members.service';
 import { RankingService } from '../../services/ranking.service';
 
 @Component({
-  selector: 'Calculate',
+  selector: 'AdminCalculate',
   templateUrl: './calculate.component.html',
   styleUrls: ['./calculate.component.css'],
   providers: []

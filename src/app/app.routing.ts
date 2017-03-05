@@ -20,6 +20,7 @@ import { AdminMembersComponent } from './admin/members/members.component';
 import { AdminMatchesComponent } from './admin/matches/matches.component';
 import { AdminCalculateComponent } from './admin/calculate/calculate.component';
 import { AdminNewsComponent } from './admin/news/news.component';
+import { AdminRulesComponent } from './admin/rules/rules.component';
 //Guards
 import { AuthGuard } from "./guards/auth.guard";
 import { AdminGuard } from "./guards/admin.guard";
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
     { path: 'admin/matches', component: AdminMatchesComponent, canActivate: [AdminGuard] },
     { path: 'admin/calculate', component: AdminCalculateComponent, canActivate: [AdminGuard] },
     { path: 'admin/news', component: AdminNewsComponent, canActivate: [AdminGuard] },
+    { path: 'admin/rules', component: AdminRulesComponent, canActivate: [AdminGuard] }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);

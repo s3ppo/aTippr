@@ -16,7 +16,7 @@ import { CategoriesModel } from '../../models/categories';
 import { TeamsModel } from '../../models/teams';
 
 @Component({
-  selector: 'Admin_Matches',
+  selector: 'AdminMatches',
   templateUrl: './matches.component.html',
   styleUrls: ['./matches.component.css'],
   providers: [MdIconRegistry],

@@ -21,6 +21,7 @@ import { RankingService } from './services/ranking.service';
 import { ChatService } from './services/chat.service';
 import { DialogsService } from './services/dialog.service';
 import { NewsService } from './services/news.service';
+import { RulesService } from './services/rules.service';
 //Translation
 import {TranslateModule, TranslateService, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
 //Guards
@@ -46,6 +47,7 @@ import { AdminMembersComponent } from './admin/members/members.component';
 import { AdminMatchesComponent, AdminCategoryDialog, AdminMatchResultDialog } from './admin/matches/matches.component';
 import { AdminCalculateComponent } from './admin/calculate/calculate.component';
 import { AdminNewsComponent } from './admin/news/news.component';
+import { AdminRulesComponent } from './admin/rules/rules.component';
 import { ConfirmDialog } from './dialogs/confirm-dialog.component';
 import { TippsDialog } from './dialogs/tipps-dialog.component';
 
@@ -86,6 +88,7 @@ export function createTranslateLoader(http: Http) {
     AdminMatchResultDialog,
     AdminCalculateComponent,
     AdminNewsComponent,
+    AdminRulesComponent,
     ConfirmDialog,
     TippsDialog,
   ],
@@ -118,7 +121,8 @@ export function createTranslateLoader(http: Http) {
     AuthGuard,
     AdminGuard,
     DialogsService,
-    NewsService
+    NewsService,
+    RulesService,
   ],
   entryComponents: [
     AdminCategoryDialog,

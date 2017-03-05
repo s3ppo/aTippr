@@ -10,7 +10,7 @@ import { NewsModel } from '../../models/news';
 import { NewsService } from '../../services/news.service';
 
 @Component({
-  selector: 'News',
+  selector: 'AdminNews',
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.css'],
   providers: [MdSnackBar]
