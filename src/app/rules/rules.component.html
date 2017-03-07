@@ -1,16 +1,20 @@
 <div class="card-container">
     <div class="rules_wrapper"> 
         <h2>{{ 'Regeln' | translate }}</h2>
-        <h3>Punkteverteilung pro Match</h3>
+        <h3>{{ 'Allgemeines zum Tippen' | translate}}</h3>
+        {{ 'tippstext1' | translate }}<br>
+        {{ 'tippstext2' | translate }}<br>
+        {{ 'tippstext3' | translate }}<br><br>
+        {{ 'tippstext4' | translate }}<br>
+        {{ 'tippstext5' | translate }}<br>
+        <br>
+        <h3>{{ 'Punkteverteilung pro Match' | translate }}</h3>
         <ul>
-            <li>Sieg, Niederlage oder Unentschieden richtig getippt:	4 Punkte</li>
-            <li>Die Tordifferenz richtig getippt:	3 Punkte</li>
-            <li>Summe der geschossenen Tore vom Heimteam richtig getippt:	1 Punkte</li>
-            <li>Summe der geschossenen Tore vom Auswärtsteam richtig getippt:	1 Punkte</li>
-            <li>Summe aller geschossenen Tore richtig getippt:	1 Punkte</li>
+            <li *ngFor="let rule of rulesmodel">{{ rule.$key | translate }}:	{{ rule.points }} {{ 'Punkte' | translate }}</li>
         </ul>
-        Alle oben zutreffenden Aussagen ergeben aufaddiert die geholte Punktzahl des Tipps.
-        Falls die Punktzahl negativ werden würde, wird sie auf Null gesetzt.
+        Alle oben zutreffenden Aussagen ergeben aufaddiert die geholte Punktzahl des Tipps.<br>
         Der Administrator kann bei ausgewählten Spielen die Punktzahl um einen beliebigen Faktor erhöhen. Der Faktor ist bei diesen Spielen angegeben.
+        <h3>{{ 'Rechtliches' | translate }}</h3>
+        {{ 'Rechtlichestext1' | translate }}<br>
     </div>
 </div>

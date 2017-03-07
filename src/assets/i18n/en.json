@@ -36,7 +36,7 @@
     "Bisher keine Matches in dieser Kategorie vorhanden": "No matches yet in this category",
     "Zu den Tipps": "Go to tipps",
     "Nächstes Match": "Upcoming match",
-    "Mein Profil": "My profile",
+    "Mein Profil": "My Profile",
     "Nachricht": "Message",
     "online": "online",
     "gesamt": "total",
@@ -55,5 +55,13 @@
     "Gruppe": "Group",
     "Anlegen": "Create",
     "Name": "Name",
-    "Mitspieler Rang Detail": "Member Rank Detail"
+    "Mitspieler Rang Detail": "Member Rank Detail",
+    "rules_winner": "Win, lost or draw tipped correctly",
+    "rules_diff": "Goal difference tipped correctly",
+    "rules_goals_home": "Sum number of goals for team playing at home tipped correctly",
+    "rules_goals_abroad": "Sum number of goals for team playing abroad tipped correctly",
+    "rules_goals_all": "Sum number of all goals tipped correctly",
+    "Punkte": "Points",
+    "Punkteverteilung pro Match": "Point calculation per match",
+    "Allgemeines zum Tippen": "General information about the tip"
 }

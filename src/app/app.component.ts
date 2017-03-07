@@ -3,7 +3,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 //Translate
-import { TranslateService } from 'ng2-translate';
+import { TranslateService } from '@ngx-translate/core';
 //Material
 import { MdIconRegistry } from '@angular/material';
 //Models

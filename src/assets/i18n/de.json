@@ -55,5 +55,13 @@
     "Gruppe": "Gruppe",
     "Anlegen": "Anlegen",
     "Name": "Name",
-    "Mitspieler Rang Detail": "Mitspieler Rang Detail"
+    "Mitspieler Rang Detail": "Mitspieler Rang Detail",
+    "rules_winner": "Sieg, Niederlage oder Unentschieden richtig getippt",
+    "rules_diff": "Tordifferenz richtig getippt",
+    "rules_goals_home": "Summe der geschossenen Tore vom Heimteam richtig getippt",
+    "rules_goals_abroad": "Summe der geschossenen Tore vom Auswärtsteam richtig getippt",
+    "rules_goals_all": "Summe aller geschossenen Tore richtig getippt",
+    "Punkte": "Punkte",
+    "Punkteverteilung pro Match": "Punkteverteilung pro Match",
+    "Allgemeines zum Tippen": "Allgemeines zum Tippen"
 }

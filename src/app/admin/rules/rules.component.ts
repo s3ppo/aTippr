@@ -27,7 +27,7 @@ export class AdminRulesComponent implements OnInit{
 
   getRules(): void {
     this.rulesService.getAll().subscribe(rules => {
-        this.rulesmodel = rules;
+      this.rulesmodel = rules;
     })
   }
 

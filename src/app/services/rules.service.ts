@@ -19,19 +19,20 @@ export class RulesService {
   ){}
 
     getAll(): Observable<any> {
-        return this.loginService.af.database.list('/rules/');
+        let filter = { query: { orderByChild: 'sort' } };
+        return this.loginService.af.database.list('/admin/rules/', filter);
     }
 
-    create(object: RulesModel): void {
-        this.loginService.af.database.list(`/rules/`).push(object);
+    create(rule: RulesModel, key: String): void {
+        this.loginService.af.database.object(`/admin/rules/${key}`).set({ points: rule.points, active: rule.active, sort: rule.sort });
     }
 
-    update(object: RulesModel): void {
-        this.loginService.af.database.object(`/rules/${object['$key']}`).update(object);
+    update(rule: RulesModel): void {
+        this.loginService.af.database.object(`/admin/rules/${rule['$key']}`).update({ points: rule.points, active: rule.active, sort: rule.sort });
     }
 
     delete(key: String): void {
-        this.loginService.af.database.object(`/rules/${key}`).remove();
+        this.loginService.af.database.object(`/admin/rules/${key}`).remove();
     }
 
 }

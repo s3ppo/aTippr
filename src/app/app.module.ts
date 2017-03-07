@@ -23,7 +23,8 @@ import { DialogsService } from './services/dialog.service';
 import { NewsService } from './services/news.service';
 import { RulesService } from './services/rules.service';
 //Translation
-import {TranslateModule, TranslateService, TranslateLoader, TranslateStaticLoader} from 'ng2-translate/ng2-translate';
+import { TranslateModule, TranslateService, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 //Guards
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
@@ -62,7 +63,7 @@ var firebaseConfig = {
 
 // Initialize TranslateLoader
 export function createTranslateLoader(http: Http) {
-    return new TranslateStaticLoader(http, './assets/i18n', '.json');
+    return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
@@ -100,10 +101,12 @@ export function createTranslateLoader(http: Http) {
     routing,
     AngularFireModule.initializeApp(firebaseConfig),
     TranslateModule.forRoot({
-      provide: TranslateLoader,
-      useFactory: (createTranslateLoader),
-      deps: [Http],
-    }),
+        loader: {
+            provide: TranslateLoader,
+            useFactory: (createTranslateLoader),
+            deps: [Http]
+        }
+    })
   ],
   exports: [
     ConfirmDialog,

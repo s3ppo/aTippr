@@ -1,7 +1,7 @@
 /* * * ./app/models/rules.ts * * */
 export class RulesModel {
     constructor(
-        public text: string,
+        public sort: number,
         public points: number,
         public active: boolean,
     ){}

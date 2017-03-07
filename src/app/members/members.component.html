@@ -7,8 +7,10 @@
           <div class="mat-list-text">
             &nbsp; {{member.firstName}} {{member.lastName}}
           </div>
-          <div *ngIf="member.lastactivity > onlinecheck" class="status_online"></div>
-          <div *ngIf="member.lastactivity < onlinecheck" class="status_offline"></div>  
+          <div class="online-wrapper">
+            <div *ngIf="member.lastactivity > onlinecheck" class="status_online"></div>
+            <div *ngIf="member.lastactivity < onlinecheck" class="status_offline"></div>
+          </div>
         </md-list-item>
     </md-nav-list>
   </div>

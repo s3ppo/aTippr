@@ -1,6 +1,16 @@
 <div class="card-container">
   <div class="rules_wrapper">
     <h2><a [routerLink]="['/admin']"><md-icon>arrow_back</md-icon></a> &nbsp; {{ 'Regeln' | translate }}</h2>
-
+    <md-nav-list>
+        <md-list-item *ngFor="let rule of rulesmodel">
+          <md-checkbox [(ngModel)]="rule.active" (change)="changePaid(i)" align="start"></md-checkbox>
+          <div class="mat-list-text">
+            {{ rule.$key | translate }}
+          </div>
+          <md-input-container>
+            <input mdInput type="number" [(ngModel)]="rule.points" name="points" style="width:35px" min="0" max="99">
+          </md-input-container>
+        </md-list-item>
+    </md-nav-list>
   </div>
 </div>

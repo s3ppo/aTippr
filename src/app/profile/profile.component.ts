@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 //Translate
-import { TranslateService } from 'ng2-translate';
+import { TranslateService } from '@ngx-translate/core';
 //Material
 import { MdSnackBar } from '@angular/material';
 //Models

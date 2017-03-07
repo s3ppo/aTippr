@@ -4,6 +4,13 @@
 .members_wrapper {
     margin: 10px;
 }
+.online-wrapper {
+	width: 24px;
+	height: 24px;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
 .status_online {
 	border-radius: 50%;
 	width: 10px;
