@@ -28,8 +28,9 @@ export class AdminMembersComponent implements OnInit{
   private adminmembersmodel: AdminMembersModel[];
 
   getAllMembers(): void {
-    this.membersService.getAll().subscribe(members  => { 
+    this.membersService.getAll(true).subscribe(members  => { 
       this.adminmembersmodel = members;
+      this.adminmembersmodel.reverse();
     });
   }
 

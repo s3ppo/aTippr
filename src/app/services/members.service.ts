@@ -22,8 +22,12 @@ export class MembersService {
         this.firebase = firebase;
     }
 
-    getAll(): FirebaseListObservable<any> {
-        return this.loginService.af.database.list('/users');
+    getAll(sort?: boolean): FirebaseListObservable<any> {
+        let filter: any;
+        if(sort) {
+            filter = { query: { orderByChild: 'lastactivity' } };
+        }
+        return this.loginService.af.database.list('/users', filter);
     }
 
     get(uid: string): FirebaseObjectObservable<any> {

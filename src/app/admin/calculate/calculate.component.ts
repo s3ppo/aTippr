@@ -38,12 +38,14 @@ export class AdminCalculateComponent {
 
   calc(): void {
     this.matchesService.getAll().take(1).subscribe( match => {
-      this.matchesmodelAll = match;
-      this.matchesmodelAll.forEach((matchline, index) => {
-        if(!matchline.result1 && !matchline.result2){
-          this.matchesmodelAll.splice(index, 1);
+      
+      this.matchesmodelAll = [];
+      match.forEach(matchline => {
+        if(matchline.hasOwnProperty('result1') && matchline.hasOwnProperty('result2')){
+          this.matchesmodelAll.push(matchline);
         }
       });
+
       this.membersService.getAll().take(1).subscribe( members => {
         members.forEach( (member, mindex) => {
           this.tippsService.getAllUser(member['$key']).take(1).subscribe( tipps => {
@@ -63,6 +65,7 @@ export class AdminCalculateComponent {
           })
         })
       })
+
     });
   }
 
@@ -73,7 +76,7 @@ export class AdminCalculateComponent {
       //match has actually no result
       return 0;
     }
-    if((tipp.tipp1 == null || tipp.tipp1 == undefined) && (tipp.tipp2 == null || tipp.tipp2 == undefined)) {
+    if((tipp.tipp1 == null || tipp.tipp1 == undefined) || (tipp.tipp2 == null || tipp.tipp2 == undefined)) {
       return 0;
     }
 
@@ -85,7 +88,7 @@ export class AdminCalculateComponent {
     if(tipp.tipp2 == match.result2) {
       matchpoints = matchpoints + 1;
     }
-    //points for number of goals correct
+    //points for number of all goals correct
     if((tipp.tipp1 + tipp.tipp2) == (match.result1 + match.result2)) {
       matchpoints = matchpoints + 1;
     }
