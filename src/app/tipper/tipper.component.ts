@@ -80,7 +80,7 @@ export class TipperComponent implements OnInit{
             match['team2flag'] = team2.flag;
           })
         })
-        this.rankingService.getDetailSelf(match['$key']).subscribe( rankingDet => {
+        this.rankingService.getDetailSelfMatch(match['$key']).subscribe( rankingDet => {
           match.points = rankingDet.points;
         })
       })

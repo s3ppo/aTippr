@@ -1,11 +1,9 @@
 //Angular
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 //Material
 import { MdSnackBar } from '@angular/material';
-//Models
-import { RankingModelAll } from '../models/ranking';
 //Services
 import { RankingService } from '../services/ranking.service';
 
@@ -17,17 +15,32 @@ import { RankingService } from '../services/ranking.service';
 })
 export class RankingDetailComponent implements OnInit {
 
-  private rankingmodel: RankingModelAll[];
+  private rankingDetail = [];
   private preloadingDone: boolean;
+  private member: string;
 
   constructor(
     private router: Router,
+    private route: ActivatedRoute,
     private snackBar: MdSnackBar,
     private rankingService: RankingService,
   ){}
 
-  ngOnInit(): void {
+  getParams(): void {
+    this.route.params.forEach((params: Params) => {
+      this.member = params['member'];
+    });
+  }
 
+  getRankingDetail(): void {
+    this.rankingService.getDetailMember(this.member).subscribe(rankingdetail => {
+      this.rankingDetail = rankingdetail;
+    })
+  }
+
+  ngOnInit(): void {
+    this.getParams();
+    this.getRankingDetail();
   }
 
 }

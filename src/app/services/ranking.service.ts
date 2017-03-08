@@ -33,7 +33,11 @@ export class RankingService {
         this.loginService.af.database.object(`/ranking/${member}/matches/${match}`).update({points: points, tipp1: tipp1, tipp2: tipp2});
     }
 
-    getDetailSelf(match: string): Observable<any> {
+    getDetailMember(user: string): Observable<any> {
+        return this.loginService.af.database.list(`/ranking/${user}/matches/`);
+    }
+
+    getDetailSelfMatch(match: string): Observable<any> {
         return this.loginService.af.database.object(`/ranking/${this.loginService.user.uid}/matches/${match}`);
     }
 

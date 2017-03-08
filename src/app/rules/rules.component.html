@@ -7,7 +7,6 @@
         {{ 'tippstext3' | translate }}<br><br>
         {{ 'tippstext4' | translate }}<br>
         {{ 'tippstext5' | translate }}<br>
-        <br>
         <h3>{{ 'Punkteverteilung pro Match' | translate }}</h3>
         <ul>
             <li *ngFor="let rule of rulesmodel">{{ rule.$key | translate }}: {{ rule.points }} {{ 'Punkte' | translate }}</li>
