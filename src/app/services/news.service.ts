@@ -31,7 +31,7 @@ export class NewsService {
         this.loginService.af.database.list(`/admin/news/`).push(object);
     }
 
-    update(object: NewsModel): void {
+    change(object: NewsModel): void {
         if(object['$key']) {
             this.loginService.af.database.object(`/admin/news/${object['$key']}`).update({ user: this.loginService.user.uid, created: new Date().getTime(), text: object.text });
         } else {

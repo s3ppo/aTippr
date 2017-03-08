@@ -36,7 +36,7 @@ export class AdminNewsComponent implements OnInit{
   }
 
   changeNews(): void {
-    this.newsService.update(this.newsmodel);
+    this.newsService.change(this.newsmodel);
     this.snackBar.open('News successfully changed', 'Close', {duration:2000});
   }
 

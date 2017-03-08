@@ -32,6 +32,7 @@ export class AdminRulesComponent implements OnInit{
   }
 
   changeRules(): void {
+    this.rulesService.change(this.rulesmodel);
     this.snackBar.open('Rules successfully changed', 'Close', {duration:2000});
   }
 

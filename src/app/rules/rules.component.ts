@@ -25,7 +25,12 @@ export class RulesComponent implements OnInit {
 
   getRules(): void {
     this.rulesService.getAll().subscribe(rules => {
-      this.rulesmodel = rules;
+      this.rulesmodel = [];
+      rules.forEach(rule => {
+        if(rule.active == true) {
+          this.rulesmodel.push(rule);
+        }
+      })
     })
   }
 

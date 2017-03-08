@@ -3,7 +3,7 @@
     <h2><a [routerLink]="['/admin']"><md-icon>arrow_back</md-icon></a> &nbsp; {{ 'Regeln' | translate }}</h2>
     <md-nav-list>
         <md-list-item *ngFor="let rule of rulesmodel">
-          <md-checkbox [(ngModel)]="rule.active" (change)="changePaid(i)" align="start"></md-checkbox>
+          <md-checkbox [(ngModel)]="rule.active" align="start"></md-checkbox>
           <div class="mat-list-text">
             {{ rule.$key | translate }}
           </div>
@@ -14,3 +14,8 @@
     </md-nav-list>
   </div>
 </div>
+<span class="app-action">
+  <button md-fab (click)="changeRules()" color="primary">
+    <md-icon>save</md-icon>
+  </button>
+</span>

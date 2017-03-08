@@ -27,8 +27,10 @@ export class RulesService {
         this.loginService.af.database.object(`/admin/rules/${key}`).set({ points: rule.points, active: rule.active, sort: rule.sort });
     }
 
-    update(rule: RulesModel): void {
-        this.loginService.af.database.object(`/admin/rules/${rule['$key']}`).update({ points: rule.points, active: rule.active, sort: rule.sort });
+    change(rules: RulesModel[]): void {
+        rules.forEach(rule => {
+            this.loginService.af.database.object(`/admin/rules/${rule['$key']}`).update({ points: rule.points, active: rule.active, sort: rule.sort });
+        })
     }
 
     delete(key: String): void {

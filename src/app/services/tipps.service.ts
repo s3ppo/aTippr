@@ -64,15 +64,8 @@ export class TippsService {
       matches.forEach(match_line => {
         match_line.user = this.membersService.get(match_line.$key);
       })
-      console.log(matches)
       return matches;
     });
   }
-
-  //Set open tipps
-  /*setOpenTipp(tipp: TippsModel, user: String) {
-    this.loginService.af.database.object(`/tipps_open/public/${tipp.match}/${tipp['$key']}`).update({ tipp1: tipp.tipp1, tipp2: tipp.tipp2 });
-    this.loginService.af.database.object(`/tipps_open/secure/${tipp.match}/${user}/${tipp['$key']}`).update({ user: user, tipp1: tipp.tipp1, tipp2: tipp.tipp2 })
-  }*/
 
 }

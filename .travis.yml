@@ -8,5 +8,5 @@ install:
   - npm install -g @angular/cli@latest
   - npm install
 after_success:
-  - ng build --prod
+  - ng build --prod --aot
   - firebase deploy --token $FIREBASE_TOKEN
