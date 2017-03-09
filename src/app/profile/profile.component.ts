@@ -60,9 +60,9 @@ export class ProfileComponent implements OnInit {
       var ctx = canvas.getContext("2d");
       ctx.drawImage(img, 0, 0, width, height);
       let dataurl = canvas.toDataURL(event.srcElement.files[0].type);
-      var blob = this.dataURItoBlob(dataurl)
+      var blob = this.dataURItoBlob(dataurl);
       this.uploadfile = new File([blob], event.srcElement.files[0].name, {type: event.srcElement.files[0].type, lastModified: Date.now()});
-    }
+    };
     reader.readAsDataURL(event.srcElement.files[0]);
   }
 

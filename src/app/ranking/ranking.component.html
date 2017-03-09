@@ -6,14 +6,16 @@
             <thead>
                 <tr>
                     <th>Rank</th>
-                    <th>Name</th> 
+                    <th>Name</th>
+                    <th>&nbsp;</th>
                     <th>Points</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let ranking of rankingmodel; let i = index;">
                     <td>{{i+1}}.</td>
-                    <td>{{(ranking.user | async)?.firstName}} {{(ranking.user | async)?.lastName}}</td> 
+                    <td>{{(ranking.user | async)?.firstName}} {{(ranking.user | async)?.lastName}}</td>
+                    <td><md-icon [routerLink]="['rankingdetail', {member: ranking['$key']}]">poll</md-icon></td>
                     <td>{{ranking.points}}</td>
                 </tr>
             </tbody>

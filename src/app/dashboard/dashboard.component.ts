@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit{
   private membersmodel: MembersModel[];
   private membersOnline: number;
   private matchesmodel = new MatchesModelDashboard('', '', '', '', 0, 0, 0, 0, 0, '', '');
-  private newsmodel = new NewsModel('','',0)
+  private newsmodel = new NewsModel('','',0);
   private preloadingNextMatchDone: boolean = false;
   private preloadingMembersDone: boolean = false;
   private preloadingNewsDone: boolean = false;
@@ -63,7 +63,7 @@ export class DashboardComponent implements OnInit{
         if(member.lastactivity >= (new Date().getTime() - 300000)){
           this.membersOnline = this.membersOnline + 1;
         }
-      })
+      });
       this.preloadingMembersDone = true;
     })
   }

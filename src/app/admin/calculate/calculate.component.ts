@@ -38,7 +38,7 @@ export class AdminCalculateComponent {
 
   calc(): void {
     this.matchesService.getAll().take(1).subscribe( match => {
-      
+
       this.matchesmodelAll = [];
       match.forEach(matchline => {
         if(matchline.hasOwnProperty('result1') && matchline.hasOwnProperty('result2')){
@@ -59,7 +59,7 @@ export class AdminCalculateComponent {
                 }
               }
               rankings.points = rankings.points + points;
-            })
+            });
             this.rankingService.change(rankings);
             this.progress = this.progress + member.firstName + " " + member.lastName + "-> DONE!<br>";
           })

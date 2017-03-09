@@ -25,7 +25,7 @@ export class ChatService {
         return this.loginService.af.database.list('/chat/', filter).map(chats => {
             chats.forEach(chat => {
                 chat.member = this.membersService.get(chat.user);
-            })
+            });
             return chats;
         });
     }

@@ -20,7 +20,7 @@ export class RankingService {
         return this.loginService.af.database.list(`/ranking/`).map((rankings) => {
             rankings.forEach(ranking => {
                 ranking.user = this.loginService.af.database.object(`/users/${ranking.$key}`);
-            })
+            });
             return rankings;
         });
     }

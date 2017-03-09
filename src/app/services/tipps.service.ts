@@ -63,7 +63,7 @@ export class TippsService {
     return this.loginService.af.database.list(`/tipps_open/secure/${match}`).map(matches => {
       matches.forEach(match_line => {
         match_line.user = this.membersService.get(match_line.$key);
-      })
+      });
       return matches;
     });
   }

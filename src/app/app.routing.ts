@@ -34,7 +34,7 @@ const appRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
     { path: 'rules', component: RulesComponent, canActivate: [AuthGuard] },
     { path: 'ranking', component: RankingComponent, canActivate: [AuthGuard] },
-    { path: 'rankingdetail', component: RankingDetailComponent, canActivate: [AuthGuard] },
+    { path: 'ranking/rankingdetail', component: RankingDetailComponent, canActivate: [AuthGuard] },
     { path: 'members', component: MembersComponent, canActivate: [AuthGuard] },
     { path: 'tipp', component: TippComponent, canActivate: [AuthGuard] },
     { path: 'tipp/tipper', component: TipperComponent, canActivate: [AuthGuard] },

@@ -79,11 +79,11 @@ export class TipperComponent implements OnInit{
             match['team2name'] = team2.teamname;
             match['team2flag'] = team2.flag;
           })
-        })
+        });
         this.rankingService.getDetailSelfMatch(match['$key']).subscribe( rankingDet => {
           match.points = rankingDet.points;
         })
-      })
+      });
       this.getAllTipps(category);
     });
   }
@@ -131,7 +131,7 @@ export class TipperComponent implements OnInit{
           }
         }
       }
-    })
+    });
 
     //Change existing tipps
     this.tippsService.change(tippsupdate);
