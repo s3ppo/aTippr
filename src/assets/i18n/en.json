@@ -55,7 +55,7 @@
     "Gruppe": "Group",
     "Anlegen": "Create",
     "Name": "Name",
-    "Mitspieler Rang Detail": "Member Rank Detail",
+    "Mitspieler Details": "Member Details",
     "rules_winner": "Win, lost or draw tipped correctly",
     "rules_diff": "Goal difference tipped correctly",
     "rules_goals_home": "Sum number of goals for team playing at home tipped correctly",
@@ -63,5 +63,7 @@
     "rules_goals_all": "Sum number of all goals tipped correctly",
     "Punkte": "Points",
     "Punkteverteilung pro Match": "Point calculation per match",
-    "Allgemeines zum Tippen": "General information about the tip"
+    "Allgemeines zum Tippen": "General information about the tip",
+    "Platz": "Rank",
+    "Spiel": "Match"
 }

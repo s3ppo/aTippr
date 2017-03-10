@@ -55,7 +55,7 @@ export class AdminCalculateComponent {
               let match = this.matchesmodelAll.find(match => match['$key'] == tipp.match);
               if(match){
                 if(match.deadline <= new Date().getTime()) {
-                  this.rankingService.changeDetail(member['$key'], tipp.match, points, tipp.tipp1, tipp.tipp2);
+                  this.rankingService.changeDetail(member['$key'], tipp.match, points, tipp.tipp1, tipp.tipp2, match.team1, match.team2, match.result1, match.result2);
                 }
               }
               rankings.points = rankings.points + points;

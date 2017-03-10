@@ -7,6 +7,10 @@
     <div *ngIf="member.chatactivity < lastChatActivity" class="icon-notification">!</div>
     <i class="material-icons app-toolbar-menu">chat</i>
   </button>
+  <div>
+    <img class="user-avatar" *ngIf="member.photo" src="{{ member.photo }}" alt="Avatar">
+    <img class="user-avatar" *ngIf="member.photoSocial" src="{{ member.photoSocial }}" alt="Avatar">
+  </div>
 </md-toolbar>
 
 <md-sidenav-container class="app-layout">
