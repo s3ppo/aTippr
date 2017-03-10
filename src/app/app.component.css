@@ -105,8 +105,8 @@ md-sidenav-container {
     z-index: 10;
 }
 .user-avatar {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     background-position: center;
     border-radius: 50%;
 }
