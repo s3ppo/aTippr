@@ -15,7 +15,7 @@
                 <tr *ngFor="let ranking of rankingmodel; let i = index;">
                     <td>{{i+1}}.</td>
                     <td>{{(ranking.user | async)?.firstName}} {{(ranking.user | async)?.lastName}}</td>
-                    <td><md-icon [routerLink]="['rankingdetail', {member: ranking['$key']}]">poll</md-icon></td>
+                    <td><md-icon [routerLink]="['rankingdetail', {member: ranking['$key'], membername: (ranking.user | async)?.firstName}]">poll</md-icon></td>
                     <td>{{ranking.points}}</td>
                 </tr>
             </tbody>

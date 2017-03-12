@@ -18,6 +18,7 @@ export class RankingDetailComponent implements OnInit {
   private rankingDetail = [];
   private preloadingDone: boolean;
   private member: string;
+  private membername: string;
 
   constructor(
     private router: Router,
@@ -29,6 +30,7 @@ export class RankingDetailComponent implements OnInit {
   getParams(): void {
     this.route.params.forEach((params: Params) => {
       this.member = params['member'];
+      this.membername = params['membername'];
     });
   }
 
