@@ -2,7 +2,8 @@
   <button class="app-icon-button" (click)="sidenav.toggle()">
     <i class="material-icons app-toolbar-menu">menu</i>
   </button>
-  <span class="logo_header"><a [routerLink]="['dashboard']"><img src="assets/atippr_logo.png" style="height:30px"></a></span>
+  <!--<span class="logo_header"><a [routerLink]="['dashboard']"><img src="assets/atippr_logo.png" style="height:30px"></a></span>-->
+  <span class="logo_header"><img [routerLink]="['dashboard']" src="assets/atippr_logo.svg" type="image/svg+xml" style="height:30px"></span>
   <button *ngIf="logged" class="app-icon-button" (click)="toggleChat(sidenavright)">
     <div *ngIf="member.chatactivity < lastChatActivity" class="icon-notification">!</div>
     <i class="material-icons app-toolbar-menu">chat</i>

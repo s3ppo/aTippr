@@ -106,7 +106,7 @@ export function createTranslateLoader(http: Http) {
             useFactory: (createTranslateLoader),
             deps: [Http]
         }
-    })
+    }),
   ],
   exports: [
     ConfirmDialog,

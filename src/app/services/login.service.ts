@@ -17,7 +17,7 @@ export class LoginService {
 
     public user: any;
     public firebase: any;
-    public gameid: String;
+    private gameid: String;
 
     constructor (
         private router: Router,
@@ -33,7 +33,7 @@ export class LoginService {
         if(this.user != undefined && this.user != null){
             this.af.database.object(`users/${this.user.uid}`).update({ lastactivity: new Date().getTime() });
             if(!this.gameid) {
-                this.af.database.object(`users/${this.user.uid}`).subscribe( user => {
+                this.af.database.object(`users/${this.user.uid}`).take(1).subscribe( user => {
                     if(user.hasOwnProperty('gameid')) {
                         this.gameid = user.gameid;
                     }
@@ -45,25 +45,6 @@ export class LoginService {
     getAuthenticated(): Observable<any> { 
         return this.af.auth; 
     }
-
-    /*getAdmin(): Observable<boolean> {
-        return new Observable<boolean>( observer => {
-            if(this.user){
-                this.af.database.object(`users/${this.user.uid}`)
-                    .subscribe( data => {   if(data.hasOwnProperty('admin')) {
-                                                if(data.admin == true) {
-                                                    observer.next(true);
-                                                } else {
-                                                    observer.next(false);
-                                                }
-                                            } else {
-                                                observer.next(false);
-                                            }
-                                        },
-                                err  => {   observer.next(false); });
-            }
-        })
-    }*/
 
     emailLogin(login: LoginModel): Promise<any> {
         let creds: any = { email: login.email, password: login.password };

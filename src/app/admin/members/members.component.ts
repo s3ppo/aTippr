@@ -29,10 +29,8 @@ export class AdminMembersComponent implements OnInit{
 
   getAllMembers(): void {
     this.membersService.getAll(true).subscribe(members  => {
-      if(members.length > 0) {
         this.adminmembersmodel = members;
         this.adminmembersmodel.reverse();
-      }
     });
   }
 
