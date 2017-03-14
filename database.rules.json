@@ -1,49 +1,62 @@
 {
   "rules": {
-    "categories": {
-      ".read": "auth != null",
-      ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
-    },
-    "matches": {
-      ".indexOn": ["category", "matchstart"],
-      ".read": "auth != null",
-      ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
-    },
-    "ranking": {
-      ".read": "auth != null",
-      ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
-    },
-    "teams": {
-      ".read": "auth != null",
-      ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
-    },
-    "chat": {
-      ".indexOn": ["created"],
-      ".read": "auth != null",
-      ".write": "auth != null"
-    },
-    "tipps": {
-      "$uid": {
-    		".indexOn": ["category"],
-        ".read": "$uid == auth.uid || root.child('users').child(auth.uid).child('admin').val() === true",
-        ".write": "$uid === auth.uid && root.child('matches').child( newData.child('match').val() ).child('deadline').val() >= now",
-        "$tippid": {
-          ".read": "$uid == auth.uid || root.child('users').child(auth.uid).child('admin').val() === true",
-          ".write": "$uid === auth.uid && root.child('matches').child( newData.child('match').val() ).child('deadline').val() >= now"
-        }
-      }
-    },
-    "tipps_open": {
-      "public": {
-      	".read": "auth != null",
-      	".write": "auth != null"
+    "$gameid": {
+      "categories": {
+        ".read": "auth != null",
+        ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
       },
-      "secure": {
-        "$matchid": {
-        	".read": "auth != null && root.child('matches').child( $matchid ).child('deadline').val() <= now",
-      		"$uid": {
-            ".write": "$uid === auth.uid && root.child('matches').child( $matchid ).child('deadline').val() >= now"
+      "matches": {
+        ".indexOn": ["category", "matchstart"],
+        ".read": "auth != null",
+        ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
+      },
+      "ranking": {
+        ".read": "auth != null",
+        ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
+      },
+      "teams": {
+        ".read": "auth != null",
+        ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
+      },
+      "chat": {
+        ".indexOn": ["created"],
+        ".read": "auth != null",
+        ".write": "auth != null"
+      },
+      "tipps": {
+        "$uid": {
+          ".indexOn": ["category"],
+          ".read": "$uid == auth.uid || root.child('users').child(auth.uid).child('admin').val() === true",
+          ".write": "$uid === auth.uid && root.child('matches').child( newData.child('match').val() ).child('deadline').val() >= now",
+          "$tippid": {
+            ".read": "$uid == auth.uid || root.child('users').child(auth.uid).child('admin').val() === true",
+            ".write": "$uid === auth.uid && root.child('matches').child( newData.child('match').val() ).child('deadline').val() >= now"
           }
+        }
+      },
+      "tipps_open": {
+        "public": {
+          ".read": "auth != null",
+          ".write": "auth != null"
+        },
+        "secure": {
+          "$matchid": {
+            ".read": "auth != null && root.child('matches').child( $matchid ).child('deadline').val() <= now",
+            "$uid": {
+              ".write": "$uid === auth.uid && root.child('matches').child( $matchid ).child('deadline').val() >= now"
+            }
+          }
+        }
+      },
+      "admin": {
+        "news": {
+          ".indexOn": ["created"],
+          ".read": "auth != null",
+          ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
+        },
+        "rules": {
+          ".read": "auth != null",
+          ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
         }
       }
     },
@@ -52,17 +65,6 @@
       "$uid": {
         ".read": "auth != null",
         ".write": "$uid == auth.uid || root.child('users').child(auth.uid).child('admin').val() === true"
-      }
-    },
-    "admin": {
-      "news": {
-        ".indexOn": ["created"],
-        ".read": "auth != null",
-        ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
-      },
-      "rules": {
-        ".read": "auth != null",
-        ".write": "root.child('users').child(auth.uid).child('admin').val() === true"
       }
     }
   }
