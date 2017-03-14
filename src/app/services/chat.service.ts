@@ -14,30 +14,36 @@ import { ChatModel } from '../models/chat';
 @Injectable()
 export class ChatService {
 
-  constructor (
-      private loginService: LoginService,
-      private membersService: MembersService,
-      private router: Router
-  ){}
+    constructor (
+        private loginService: LoginService,
+        private membersService: MembersService,
+        private router: Router
+    ){ }
 
     getLast(number: number): Observable<any> {
-        let filter = { query: { orderByChild: 'created', limitToLast: number } };
-        return this.loginService.af.database.list('/chat/', filter).map(chats => {
-            chats.forEach(chat => {
-                chat.member = this.membersService.get(chat.user);
+        return this.loginService.userdata.flatMap( userdata => {
+            let filter = { query: { orderByChild: 'created', limitToLast: number } };
+            return this.loginService.af.database.list(userdata.gameid+`/chat/`, filter).map(chats => {
+                chats.forEach(chat => {
+                    chat.member = this.membersService.get(chat.user);
+                });
+                return chats;
             });
-            return chats;
-        });
+        }).first();
     }
 
     create(object: ChatModel): void {
-        object.user = this.loginService.user.uid;
-        object.created = new Date().getTime();
-        this.loginService.af.database.list(`/chat/`).push(object);
+        this.loginService.userdata.subscribe( userdata => {
+            object.user = this.loginService.user.uid;
+            object.created = new Date().getTime();
+            this.loginService.af.database.list(userdata.gameid+`/chat/`).push(object);
+        })
     }
 
     delete(key: String): void {
-        this.loginService.af.database.object(`/chat/${key}`).remove();
+        this.loginService.userdata.subscribe( userdata => {
+            this.loginService.af.database.object(userdata.gameid+`/chat/${key}`).remove();
+        })
     }
 
 }

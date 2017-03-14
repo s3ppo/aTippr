@@ -15,27 +15,33 @@ export class TeamsService {
     private firebase: any;
 
     constructor (
-        private loginservice: LoginService,
+        private loginService: LoginService,
         private af: AngularFire,
         @Inject(FirebaseApp) firebase: any,
     ){
         this.firebase = firebase;
     }
 
-    getAll(): FirebaseListObservable<any> {
-        return this.loginservice.af.database.list('/teams/');
+    getAll(): Observable<any> {
+        return this.loginService.userdata.flatMap( userdata => {
+            return this.loginService.af.database.list(userdata.gameid+'/teams/');
+        })
     }
 
-    get(key: string): FirebaseObjectObservable<any> {
-        return this.loginservice.af.database.object(`/teams/${key}`);
+    get(key: string): Observable<any> {
+        return this.loginService.userdata.flatMap( userdata => {
+            return this.loginService.af.database.object(userdata.gameid+`/teams/${key}`);
+        })
     }
 
     create(object: TeamsModel, file: File): void {
-        this.uploadImage(file)
-            .then(  result => { object.flag = result;
-                                this.loginservice.af.database.list(`/teams/`).push(object); },
-                    error  => {  }
-        );
+        this.loginService.userdata.subscribe( userdata => {
+            this.uploadImage(file)
+                .then(  result => { object.flag = result;
+                                    this.loginService.af.database.list(userdata.gameid+`/teams/`).push(object); },
+                        error  => {  }
+            );
+        });
     }
 
     uploadImage(image: File): Promise<String> {
@@ -52,7 +58,9 @@ export class TeamsService {
     }
 
     remove(object: TeamsModel): void {
-        this.loginservice.af.database.list(`/teams/${object['$key']}`).remove();
+        this.loginService.userdata.subscribe( userdata => {
+            this.loginService.af.database.list(userdata.gameid+`/teams/${object['$key']}`).remove();
+        })
     }
 
 }

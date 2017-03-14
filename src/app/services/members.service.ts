@@ -27,7 +27,7 @@ export class MembersService {
         if(sort) {
             filter = { query: { orderByChild: 'lastactivity' } };
         }
-        return this.loginService.af.database.list('/users', filter);
+        return this.loginService.af.database.list(`/users/`, filter);
     }
 
     get(uid: string): FirebaseObjectObservable<any> {
@@ -56,7 +56,7 @@ export class MembersService {
         } else if(target == 'admin'){
             updateobj = { admin: object[target] };
         }
-        this.loginService.af.database.list('/users').update(object['$key'], updateobj);
+        this.loginService.af.database.list(`/users`).update(object['$key'], updateobj);
     }
 
     changeChatActivity(): void {

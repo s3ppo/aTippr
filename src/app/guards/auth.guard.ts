@@ -13,19 +13,10 @@ export class AuthGuard implements CanActivate{
     private loginService: LoginService,
   ){}
 
-  private gameid: String;
-
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     return this.loginService.getAuthenticated().map(user => {
           this.loginService.setUser(user);
           if(user) {
-            if(!this.gameid) {
-                this.loginService.af.database.object(`users/${user.uid}`).take(1).subscribe( user => {
-                  if(user.hasOwnProperty('gameid')) {
-                    this.gameid = user.gameid;
-                  }
-                })
-            }
             return true;
           } else {
             this.router.navigate(['/login']);

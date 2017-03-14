@@ -21,26 +21,34 @@ export class NewsService {
   ){}
 
     getLast(number: number): Observable<any> {
-        let filter = { query: { orderByChild: 'created', limitToLast: number } };
-        return this.loginService.af.database.list('/admin/news/', filter);
+        return this.loginService.userdata.flatMap( userdata => {
+            let filter = { query: { orderByChild: 'created', limitToLast: number } };
+            return this.loginService.af.database.list(userdata.gameid+`/admin/news/`, filter);
+        })
     }
 
     create(object: NewsModel): void {
-        object.user = this.loginService.user.uid;
-        object.created = new Date().getTime();
-        this.loginService.af.database.list(`/admin/news/`).push(object);
+        this.loginService.userdata.subscribe( userdata => {
+            object.user = this.loginService.user.uid;
+            object.created = new Date().getTime();
+            this.loginService.af.database.list(userdata.gameid+`/admin/news/`).push(object);
+        })
     }
 
     change(object: NewsModel): void {
-        if(object['$key']) {
-            this.loginService.af.database.object(`/admin/news/${object['$key']}`).update({ user: this.loginService.user.uid, created: new Date().getTime(), text: object.text });
-        } else {
-            this.create(object);
-        }
+        this.loginService.userdata.subscribe( userdata => {
+            if(object['$key']) {
+                this.loginService.af.database.object(userdata.gameid+`/admin/news/${object['$key']}`).update({ user: this.loginService.user.uid, created: new Date().getTime(), text: object.text });
+            } else {
+                this.create(object);
+            }
+        })
     }
 
     delete(key: String): void {
-        this.loginService.af.database.object(`/admin/news/${key}`).remove();
+        this.loginService.userdata.subscribe( userdata => {
+            this.loginService.af.database.object(userdata.gameid+`/admin/news/${key}`).remove();
+        })
     }
 
 }

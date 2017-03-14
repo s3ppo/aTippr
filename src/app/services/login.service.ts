@@ -3,7 +3,7 @@ import { Injectable, Inject }     from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 //Rxjs
-import { Observable } from 'rxjs';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 //Firebase
 import { AngularFire, AuthProviders, FirebaseAuthState, FirebaseListObservable, FirebaseObjectObservable, AuthMethods, FirebaseApp } from 'angularfire2';
 //Models
@@ -17,7 +17,7 @@ export class LoginService {
 
     public user: any;
     public firebase: any;
-    private gameid: String;
+    public userdata: Observable<any>;
 
     constructor (
         private router: Router,
@@ -27,18 +27,13 @@ export class LoginService {
         this.firebase = firebase;
     }
 
-    setUser(user): void { 
+    setUser(user): void {
         this.user = user;
-        //update last activity
-        if(this.user != undefined && this.user != null){
+        if(this.user != undefined && this.user != null) {
+            //update last activity
             this.af.database.object(`users/${this.user.uid}`).update({ lastactivity: new Date().getTime() });
-            if(!this.gameid) {
-                this.af.database.object(`users/${this.user.uid}`).take(1).subscribe( user => {
-                    if(user.hasOwnProperty('gameid')) {
-                        this.gameid = user.gameid;
-                    }
-                })
-            }
+            //provide userdata as observable
+            this.userdata = this.af.database.object(`users/${this.user.uid}`).take(1);
         }
     }
 
@@ -70,6 +65,7 @@ export class LoginService {
                     lastName: names[1],
                     email: result.auth.email,
                     photoSocial: result.auth.photoURL,
+                    gameid: '-Kf19Tht26iLL6I6rQnc'      //TODO
                 });
                 resolve(result); 
             })
@@ -92,6 +88,7 @@ export class LoginService {
                         lastName: names[1],
                         email: result.auth.email,
                         photoSocial: result.auth.photoURL,
+                        gameid: '-Kf19Tht26iLL6I6rQnc'      //TODO
                 });
                 resolve(result); 
             })
@@ -111,6 +108,7 @@ export class LoginService {
                     lastName: account.lastname,
                     email: account.email,
                     photo: 'https://firebasestorage.googleapis.com/v0/b/api-project-340883542890.appspot.com/o/avatars%2Fempty-avatar.jpg?alt=media&token=099e930a-fc4b-4506-a2d5-162712a095bd',
+                    gameid: '-Kf19Tht26iLL6I6rQnc'      //TODO
                 });
                 resolve(result);
             })

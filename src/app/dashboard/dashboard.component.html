@@ -15,9 +15,9 @@
       <md-card-content>
         <md-spinner *ngIf="!preloadingNextMatchDone" class="app-spinner"></md-spinner>
         <div class="flags_wrapper" *ngIf="preloadingNextMatchDone">
-          <div><img class="teamflag" [src]="matchesmodel.flag1" /></div>
+          <div><img class="teamflag" *ngIf="matchesmodel.flag1" [src]="matchesmodel.flag1" /></div>
           <div class="flags_separator"> &nbsp; - &nbsp; </div>
-          <div><img class="teamflag" [src]="matchesmodel.flag2" /></div>
+          <div><img class="teamflag" *ngIf="matchesmodel.flag2" [src]="matchesmodel.flag2" /></div>
         </div>
         <div *ngIf="preloadingNextMatchDone" class="match_start">{{matchesmodel.start}}</div>
       </md-card-content>

@@ -18,16 +18,22 @@ export class CategoriesService {
       private router: Router
   ){}
 
-    getAll(): FirebaseListObservable<any> {
-        return this.loginService.af.database.list('/categories/');
+    getAll(): Observable<any> {
+        return this.loginService.userdata.flatMap( userdata => {
+            return this.loginService.af.database.list(userdata.gameid+`/categories/`);
+        })
     }
 
     create(object: CategoriesModel): void {
-        this.loginService.af.database.list(`/categories/`).push(object);
+        this.loginService.userdata.subscribe( userdata => {
+            this.loginService.af.database.list(userdata.gameid+`/categories/`).push(object);
+        })
     }
 
     delete(key: String): void {
-        this.loginService.af.database.object(`/categories/${key}`).remove();
+        this.loginService.userdata.subscribe( userdata => {
+            this.loginService.af.database.object(`/categories/${key}`).remove();
+        })
     }
 
 }
