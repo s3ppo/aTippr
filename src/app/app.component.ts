@@ -96,7 +96,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.getloggedUser();
-    //this.getChat();
+    //we have to subscribe here, because the userdata is maybe not ready
+    this.loginService.userdata.subscribe( userdata => {
+      this.getChat();
+    });
   }
 
   toggleChat(navChat: any): void {
