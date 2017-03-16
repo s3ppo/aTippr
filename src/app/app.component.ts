@@ -73,18 +73,19 @@ export class AppComponent implements OnInit {
     this.loginService.getAuthenticated().subscribe(user => {
       if(user) {
         this.membersService.get(user.uid).subscribe(user => {
-            this.member = user;
-            this.logged = true;
-            if(this.member.hasOwnProperty('admin')) {
-              if(this.member['admin'] == true) {
-                this.admin = true;
-              } else {
-                this.admin = false;
-              }
+          this.member = user;
+          this.logged = true;
+          if(this.member.hasOwnProperty('admin')) {
+            if(this.member['admin'] == true) {
+              this.admin = true;
+            } else {
+              this.admin = false;
             }
-            if(!this.member.hasOwnProperty('chatactivity')) {
-              this.member.chatactivity = 0;
-            }
+          }
+          if(!this.member.hasOwnProperty('chatactivity')) {
+            this.member.chatactivity = 0;
+          }
+          this.getChat();  <-- TODO
         })
       } else {
         this.member = new MembersModel('','','','','',0,0);
@@ -96,7 +97,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.getloggedUser();
-    //this.getChat();
   }
 
   toggleChat(navChat: any): void {
