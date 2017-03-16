@@ -76,8 +76,8 @@ export class AppComponent implements OnInit {
   getloggedUser(): void {
     this.loginService.getAuthenticated().subscribe(user => {
       if(user) {
-        this.membersService.get(user.uid).subscribe(user => {
-          this.member = user;
+        this.membersService.get(user.uid).subscribe(member => {
+          this.member = member;
           this.logged = true;
           if(this.member.hasOwnProperty('admin')) {
             if(this.member['admin'] == true) {

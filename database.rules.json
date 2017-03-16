@@ -18,6 +18,13 @@
         ".read": "auth != null && $gameid === root.child('users').child(auth.uid).child('gameid').val()",
         ".write": "root.child('users').child(auth.uid).child('admin').val() === true && $gameid === root.child('users').child(auth.uid).child('gameid').val()"
       },
+      "members": {
+      	".read": "auth != null",
+      	"$uid": {
+        	".read": "auth != null",
+        	".write": "$uid == auth.uid || root.child('users').child(auth.uid).child('admin').val() === true"
+      	}
+      },
       "chat": {
         ".indexOn": ["created"],
         ".read": "auth != null && $gameid === root.child('users').child(auth.uid).child('gameid').val()",
