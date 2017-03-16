@@ -44,6 +44,10 @@ export class AppComponent implements OnInit {
     translate.setDefaultLang('en');
     let lang = translate.getBrowserLang();
     translate.use(lang);
+    
+    this.loginService.getAuthenticated().subscribe( user => {
+      this.loginService.setUser(user);
+    });
   }
 
   logout(): void {
@@ -85,7 +89,6 @@ export class AppComponent implements OnInit {
           if(!this.member.hasOwnProperty('chatactivity')) {
             this.member.chatactivity = 0;
           }
-          this.getChat();  <-- TODO
         })
       } else {
         this.member = new MembersModel('','','','','',0,0);
@@ -97,6 +100,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.getloggedUser();
+    this.getChat();
   }
 
   toggleChat(navChat: any): void {
