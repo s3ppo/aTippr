@@ -20,7 +20,7 @@ export class RankingService {
         return this.loginService.userdata.flatMap( userdata => {
             return this.loginService.af.database.list(userdata.gameid+`/ranking/`).map((rankings) => {
                 rankings.forEach(ranking => {
-                    ranking.user = this.loginService.af.database.object(`/users/${ranking.$key}`);
+                    ranking.user = this.loginService.af.database.object(userdata.gameid+`/members/${ranking.$key}`);
                 });
                 return rankings;
             });

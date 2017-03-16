@@ -47,8 +47,11 @@ export class LoginService {
 
         return new Promise((resolve, reject) => {
           this.af.auth.login(creds, provider)
-                .then(result => { resolve(result); })
-                .catch(error => { reject(error.message || error ); });
+                .then(result => { 
+                    resolve(result);
+                }).catch(error => { 
+                    reject(error.message || error ); 
+                });
         });
     }
 
