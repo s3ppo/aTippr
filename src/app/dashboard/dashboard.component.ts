@@ -44,14 +44,19 @@ export class DashboardComponent implements OnInit{
   getNextMatch(): void {
     this.matchesService.getNextMatch().subscribe( nextMatch => {
       this.matchesmodel = nextMatch[0];
-      this.matchesmodel['start'] = new Date(this.matchesmodel.matchstart).toLocaleString();
-      this.teamsService.get(nextMatch[0].team1).take(1).subscribe( team1 => {
-        this.matchesmodel['flag1'] = team1.flag;
-        this.teamsService.get(nextMatch[0].team2).take(1).subscribe( team2 => {
-          this.matchesmodel['flag2'] = team2.flag;
-          this.preloadingNextMatchDone = true;
-        });
-      })
+      if(!this.matchesmodel) {
+        this.matchesmodel = new MatchesModelDashboard('', '', '', '', 0, 0, 0, 0, 0, '', '');
+        this.preloadingNextMatchDone = true;
+      } else {
+        this.matchesmodel['start'] = new Date(this.matchesmodel.matchstart).toLocaleString();
+        this.teamsService.get(nextMatch[0].team1).take(1).subscribe( team1 => {
+          this.matchesmodel['flag1'] = team1.flag;
+          this.teamsService.get(nextMatch[0].team2).take(1).subscribe( team2 => {
+            this.matchesmodel['flag2'] = team2.flag;
+            this.preloadingNextMatchDone = true;
+          });
+        })
+      }
     })
   }
 

@@ -96,7 +96,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.getloggedUser();
-    //this.getChat();
+    this.getChat();
   }
 
   toggleChat(navChat: any): void {
