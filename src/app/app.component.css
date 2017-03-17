@@ -22,7 +22,7 @@
   color: white;
 }
 .app-layout {
-  height: calc(100% - 64px)
+  height: calc(100% - 64px);
 }
 .app-sidenav {
   width: 250px;
@@ -67,12 +67,11 @@ md-sidenav-container {
   display: block;
 }
 .chat-inputfield {
-  width: 175px;
+  width: 195px;
   display: inline-block;
 }
 .chat-send {
   width: 40px;
-  width: auto;
   display: inline-block;
 }
 .chat-label {
