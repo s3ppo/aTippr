@@ -8,3 +8,7 @@ You can see a running demo on https://www.atippr.com
 
 username: demo@demo.com
 password: demouser
+
+or use the admin user:
+username: admin@demo.com
+password: adminuser
