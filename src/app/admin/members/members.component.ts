@@ -30,7 +30,18 @@ export class AdminMembersComponent implements OnInit{
   getAllMembers(): void {
     this.membersService.getAll(true).subscribe(members  => {
         this.adminmembersmodel = members;
-        this.adminmembersmodel.reverse();
+        this.adminmembersmodel = this.adminmembersmodel.sort((n1,n2) => {
+          if(n1['lastactivity'] < n2['lastactivity']) {
+            return 1;
+          }
+          if(n1['lastactivity'] > n2['lastactivity']) {
+            return -1;
+          }
+          if(!n1.hasOwnProperty('lastactivity')) {
+            return 1;
+          }
+          return 0;
+        });
     });
   }
 

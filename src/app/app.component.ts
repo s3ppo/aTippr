@@ -62,7 +62,16 @@ export class AppComponent implements OnInit {
     this.authenticated.subscribe(user => {
       if(user) {
         this.chatService.getLast(10).subscribe(chat => {
-          this.chatmodelviewAll = chat.reverse();
+          this.chatmodelviewAll = chat;
+          this.chatmodelviewAll = this.chatmodelviewAll.sort((n1,n2) => {
+            if(n1.created < n2.created) {
+              return 1;
+            }
+            if(n1.created > n2.created) {
+              return -1;
+            }
+            return 0;
+          });
           this.chatmodelviewAll.forEach( chat => {
             if(chat.created > this.lastChatActivity) {
               this.lastChatActivity = chat.created;
