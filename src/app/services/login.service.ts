@@ -33,10 +33,12 @@ export class LoginService {
             //provide userdata as observable
             this.userdata = this.af.database.object(`users/${this.user.uid}`).take(1);
         }
-        this.userdata.subscribe(userdata => {
-            //update last activity
-            this.af.database.object(userdata.gameid+`/members/${this.user.uid}`).update({ lastactivity: new Date().getTime() });
-        });
+        if(this.userdata) {
+            this.userdata.subscribe(userdata => {
+                //update last activity
+                this.af.database.object(userdata.gameid+`/members/${this.user.uid}`).update({ lastactivity: new Date().getTime() });
+            });
+        }
     }
 
     getAuthenticated(): Observable<any> { 
