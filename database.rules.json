@@ -3,26 +3,26 @@
     "$gameid": {
       "categories": {
         ".read": "auth != null && $gameid === root.child('users').child(auth.uid).child('gameid').val()",
-        ".write": "root.child('users').child(auth.uid).child('admin').val() === true && $gameid === root.child('users').child(auth.uid).child('gameid').val()"
+        ".write": "root.child($gameid).child('members').child(auth.uid).child('admin').val() === true"
       },
       "matches": {
         ".indexOn": ["category", "matchstart"],
         ".read": "auth != null && $gameid === root.child('users').child(auth.uid).child('gameid').val()",
-        ".write": "root.child('users').child(auth.uid).child('admin').val() === true && $gameid === root.child('users').child(auth.uid).child('gameid').val()"
+        ".write": "root.child($gameid).child('members').child(auth.uid).child('admin').val() === true"
       },
       "ranking": {
         ".read": "auth != null && $gameid === root.child('users').child(auth.uid).child('gameid').val()",
-        ".write": "root.child('users').child(auth.uid).child('admin').val() === true && $gameid === root.child('users').child(auth.uid).child('gameid').val()"
+        ".write": "root.child($gameid).child('members').child(auth.uid).child('admin').val() === true"
       },
       "teams": {
         ".read": "auth != null && $gameid === root.child('users').child(auth.uid).child('gameid').val()",
-        ".write": "root.child('users').child(auth.uid).child('admin').val() === true && $gameid === root.child('users').child(auth.uid).child('gameid').val()"
+        ".write": "root.child($gameid).child('members').child(auth.uid).child('admin').val() === true"
       },
       "members": {
       	".read": "auth != null",
       	"$uid": {
         	".read": "auth != null",
-        	".write": "$uid == auth.uid || root.child('users').child(auth.uid).child('admin').val() === true"
+        	".write": "$uid == auth.uid || root.child($gameid).child('members').child(auth.uid).child('admin').val() === true"
       	}
       },
       "chat": {
@@ -33,10 +33,10 @@
       "tipps": {
         "$uid": {
           ".indexOn": ["category"],
-          ".read": "$uid == auth.uid || root.child('users').child(auth.uid).child('admin').val() === true",
+          ".read": "$uid == auth.uid || root.child($gameid).child('members').child(auth.uid).child('admin').val() === true",
           ".write": "$uid === auth.uid && root.child($gameid).child('matches').child( newData.child('match').val() ).child('deadline').val() >= now && $gameid === root.child('users').child(auth.uid).child('gameid').val()",
           "$tippid": {
-            ".read": "$uid == auth.uid || root.child('users').child(auth.uid).child('admin').val() === true",
+            ".read": "$uid == auth.uid || root.child($gameid).child('members').child(auth.uid).child('admin').val() === true",
             ".write": "$uid === auth.uid && root.child($gameid).child('matches').child( newData.child('match').val() ).child('deadline').val() >= now && $gameid === root.child('users').child(auth.uid).child('gameid').val()"
           }
         }
@@ -59,11 +59,11 @@
         "news": {
           ".indexOn": ["created"],
           ".read": "auth != null && $gameid === root.child('users').child(auth.uid).child('gameid').val()",
-          ".write": "root.child('users').child(auth.uid).child('admin').val() === true && $gameid === root.child('users').child(auth.uid).child('gameid').val()"
+          ".write": "root.child($gameid).child('members').child(auth.uid).child('admin').val() === true && $gameid === root.child('users').child(auth.uid).child('gameid').val()"
         },
         "rules": {
           ".read": "auth != null && $gameid === root.child('users').child(auth.uid).child('gameid').val()",
-          ".write": "root.child('users').child(auth.uid).child('admin').val() === true && $gameid === root.child('users').child(auth.uid).child('gameid').val()"
+          ".write": "root.child($gameid).child('members').child(auth.uid).child('admin').val() === true && $gameid === root.child('users').child(auth.uid).child('gameid').val()"
         }
       }
     },
@@ -71,7 +71,7 @@
       ".read": "auth != null",
       "$uid": {
         ".read": "auth != null",
-        ".write": "$uid == auth.uid || root.child('users').child(auth.uid).child('admin').val() === true"
+        ".write": "$uid == auth.uid"
       }
     }
   }
