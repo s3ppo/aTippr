@@ -32,11 +32,22 @@ export class LoginService {
         if(this.user != undefined && this.user != null) {
             //provide userdata as observable
             this.userdata = this.af.database.object(`users/${this.user.uid}`).take(1);
-        }
-        if(this.userdata) {
             this.userdata.subscribe(userdata => {
-                //update last activity
-                this.af.database.object(userdata.gameid+`/members/${this.user.uid}`).update({ lastactivity: new Date().getTime() });
+                let memberobj = { 
+                    lastactivity: new Date().getTime(), 
+                    firstName: userdata.firstName,
+                    lastName: userdata.lastName,
+                    email: userdata.email
+                }
+                //Check if photo or social photo exists
+                if(userdata.hasOwnProperty('photo')) {
+                    memberobj['photo'] = userdata.photo;
+                }
+                if(userdata.hasOwnProperty('photoSocial')) {
+                    memberobj['photoSocial'] = userdata.photoSocial;
+                }
+                //update user and last activity
+                this.af.database.object(userdata.gameid+`/members/${this.user.uid}`).update(memberobj);
             });
         }
     }

@@ -30,6 +30,7 @@ export class AppComponent implements OnInit {
   private lastChatActivity: number = 0;
   private admin: boolean = false;
   private logged: boolean = false;
+  private authenticated: Observable<any>;
 
   constructor(
     private loginService: LoginService,
@@ -39,13 +40,16 @@ export class AppComponent implements OnInit {
     private mdIconRegistry: MdIconRegistry,
     private sanitizer: DomSanitizer
   ) {
+    //Custom Icons
     mdIconRegistry.addSvgIcon('ball', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/soccer.svg'));
     mdIconRegistry.addSvgIcon('cup', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/cup.svg'));
+    //Translation
     translate.setDefaultLang('en');
     let lang = translate.getBrowserLang();
     translate.use(lang);
-    
-    this.loginService.getAuthenticated().subscribe( user => {
+    //Check if user is logged
+    this.authenticated = this.loginService.getAuthenticated();
+    this.authenticated.subscribe( user => {
       this.loginService.setUser(user);
     });
   }
@@ -55,7 +59,7 @@ export class AppComponent implements OnInit {
   }
 
   getChat(): void {
-    this.loginService.getAuthenticated().subscribe(user => {
+    this.authenticated.subscribe(user => {
       if(user) {
         this.chatService.getLast(10).subscribe(chat => {
           this.chatmodelviewAll = chat.reverse();
@@ -74,7 +78,7 @@ export class AppComponent implements OnInit {
   }
 
   getloggedUser(): void {
-    this.loginService.getAuthenticated().subscribe(user => {
+    this.authenticated.subscribe(user => {
       if(user) {
         this.membersService.get(user.uid).subscribe(member => {
           this.member = member;
