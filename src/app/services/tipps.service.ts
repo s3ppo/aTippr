@@ -25,7 +25,7 @@ export class TippsService {
   // Get all Tipps - Admin method for calculations
   getAllUser(user: String): Observable<any> {
     return this.loginService.userdata.flatMap( userdata => {
-      return this.loginService.af.database.list(userdata.gameid+`/tipps/${user}`);
+      return this.loginService.af.database.list(`/games/${userdata.gameid}/tipps/${user}`);
     });
   }
 
@@ -33,7 +33,7 @@ export class TippsService {
   getAllOwnUser(category: String): Observable<any> {
     return this.loginService.userdata.flatMap( userdata => {
       let filter: Object = { query: { orderByChild: 'category', equalTo: category } };
-      return this.loginService.af.database.list(userdata.gameid+`/tipps/${this.loginService.user.uid}`, filter);
+      return this.loginService.af.database.list(`/games/${userdata.gameid}/tipps/${this.loginService.user.uid}`, filter);
     });
   }
 
@@ -41,9 +41,9 @@ export class TippsService {
   change(tipps: Array<TippsModel>): void {
     this.loginService.userdata.subscribe( userdata => {
       tipps.forEach(tipp => {
-        this.loginService.af.database.object(userdata.gameid+`/tipps/${this.loginService.user.uid}/${tipp.tippkey}`).update({ tipp1: tipp.tipp1, tipp2: tipp.tipp2 }).then( (item) => {
-          this.loginService.af.database.object(userdata.gameid+`/tipps_open/public/${tipp.match}/${tipp.tippkey}`).update({ tipp1: tipp.tipp1, tipp2: tipp.tipp2 });
-          this.loginService.af.database.object(userdata.gameid+`/tipps_open/secure/${tipp.match}/${this.loginService.user.uid}/${tipp.tippkey}`).update({ user: this.loginService.user.uid, tipp1: tipp.tipp1, tipp2: tipp.tipp2 });
+        this.loginService.af.database.object(`/games/${userdata.gameid}//tipps/${this.loginService.user.uid}/${tipp.tippkey}`).update({ tipp1: tipp.tipp1, tipp2: tipp.tipp2 }).then( (item) => {
+          this.loginService.af.database.object(`/games/${userdata.gameid}/tipps_open/public/${tipp.match}/${tipp.tippkey}`).update({ tipp1: tipp.tipp1, tipp2: tipp.tipp2 });
+          this.loginService.af.database.object(`/games/${userdata.gameid}/tipps_open/secure/${tipp.match}/${this.loginService.user.uid}/${tipp.tippkey}`).update({ user: this.loginService.user.uid, tipp1: tipp.tipp1, tipp2: tipp.tipp2 });
         })
       })
     })
@@ -53,9 +53,9 @@ export class TippsService {
   create(tipps: Array<TippsModel>): void {
     this.loginService.userdata.subscribe( userdata => {
       tipps.forEach(tipp => {
-        this.loginService.af.database.list(userdata.gameid+`/tipps/${this.loginService.user.uid}`).push({ category: tipp.category, match: tipp.match, tipp1: tipp.tipp1, tipp2: tipp.tipp2 }).then( (item) => {
-          this.loginService.af.database.object(userdata.gameid+`/tipps_open/public/${tipp.match}/${item.key}`).update({ tipp1: tipp.tipp1, tipp2: tipp.tipp2 });
-          this.loginService.af.database.object(userdata.gameid+`/tipps_open/secure/${tipp.match}/${this.loginService.user.uid}/${item.key}`).update({ user: this.loginService.user.uid, tipp1: tipp.tipp1, tipp2: tipp.tipp2 });
+        this.loginService.af.database.list(`/games/${userdata.gameid}/tipps/${this.loginService.user.uid}`).push({ category: tipp.category, match: tipp.match, tipp1: tipp.tipp1, tipp2: tipp.tipp2 }).then( (item) => {
+          this.loginService.af.database.object(`/games/${userdata.gameid}/tipps_open/public/${tipp.match}/${item.key}`).update({ tipp1: tipp.tipp1, tipp2: tipp.tipp2 });
+          this.loginService.af.database.object(`/games/${userdata.gameid}/tipps_open/secure/${tipp.match}/${this.loginService.user.uid}/${item.key}`).update({ user: this.loginService.user.uid, tipp1: tipp.tipp1, tipp2: tipp.tipp2 });
         });
       })
     })
@@ -64,14 +64,14 @@ export class TippsService {
   //Read open tipps
   getOpenTipps(match: String): Observable<any> {
     return this.loginService.userdata.flatMap( userdata => {
-      return this.loginService.af.database.list(userdata.gameid+`/tipps_open/public/${match}`);
+      return this.loginService.af.database.list(`/games/${userdata.gameid}/tipps_open/public/${match}`);
     })
   }
 
   //Read open tipps with user
   getOpenTippsSecure(match: String): Observable<any> {
     return this.loginService.userdata.flatMap( userdata => {
-      return this.loginService.af.database.list(userdata.gameid+`/tipps_open/secure/${match}`).map(matches => {
+      return this.loginService.af.database.list(`/games/${userdata.gameid}/tipps_open/secure/${match}`).map(matches => {
         matches.forEach(match_line => {
           match_line.user = this.membersService.get(match_line.$key);
         })

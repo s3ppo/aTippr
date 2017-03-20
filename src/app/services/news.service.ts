@@ -23,7 +23,7 @@ export class NewsService {
     getLast(number: number): Observable<any> {
         return this.loginService.userdata.flatMap( userdata => {
             let filter = { query: { orderByChild: 'created', limitToLast: number } };
-            return this.loginService.af.database.list(userdata.gameid+`/admin/news/`, filter);
+            return this.loginService.af.database.list(`/games/${userdata.gameid}/admin/news/`, filter);
         })
     }
 
@@ -31,14 +31,14 @@ export class NewsService {
         this.loginService.userdata.subscribe( userdata => {
             object.user = this.loginService.user.uid;
             object.created = new Date().getTime();
-            this.loginService.af.database.list(userdata.gameid+`/admin/news/`).push(object);
+            this.loginService.af.database.list(`/games/${userdata.gameid}/admin/news/`).push(object);
         })
     }
 
     change(object: NewsModel): void {
         this.loginService.userdata.subscribe( userdata => {
             if(object['$key']) {
-                this.loginService.af.database.object(userdata.gameid+`/admin/news/${object['$key']}`).update({ user: this.loginService.user.uid, created: new Date().getTime(), text: object.text });
+                this.loginService.af.database.object(`/games/${userdata.gameid}/admin/news/${object['$key']}`).update({ user: this.loginService.user.uid, created: new Date().getTime(), text: object.text });
             } else {
                 this.create(object);
             }
@@ -47,7 +47,7 @@ export class NewsService {
 
     delete(key: String): void {
         this.loginService.userdata.subscribe( userdata => {
-            this.loginService.af.database.object(userdata.gameid+`/admin/news/${key}`).remove();
+            this.loginService.af.database.object(`/games/${userdata.gameid}/admin/news/${key}`).remove();
         })
     }
 

@@ -20,19 +20,19 @@ export class CategoriesService {
 
     getAll(): Observable<any> {
         return this.loginService.userdata.flatMap( userdata => {
-            return this.loginService.af.database.list(userdata.gameid+`/categories/`);
+            return this.loginService.af.database.list(`/games/${userdata.gameid}/categories/`);
         })
     }
 
     create(object: CategoriesModel): void {
         this.loginService.userdata.subscribe( userdata => {
-            this.loginService.af.database.list(userdata.gameid+`/categories/`).push(object);
+            this.loginService.af.database.list(`/games/${userdata.gameid}/categories/`).push(object);
         })
     }
 
     delete(key: String): void {
         this.loginService.userdata.subscribe( userdata => {
-            this.loginService.af.database.object(`/categories/${key}`).remove();
+            this.loginService.af.database.object(`/games/${userdata.gameid}/categories/${key}`).remove();
         })
     }
 

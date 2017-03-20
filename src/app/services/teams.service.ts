@@ -24,13 +24,13 @@ export class TeamsService {
 
     getAll(): Observable<any> {
         return this.loginService.userdata.flatMap( userdata => {
-            return this.loginService.af.database.list(userdata.gameid+'/teams/');
+            return this.loginService.af.database.list(`/games/${userdata.gameid}/teams/`);
         })
     }
 
     get(key: string): Observable<any> {
         return this.loginService.userdata.flatMap( userdata => {
-            return this.loginService.af.database.object(userdata.gameid+`/teams/${key}`);
+            return this.loginService.af.database.object(`/games/${userdata.gameid}/teams/${key}`);
         })
     }
 
@@ -38,7 +38,7 @@ export class TeamsService {
         this.loginService.userdata.subscribe( userdata => {
             this.uploadImage(file)
                 .then(  result => { object.flag = result;
-                                    this.loginService.af.database.list(userdata.gameid+`/teams/`).push(object); },
+                                    this.loginService.af.database.list(`/games/${userdata.gameid}/teams/`).push(object); },
                         error  => {  }
             );
         });
@@ -59,7 +59,7 @@ export class TeamsService {
 
     remove(object: TeamsModel): void {
         this.loginService.userdata.subscribe( userdata => {
-            this.loginService.af.database.list(userdata.gameid+`/teams/${object['$key']}`).remove();
+            this.loginService.af.database.list(`/games/${userdata.gameid}/teams/${object['$key']}`).remove();
         })
     }
 

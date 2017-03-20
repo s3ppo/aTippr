@@ -1,8 +1,6 @@
 {
   "rules": {
     "games": {
-      ".read": "auth != null",
-      ".write": "auth != null",
       "$gameid": {
         "categories": {
           ".read": "auth != null && $gameid === root.child('users').child(auth.uid).child('gameid').val()",

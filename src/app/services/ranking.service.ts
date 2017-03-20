@@ -18,9 +18,9 @@ export class RankingService {
 
     getAll(): Observable<any> {
         return this.loginService.userdata.flatMap( userdata => {
-            return this.loginService.af.database.list(userdata.gameid+`/ranking/`).map((rankings) => {
+            return this.loginService.af.database.list(`/games/${userdata.gameid}/ranking/`).map((rankings) => {
                 rankings.forEach(ranking => {
-                    ranking.user = this.loginService.af.database.object(userdata.gameid+`/members/${ranking.$key}`);
+                    ranking.user = this.loginService.af.database.object(`/games/${userdata.gameid}/members/${ranking.$key}`);
                 });
                 return rankings;
             });
@@ -29,22 +29,22 @@ export class RankingService {
 
     change(ranking: RankingModel): void {
         this.loginService.userdata.subscribe( userdata => {
-            this.loginService.af.database.object(userdata.gameid+`/ranking/${ranking.user}`).update({points: ranking.points});
+            this.loginService.af.database.object(`/games/${userdata.gameid}/ranking/${ranking.user}`).update({points: ranking.points});
         })
     }
 
     changeDetail(member: string, match: string, points: number, tipp1: number, tipp2: number, team1: string, team2: string, result1: number, result2: number): void {
         this.loginService.userdata.subscribe( userdata => {
-            this.loginService.af.database.object(userdata.gameid+`/ranking/${member}/matches/${match}`).update({ points: points, tipp1: tipp1, tipp2: tipp2, team1: team1, team2: team2, result1: result1, result2: result2 });
+            this.loginService.af.database.object(`/games/${userdata.gameid}/ranking/${member}/matches/${match}`).update({ points: points, tipp1: tipp1, tipp2: tipp2, team1: team1, team2: team2, result1: result1, result2: result2 });
         })
     }
 
     getDetailMember(user: string): Observable<any> {
         return this.loginService.userdata.flatMap( userdata => {
-            return this.loginService.af.database.list(userdata.gameid+`/ranking/${user}/matches/`).map(rankings => {
+            return this.loginService.af.database.list(`/games/${userdata.gameid}/ranking/${user}/matches/`).map(rankings => {
                 rankings.forEach(ranking => {
-                    ranking.team1sub = this.loginService.af.database.object(userdata.gameid+`/teams/${ranking.team1}`);
-                    ranking.team2sub = this.loginService.af.database.object(userdata.gameid+`/teams/${ranking.team2}`);
+                    ranking.team1sub = this.loginService.af.database.object(`/games/${userdata.gameid}/teams/${ranking.team1}`);
+                    ranking.team2sub = this.loginService.af.database.object(`/games/${userdata.gameid}/teams/${ranking.team2}`);
                 });
                 return rankings;
             });
@@ -53,7 +53,7 @@ export class RankingService {
 
     getDetailSelfMatch(match: string): Observable<any> {
         return this.loginService.userdata.flatMap( userdata => {
-            return this.loginService.af.database.object(userdata.gameid+`/ranking/${this.loginService.user.uid}/matches/${match}`);
+            return this.loginService.af.database.object(`/games/${userdata.gameid}/ranking/${this.loginService.user.uid}/matches/${match}`);
         });
     }
 

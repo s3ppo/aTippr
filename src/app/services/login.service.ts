@@ -33,7 +33,7 @@ export class LoginService {
             //provide userdata as observable
             this.userdata = this.af.database.object(`users/${this.user.uid}`).take(1);
             this.userdata.subscribe(userdata => {
-                let memberobj = { 
+                let memberobj:any = { 
                     lastactivity: new Date().getTime(), 
                     firstName: userdata.firstName,
                     lastName: userdata.lastName,
@@ -41,13 +41,13 @@ export class LoginService {
                 }
                 //Check if photo or social photo exists
                 if(userdata.hasOwnProperty('photo')) {
-                    memberobj['photo'] = userdata.photo;
+                    memberobj.photo = userdata.photo;
                 }
                 if(userdata.hasOwnProperty('photoSocial')) {
-                    memberobj['photoSocial'] = userdata.photoSocial;
+                    memberobj.photoSocial = userdata.photoSocial;
                 }
                 //update user and last activity
-                this.af.database.object(userdata.gameid+`/members/${this.user.uid}`).update(memberobj);
+                this.af.database.object(`/games/${userdata.gameid}/members/${this.user.uid}`).update(memberobj);
             });
         }
     }
@@ -128,18 +128,25 @@ export class LoginService {
                     photo: 'https://firebasestorage.googleapis.com/v0/b/api-project-340883542890.appspot.com/o/avatars%2Fempty-avatar.jpg?alt=media&token=099e930a-fc4b-4506-a2d5-162712a095bd',
                 }
                 if(newGame) {
-                    newUser.gameid = this.setupNewGame(result.auth.uid, newUser);
+                    this.setupNewGame(result.auth.uid, newUser).then( newGame => {
+                        newUser.gameid = newGame;
+                        this.af.database.object(`/users/${result.auth.uid}`).set(newUser).then( res => {
+                            resolve(result);
+                        }).catch( err => {
+                            reject(err.message || err );
+                        });
+                    });
                 } else {
-                    newUser.gameid = account.gameid
+                    newUser.gameid = account.gameid;
+                    this.af.database.object(`/users/${result.auth.uid}`).set(newUser).then( res => {
+                        resolve(result);
+                    }).catch( err => {
+                        reject(err.message || err );
+                    });
                 }
-                this.af.database.object(`/users/${result.auth.uid}`).set(newUser).then( res => {
-                    resolve(result);
-                }).catch( err => {
-                    reject(err.message || err ) 
-                });
             })
             .catch(error => {
-                reject(error.message || error ) 
+                reject(error.message || error )
             });
         });
     }
@@ -151,6 +158,13 @@ export class LoginService {
     setupNewGame(newUserID: String, user: any): Promise<String> {
         return new Promise((resolve, reject) => {
             this.af.database.list(`/games/`).push({public: true}).then( (data) => {
+                user.admin = true;
+                this.af.database.object(`/games/${data.key}/members/${newUserID}/`).set(user);
+                this.af.database.object(`/games/${data.key}/admin/rules/rules_diff`).set({active: true, points: 3, sort: 2});
+                this.af.database.object(`/games/${data.key}/admin/rules/rules_goals_abroad`).set({active: true, points: 1, sort: 4});
+                this.af.database.object(`/games/${data.key}/admin/rules/rules_goals_all`).set({active: true, points: 1, sort: 5});
+                this.af.database.object(`/games/${data.key}/admin/rules/rules_goals_home`).set({active: true, points: 1, sort: 3});
+                this.af.database.object(`/games/${data.key}/admin/rules/rules_winner`).set({active: true, points: 4, sort: 1});
                 resolve(data.key);
             })
         })

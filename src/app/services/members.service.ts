@@ -28,19 +28,19 @@ export class MembersService {
             if(sort) {
                 filter = { query: { orderByChild: 'lastactivity' } };
             }
-            return this.loginService.af.database.list(userdata.gameid+`/members/`, filter);
+            return this.loginService.af.database.list(`/games/${userdata.gameid}/members/`, filter);
         })
     }
 
     get(uid: string): Observable<any> {
         return this.loginService.userdata.flatMap( userdata => {
-            return this.loginService.af.database.object(userdata.gameid+`/members/${uid}`);
+            return this.loginService.af.database.object(`/games/${userdata.gameid}/members/${uid}`);
         })
     }
 
     getSelf(): Observable<any> {
         return this.loginService.userdata.flatMap( userdata => {
-            return this.loginService.af.database.object(userdata.gameid+`/members/${this.loginService.user.uid}`);
+            return this.loginService.af.database.object(`/games/${userdata.gameid}/members/${this.loginService.user.uid}`);
         })
     }
 
@@ -48,11 +48,11 @@ export class MembersService {
         this.loginService.userdata.subscribe( userdata => {
             if(file){
                 this.uploadImage(file).then(  result => { 
-                    this.loginService.af.database.object(userdata.gameid+`/members/${this.loginService.user.uid}`).update({ firstName: members.firstName, lastName: members.lastName, photo: result })
+                    this.loginService.af.database.object(`/games/${userdata.gameid}/members/${this.loginService.user.uid}`).update({ firstName: members.firstName, lastName: members.lastName, photo: result })
                 },
                 error  => {  });
             } else {
-                this.loginService.af.database.object(userdata.gameid+`/members/${this.loginService.user.uid}`).update({ firstName: members.firstName, lastName: members.lastName });
+                this.loginService.af.database.object(`/games/${userdata.gameid}/members/${this.loginService.user.uid}`).update({ firstName: members.firstName, lastName: members.lastName });
             }
         })
     }
@@ -65,13 +65,13 @@ export class MembersService {
             } else if(target == 'admin'){
                 updateobj = { admin: object[target] };
             }
-            this.loginService.af.database.list(userdata.gameid+`/members`).update(object['$key'], updateobj);
+            this.loginService.af.database.list(`/games/${userdata.gameid}/members`).update(object['$key'], updateobj);
         })
     }
 
     changeChatActivity(): void {
         this.loginService.userdata.subscribe( userdata => {
-            this.loginService.af.database.object(userdata.gameid+`/members/${this.loginService.user.uid}`).update({ chatactivity: new Date().getTime() });
+            this.loginService.af.database.object(`/games/${userdata.gameid}/members/${this.loginService.user.uid}`).update({ chatactivity: new Date().getTime() });
         })
     }
 

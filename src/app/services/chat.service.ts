@@ -23,7 +23,7 @@ export class ChatService {
     getLast(number: number): Observable<any> {
         return this.loginService.userdata.flatMap( userdata => {
             let filter = { query: { orderByChild: 'created', limitToLast: number } };
-            return this.loginService.af.database.list(userdata.gameid+`/chat/`, filter).map(chats => {
+            return this.loginService.af.database.list(`/games/${userdata.gameid}/chat/`, filter).map(chats => {
                 chats.forEach(chat => {
                     chat.member = this.membersService.get(chat.user);
                 });
@@ -36,13 +36,13 @@ export class ChatService {
         this.loginService.userdata.subscribe( userdata => {
             object.user = this.loginService.user.uid;
             object.created = new Date().getTime();
-            this.loginService.af.database.list(userdata.gameid+`/chat/`).push(object);
+            this.loginService.af.database.list(`/games/${userdata.gameid}/chat/`).push(object);
         })
     }
 
     delete(key: String): void {
         this.loginService.userdata.subscribe( userdata => {
-            this.loginService.af.database.object(userdata.gameid+`/chat/${key}`).remove();
+            this.loginService.af.database.object(`/games/${userdata.gameid}/chat/${key}`).remove();
         })
     }
 

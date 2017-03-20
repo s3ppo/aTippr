@@ -3,7 +3,7 @@
         <h2><a [routerLink]="['/admin']"><md-icon>arrow_back</md-icon></a> &nbsp; Teams anlegen</h2>
         <form (ngSubmit)="CreateTeam()" #LoginForm="ngForm">
             <md-input-container>
-                <input mdInput required placeholder="{{ 'Name' | translate }}'" [(ngModel)]="teamsmodel.teamname" name="teamname">
+                <input mdInput required placeholder="{{ 'Name' | translate }}" [(ngModel)]="teamsmodel.teamname" name="teamname">
             </md-input-container>
             <br>
             <md-input-container>

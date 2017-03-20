@@ -1,7 +1,9 @@
 //Angular
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
+//Services
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'Admin',
@@ -9,9 +11,18 @@ import { Observable } from 'rxjs/Rx';
   styleUrls: ['./admin.component.css'],
   providers: []
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit{
+
+  private gameid: String;
 
   constructor(
+    private loginService: LoginService
   ){}
+
+  ngOnInit(): void {
+    this.loginService.userdata.subscribe( userdata => {
+      this.gameid = userdata.gameid
+    })
+  }
 
 }

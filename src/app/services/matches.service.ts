@@ -26,10 +26,10 @@ export class MatchesService {
             if(category){
                 filter = { query: { orderByChild: 'category', equalTo: category } };
             }
-            return this.loginService.af.database.list(userdata.gameid+`/matches/`, filter).map((teams) => {
+            return this.loginService.af.database.list(`/games/${userdata.gameid}/matches/`, filter).map((teams) => {
                 return teams.map((team) => { 
-                    team.team1sub = this.loginService.af.database.object(userdata.gameid+`/teams/${team.team1}`);
-                    team.team2sub = this.loginService.af.database.object(userdata.gameid+`/teams/${team.team2}`);
+                    team.team1sub = this.loginService.af.database.object(`/games/${userdata.gameid}/teams/${team.team1}`);
+                    team.team2sub = this.loginService.af.database.object(`/games/${userdata.gameid}/teams/${team.team2}`);
                     return team;
                 })
             })
@@ -42,7 +42,7 @@ export class MatchesService {
             if(category){
                 filter = { query: { orderByChild: 'category', equalTo: category } };
             }
-            return this.loginService.af.database.list(userdata.gameid+`/matches/`, filter);
+            return this.loginService.af.database.list(`/games/${userdata.gameid}/matches/`, filter);
         })
     }
 
@@ -54,26 +54,26 @@ export class MatchesService {
             if(object.result2 == undefined) {
                 delete object.result2;
             }
-            this.loginService.af.database.list(userdata.gameid+`/matches/`).push(object);
+            this.loginService.af.database.list(`/games/${userdata.gameid}/matches/`).push(object);
         })
     }
 
     remove(object: MatchesModelAll): void {
         this.loginService.userdata.subscribe( userdata => {
-            this.loginService.af.database.object(userdata.gameid+`/matches/${object['$key']}`).remove();
+            this.loginService.af.database.object(`/games/${userdata.gameid}/matches/${object['$key']}`).remove();
         })
     }
 
     setResult(object: MatchesModelAll): void {
         this.loginService.userdata.subscribe( userdata => {
-            this.loginService.af.database.object(userdata.gameid+`/matches/${object['$key']}`).update({ result1: object.result1, result2: object.result2 });
+            this.loginService.af.database.object(`/games/${userdata.gameid}/matches/${object['$key']}`).update({ result1: object.result1, result2: object.result2 });
         })
     }
 
     getNextMatch(): Observable<any> {
         return this.loginService.userdata.flatMap( userdata => {
             let filter = { query: { orderByChild: 'matchstart', limitToFirst: 1, startAt: new Date().getTime() } };
-            return this.loginService.af.database.list(userdata.gameid+`/matches/`, filter);
+            return this.loginService.af.database.list(`/games/${userdata.gameid}/matches/`, filter);
         })
     }
 
