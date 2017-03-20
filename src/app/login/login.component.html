@@ -46,5 +46,7 @@
         <button md-raised-button color="primary" class="btn_login" type="submit">{{ 'Login' | translate }}</button>
       </form>
       <a [routerLink]="['/register']" dense>{{ 'Registrieren' | translate }}</a> &nbsp; <a [routerLink]="['/forgot']" dense>{{ 'Passwort vergessen' | translate }}</a>
+      <br><br>
+      <a [routerLink]="['/register', {newGame: true}]" dense>{{ 'Eigenes Tippspiel anlegen' | translate }}</a>
   </div>
 </div>

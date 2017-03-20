@@ -116,28 +116,44 @@ export class LoginService {
         });
     }
 
-    createUser(account: AccountsModel): Promise<any> {
+    createUser(account: AccountsModel, newGame: boolean): Promise<any> {
         let creds: any = { email: account.email, password: account.password };
 
         return new Promise((resolve, reject) => {
             this.af.auth.createUser(creds).then(result => {
-                this.af.database.object(`/users/${result.auth.uid}`).set({
+                let newUser:any = {
                     firstName: account.firstname,
                     lastName: account.lastname,
                     email: account.email,
                     photo: 'https://firebasestorage.googleapis.com/v0/b/api-project-340883542890.appspot.com/o/avatars%2Fempty-avatar.jpg?alt=media&token=099e930a-fc4b-4506-a2d5-162712a095bd',
-                    gameid: '-Kf19Tht26iLL6I6rQnc'      //TODO
+                }
+                if(newGame) {
+                    newUser.gameid = this.setupNewGame(result.auth.uid, newUser);
+                } else {
+                    newUser.gameid = account.gameid
+                }
+                this.af.database.object(`/users/${result.auth.uid}`).set(newUser).then( res => {
+                    resolve(result);
+                }).catch( err => {
+                    reject(err.message || err ) 
                 });
-                resolve(result);
             })
             .catch(error => {
-                console.log(error);reject(error.message || error ) 
+                reject(error.message || error ) 
             });
         });
     }
 
     resetUserPW(user: ForgotModel): Promise<any> {
         return this.firebase.auth().sendPasswordResetEmail(user.email);
+    }
+
+    setupNewGame(newUserID: String, user: any): Promise<String> {
+        return new Promise((resolve, reject) => {
+            this.af.database.list(`/games/`).push({public: true}).then( (data) => {
+                resolve(data.key);
+            })
+        })
     }
 
     logout(): void {

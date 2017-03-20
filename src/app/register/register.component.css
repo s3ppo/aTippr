@@ -8,6 +8,12 @@
 .register_wrapper {
     margin: 10px;
 }
+.checkbox-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
 
 @media(max-width:480px){
     .register-input {
