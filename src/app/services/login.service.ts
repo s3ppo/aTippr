@@ -116,7 +116,7 @@ export class LoginService {
         });
     }
 
-    createUser(account: AccountsModel, newGame: boolean): Promise<any> {
+    createUser(account: AccountsModel, newGame: boolean, gameName: String, publicGame: boolean): Promise<any> {
         let creds: any = { email: account.email, password: account.password };
 
         return new Promise((resolve, reject) => {
@@ -128,7 +128,7 @@ export class LoginService {
                     photo: 'https://firebasestorage.googleapis.com/v0/b/api-project-340883542890.appspot.com/o/avatars%2Fempty-avatar.jpg?alt=media&token=099e930a-fc4b-4506-a2d5-162712a095bd',
                 }
                 if(newGame) {
-                    this.setupNewGame(result.auth.uid, newUser).then( newGame => {
+                    this.setupNewGame(result.auth.uid, newUser, gameName, publicGame).then( newGame => {
                         newUser.gameid = newGame;
                         this.af.database.object(`/users/${result.auth.uid}`).set(newUser).then( res => {
                             resolve(result);
@@ -155,9 +155,9 @@ export class LoginService {
         return this.firebase.auth().sendPasswordResetEmail(user.email);
     }
 
-    setupNewGame(newUserID: String, user: any): Promise<String> {
+    setupNewGame(newUserID: String, user: any, gameName: String, publicGame: boolean): Promise<String> {
         return new Promise((resolve, reject) => {
-            this.af.database.list(`/games/`).push({public: true}).then( (data) => {
+            this.af.database.list(`/games/`).push({public: publicGame, gameName: gameName}).then( (data) => {
                 user.admin = true;
                 this.af.database.object(`/games/${data.key}/members/${newUserID}/`).set(user);
                 this.af.database.object(`/games/${data.key}/admin/rules/rules_diff`).set({active: true, points: 3, sort: 2});

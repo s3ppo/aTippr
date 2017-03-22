@@ -2,6 +2,8 @@
   "rules": {
     "games": {
       "$gameid": {
+      	".read": "auth != null && root.child('games').child($gameid).child('public').val() === true",
+      	".write": "auth != null",
         "categories": {
           ".read": "auth != null && $gameid === root.child('users').child(auth.uid).child('gameid').val()",
           ".write": "root.child($gameid).child('members').child(auth.uid).child('admin').val() === true"

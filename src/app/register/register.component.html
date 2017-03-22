@@ -25,9 +25,18 @@
         <section class="checkbox-section">
           <md-checkbox [(ngModel)]="createOwn" align="start" [ngModelOptions]="{standalone: true}">{{ 'Eigenes Tippspiel anlegen' | translate }}</md-checkbox>
         </section>
-        <md-input-container class="register-input" *ngIf="createOwn == false">
-          <input mdInput placeholder="{{ 'Spiel-ID beitreten' | translate }}" [(ngModel)]="registermodel.gameid" name="gameid" type="text">
-        </md-input-container>
+        <div *ngIf="createOwn == true">
+          <md-input-container class="register-input">
+            <input mdInput required placeholder="{{ 'Spielname' | translate }}" [(ngModel)]="gameName" [ngModelOptions]="{standalone: true}" name="gamename" type="text">
+          </md-input-container>
+          <br>
+          <md-checkbox [(ngModel)]="publicGame" align="start" [ngModelOptions]="{standalone: true}">{{ 'Öffentliches Spiel' | translate }}</md-checkbox>
+        </div>
+        <div *ngIf="createOwn == false">
+          <md-input-container class="register-input">
+            <input mdInput placeholder="{{ 'Spiel-ID beitreten' | translate }}" [(ngModel)]="registermodel.gameid" name="gameid" type="text">
+          </md-input-container>
+        </div>
         <br>
         <button md-raised-button color="primary" type="submit">{{ 'Registrieren' | translate }}</button>
       </form>

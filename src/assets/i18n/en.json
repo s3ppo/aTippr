@@ -67,5 +67,6 @@
     "Platz": "Rank",
     "Spiel": "Match",
     "Noch keine kommenden Spiele": "No upcoming Matches",
-    "Eigenes Tippspiel anlegen": "Create own tipp game"
+    "Eigenes Tippspiel anlegen": "Create own tipp game",
+    "Spielname": "Game name"
 }

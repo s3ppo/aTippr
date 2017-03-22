@@ -26,12 +26,11 @@ export class RegisterComponent implements OnInit{
   
   private registermodel = new AccountsModel('','','','','','-Kf19Tht26iLL6I6rQnc');
   private createOwn: boolean = false;
+  private gameName: String;
+  private publicGame: boolean = false;
 
   doRegister(): void {
-    if(this.createOwn) {
-      this.registermodel.gameid = '';
-    }
-    this.loginservice.createUser(this.registermodel, this.createOwn).then(data => { 
+    this.loginservice.createUser(this.registermodel, this.createOwn, this.gameName, this.publicGame).then(data => { 
       this.router.navigate(['/dashboard'])
     }, err  => {
       this.snackBar.open(err, 'Close')
