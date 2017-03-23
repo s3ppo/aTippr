@@ -22,7 +22,7 @@ import { ChatService } from './services/chat.service';
 import { DialogsService } from './services/dialog.service';
 import { NewsService } from './services/news.service';
 import { RulesService } from './services/rules.service';
-import { GamesService } from './services/games.service';
+import { SettingsService } from './services/settings.service';
 //Translation
 import { TranslateModule, TranslateService, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -127,7 +127,7 @@ export function createTranslateLoader(http: Http) {
     DialogsService,
     NewsService,
     RulesService,
-    GamesService,
+    SettingsService,
   ],
   entryComponents: [
     AdminCategoryDialog,

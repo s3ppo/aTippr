@@ -47,7 +47,29 @@ export class LoginService {
                     memberobj.photoSocial = userdata.photoSocial;
                 }
                 //update user and last activity
-                this.af.database.object(`/games/${userdata.gameid}/members/${this.user.uid}`).update(memberobj);
+                this.af.database.object(`/games/${userdata.gameid}/members/${this.user.uid}`).take(1).subscribe( member => {
+                    let memberdata: any = { lastactivity: memberobj.lastactivity };
+                    if(!member.hasOwnProperty('firstName')) {
+                        memberdata.firstName = memberobj.firstName;
+                    }
+                    if(!member.hasOwnProperty('lastName')) {
+                        memberdata.lastName = memberobj.lastName;
+                    }
+                    if(!member.hasOwnProperty('email')) {
+                        memberdata.email = memberobj.email;
+                    }
+                    if(!member.hasOwnProperty('photo')) {
+                        if(memberobj.hasOwnProperty('photo')) {
+                            memberdata.photo = memberobj.photo;
+                        }
+                    }
+                    if(!member.hasOwnProperty('photoSocial')) {
+                        if(memberobj.hasOwnProperty('photoSocial')) {
+                            memberdata.photoSocial = memberobj.photoSocial;
+                        }
+                    }
+                    this.af.database.object(`/games/${userdata.gameid}/members/${this.user.uid}`).update(memberdata);
+                })
             });
         }
     }
@@ -128,22 +150,18 @@ export class LoginService {
                     photo: 'https://firebasestorage.googleapis.com/v0/b/api-project-340883542890.appspot.com/o/avatars%2Fempty-avatar.jpg?alt=media&token=099e930a-fc4b-4506-a2d5-162712a095bd',
                 }
                 if(newGame) {
-                    this.setupNewGame(result.auth.uid, newUser, gameName, publicGame).then( newGame => {
-                        newUser.gameid = newGame;
-                        this.af.database.object(`/users/${result.auth.uid}`).set(newUser).then( res => {
-                            resolve(result);
-                        }).catch( err => {
-                            reject(err.message || err );
-                        });
-                    });
+                    newUser.gameid = this.newGuid();
                 } else {
                     newUser.gameid = account.gameid;
-                    this.af.database.object(`/users/${result.auth.uid}`).set(newUser).then( res => {
-                        resolve(result);
-                    }).catch( err => {
-                        reject(err.message || err );
-                    });
                 }
+                this.af.database.object(`/users/${result.auth.uid}`).set(newUser).then( res => {
+                    if(newGame){
+                        this.setupNewGame(result.auth.uid, newUser.gameid, gameName, publicGame);
+                    }
+                    resolve(result);
+                }).catch( err => {
+                    reject(err.message || err );
+                });
             })
             .catch(error => {
                 reject(error.message || error )
@@ -155,19 +173,21 @@ export class LoginService {
         return this.firebase.auth().sendPasswordResetEmail(user.email);
     }
 
-    setupNewGame(newUserID: String, user: any, gameName: String, publicGame: boolean): Promise<String> {
-        return new Promise((resolve, reject) => {
-            this.af.database.list(`/games/`).push({public: publicGame, gameName: gameName}).then( (data) => {
-                user.admin = true;
-                this.af.database.object(`/games/${data.key}/members/${newUserID}/`).set(user);
-                this.af.database.object(`/games/${data.key}/admin/rules/rules_diff`).set({active: true, points: 3, sort: 2});
-                this.af.database.object(`/games/${data.key}/admin/rules/rules_goals_abroad`).set({active: true, points: 1, sort: 4});
-                this.af.database.object(`/games/${data.key}/admin/rules/rules_goals_all`).set({active: true, points: 1, sort: 5});
-                this.af.database.object(`/games/${data.key}/admin/rules/rules_goals_home`).set({active: true, points: 1, sort: 3});
-                this.af.database.object(`/games/${data.key}/admin/rules/rules_winner`).set({active: true, points: 4, sort: 1});
-                resolve(data.key);
-            })
-        })
+    setupNewGame(newUser: String, newGameID: String, gameName: String, publicGame: boolean): void {
+        this.af.database.object(`/games/${newGameID}/settings`).set({public: publicGame, gameName: gameName});
+        this.af.database.object(`/games/${newGameID}/members/${newUser}`).set({ admin: true });
+        this.af.database.object(`/games/${newGameID}/admin/rules/rules_diff`).set({active: true, points: 3, sort: 2});
+        this.af.database.object(`/games/${newGameID}/admin/rules/rules_goals_abroad`).set({active: true, points: 1, sort: 4});
+        this.af.database.object(`/games/${newGameID}/admin/rules/rules_goals_all`).set({active: true, points: 1, sort: 5});
+        this.af.database.object(`/games/${newGameID}/admin/rules/rules_goals_home`).set({active: true, points: 1, sort: 3});
+        this.af.database.object(`/games/${newGameID}/admin/rules/rules_winner`).set({active: true, points: 4, sort: 1});
+    }
+
+    newGuid(): String {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+            return v.toString(16);
+        });
     }
 
     logout(): void {

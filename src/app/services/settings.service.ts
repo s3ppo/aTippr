@@ -11,7 +11,7 @@ import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { LoginService } from '../services/login.service';
 
 @Injectable()
-export class GamesService {
+export class SettingsService {
 
     constructor (
         private loginService: LoginService,
