@@ -3,7 +3,7 @@
     "games": {
       "$gameid": {  
         "settings": {
-          ".read": "auth != null",
+          ".read": "root.child('games').child($gameid).child('settings').child('public').val() === true || root.child('games').child($gameid).child('settings').child('gameid').val() === root.child('users').child(auth.uid).child('gameid').val()",
           ".write": "auth != null"
         },
         "categories": {
