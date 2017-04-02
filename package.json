@@ -13,12 +13,13 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^4.0.1",
     "@angular/common": "^2.4.0",
     "@angular/compiler": "^2.4.0",
     "@angular/core": "^2.4.0",
     "@angular/forms": "^2.4.0",
     "@angular/http": "^2.4.0",
-    "@angular/material": "git+https://github.com/angular/material2-builds.git",
+    "@angular/material": "^2.0.0-beta.2",
     "@angular/platform-browser": "^2.4.0",
     "@angular/platform-browser-dynamic": "^2.4.0",
     "@angular/router": "^3.4.0",
@@ -33,7 +34,7 @@
     "zone.js": "^0.7.6"
   },
   "devDependencies": {
-    "@angular/cli": "^1.0.0-rc.4",
+    "@angular/cli": "^1.0.0",
     "@angular/compiler-cli": "^2.4.0",
     "@types/hammerjs": "^2.0.33",
     "@types/jasmine": "2.5.38",
@@ -50,6 +51,6 @@
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
     "tslint": "~4.4.2",
-    "typescript": "~2.0.0"
+    "typescript": "~2.2.1"
   }
 }
