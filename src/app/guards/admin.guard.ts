@@ -10,9 +10,9 @@ import { MembersService } from '../services/members.service';
 export class AdminGuard implements CanActivate {
 
   constructor(
-    private loginService: LoginService,
-    private membersService: MembersService,
-    private router: Router
+    public loginService: LoginService,
+    public membersService: MembersService,
+    public router: Router
   ){}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {

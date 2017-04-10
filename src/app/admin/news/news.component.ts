@@ -19,11 +19,11 @@ import { NewsService } from '../../services/news.service';
 export class AdminNewsComponent implements OnInit{
 
   constructor(
-    private newsService: NewsService,
-    private snackBar: MdSnackBar,
+    public newsService: NewsService,
+    public snackBar: MdSnackBar,
   ){}
 
-  private newsmodel = new NewsModel('','',0);
+  public newsmodel = new NewsModel('','',0);
 
   getNews(): void {
     this.newsService.getLast(1).subscribe(news => {

@@ -17,9 +17,9 @@ import { MembersService } from '../services/members.service';
 export class TippsService {
 
   constructor (
-      private loginService: LoginService,
-      private membersService: MembersService,
-      private router: Router,
+      public loginService: LoginService,
+      public membersService: MembersService,
+      public router: Router,
   ){}
 
   // Get all Tipps - Admin method for calculations

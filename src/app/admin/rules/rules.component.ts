@@ -19,11 +19,11 @@ import { RulesService } from '../../services/rules.service';
 export class AdminRulesComponent implements OnInit{
 
   constructor(
-    private rulesService: RulesService,
-    private snackBar: MdSnackBar,
+    public rulesService: RulesService,
+    public snackBar: MdSnackBar,
   ){}
 
-  private rulesmodel: RulesModel[];
+  public rulesmodel: RulesModel[];
 
   getRules(): void {
     this.rulesService.getAll().subscribe(rules => {

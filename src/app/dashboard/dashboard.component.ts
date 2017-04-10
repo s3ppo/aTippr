@@ -23,22 +23,22 @@ import { NewsService } from '../services/news.service';
 })
 export class DashboardComponent implements OnInit{
 
-  private membersmodel: MembersModel[];
-  private membersOnline: number;
-  private matchesmodel = new MatchesModelDashboard('', '', '', '', 0, 0, 0, 0, 0, '', '');
-  private newsmodel = new NewsModel('','',0);
-  private preloadingNextMatchDone: boolean = false;
-  private preloadingMembersDone: boolean = false;
-  private preloadingNewsDone: boolean = false;
-  private ownUser = new MembersModel('','','','','');
+  public membersmodel: MembersModel[];
+  public membersOnline: number;
+  public matchesmodel = new MatchesModelDashboard('', '', '', '', 0, 0, 0, 0, 0, '', '');
+  public newsmodel = new NewsModel('','',0);
+  public preloadingNextMatchDone: boolean = false;
+  public preloadingMembersDone: boolean = false;
+  public preloadingNewsDone: boolean = false;
+  public ownUser = new MembersModel('','','','','');
 
   constructor(
-    private loginService: LoginService,
-    private matchesService: MatchesService,
-    private teamsService: TeamsService,
-    private membersService: MembersService,
-    private newsService: NewsService,
-    private translate: TranslateService
+    public loginService: LoginService,
+    public matchesService: MatchesService,
+    public teamsService: TeamsService,
+    public membersService: MembersService,
+    public newsService: NewsService,
+    public translate: TranslateService
   ){}
 
   getNextMatch(): void {
@@ -48,14 +48,13 @@ export class DashboardComponent implements OnInit{
         this.matchesmodel = new MatchesModelDashboard('', '', '', '', 0, 0, 0, 0, 0, '', '');
         this.preloadingNextMatchDone = true;
       } else {
-        this.matchesmodel['start'] = new Date(this.matchesmodel.matchstart).toLocaleString();
         this.teamsService.get(nextMatch[0].team1).take(1).subscribe( team1 => {
-          this.matchesmodel['flag1'] = team1.flag;
-          this.teamsService.get(nextMatch[0].team2).take(1).subscribe( team2 => {
-            this.matchesmodel['flag2'] = team2.flag;
-            this.preloadingNextMatchDone = true;
-          });
+          this.matchesmodel.flag1 = team1.flag;
         })
+        this.teamsService.get(nextMatch[0].team2).take(1).subscribe( team2 => {
+          this.matchesmodel.flag2 = team2.flag;
+        });
+        this.preloadingNextMatchDone = true;
       }
     })
   }

@@ -14,8 +14,8 @@ import { CategoriesModel } from '../models/categories';
 export class CategoriesService {
 
   constructor (
-      private loginService: LoginService,
-      private router: Router
+      public loginService: LoginService,
+      public router: Router
   ){}
 
     getAll(): Observable<any> {

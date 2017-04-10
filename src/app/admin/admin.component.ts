@@ -13,10 +13,10 @@ import { LoginService } from '../services/login.service';
 })
 export class AdminComponent implements OnInit{
 
-  private gameid: String;
+  public gameid: String;
 
   constructor(
-    private loginService: LoginService
+    public loginService: LoginService
   ){}
 
   ngOnInit(): void {

@@ -23,22 +23,22 @@ import { ChatService } from './services/chat.service';
 export class AppComponent implements OnInit {
 
   @ViewChild('sidenavright') sidenavright: any;
-  private member = new MembersModel('','','','','',0,0);
-  private membersmodelviewAll: MembersModel[];
-  private chatmodelview = new ChatModel(0, '', '');
-  private chatmodelviewAll: ChatModel[];
-  private lastChatActivity: number = 0;
-  private admin: boolean = false;
-  private logged: boolean = false;
-  private authenticated: Observable<any>;
+  public member = new MembersModel('','','','','',0,0);
+  public membersmodelviewAll: MembersModel[];
+  public chatmodelview = new ChatModel(0, '', '');
+  public chatmodelviewAll: ChatModel[];
+  public lastChatActivity: number = 0;
+  public admin: boolean = false;
+  public logged: boolean = false;
+  public authenticated: Observable<any>;
 
   constructor(
-    private loginService: LoginService,
-    private membersService: MembersService,
-    private chatService: ChatService,
-    private translate: TranslateService,
-    private mdIconRegistry: MdIconRegistry,
-    private sanitizer: DomSanitizer
+    public loginService: LoginService,
+    public membersService: MembersService,
+    public chatService: ChatService,
+    public translate: TranslateService,
+    public mdIconRegistry: MdIconRegistry,
+    public sanitizer: DomSanitizer
   ) {
     //Custom Icons
     mdIconRegistry.addSvgIcon('ball', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/soccer.svg'));

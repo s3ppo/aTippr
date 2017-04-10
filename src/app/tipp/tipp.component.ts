@@ -18,14 +18,14 @@ import { CategoriesService } from '../services/categories.service';
 })
 export class TippComponent implements OnInit{
 
-  private categoriesModelAll = [];
-  private loaded: boolean;
+  public categoriesModelAll = [];
+  public loaded: boolean;
 
   constructor(
-    private router: Router,
-    private categoriesService: CategoriesService,
-    private mdIconRegistry: MdIconRegistry, 
-    private sanitizer: DomSanitizer
+    public router: Router,
+    public categoriesService: CategoriesService,
+    public mdIconRegistry: MdIconRegistry, 
+    public sanitizer: DomSanitizer
   ){
     mdIconRegistry.addSvgIcon('ball', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/soccer.svg'));
   }

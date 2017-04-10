@@ -20,7 +20,7 @@ export class LoginService {
     public userdata: Observable<any>;
 
     constructor (
-        private router: Router,
+        public router: Router,
         public af: AngularFire,
         @Inject(FirebaseApp) firebase: any
     ){

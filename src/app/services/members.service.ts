@@ -13,10 +13,10 @@ import { LoginService } from '../services/login.service';
 
 @Injectable()
 export class MembersService {
-    private firebase: any;
+    public firebase: any;
 
     constructor (
-        private loginService: LoginService,
+        public loginService: LoginService,
         @Inject(FirebaseApp) firebase: any,
     ){
         this.firebase = firebase;

@@ -17,11 +17,11 @@ export class TippsDialog implements OnInit{
     public match: String;
     public team1: String;
     public team2: String;
-    private openTipps = [];
+    public openTipps = [];
 
     constructor(
         public dialogRef: MdDialogRef<TippsDialog>,
-        private tippsService: TippsService,
+        public tippsService: TippsService,
     ) {}
 
     getOpenTipps(): void {

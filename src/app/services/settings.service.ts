@@ -14,8 +14,8 @@ import { LoginService } from '../services/login.service';
 export class SettingsService {
 
     constructor (
-        private loginService: LoginService,
-        private http: Http,
+        public loginService: LoginService,
+        public http: Http,
     ){}
 
     getAll(gameName?: String): Observable<any> {

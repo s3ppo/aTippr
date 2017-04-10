@@ -23,17 +23,17 @@ import { RankingService } from '../../services/ranking.service';
 })
 export class AdminCalculateComponent {
 
-  private matchesmodelAll: MatchesModelAll[];
-  private tippsmodelAll: TippsModel[];
-  private membersmodelAll: MembersModel[];
-  private progress: String = "";
+  public matchesmodelAll: MatchesModelAll[];
+  public tippsmodelAll: TippsModel[];
+  public membersmodelAll: MembersModel[];
+  public progress: String = "";
 
   constructor(
-    private matchesService: MatchesService,
-    private tippsService: TippsService,
-    private membersService: MembersService,
-    private rankingService: RankingService,
-    private snackBar: MdSnackBar,
+    public matchesService: MatchesService,
+    public tippsService: TippsService,
+    public membersService: MembersService,
+    public rankingService: RankingService,
+    public snackBar: MdSnackBar,
   ){}
 
   calc(): void {

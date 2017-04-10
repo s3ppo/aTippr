@@ -25,26 +25,26 @@ import { TippsModel } from '../models/tipps';
 export class TipperComponent implements OnInit{
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private matchesService: MatchesService,
-    private tippsService: TippsService,
-    private teamsService: TeamsService,
-    private snackBar: MdSnackBar,
-    private translate: TranslateService,
-    private dialogsService: DialogsService,
-    private rankingService: RankingService,
-    private viewContainerRef: ViewContainerRef,
+    public router: Router,
+    public route: ActivatedRoute,
+    public matchesService: MatchesService,
+    public tippsService: TippsService,
+    public teamsService: TeamsService,
+    public snackBar: MdSnackBar,
+    public translate: TranslateService,
+    public dialogsService: DialogsService,
+    public rankingService: RankingService,
+    public viewContainerRef: ViewContainerRef,
   ){}
 
-  private matchesmodelview: MatchesModelTipper[];
-  private category: string;
-  private categoryname: string;
-  private tippsmodelview: TippsModel[];
-  private preloadingDone: boolean = false;
-  private nomatches: boolean = false;
-  private timerSubscription: any = null;
-  private now: number = new Date().getTime();
+  public matchesmodelview: MatchesModelTipper[];
+  public category: string;
+  public categoryname: string;
+  public tippsmodelview: TippsModel[];
+  public preloadingDone: boolean = false;
+  public nomatches: boolean = false;
+  public timerSubscription: any = null;
+  public now: number = new Date().getTime();
 
   ngOnInit(): void {
     this.route.params.forEach((params: Params) => {

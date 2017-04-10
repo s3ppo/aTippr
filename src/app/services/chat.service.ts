@@ -15,9 +15,9 @@ import { ChatModel } from '../models/chat';
 export class ChatService {
 
     constructor (
-        private loginService: LoginService,
-        private membersService: MembersService,
-        private router: Router
+        public loginService: LoginService,
+        public membersService: MembersService,
+        public router: Router
     ){ }
 
     getLast(number: number): Observable<any> {

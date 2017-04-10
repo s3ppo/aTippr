@@ -18,15 +18,15 @@ import { DialogsService } from '../../services/dialog.service';
 })
 export class AdminTeamsComponent implements OnInit {
 
-    private Flag: File;
-    private teamsmodel = new TeamsModel('', '', '');
-    private teamsmodelAll: TeamsModel[];
+    public Flag: File;
+    public teamsmodel = new TeamsModel('', '', '');
+    public teamsmodelAll: TeamsModel[];
 
   constructor(
-    private snackBar: MdSnackBar,
-    private teamsservice: TeamsService,
-    private dialogsService: DialogsService, 
-    private viewContainerRef: ViewContainerRef
+    public snackBar: MdSnackBar,
+    public teamsservice: TeamsService,
+    public dialogsService: DialogsService, 
+    public viewContainerRef: ViewContainerRef
   ){}
 
   selectFile(event): void {

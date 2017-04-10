@@ -15,16 +15,16 @@ import { RankingService } from '../services/ranking.service';
 })
 export class RankingDetailComponent implements OnInit {
 
-  private rankingDetail = [];
-  private preloadingDone: boolean;
-  private member: string;
-  private membername: string;
+  public rankingDetail = [];
+  public preloadingDone: boolean;
+  public member: string;
+  public membername: string;
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private snackBar: MdSnackBar,
-    private rankingService: RankingService,
+    public router: Router,
+    public route: ActivatedRoute,
+    public snackBar: MdSnackBar,
+    public rankingService: RankingService,
   ){}
 
   getParams(): void {

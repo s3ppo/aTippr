@@ -17,13 +17,13 @@ import { RankingService } from '../services/ranking.service';
 })
 export class RankingComponent implements OnInit {
 
-  private rankingmodel: RankingModelAll[];
-  private preloadingDone: boolean;
+  public rankingmodel: RankingModelAll[];
+  public preloadingDone: boolean;
 
   constructor(
-    private router: Router,
-    private snackBar: MdSnackBar,
-    private rankingService: RankingService,
+    public router: Router,
+    public snackBar: MdSnackBar,
+    public rankingService: RankingService,
   ){}
 
   ngOnInit(): void {

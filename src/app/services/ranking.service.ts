@@ -13,7 +13,7 @@ import { LoginService } from '../services/login.service';
 export class RankingService {
 
     constructor (
-        private loginService: LoginService,
+        public loginService: LoginService,
     ){}
 
     getAll(): Observable<any> {

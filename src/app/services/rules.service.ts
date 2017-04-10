@@ -14,8 +14,8 @@ import { RulesModel } from '../models/rules';
 export class RulesService {
 
   constructor (
-      private loginService: LoginService,
-      private router: Router
+      public loginService: LoginService,
+      public router: Router
   ){}
 
     getAll(): Observable<any> {

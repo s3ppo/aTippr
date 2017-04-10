@@ -20,10 +20,10 @@ import { ForgotModel } from '../models/forgot';
 export class ForgotComponent {
 
   constructor(
-    private router: Router,
-    private loginService: LoginService,
-    private snackBar: MdSnackBar,
-    private translate: TranslateService,
+    public router: Router,
+    public loginService: LoginService,
+    public snackBar: MdSnackBar,
+    public translate: TranslateService,
   ){}
 
   forgotmodel = new ForgotModel('');

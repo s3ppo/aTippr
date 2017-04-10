@@ -15,9 +15,9 @@ import { LoginService } from '../services/login.service';
 export class MatchesService {
 
     constructor (
-        private loginService: LoginService,
-        private http: Http,
-        private router: Router,
+        public loginService: LoginService,
+        public http: Http,
+        public router: Router,
     ){}
 
     getAllwithTeams(category?: string): Observable<any> {

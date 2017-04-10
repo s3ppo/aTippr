@@ -14,8 +14,8 @@
                 <md-option *ngFor="let category of categoriesmodelAll" [value]="category.$key">{{category.name}}</md-option>
             </md-select>
             &nbsp;
-            <button md-mini-fab color="secondary" (click)="RemoveCategory()" type="button"><md-icon class="md-24">remove</md-icon></button>
-            <button md-mini-fab color="secondary" (click)="openAddCategory()" type="button"><md-icon class="md-24">add</md-icon></button><br>
+            <button md-mini-fab color="secondary" (click)="RemoveCategory($event)" type="button"><md-icon class="md-24">remove</md-icon></button>
+            <button md-mini-fab color="secondary" (click)="openAddCategory($event)" type="button"><md-icon class="md-24">add</md-icon></button><br>
             <md-input-container>
                 <input mdInput required placeholder="Matchort" [(ngModel)]="matchesmodel.matchlocation" name="matchlocation">
             </md-input-container>

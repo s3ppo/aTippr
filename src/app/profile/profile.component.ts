@@ -19,13 +19,13 @@ import { MembersService } from '../services/members.service';
 })
 export class ProfileComponent implements OnInit {
 
-  private membersmodelview = new MembersModel('', '', '', '', '');
-  private uploadfile: File;
+  public membersmodelview = new MembersModel('', '', '', '', '');
+  public uploadfile: File;
 
   constructor(
-    private membersService: MembersService,
-    private snackBar: MdSnackBar,
-   private translate: TranslateService
+    public membersService: MembersService,
+    public snackBar: MdSnackBar,
+   public translate: TranslateService
   ){}
 
   selectFile(event): void {

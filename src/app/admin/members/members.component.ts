@@ -20,12 +20,12 @@ import { LoginService } from '../../services/login.service';
 export class AdminMembersComponent implements OnInit{
 
   constructor(
-    private loginService: LoginService,
-    private membersService: MembersService,
-    private snackBar: MdSnackBar,
+    public loginService: LoginService,
+    public membersService: MembersService,
+    public snackBar: MdSnackBar,
   ){}
 
-  private adminmembersmodel: AdminMembersModel[];
+  public adminmembersmodel: AdminMembersModel[];
 
   getAllMembers(): void {
     this.membersService.getAll(true).subscribe(members  => {

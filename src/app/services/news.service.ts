@@ -15,9 +15,9 @@ import { NewsModel } from '../models/news';
 export class NewsService {
 
   constructor (
-      private loginService: LoginService,
-      private membersService: MembersService,
-      private router: Router
+      public loginService: LoginService,
+      public membersService: MembersService,
+      public router: Router
   ){}
 
     getLast(number: number): Observable<any> {

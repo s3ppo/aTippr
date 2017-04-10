@@ -20,10 +20,10 @@ import { LoginModel } from '../models/login';
 export class LoginComponent {
 
   constructor(
-    private router: Router,
-    private loginservice: LoginService,
-    private snackBar: MdSnackBar,
-    private translate: TranslateService
+    public router: Router,
+    public loginservice: LoginService,
+    public snackBar: MdSnackBar,
+    public translate: TranslateService
   ){}
 
   loginmodel = new LoginModel('','');

@@ -18,16 +18,16 @@ import { LoginService } from '../services/login.service';
 export class RegisterComponent implements OnInit{
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private snackBar: MdSnackBar,
-    private loginservice: LoginService,
+    public router: Router,
+    public route: ActivatedRoute,
+    public snackBar: MdSnackBar,
+    public loginservice: LoginService,
   ){}
   
-  private registermodel = new AccountsModel('','','','','','-Kf19Tht26iLL6I6rQnc');
-  private createOwn: boolean = false;
-  private gameName: String;
-  private publicGame: boolean = false;
+  public registermodel = new AccountsModel('','','','','','-Kf19Tht26iLL6I6rQnc');
+  public createOwn: boolean = false;
+  public gameName: String;
+  public publicGame: boolean = false;
 
   doRegister(): void {
     this.loginservice.createUser(this.registermodel, this.createOwn, this.gameName, this.publicGame).then(data => { 

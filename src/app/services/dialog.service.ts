@@ -11,7 +11,7 @@ import { TippsDialog } from '../dialogs/tipps-dialog.component';
 export class DialogsService {
 
     constructor(
-        private dialog: MdDialog
+        public dialog: MdDialog
     ){}
 
     public confirm(title: string, message: string, viewContainerRef: ViewContainerRef): Observable<boolean> {

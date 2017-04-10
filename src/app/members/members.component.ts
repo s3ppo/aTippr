@@ -14,13 +14,13 @@ import { MembersModel } from '../models/members';
 export class MembersComponent implements OnInit {
 
   constructor(
-    private router: Router,
-    private membersservice: MembersService,
+    public router: Router,
+    public membersservice: MembersService,
   ){}
 
-  private membersmodel: MembersModel[];
-  private timerSubscription: any = null;
-  private onlinecheck: number;
+  public membersmodel: MembersModel[];
+  public timerSubscription: any = null;
+  public onlinecheck: number;
 
   ngOnInit(): void {
     this.getAllMembers();

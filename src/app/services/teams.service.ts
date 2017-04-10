@@ -12,11 +12,11 @@ import { LoginService } from '../services/login.service';
 
 @Injectable()
 export class TeamsService {
-    private firebase: any;
+    public firebase: any;
 
     constructor (
-        private loginService: LoginService,
-        private af: AngularFire,
+        public loginService: LoginService,
+        public af: AngularFire,
         @Inject(FirebaseApp) firebase: any,
     ){
         this.firebase = firebase;

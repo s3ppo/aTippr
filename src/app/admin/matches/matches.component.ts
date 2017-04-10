@@ -23,25 +23,25 @@ import { TeamsModel } from '../../models/teams';
 })
 export class AdminMatchesComponent implements OnInit{
 
-  private dialogRef: MdDialogRef<AdminCategoryDialog>;
-  private dialogRes: MdDialogRef<AdminMatchResultDialog>;
-  private matchesmodel = new MatchesModel('', '', '', '', '', '', '', '', '');
-  private matchesmodelAll: MatchesModel[];
-  private matches_msg = ['', ''];
-  private teamsmodelAll: TeamsModel[];
-  private categoriesmodelAll: CategoriesModel[];
-  private selCategory: String;
+  public dialogRef: MdDialogRef<AdminCategoryDialog>;
+  public dialogRes: MdDialogRef<AdminMatchResultDialog>;
+  public matchesmodel = new MatchesModel('', '', '', '', '', '', '', '', '');
+  public matchesmodelAll: MatchesModel[];
+  public matches_msg = ['', ''];
+  public teamsmodelAll: TeamsModel[];
+  public categoriesmodelAll: CategoriesModel[];
+  public selCategory: String;
 
   constructor(
-    private matchesService: MatchesService,
-    private categoriesService: CategoriesService,
-    private teamsService: TeamsService,
-    private dialogsService: DialogsService, 
-    private snackBar: MdSnackBar,
+    public matchesService: MatchesService,
+    public categoriesService: CategoriesService,
+    public teamsService: TeamsService,
+    public dialogsService: DialogsService, 
+    public snackBar: MdSnackBar,
     public  dialog: MdDialog,
     public  viewContainerRef: ViewContainerRef,
-    private mdIconRegistry: MdIconRegistry, 
-    private sanitizer: DomSanitizer
+    public mdIconRegistry: MdIconRegistry, 
+    public sanitizer: DomSanitizer
   ){
     this.matchesmodel.multiplier = "1";
     mdIconRegistry.addSvgIcon('whistle', sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/whistle.svg'));
@@ -117,7 +117,7 @@ export class AdminMatchesComponent implements OnInit{
     this.selCategory = event;
   }
 
-  RemoveCategory(value): void {
+  RemoveCategory(event): void {
     this.dialogsService
       .confirm('Bitte Bestätigen', 'Löschen dieser Kategorie wirklich durchführen?', this.viewContainerRef)
       .subscribe(res =>   {   
@@ -127,14 +127,14 @@ export class AdminMatchesComponent implements OnInit{
       });
   }
 
-  openAddCategory(): void {
+  openAddCategory(event): void {
     let config = new MdDialogConfig();
     config.viewContainerRef = this.viewContainerRef;
 
     this.dialogRef = this.dialog.open(AdminCategoryDialog, config);
     this.dialogRef.afterClosed().subscribe(result => {
       if(result == 'ok'){
-        this.snackBar.open('Neue Kategory angelegt!', 'Close', { duration: 2000 } );
+        this.snackBar.open('Neue Kategorie angelegt!', 'Close', { duration: 2000 } );
       }
       this.dialogRef = null;
     });
@@ -152,10 +152,10 @@ export class AdminCategoryDialog {
 
   constructor(
     public dialogRef: MdDialogRef<AdminCategoryDialog>,
-    private categoriesService: CategoriesService,
+    public categoriesService: CategoriesService,
   ){}
 
-  private categorymodel = new CategoriesModel('');
+  public categorymodel = new CategoriesModel('');
 
   doCreateCategory(): void {
     this.categoriesService.create(this.categorymodel);

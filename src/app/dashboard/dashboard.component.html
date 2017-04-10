@@ -20,7 +20,7 @@
           <div class="flags_separator"> &nbsp; - &nbsp; </div>
           <div><img class="teamflag" *ngIf="matchesmodel.flag2" [src]="matchesmodel.flag2" /></div>
         </div>
-        <div *ngIf="preloadingNextMatchDone && matchesmodel.start != 0" class="match_start">{{matchesmodel.start}}</div>
+        <div *ngIf="preloadingNextMatchDone && matchesmodel.matchstart != 0" class="match_start">{{matchesmodel.matchstart | date:"dd.MM.yyyy, HH:mm"}}</div>
       </md-card-content>
     </md-card>
     <md-card>
