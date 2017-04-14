@@ -1,0 +1,43 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      C:\Program Files\nodejs\node.exe C:\Users\wiesingerh\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy --only functions
+[debug] CLI Version:  3.6.1
+[debug] Platform:     win32
+[debug] Node Version: v6.9.1
+[debug] Time:         Fri Apr 14 2017 23:39:02 GMT+0200 (Mitteleuropäische Sommerzeit)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[debug] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/api-project-340883542890  
+ Fri Apr 14 2017 23:39:02 GMT+0200 (Mitteleuropäische Sommerzeit)
+[debug] <<< HTTP RESPONSE 200
+[debug] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/api-project-340883542890/tokens  
+ Fri Apr 14 2017 23:39:03 GMT+0200 (Mitteleuropäische Sommerzeit)
+[debug] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'api-project-340883542890'...
+[info] 
+[info] i  deploying functions
+[debug] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "firebase-admin": "~4.1.2",
+    "firebase-functions": "^0.5"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/api-project-340883542890?view=CONSUMER_VIEW  
+ Fri Apr 14 2017 23:39:06 GMT+0200 (Mitteleuropäische Sommerzeit)
+[debug] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/api-project-340883542890?view=CONSUMER_VIEW  
+ Fri Apr 14 2017 23:39:06 GMT+0200 (Mitteleuropäische Sommerzeit)
+[debug] <<< HTTP RESPONSE 200
+[info] +  runtimeconfig: all necessary APIs are enabled
+[debug] <<< HTTP RESPONSE 200
+[info] +  functions: all necessary APIs are enabled
+[debug] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/api-project-340883542890  
+ Fri Apr 14 2017 23:39:07 GMT+0200 (Mitteleuropäische Sommerzeit)
+[debug] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/api-project-340883542890/apiKeys  
+ Fri Apr 14 2017 23:39:07 GMT+0200 (Mitteleuropäische Sommerzeit)
+[debug] <<< HTTP RESPONSE 200

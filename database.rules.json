@@ -53,7 +53,7 @@
           },
           "secure": {
             "$matchid": {
-              ".read": "auth != null && root.child('games').child($gameid).child('matches').child( $matchid ).child('deadline').val() <= now && $gameid === root.child('users').child(auth.uid).child('gameid').val()",
+              ".read": "auth != null && root.child('games').child($gameid).child('matches').child( $matchid ).child('deadline').val() <= now && $gameid === root.child('users').child(auth.uid).child('gameid').val() && root.child('games').child($gameid).child('matches').child( $matchid ).child('result1').val() !== null",
               "$uid": {
                 ".write": "$uid === auth.uid && root.child('games').child($gameid).child('matches').child( $matchid ).child('deadline').val() >= now && $gameid === root.child('users').child(auth.uid).child('gameid').val()"
               }
