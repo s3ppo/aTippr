@@ -31,7 +31,7 @@ exports.sendNotificationChat = functions.database.ref('/games/{gameid}/chat/{cha
 
             const tokens = [];
             allUsersSnapshot.forEach(user => {
-                if(user.hasChild('firebaseToken') && user.key != thisUserSnapshot.key) {
+                if(user.hasChild('firebaseToken') && user.key != senderUid) {
                     tokens.push(user.child('firebaseToken').val());
                 }
             })
